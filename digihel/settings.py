@@ -24,6 +24,8 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
+    'helusers',
     'content',
     'search',
 
@@ -42,8 +44,14 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'helusers.providers.helsinki',
+
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -112,6 +120,24 @@ USE_L10N = True
 USE_TZ = True
 
 
+#
+# Authentication
+#
+AUTH_USER_MODEL = 'users.User'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+SOCIALACCOUNT_PROVIDERS = {
+    'helsinki': {
+        'VERIFIED_EMAIL': True
+    }
+}
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True
+SOCIALACCOUNT_ADAPTER = 'helusers.providers.helsinki.provider.SocialAccountAdapter'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
@@ -134,6 +160,7 @@ MEDIA_URL = '/media/'
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "digihel"
+SITE_ID = 1
 
 
 # local_settings.py can be used to override environment-specific settings

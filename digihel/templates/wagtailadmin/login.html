@@ -1,0 +1,91 @@
+{% extends "wagtailadmin/admin_base.html" %}
+{% load staticfiles i18n %}
+{% block titletag %}{% trans "Sign in" %}{% endblock %}
+{% block bodyclass %}login{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'wagtailadmin/css/layouts/login.css' %}" type="text/css" />
+{% endblock %}
+
+{% block furniture %}
+    <div class="content-wrapper">
+        {% if messages or form.errors %}
+            <div class="messages">
+                <ul>
+                    {% if form.errors %}
+                        <li class="error">{% blocktrans %}Your {{ username_field }} and password didn't match. Please try again.{% endblocktrans %}</li>
+                    {% endif %}
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form action="{% url 'wagtailadmin_login' %}" method="post" autocomplete="off">
+            {% csrf_token %}
+
+            {% url 'wagtailadmin_home' as home_url %}
+            <input type="hidden" name="next" value="{{ next|default:home_url }}" />
+
+            <h1>Kirjaudu sisään digi.hel.fi-ylläpitoon</h1>
+            <p>
+                Voit kirjautua sisään joko Helsingin kaupungin työntekijän tunnuksilla allaolevasta
+                nappulasta tai erillisellä käyttäjätunnuksella ja salasanalla.
+            </p>
+            <div style="margin-bottom: 16px">
+                <a href="{% url 'helsinki_login' %}?next={% if request.GET.next %}{{request.GET.next}}{% else %}{% url 'wagtailadmin_home' %}{% endif %}"><button type="button">Helsinki login</button></a>
+            </div>
+            <a id="show-login-form" href="#">Käyttäjätunnus ja salasana</a>
+
+            <ul id="login-form" class="fields ui-helper-hidden">
+                <li class="full">
+                    <div class="field iconfield">
+                        {{ form.username.label_tag }}
+                        <div class="input icon-user">
+                            {{ form.username }}
+                        </div>
+                    </div>
+                </li>
+                <li class="full">
+                    <div class="field iconfield">
+                        {{ form.password.label_tag }}
+                        <div class="input icon-password">
+                            {{ form.password }}
+                        </div>
+                    </div>
+                    {% if show_password_reset %}
+                        <p class="help"><a href="{% url 'wagtailadmin_password_reset' %}">{% trans "Forgotten it?" %}</a></p>
+                    {% endif %}
+                </li>
+                {% comment %}
+                    Removed until functionality exists
+                    <li class="checkbox">
+                        <div class="field">
+                            <label><input type="checkbox" />{% trans "Remember me" %}</label>
+                        </div>
+                    </li>
+                {% endcomment %}
+                <li class="submit">
+                    <button type="submit" class="button-longrunning" tabindex="3" data-clicked-text="{% trans 'Signing in...' %}"><span class="icon icon-spinner"></span><em>{% trans 'Sign in' %}</em></button>
+                </li>
+            </ul>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+    $(function(){
+        $('form input[name=username]').focus();
+        $('#show-login-form').click(function(ev) {
+            $('#login-form').show('blind');
+            $(this).hide();
+            ev.preventDefault();
+        });
+    })
+</script>
+{% endblock %}
