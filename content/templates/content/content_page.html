@@ -3,13 +3,6 @@
 {% block body_class %}template-contentpage{% endblock %}
 
 {% block content %}
-<style>
-.block-image img {
-    width: 100%;
-    height: 100%;
-}
-</style>
-
 <article>
 {% for block in page.body %}
     {% if block.block_type == 'heading' %}
