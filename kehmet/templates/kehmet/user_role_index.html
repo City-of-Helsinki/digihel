@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-user-role-index{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ page.title }}</h1>
+    <ul>
+    {% for role in page.get_children %}
+        <li><a href="{% pageurl role %}">{{ role.title }}</a></li>
+    {% endfor %}
+    </ul>
+
+    {% for block in page.body %}
+        {% if block.block_type == 'heading' %}
+            <h1>{{ block.value }}</h1>
+        {% else %}
+            <section class="row block-{{ block.block_type }}">
+                <div class="col-sm-8">
+                {{ block }}
+                </div>
+            </section>
+        {% endif %}
+    {% endfor %}
+</article>
+{% endblock %}
