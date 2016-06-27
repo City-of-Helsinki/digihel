@@ -1,5 +1,5 @@
 Django>=1.9,<1.10
-wagtail>=1.4.3,<1.5
+wagtail
 Jinja2
 psycopg2
 -e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers

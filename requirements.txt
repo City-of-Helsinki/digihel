@@ -11,28 +11,28 @@ click==6.6                # via pip-tools
 contextlib2==0.5.3        # via raven
 defusedxml==0.4.1         # via python3-openid
 django-allauth==0.25.2
-django-modelcluster==1.1  # via wagtail
-django-taggit==0.18.2     # via wagtail
+django-modelcluster==2.0  # via wagtail
+django-taggit==0.18.3     # via wagtail
 django-treebeard==4.0.1   # via wagtail
-Django==1.9.6             # via django-allauth, django-treebeard, wagtail
+Django==1.9.7             # via django-allauth, django-treebeard, wagtail
 djangorestframework==3.3.3  # via wagtail
 first==2.0.1              # via pip-tools
 html5lib==0.9999999       # via wagtail
 Jinja2==2.8
 MarkupSafe==0.23          # via jinja2
-oauthlib==1.1.1           # via requests-oauthlib
+oauthlib==1.1.2           # via requests-oauthlib
 Pillow==3.2.0             # via wagtail
-pip-tools==1.6.4
+pip-tools==1.6.5
 psycopg2==2.6.1
 py==1.4.31                # via pytest
 pytest-django==2.9.1
-pytest==2.9.1
+pytest==2.9.2
 python3-openid==3.0.10    # via django-allauth
 pytz==2016.4              # via django-modelcluster
-raven==5.15.0
+raven==5.21.0
 requests-oauthlib==0.6.1  # via django-allauth
 requests==2.10.0          # via django-allauth, requests-oauthlib
 six==1.10.0               # via html5lib, pip-tools
 Unidecode==0.4.19         # via wagtail
-wagtail==1.4.3
-Willow==0.3               # via wagtail
+wagtail==1.5.2
+Willow==0.3.1             # via wagtail
