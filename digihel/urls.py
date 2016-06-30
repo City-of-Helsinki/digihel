@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     url(r'^search/$', search_views.search, name='search'),
+    url(r'^blogi/', include('blog.urls', namespace="blog")),
 
     url(r'', include(wagtail_urls)),
 ]

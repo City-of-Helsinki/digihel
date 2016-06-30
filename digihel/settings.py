@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'helusers',
     'content',
     'kehmet',
+    'digi',
     'search',
 
     'wagtail.wagtailforms',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'blog',
 
     'allauth',
     'allauth.account',
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -34,5 +34,6 @@ requests-oauthlib==0.6.1  # via django-allauth
 requests==2.10.0          # via django-allauth, requests-oauthlib
 six==1.10.0               # via html5lib, pip-tools
 Unidecode==0.4.19         # via wagtail
+wagtail-blog==1.6.6
 wagtail==1.5.2
 Willow==0.3.1             # via wagtail

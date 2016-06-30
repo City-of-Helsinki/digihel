@@ -2,3 +2,43 @@
     width: 100%;
     height: 100%;
 }
+
+.front-page section {
+    margin-bottom: 3em;
+}
+
+.front-page .indicators {
+    text-align: center;
+}
+
+.front-page .indicator-value {
+    font-size: 36px;
+}
+
+.front-page .theme {
+    padding: 1em;
+}
+
+.front-page .card-type {
+    text-transform: uppercase;
+}
+
+.front-page .theme img {
+    width: 100%;
+}
+
+.front-page .blogs h3 {
+    margin-top: 0;
+}
+.front-page .blog-post {
+    margin-bottom: 2em;
+}
+
+.front-page .manual-and-events h2 {
+    font-size: 16px;
+}
+
+.page-footer {
+    background: #333;
+    min-height: 20em;
+}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load humanize wagtailimages_tags digi_tags %}
+
+{% block body_class %}template-front-page{% endblock %}
+
+{% block content %}
+<article class="front-page">
+    <section class="jumbotron">
+        {% for block in page.hero %}
+        {{ block }}
+        {% endfor %}
+    </section>
+    <section class="indicators row">
+        {% for indicator in page.indicators|slice:":3" %}
+        <div class="indicator col-md-4">
+            <div class="indicator-value">
+                {{ indicator.value|intcomma }}
+            </div>
+            <div class="indicator-description">
+                {{ indicator.description }}
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    <section class="themes row">
+        {% for theme in page.themes|slice:":3" %}
+        <div class="theme col-md-4">
+            <small class="card-type">Teema</small>
+            {% image theme.image width-400 as theme_image %}
+            <img src="{{ theme_image.url }}" />
+            <h3>{{ theme.title }}</h3>
+            <p>{{ theme.short_description }}</p>
+        </div>
+        {% endfor %}
+    </section>
+    <section class="misc row">
+        <div class="col-md-8 blogs">
+            {% for blog in page.blog_posts|slice:":3" %}
+            <div class="blog-post">
+                <small class="card-type">Blogi</small>
+                <h3>{{ blog.title }}</h3>
+                {{ blog.body|first_p|safe }}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4 manual-and-events">
+            <div class="manual-links">
+                <h2>Digitaalisten palveluiden kehittämisopas</h2>
+            </div>
+            <div class="events">
+                <h2>Tapahtumat</h2>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}
