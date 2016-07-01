@@ -26,7 +26,7 @@
         {% for theme in page.themes|slice:":3" %}
         <div class="theme col-md-4">
             <small class="card-type">Teema</small>
-            {% image theme.image width-400 as theme_image %}
+            {% image theme.image fill-280x210 as theme_image %}
             <img src="{{ theme_image.url }}" />
             <h3>{{ theme.title }}</h3>
             <p>{{ theme.short_description }}</p>
