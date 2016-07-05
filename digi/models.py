@@ -24,6 +24,9 @@ class Indicator(models.Model):
         verbose_name_plural = _('Indicators')
         ordering = ['order']
 
+    def __str__(self):
+        return self.description
+
 
 class ThemeIndexPage(Page):
     subpage_types = ['ThemePage']
