@@ -1,44 +1,271 @@
-.container .richtext-image, .block-image img {
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/* Global */
+
+body {
+    background-color: #eaeaea;
+    background-image: linear-gradient(to bottom, #eaeaea 0px, #FFFFFF 100%);
+    font-family: "Open Sans", Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.62857;
+}
+h2,
+h3,
+.small,
+small {
+    font-weight: bold;
+}
+/* Navigation */
+
+.navbar {
+    border: none;
+    min-height: 70px;
+    position: fixed;
     width: 100%;
-    height: 100%;
+    z-index: 10;
 }
-
-.front-page section {
-    margin-bottom: 3em;
+.navbar-inverse {
+    background-image: none;
+    background-color: #0066CC;
 }
+.nav.navbar-nav {
+    margin-top: 11px;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+.navbar-brand {
+    background-image: url("https://digi.hel.ninja/media/images/digitaalinen-helsinki-vaakuna4.width-800.png");
+    background-repeat: no-repeat;
+    width: 305px;
+    height: 50px;
+    margin-top: 11px;
+}
+.dropdown-toggle {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: url("https://digi.hel.ninja/media/images/hamburger.width-800.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    width: 200px;
+}
+.glyphicon-home::before {
+    content: none;
+}
+.caret {
+    display: none;
+}
+/** Front page **/
 
+.container .jumbotron,
+.container-fluid .jumbotron {
+    color: white;
+    background-color: #0066CC;
+    background-image: linear-gradient(to bottom, #0066CC 0px, #1975d1 100%);
+    border-radius: 0px;
+    margin-top: 8.2em;
+    margin-bottom: 4em;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.container .jumbotron,
+.container-fluid .jumbotron,
+.indicators.row,
+.col-md-8.blogs,
+.front-page .manual-links,
+.front-page .events {
+    -webkit-box-shadow: 0 0 1px 1x white;
+    box-shadow: 0 0 1px 1px white;
+}
+.jumbotron h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    line-height: 1.4em;
+}
+.jumbotron h2 i {
+    font-style: normal;
+    color: white;
+    text-shadow: 0px 0px 1px white;
+}
+.jumbotron a {
+    color: white;
+    text-shadow: 0px 0px 1px white;
+}
+.jumbotron .rich-text {
+    background-image: url("https://digi.hel.ninja/media/images/vaakuna-transp.width-800.png");
+    background-repeat: no-repeat;
+    background-position: 95% 10%;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 48px;
+    padding-top: 48px;
+}
+/* Indicators */
+
+.indicators,
+.col-md-4,
+.col-md-8 {
+    border-radius: 10px;
+}
+.indicators.row {
+    padding: 1.5em 0;
+    margin-bottom: 4em;
+}
+.indicator.col-md-4 {
+    border: none;
+    background-color: transparent;
+}
+.indicator-value {
+    font-weight: bold;
+}
 .front-page .indicators {
     text-align: center;
 }
-
 .front-page .indicator-value {
     font-size: 36px;
 }
+.front-page .indicator-description {
+    text-transform: uppercase;
+}
+/* Box stylings */
 
+.indicators.row,
+.col-md-8.blogs,
+.front-page .manual-links,
+.front-page .events {
+    color: #0A3056;
+    background-image: linear-gradient(to bottom, #ECF5FD 0px, #ffffff 100%);
+    border-top: 10px;
+    border-right: 3px;
+    border-bottom: 3px;
+    border-left: 3px;
+    border-style: solid;
+    border-color: #1975d1;
+}
+.theme.col-md-4 {
+    border-top: 10px;
+    border-right: 3px;
+    border-bottom: 3px;
+    border-left: 3px;
+    border-style: solid;
+}
+.theme.col-md-4:first-child {
+    color: #1a441a;
+    background-image: linear-gradient(to bottom, #dff3df 0px, #ffffff 100%);
+    border-color: #7ccd7c;
+}
+.theme.col-md-4:nth-child(2) {
+    color: #450407;
+    background-image: linear-gradient(to bottom, #fee7e8 0px, #ffffff 100%);
+    border-color: #f7646c;
+}
+.theme.col-md-4:last-child {
+    color: #003c4e;
+    background-image: linear-gradient(to bottom, #d8f6ff 0px, #ffffff 100%);
+    border-color: #00c3ff;
+}
+.container .richtext-image,
+.block-image img {
+    width: 100%;
+    height: 100%;
+}
+.front-page section {
+    margin-bottom: 3em;
+}
 .front-page .theme {
     padding: 1em;
 }
-
 .front-page .card-type {
     text-transform: uppercase;
 }
-
 .front-page .theme img {
     width: 100%;
 }
-
 .front-page .blogs h3 {
     margin-top: 0;
 }
 .front-page .blog-post {
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
+}
+.front-page .col-md-4.manual-and-events {
+    padding-left: 0;
+    padding-right: 0;
+    background: none;
+}
+.front-page .manual-links,
+.front-page .events {
+    background-color: white;
+    padding: 0 1em 1em 1em;
+    border-radius: 6px;
     margin-bottom: 2em;
 }
-
+.blog-post:last-child {
+    margin-top: 0;
+    padding-top: 1em;
+    border-top: 1px dotted silver;
+}
 .front-page .manual-and-events h2 {
     font-size: 16px;
 }
-
 .page-footer {
-    background: #333;
+    background-color: #0A3056;
     min-height: 20em;
+}
+/* Bootsrap grid changes */
+
+@media (max-width: 1200px) {
+    .jumbotron .rich-text {
+        background-image: none;
+    }
+}
+@media (min-width: 992px) {
+    .navbar-header {
+        width: 40%;
+    }
+    .col-md-4 {
+        width: 32%;
+        margin-right: 2%;
+    }
+    .col-md-4:last-child {
+        margin-right: 0;
+    }
+    .col-md-8 {
+        width: 66%;
+        margin-right: 2%;
+    }
+    .container .jumbotron,
+    .container-fluid .jumbotron {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .themes.row {
+        display: flex;
+        align-content: stretch;
+    }
+}
+@media (max-width: 991px) {
+    .theme.col-md-4 {
+        margin-bottom: 2em;
+    }
+    .theme.col-md-4:last-child {
+        margin-bottom: 0;
+    }
+    .blogs.col-md-8 {
+        margin-bottom: 2em;
+    }
+    .navbar.navbar-inverse .container {
+        min-width: 98%;
+        max-width: 98%;
+    }
+    .navbar-form {
+        margin-right: 5px;
+    }
+}
+@media (max-width: 768px) {
+    .navbar.navbar-inverse {
+        border-bottom: 5px solid black;
+    }
 }
