@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load humanize wagtailimages_tags digi_tags %}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags %}
 
 {% block body_class %}template-front-page{% endblock %}
 
@@ -27,8 +27,8 @@
         <div class="theme col-md-4">
             <small class="card-type">Teema</small>
             {% image theme.image fill-280x210 as theme_image %}
-            <img src="{{ theme_image.url }}" />
-            <h3>{{ theme.title }}</h3>
+            <a class="link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+            <h3><a class="link-unstyled" href="{% pageurl theme %}">{{ theme.title }}</a></h3>
             <p>{{ theme.short_description }}</p>
         </div>
         {% endfor %}
@@ -38,7 +38,7 @@
             {% for blog in page.blog_posts|slice:":3" %}
             <div class="blog-post">
                 <small class="card-type">Blogi</small>
-                <h3>{{ blog.title }}</h3>
+                <h3><a class="link-unstyled" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
                 {{ blog.body|first_p|safe }}
             </div>
             {% endfor %}

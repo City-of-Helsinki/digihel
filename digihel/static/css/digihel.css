@@ -8,12 +8,25 @@ body {
     font-size: 16px;
     line-height: 1.62857;
 }
-h2,
-h3,
-.small,
-small {
+h2, h3, .small, small {
     font-weight: bold;
 }
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.link-unstyled {
+  color: inherit;
+  text-decoration: inherit;
+}
+.link-unstyled:link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+
 /* Navigation */
 
 .navbar {
@@ -54,6 +67,9 @@ small {
 .caret {
     display: none;
 }
+.main-container {
+    padding-top: 90px;
+}
 /** Front page **/
 
 .container .jumbotron,
@@ -62,7 +78,7 @@ small {
     background-color: #0066CC;
     background-image: linear-gradient(to bottom, #0066CC 0px, #1975d1 100%);
     border-radius: 0px;
-    margin-top: 8.2em;
+    margin-top: 3em;
     margin-bottom: 4em;
     padding-left: 0;
     padding-right: 0;
@@ -165,8 +181,8 @@ small {
     background-image: linear-gradient(to bottom, #d8f6ff 0px, #ffffff 100%);
     border-color: #00c3ff;
 }
-.container .richtext-image,
-.block-image img {
+.container .richtext-image img.full-width,
+.block-image img.full-width {
     width: 100%;
     height: 100%;
 }
@@ -210,6 +226,7 @@ small {
     font-size: 16px;
 }
 .page-footer {
+    margin-top: 4em;
     background-color: #0A3056;
     min-height: 20em;
 }
