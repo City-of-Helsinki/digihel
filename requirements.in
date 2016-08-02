@@ -11,3 +11,4 @@ django-allauth
 wagtail-blog
 django_compressor
 django-libsass
+django-bower

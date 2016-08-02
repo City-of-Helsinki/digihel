@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'blog',
+    'djangobower',
 
     'allauth',
     'allauth.account',
@@ -150,6 +151,7 @@ SOCIALACCOUNT_ADAPTER = 'helusers.providers.helsinki.provider.SocialAccountAdapt
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
     'compressor.finders.CompressorFinder',
 ]
 
@@ -166,6 +168,12 @@ MEDIA_URL = '/media/'
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components/')
+
+BOWER_INSTALLED_APPS = [
+    'bourbon#4.2.7'
+]
 
 # Wagtail settings
 
