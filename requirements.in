@@ -9,3 +9,5 @@ raven
 pip-tools
 django-allauth
 wagtail-blog
+django_compressor
+django-libsass

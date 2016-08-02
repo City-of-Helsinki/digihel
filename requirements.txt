@@ -6,34 +6,40 @@
 #
 
 -e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
-beautifulsoup4==4.4.1     # via wagtail
+beautifulsoup4==4.5.0     # via wagtail
 click==6.6                # via pip-tools
-contextlib2==0.5.3        # via raven
+contextlib2==0.5.4        # via raven
 defusedxml==0.4.1         # via python3-openid
-django-allauth==0.25.2
+django-allauth==0.26.1
+django-appconf==1.0.2     # via django-compressor
+django-compressor==2.0
+django-libsass==0.7
 django-modelcluster==2.0  # via wagtail
 django-taggit==0.18.3     # via wagtail
 django-treebeard==4.0.1   # via wagtail
-Django==1.9.7             # via django-allauth, django-treebeard, wagtail
-djangorestframework==3.3.3  # via wagtail
+Django==1.9.9             # via django-allauth, django-treebeard, wagtail
+djangorestframework==3.4.1  # via wagtail
 first==2.0.1              # via pip-tools
-html5lib==0.9999999       # via wagtail
+html5lib==0.999999        # via wagtail
 Jinja2==2.8
+libsass==0.11.1           # via django-libsass
 MarkupSafe==0.23          # via jinja2
 oauthlib==1.1.2           # via requests-oauthlib
-Pillow==3.2.0             # via wagtail
-pip-tools==1.6.5
-psycopg2==2.6.1
+Pillow==3.3.0             # via wagtail
+pip-tools==1.7.0
+psycopg2==2.6.2
 py==1.4.31                # via pytest
 pytest-django==2.9.1
 pytest==2.9.2
 python3-openid==3.0.10    # via django-allauth
-pytz==2016.4              # via django-modelcluster
-raven==5.21.0
-requests-oauthlib==0.6.1  # via django-allauth
+pytz==2016.6.1            # via django-modelcluster
+raven==5.23.0
+rcssmin==1.0.6            # via django-compressor
+requests-oauthlib==0.6.2  # via django-allauth
 requests==2.10.0          # via django-allauth, requests-oauthlib
-six==1.10.0               # via html5lib, pip-tools
+rjsmin==1.0.12            # via django-compressor
+six==1.10.0               # via html5lib, libsass, pip-tools
 Unidecode==0.4.19         # via wagtail
-wagtail-blog==1.6.6
-wagtail==1.5.2
+wagtail-blog==1.6.7
+wagtail==1.5.3
 Willow==0.3.1             # via wagtail

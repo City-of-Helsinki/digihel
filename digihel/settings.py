@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailcore',
     'wagtail.contrib.modeladmin',
 
+    'compressor',
     'modelcluster',
     'taggit',
     'blog',
@@ -149,6 +150,7 @@ SOCIALACCOUNT_ADAPTER = 'helusers.providers.helsinki.provider.SocialAccountAdapt
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 ]
 
 STATICFILES_DIRS = [
@@ -161,6 +163,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 
 # Wagtail settings
 
