@@ -169,11 +169,12 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components/')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components/')
 
 BOWER_INSTALLED_APPS = [
     'bourbon#4.2.7'
 ]
+
 
 # Wagtail settings
 
