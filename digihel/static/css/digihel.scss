@@ -1,5 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
 @import "bourbon/app/assets/stylesheets/bourbon";
+
+$topnaviheight: 65px;
 
 /* Global */
 
@@ -81,18 +83,17 @@ h2, h3, .small, small {
   display: none;
 }
 
-.main-container {
-  padding-top: 90px;
+.page-content {
+  padding-top: $topnaviheight;
 }
 
 /** Front page **/
 
 .container .jumbotron, .container-fluid .jumbotron {
   color: white;
-  background-color: #0066CC;
-  background-image: linear-gradient(to bottom, #0066CC 0px, #1975d1 100%);
+  @include linear-gradient(#103357, #0066cc);
   border-radius: 0px;
-  margin-top: 3em;
+  //margin-top: 4em;
   margin-bottom: 4em;
   padding-left: 0;
   padding-right: 0;
@@ -103,6 +104,10 @@ h2, h3, .small, small {
 .container .jumbotron, .container-fluid .jumbotron, .indicators.row, .col-md-8.blogs {
   -webkit-box-shadow: 0 0 1px 1x white;
   box-shadow: 0 0 1px 1px white;
+}
+
+.container-fluid.header-container {
+    padding: 0;
 }
 
 .front-page {
@@ -131,13 +136,19 @@ h2, h3, .small, small {
   }
 
   .rich-text {
+    position:absolute;
+    top:50%;
+    text-align:center;
+    width:100%;
+    color:#fff;
+    font-size:36px;
+    -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%); 
     background-image: url("https://digi.hel.ninja/media/images/vaakuna-transp.width-800.png");
     background-repeat: no-repeat;
     background-position: 95% 10%;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 48px;
-    padding-top: 48px;
+    padding: 48px 10%;
   }
 }
 
@@ -157,8 +168,13 @@ h2, h3, .small, small {
   background-color: transparent;
 }
 
+.indicator-icon {
+  max-width: 240px;
+  margin: 0 auto;
+}
+
 .indicator-value {
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .front-page {
