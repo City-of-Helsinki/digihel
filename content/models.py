@@ -5,6 +5,7 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.wagtailsearch import index
 
 
 class ContentPage(Page):
@@ -16,4 +17,7 @@ class ContentPage(Page):
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body')
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('body')
     ]

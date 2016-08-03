@@ -8,6 +8,7 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailsearch import index
 from blog.models import BlogPage
 
 
@@ -46,6 +47,9 @@ class ThemePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('short_description'),
         ImageChooserPanel('image')
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('short_description'),
     ]
 
 
