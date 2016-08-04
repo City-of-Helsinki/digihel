@@ -3,7 +3,7 @@ jQuery(document).ready(function($){
     function fullscreen(){
         jQuery('.js-fullscreen').css({
             width: jQuery(window).width(),
-            height: jQuery(window).height()-65
+            height: jQuery(window).height()-240
         });
     }
   

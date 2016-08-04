@@ -1,14 +1,55 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-bold-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-bolditalic-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-bolditalic-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-italic-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-italic-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
 @import "bourbon/app/assets/stylesheets/bourbon";
 
 $topnaviheight: 65px;
+
+$helsinkiyellow:  #FFC72B;
+$helsinkiblue:  #005EB8;
+$helsinkiturquoise: #05C2DE;
+$helsinkired: #D10057;
 
 /* Global */
 
 body {
   background-color: #eaeaea;
   background-image: linear-gradient(to bottom, #eaeaea 0px, #FFFFFF 100%);
-  font-family: "Open Sans", Helvetica, sans-serif;
+  font-family: "helsinki-avoin", Verdana, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.62857;
 }
@@ -47,7 +88,7 @@ h2, h3, .small, small {
 
 .navbar-inverse {
   background-image: none;
-  background-color: #0066CC;
+  background-color: $helsinkiblue;
 }
 
 .nav.navbar-nav {
@@ -169,8 +210,37 @@ h2, h3, .small, small {
 }
 
 .indicator-icon {
-  max-width: 240px;
+  width: 100px;
   margin: 0 auto;
+}
+
+.indicator-icon svg:hover {
+  #graph-1,#graph-2,#graph-3,#graph-4 {
+    @include animation(scaling 1.0s ease-in);
+    @include transform-origin(center bottom);
+  }
+  #graph-1 {
+    @include animation-delay (0.1s);
+  }
+  #graph-2 {
+    @include animation-delay (0.2s);
+  }
+  #graph-3 {
+    @include animation-delay (0.3s);
+  }
+  #graph-4 {
+    @include animation-delay (0.4s);
+  }
+  
+}
+
+@keyframes scaling {
+  0% {
+    @include transform (scaleY(0));
+  }
+  100% {
+    @include transform (scaleY(1));
+  }
 }
 
 .indicator-value {
@@ -196,12 +266,13 @@ h2, h3, .small, small {
 .indicators.row, .col-md-8.blogs {
   color: #0A3056;
   background-image: linear-gradient(to bottom, #ECF5FD 0px, #ffffff 100%);
-  border-top: 10px;
-  border-right: 3px;
-  border-bottom: 3px;
-  border-left: 3px;
-  border-style: solid;
-  border-color: #1975d1;
+  //border-top: 10px;
+  //border-right: 3px;
+  //border-bottom: 3px;
+  //border-left: 3px;
+  //border-style: solid;
+  //border-color: #1975d1;
+  border-radius: 0;
 }
 
 .front-page {
@@ -218,12 +289,14 @@ h2, h3, .small, small {
 }
 
 .theme.col-md-4 {
-  border-top: 10px;
-  border-right: 3px;
-  border-bottom: 3px;
-  border-left: 3px;
+  //order-top: 10px;
+  //border-right: 3px;
+  //border-bottom: 3px;
+  //border-left: 3px;
+  border: 0;
   border-style: solid;
-
+  border-radius: 0;
+  
   &:first-child {
     color: #1a441a;
     background-image: linear-gradient(to bottom, #dff3df 0px, #ffffff 100%);
@@ -258,7 +331,11 @@ h2, h3, .small, small {
   }
 
   .card-type {
+    @include clearfix;
     text-transform: uppercase;
+    border-bottom: solid 3px #0033cc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
   }
 
   .theme img {
