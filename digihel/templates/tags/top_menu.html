@@ -1,60 +1,71 @@
-{% load content_tags wagtailcore_tags %}
+{% load static content_tags wagtailcore_tags %}
 {% get_site_root as site_root %}
 
 {# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
-<nav class="navbar navbar-inverse">
-    <div class="container">
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Valikkonavigaatio</span>
+                <span class="sr-only">Valikko</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             {# Link to home page #}
             <a href="{% pageurl site_root %}" class="navbar-brand" title="{{ site_root.title }}" data-placement="bottom">
-                <i class="glyphicon glyphicon-home"></i>
+                <img src="{% static "images/helsinki-vaakuna.svg" %}" class="navbar-logo">
+              <h1 class="site-title">Digitaalinen Helsinki</h1>
             </a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                {% for menuitem in menuitems %}
-                    <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
-                        {% if menuitem.show_dropdown %}
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ menuitem.title }} <b class="caret"></b></a>
-                            {% top_menu_children parent=menuitem %}
-                        {% else %}
-                            <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
-                        {% endif %}
-                    </li>       
-                {% endfor %}
-                    <li>
-                    <form class="navbar-form navbar-right" role="search" action="{% url 'search' %}" method="get">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="visible-xs mobile-search">
+                    <form action="{% url 'search' %}" method="GET" role="search">
                         <div class="input-group">
-                            <input type="text" name="query" class="form-control" placeholder="Hae…" value="{{ search_query }}" />
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </div>
+                            <input type="text" class="form-control" name="q" placeholder="Hae…">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
                         </div>
                     </form>
-                    </li>
-            </ul>
-            <!-- 
-            -->
-            <ul class="nav navbar-nav navbar-right">
+                </li>
+                {% for menuitem in menuitems %}
+                  <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
+                      {% if menuitem.show_dropdown %}
+                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ menuitem.title }} <b class="caret"></b></a>
+                          {% top_menu_children parent=menuitem %}
+                      {% else %}
+                          <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                      {% endif %}
+                  </li>       
+                {% endfor %}
                 {% if request.user.is_authenticated %}
-                <li class="dropdown">
+                <li class="dropdown menuitem-login">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user.get_full_name}}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'account_logout' %}?next={{request.path }}">Kirjaudu ulos</a></li>
                     </ul>
                 </li>
                 {% else %}
-                <li><a href="{% url 'helsinki_login' %}?next={{ request.path }}">Kirjaudu</a></li>
+                <li class="menuitem-login"><a href="{% url 'helsinki_login' %}?next={{ request.path }}">Kirjaudu</a></li>
                 {% endif %}
+                <li class="hidden-xs"><a href="#" id="js-toggle-search" class="animate"><span class="glyphicon glyphicon-search"></span></a></li>
             </ul>
+        </div>
+    </div>
+    <div class="drop-search">
+        <div class="container">
+            <form action="{% url 'search' %}" method="GET" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Hae…">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 </nav>

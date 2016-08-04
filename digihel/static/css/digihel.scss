@@ -1,12 +1,55 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-bold-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-bolditalic-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-bolditalic-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-italic-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-italic-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'helsinki-avoin';
+    src: url('../fonts/helsinkiavoinsans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/helsinkiavoinsans-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
 @import "bourbon/app/assets/stylesheets/bourbon";
+
+$topnaviheight: 65px;
+
+$helsinkiyellow:  #FFC72B;
+$helsinkiblue:  #005EB8;
+$helsinkiturquoise: #05C2DE;
+$helsinkired: #D10057;
 
 /* Global */
 
 body {
   background-color: #eaeaea;
   background-image: linear-gradient(to bottom, #eaeaea 0px, #FFFFFF 100%);
-  font-family: "Open Sans", Helvetica, sans-serif;
+  font-family: "helsinki-avoin", Verdana, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.62857;
 }
@@ -41,11 +84,19 @@ h2, h3, .small, small {
   position: fixed;
   width: 100%;
   z-index: 10;
+  .drop-search {
+    display: none;
+    @include transition(all 0.5s ease-in-out);
+  }
+  .mobile-search {
+    margin: 15px;
+  }
+  
 }
 
 .navbar-inverse {
   background-image: none;
-  background-color: #0066CC;
+  background-color: $helsinkiblue;
 }
 
 .nav.navbar-nav {
@@ -57,20 +108,85 @@ h2, h3, .small, small {
 }
 
 .navbar-brand {
-  background-image: url("https://digi.hel.ninja/media/images/digitaalinen-helsinki-vaakuna4.width-800.png");
-  background-repeat: no-repeat;
-  width: 305px;
-  height: 50px;
-  margin-top: 11px;
+    color: white;
+  .navbar-logo {
+    float: left;
+    margin-right: 15px;
+    width: 48px;
+    height: 48px;
+  }
+  .site-title {
+    color: white;
+    font-size: 16px;
+    float: left;
+    margin: 15px 0;
+  }
 }
 
 .dropdown-toggle {
-  font-weight: bold;
-  text-transform: uppercase;
-  background-image: url("https://digi.hel.ninja/media/images/hamburger.width-800.png");
-  background-repeat: no-repeat;
-  background-position: right center;
-  width: 200px;
+
+}
+
+@media screen and (min-width: 768px) {
+    .navbar .navbar-brand {
+    	font-size: 20px;
+		height: auto;
+	}
+	.navbar .navbar-nav > li > a {
+		font-size: 16px;
+		letter-spacing: 1px;
+	}
+	.navbar .navbar-nav > li:not(.disabled).is-open > a,
+	.navbar .navbar-nav > li:not(.disabled).active > a,
+	.navbar .navbar-nav > li:not(.disabled) > a:hover, 
+	.navbar .navbar-nav > li:not(.disabled) > a:focus {
+        background: none;
+        -webkit-box-shadow: none;  /*evaluate removing as Android users upgrade or box-shadow usage is not critical */
+        box-shadow: none;
+	}
+
+	.navbar .navbar-nav > li.disabled > a {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+
+	.navbar .drop-search {
+		background-color: $helsinkiblue;
+        padding: 48px 24px;
+        border-top: 1px solid white;
+		display: block;
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		-webkit-transform: rotateX(-90deg);
+		-moz-transform: rotateX(-90deg);
+		-o-transform: rotateX(-90deg);
+		-ms-transform: rotateX(-90deg);
+		transform: rotateX(-90deg);
+		-webkit-transform-origin: 0 0 0;
+		-moz-transform-origin: 0 0 0;
+		-o-transform-origin: 0 0 0;
+		-ms-transform-origin: 0 0 0;
+		transform-origin: 0 0 0;
+		visibility: hidden;
+	}
+	.navbar .drop-search.is-open {
+		-webkit-transform: rotateX(0deg);
+		-moz-transform: rotateX(0deg);
+		-o-transform: rotateX(0deg);
+		-ms-transform: rotateX(0deg);
+		transform: rotateX(0deg);
+		visibility: visible;	
+	}
+	.navbar .drop-search > .container {
+		padding: 0px;
+	}  
+    
+    .menuitem-login {
+      border-left: 1px solid lighten($helsinkiblue, 20%);
+      border-right: 1px solid lighten($helsinkiblue, 20%);
+    }
 }
 
 .glyphicon-home::before {
@@ -81,18 +197,20 @@ h2, h3, .small, small {
   display: none;
 }
 
-.main-container {
-  padding-top: 90px;
+.page-content {
+  padding-top: $topnaviheight;
 }
 
 /** Front page **/
 
 .container .jumbotron, .container-fluid .jumbotron {
+  position: relative;
+  width: 100% !important;
+  height: 500px;
   color: white;
-  background-color: #0066CC;
-  background-image: linear-gradient(to bottom, #0066CC 0px, #1975d1 100%);
+  @include linear-gradient(#103357, #0066cc);
   border-radius: 0px;
-  margin-top: 3em;
+  //margin-top: 4em;
   margin-bottom: 4em;
   padding-left: 0;
   padding-right: 0;
@@ -103,6 +221,10 @@ h2, h3, .small, small {
 .container .jumbotron, .container-fluid .jumbotron, .indicators.row, .col-md-8.blogs {
   -webkit-box-shadow: 0 0 1px 1x white;
   box-shadow: 0 0 1px 1px white;
+}
+
+.container-fluid.header-container {
+    padding: 0;
 }
 
 .front-page {
@@ -131,13 +253,19 @@ h2, h3, .small, small {
   }
 
   .rich-text {
+    position:absolute;
+    top:50%;
+    text-align:center;
+    width:100%;
+    color:#fff;
+    font-size:36px;
+    -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%); 
     background-image: url("https://digi.hel.ninja/media/images/vaakuna-transp.width-800.png");
     background-repeat: no-repeat;
     background-position: 95% 10%;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 48px;
-    padding-top: 48px;
+    padding: 48px 10%;
   }
 }
 
@@ -157,8 +285,42 @@ h2, h3, .small, small {
   background-color: transparent;
 }
 
+.indicator-icon {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.indicator-icon svg:hover {
+  #graph-1,#graph-2,#graph-3,#graph-4 {
+    @include animation(scaling 1.0s ease-in);
+    @include transform-origin(center bottom);
+  }
+  #graph-1 {
+    @include animation-delay (0.1s);
+  }
+  #graph-2 {
+    @include animation-delay (0.2s);
+  }
+  #graph-3 {
+    @include animation-delay (0.3s);
+  }
+  #graph-4 {
+    @include animation-delay (0.4s);
+  }
+  
+}
+
+@keyframes scaling {
+  0% {
+    @include transform (scaleY(0));
+  }
+  100% {
+    @include transform (scaleY(1));
+  }
+}
+
 .indicator-value {
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .front-page {
@@ -180,12 +342,13 @@ h2, h3, .small, small {
 .indicators.row, .col-md-8.blogs {
   color: #0A3056;
   background-image: linear-gradient(to bottom, #ECF5FD 0px, #ffffff 100%);
-  border-top: 10px;
-  border-right: 3px;
-  border-bottom: 3px;
-  border-left: 3px;
-  border-style: solid;
-  border-color: #1975d1;
+  //border-top: 10px;
+  //border-right: 3px;
+  //border-bottom: 3px;
+  //border-left: 3px;
+  //border-style: solid;
+  //border-color: #1975d1;
+  border-radius: 0;
 }
 
 .front-page {
@@ -202,12 +365,14 @@ h2, h3, .small, small {
 }
 
 .theme.col-md-4 {
-  border-top: 10px;
-  border-right: 3px;
-  border-bottom: 3px;
-  border-left: 3px;
+  //order-top: 10px;
+  //border-right: 3px;
+  //border-bottom: 3px;
+  //border-left: 3px;
+  border: 0;
   border-style: solid;
-
+  border-radius: 0;
+  
   &:first-child {
     color: #1a441a;
     background-image: linear-gradient(to bottom, #dff3df 0px, #ffffff 100%);
@@ -242,7 +407,11 @@ h2, h3, .small, small {
   }
 
   .card-type {
+    @include clearfix;
     text-transform: uppercase;
+    border-bottom: solid 3px #0033cc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
   }
 
   .theme img {
@@ -352,6 +521,6 @@ h2, h3, .small, small {
 
 @media (max-width: 768px) {
   .navbar.navbar-inverse {
-    border-bottom: 5px solid black;
+    //border-bottom: 5px solid black;
   }
 }

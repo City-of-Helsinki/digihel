@@ -31,11 +31,9 @@
             {% get_site_root as site_root %}
             {% top_menu parent=site_root calling_page=self %}
         {% endblock %}
-
-        <div class="container main-container" role="main">
-        {% block content %}{% endblock %}
+        <div class="page-content">
+          {% block content %}{% endblock %}
         </div>
-
         <footer class="page-footer">
             
         </footer>
