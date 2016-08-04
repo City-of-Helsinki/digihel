@@ -11,7 +11,7 @@ import wagtail.wagtailcore.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0006_auto_20160802_1753'),
+        ('blog', '__latest__'),
         ('digi', '0001_initial'),
     ]
 
