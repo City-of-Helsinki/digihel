@@ -34,13 +34,8 @@ class ThemeIndexPage(Page):
 
 
 class ThemePage(Page):
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
+                              on_delete=models.SET_NULL, related_name='+')
     short_description = models.TextField()
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
@@ -57,11 +52,33 @@ class ThemePage(Page):
     ]
     search_fields = Page.search_fields + [
         index.SearchField('short_description'),
+        index.SearchField('body'),
     ]
+    subpage_types = ['ProjectPage']
+
+    @property
+    def projects(self):
+        return self.get_children().exact_type(ProjectPage).live().specific()
 
 
-class Project(Page):
-    theme = ParentalKey(ThemePage, related_name='projects', on_delete=models.PROTECT)
+class ProjectPage(Page):
+    image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
+                              on_delete=models.SET_NULL, related_name='+')
+    short_description = models.TextField(null=True, blank=True)
+    body = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+    ], null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('image'),
+        FieldPanel('short_description'),
+        StreamFieldPanel('body'),
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('short_description'),
+        index.SearchField('body'),
+    ]
+    parent_page_types = ['ThemePage']
 
 
 class FrontPage(Page):

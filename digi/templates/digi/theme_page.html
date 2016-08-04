@@ -2,15 +2,64 @@
 {% load humanize wagtailimages_tags digi_tags wagtailcore_tags %}
 
 {% block content %}
-<div class="container main-container" role="main">
-  <div class="theme">
-              {% image theme.image fill-280x210 as theme_image %}
-              <img src="{{ theme_image.url }}" />
-              <small class="card-type">Teema</small> 
-              <h3>{{ theme.title }}</h3>
-              <p>{{ theme.short_description }}</p>
-          </div>
-
-
+<div class="container main-container page-content" role="main">
+    <div class="row">
+        <div class="theme-info col-md-8">
+            <div class="theme-box">
+                <header class="clearfix">
+                    <h2 class="pull-left">{{ page.title }}</h2>
+                    <small class="card-type pull-right">Teema</small>
+                </header>
+                {% image page.image width-600 as theme_image %}
+                <img src="{{ theme_image.url }}" />
+                <div class="description">
+                    {% for block in page.body %}
+                    {{ block }}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="theme-projects">
+                <h3>Teeman projektit</h3>
+                <ul>
+                    {% for project in page.projects %}
+                    <li class="list-unstyled media">
+                        <div class="media-left">
+                            <a href="#">
+                                {% image project.image fill-200x200 as project_image %}
+                                <img src="{{ project_image.url }}" />
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ project.title }}</h4>
+                            <p>{{ project.short_description }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="digi-manual">
+                <h3>Digitaalisten palveluiden kehittämisopas</h3>
+                <ul>
+                    <li><a href="#">Eka linkki</a></li>
+                </ul>
+            </div>
+            <div class="contacts">
+                <h3>Ota yhteyttä</h3>
+                <ul class="list-unstyled">
+                    {% for x in "xxx" %}
+                    <li class="media">
+                        <div class="media-left">
+                            <a href="#"><img src="https://placehold.it/100x100" /></a>
+                        </div>
+                        <div class="media-body">
+                            <p class="pull-right">In in pulvinar lacus, nec scelerisque mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur et tristique diam, vel cursus ante. Sed facilisis vitae risus eget facilisis. Integer felis risus, posuere id commodo et, interdum et sem. Aliquam rhoncus malesuada mollis.</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 </div>
 {% endblock %}
