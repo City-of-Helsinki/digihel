@@ -9,7 +9,7 @@ from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailsearch import index
-from blog.models import BlogPage
+from blog.models import BlogPage, BlogCategory
 
 
 class Indicator(models.Model):
@@ -42,11 +42,18 @@ class ThemePage(Page):
         related_name='+'
     )
     short_description = models.TextField()
+    body = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+    ], null=True, blank=True)
+    blog_category = models.ForeignKey(BlogCategory, help_text='Corresponding blog category',
+                                      null=True, blank=True, on_delete=models.SET_NULL)
 
     parent_page_types = ['ThemeIndexPage']
     content_panels = Page.content_panels + [
+        ImageChooserPanel('image'),
         FieldPanel('short_description'),
-        ImageChooserPanel('image')
+        FieldPanel('blog_category'),
+        StreamFieldPanel('body'),
     ]
     search_fields = Page.search_fields + [
         index.SearchField('short_description'),
