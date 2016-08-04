@@ -5,7 +5,7 @@
 #    pip-compile --output-file requirements.txt requirements.in
 #
 -e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
-beautifulsoup4==4.5.0     # via wagtail
+beautifulsoup4==4.5.1     # via wagtail
 click==6.6                # via pip-tools
 contextlib2==0.5.4        # via raven
 defusedxml==0.4.1         # via python3-openid
@@ -19,6 +19,7 @@ django-taggit==0.18.3     # via wagtail
 django-treebeard==4.0.1   # via wagtail
 Django==1.9.9             # via django-allauth, django-bower, django-treebeard, wagtail
 djangorestframework==3.4.1  # via wagtail
+elasticsearch==2.3.0
 first==2.0.1              # via pip-tools
 html5lib==0.999999        # via wagtail
 Jinja2==2.8
@@ -40,6 +41,7 @@ requests==2.10.0          # via django-allauth, requests-oauthlib
 rjsmin==1.0.12            # via django-compressor
 six==1.10.0               # via django-bower, html5lib, libsass, pip-tools
 Unidecode==0.4.19         # via wagtail
+urllib3==1.16             # via elasticsearch
 wagtail-blog==1.6.7
 wagtail==1.5.3
 Willow==0.3.1             # via wagtail
