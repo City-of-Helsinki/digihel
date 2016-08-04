@@ -1,6 +1,6 @@
 {% load content_tags wagtailcore_tags %}
 
-<ul class="dropdown-menu">
+<ul class="dropdown-menu" role="menu">
     {# Include link to parent because the parent link is a drop down #}
     <li><a href="{% pageurl parent %}">{{ parent.title }}</a></li>
     {% for child in menuitems_children %}

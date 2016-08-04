@@ -1,17 +1,22 @@
-jQuery(document).ready(function($){
- // Defining a function to set size for #hero 
-    function fullscreen(){
-        jQuery('.js-fullscreen').css({
-            width: jQuery(window).width(),
-            height: jQuery(window).height()-240
-        });
-    }
-  
-    fullscreen();
+$(function() { 
 
-  // Run the function in case of window resize
-  jQuery(window).resize(function() {
-       fullscreen();         
-    });
+    $('#js-toggle-search, .navbar .drop-search .input-group-btn > .btn[type="reset"]').on('click', function(event) {
+		event.preventDefault();
+		$('.navbar .drop-search .input-group > input').val('');
+		$('.navbar .drop-search').toggleClass('is-open');
+		$('a[href="#toggle-search"]').closest('li').toggleClass('active');
 
+		if ($('.navbar .drop-search').hasClass('is-open')) {
+			setTimeout(function() { 
+				$('.navbar .drop-search .form-control').focus();
+			}, 100);
+		}			
+	});
+
+	$(document).on('keyup', function(event) {
+		if (event.which == 27 && $('.navbar .drop-search').hasClass('is-open')) {
+			$('#js-toggle-search').trigger('click');
+		}
+	});
+    
 });
