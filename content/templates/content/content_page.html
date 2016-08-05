@@ -3,17 +3,7 @@
 {% block body_class %}template-contentpage{% endblock %}
 
 {% block content %}
-<article>
-{% for block in page.body %}
-    {% if block.block_type == 'heading' %}
-        <h1>{{ block.value }}</h1>
-    {% else %}
-        <section class="row block-{{ block.block_type }}">
-            <div class="col-sm-8">
-            {{ block }}
-            </div>
-        </section>
-    {% endif %}
-{% endfor %}
+<article class="container">
+{% include "content/blocks.html" with blocks=page.body only %}
 </article>
 {% endblock %}

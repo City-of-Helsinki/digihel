@@ -37,7 +37,7 @@
 
 @import "bourbon/app/assets/stylesheets/bourbon";
 
-$topnaviheight: 65px;
+$topnaviheight: 80px;
 
 $helsinkiyellow:  #FFC72B;
 $helsinkiblue:  #005EB8;
@@ -80,7 +80,7 @@ h2, h3, .small, small {
 
 .navbar {
   border: none;
-  min-height: 70px;
+  min-height: $topnaviheight;
   position: fixed;
   width: 100%;
   z-index: 10;
@@ -468,20 +468,6 @@ h2, h3, .small, small {
 @media (min-width: 992px) {
   .navbar-header {
     width: 40%;
-  }
-
-  .col-md-4 {
-    width: 32%;
-    margin-right: 2%;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-  .col-md-8 {
-    width: 66%;
-    margin-right: 2%;
   }
 
   .container .jumbotron, .container-fluid .jumbotron {
