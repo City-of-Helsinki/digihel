@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
 @font-face {
     font-family: 'helsinki-avoin';
     src: url('../fonts/helsinkiavoinsans-bold-webfont.woff2') format('woff2'),
@@ -35,7 +37,9 @@
 
 }
 
+@import "bootstrap-variables";
 @import "bourbon/app/assets/stylesheets/bourbon";
+@import "bootstrap-custom";
 
 $topnaviheight: 80px;
 
@@ -44,19 +48,15 @@ $helsinkiblue:  #005EB8;
 $helsinkiturquoise: #05C2DE;
 $helsinkired: #D10057;
 
+$modular-scale-ratio: $major-third;
+$modular-scale-base: 1em;
+
 /* Global */
 
 body {
-  background-color: #eaeaea;
-  background-image: linear-gradient(to bottom, #eaeaea 0px, #FFFFFF 100%);
-  font-family: "helsinki-avoin", Verdana, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.62857;
 }
 
-h2, h3, .small, small {
-  font-weight: bold;
-}
+
 
 .left {
   float: left;
@@ -201,6 +201,9 @@ h2, h3, .small, small {
   padding-top: $topnaviheight;
 }
 
+.breadcrumb {
+  margin: 26px 0;
+}
 /** Front page **/
 
 .container .jumbotron, .container-fluid .jumbotron {
@@ -340,7 +343,7 @@ h2, h3, .small, small {
 /* Box stylings */
 
 .indicators.row, .col-md-8.blogs {
-  color: #0A3056;
+
   background-image: linear-gradient(to bottom, #ECF5FD 0px, #ffffff 100%);
   //border-top: 10px;
   //border-right: 3px;
@@ -353,7 +356,7 @@ h2, h3, .small, small {
 
 .front-page {
   .manual-links, .events {
-    color: #0A3056;
+
     background-image: linear-gradient(to bottom, #ECF5FD 0px, #ffffff 100%);
     border-top: 10px;
     border-right: 3px;
@@ -372,19 +375,19 @@ h2, h3, .small, small {
     border-radius: 0;
     
     &:first-child {
-      color: #1a441a;
+
       background-image: linear-gradient(to bottom, #dff3df 0px, #ffffff 100%);
       border-color: #7ccd7c;
     }
 
     &:nth-child(2) {
-      color: #450407;
+
       background-image: linear-gradient(to bottom, #fee7e8 0px, #ffffff 100%);
       border-color: #f7646c;
     }
 
     &:last-child {
-      color: #003c4e;
+
       background-image: linear-gradient(to bottom, #d8f6ff 0px, #ffffff 100%);
       border-color: #00c3ff;
     }
@@ -403,6 +406,7 @@ h2, h3, .small, small {
   }
 
   .theme {
+    height: 100%;
     padding: 1em;
   }
 
