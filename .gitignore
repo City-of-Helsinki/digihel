@@ -1,4 +1,5 @@
 *~
+*.mo
 __pycache__
 /.django_secret
 /local_settings.py
