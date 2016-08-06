@@ -1,15 +1,33 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
-from modelcluster.fields import ParentalKey
-
-from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, \
+    InlinePanel, MultiFieldPanel
 from wagtail.wagtailsearch import index
 from blog.models import BlogPage, BlogCategory
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
+
+from content.models import LinkFields
+
+
+class RelatedLink(LinkFields):
+    title = models.CharField(max_length=255, help_text="Link title")
+
+    panels = [
+        FieldPanel('title'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        abstract = True
 
 
 class Indicator(models.Model):
@@ -27,6 +45,24 @@ class Indicator(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class FooterLinkSection(ClusterableModel):
+    title = models.CharField(max_length=100, null=True, blank=True)
+    sort_order = models.IntegerField(null=True, blank=True)
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('sort_order'),
+        InlinePanel('links', label="Links"),
+    ]
+
+    def __str__(self):
+        return self.title
+
+
+class FooterLink(Orderable, RelatedLink):
+    section = ParentalKey('digi.FooterLinkSection', related_name='links')
 
 
 class ThemeIndexPage(Page):
@@ -101,3 +137,7 @@ class FrontPage(Page):
     @property
     def blog_posts(self):
         return BlogPage.objects.all()
+
+    @property
+    def footer_link_sections(self):
+        return FooterLinkSection.objects.order_by('sort_order')

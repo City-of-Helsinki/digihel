@@ -453,8 +453,14 @@ h2, h3, .small, small {
 
 .page-footer {
   margin-top: 4em;
+  padding-top: 2em;
   background-color: #0A3056;
   min-height: 20em;
+  color: white;
+  .footer-links {
+    list-style: none;
+    padding-left: 0px;
+  }
 }
 
 /* Bootsrap grid changes */

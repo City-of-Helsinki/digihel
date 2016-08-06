@@ -1,6 +1,6 @@
 from wagtail.contrib.modeladmin.options import \
     ModelAdmin, ModelAdminGroup, modeladmin_register
-from .models import Indicator
+from .models import Indicator, FooterLinkSection
 
 
 class IndicatorAdmin(ModelAdmin):
@@ -8,8 +8,13 @@ class IndicatorAdmin(ModelAdmin):
     menu_icon = 'user'
 
 
+class FooterLinkSectionAdmin(ModelAdmin):
+    model = FooterLinkSection
+    menu_icon = 'redirect'
+
+
 class DigiHelAdminGroup(ModelAdminGroup):
     label = "DigiHel"
-    items = (IndicatorAdmin,)
+    items = (IndicatorAdmin, FooterLinkSectionAdmin)
 
 modeladmin_register(DigiHelAdminGroup)
