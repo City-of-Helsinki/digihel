@@ -11,5 +11,6 @@ django-allauth
 wagtail-blog
 django_compressor
 django-libsass
+django-compressor-autoprefixer
 django-bower
 elasticsearch

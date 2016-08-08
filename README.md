@@ -29,6 +29,12 @@ Install bower components
 ./manage.py bower install
 ```
 
+Install node dependencies
+
+```
+npm install postcss-cli autoprefixer
+```
+
 If you have acquired a database dump, install it this way:
 
 ```
