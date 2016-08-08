@@ -34,7 +34,21 @@
           {% block content %}{% endblock %}
         </div>
         <footer class="page-footer">
-            
+            <div class="container">
+                <div class="row">
+                <!-- Logo here -->
+                {% for section in request.site.root_page.specific.footer_link_sections %}
+                    <div class="col-sm-4">
+                        {% if section.title %}<div class="footer-header">{{ section.title }}</div>{% endif %}
+                        <ul class="footer-links">
+                        {% for link in section.links.all %}
+                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
         </footer>
 
         {# Global javascript #}
