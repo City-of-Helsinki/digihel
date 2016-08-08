@@ -5,12 +5,13 @@
     {% if block.block_type == 'heading' %}
         <h1>{{ block.value }}</h1>
     {% elif block.block_type == 'image' %}
-        {% image block.value width-900 class="img-responsive" %}
+        {% image block.value original as image %}
+        <section class="block-{{ block.block_type }}">
+            <img src="{{ image.url }}" class="img-responsive" />
+        </section>
     {% else %}
-        <section class="row block-{{ block.block_type }}">
-            <div class="col-sm-8">
+        <section class="block-{{ block.block_type }}">
             {{ block }}
-            </div>
         </section>
     {% endif %}
 {% endfor %}
