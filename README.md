@@ -19,8 +19,8 @@ Install required Python packages
 Create the database
 
 ```
-sudo -u postgres createuser -L -R -S linkedevents
-sudo -u postgres createdb -O linkedevents linkedevents
+sudo -u postgres createuser -L -R -S digihel
+sudo -u postgres createdb -O digihel digihel
 ```
 
 Install bower components
@@ -46,7 +46,7 @@ echo "delete from wagtailimages_rendition;" | ./manage.py dbshell
 Requirements
 ------------
 
-Linked Events uses two files for requirements. The workflow is as follows.
+This project uses two files for requirements. The workflow is as follows.
 
 `requirements.txt` is not edited manually, but is generated
 with `pip-compile`.
