@@ -172,11 +172,19 @@ MEDIA_URL = '/media/'
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'django_compressor_autoprefixer.AutoprefixerFilter',
+)
+COMPRESS_ENABLED = True
+COMPRESS_AUTOPREFIXER_BINARY = os.path.join(BASE_DIR, 'node_modules/.bin/postcss')
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components/')
 
 BOWER_INSTALLED_APPS = [
-    'bourbon#4.2.7'
+    'bourbon#4.2.7',
+    'bootstrap-sass#3.3.7',
+    'jquery#<3.0',
 ]
 
 

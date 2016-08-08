@@ -1,5 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+//@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
+
 @font-face {
   font-family: 'helsinki-avoin';
   src: url('../fonts/helsinkiavoinsans-bold-webfont.woff2') format('woff2'), url('../fonts/helsinkiavoinsans-bold-webfont.woff') format('woff');
@@ -24,9 +24,10 @@
   font-weight: 400;
   font-style: normal;
 }
+
 @import 'bootstrap-variables';
-@import 'bourbon/app/assets/stylesheets/bourbon';
 @import 'bootstrap-custom';
+@import 'bourbon/app/assets/stylesheets/bourbon';
 
 $topnaviheight: 80px;
 $helsinkiyellow: #ffc72b;

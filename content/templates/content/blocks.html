@@ -7,7 +7,7 @@
     {% elif block.block_type == 'image' %}
         {% image block.value original as image %}
         <section class="block-{{ block.block_type }}">
-            <img src="{{ image.url }}" class="img-responsive" />
+            <img alt="{{ image.alt }}" src="{{ image.url }}" class="img-responsive" />
         </section>
     {% else %}
         <section class="block-{{ block.block_type }}">
