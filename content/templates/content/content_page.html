@@ -15,6 +15,10 @@
         <li class="active">{{ self.title }}</li>
     </ol>
     {% endif %}
-{% include "content/blocks.html" with blocks=page.body only %}
+    <div class="row">
+        <div class="col-md-8 content">
+        {% include "content/blocks.html" with blocks=page.body only %}
+        </div>
+    </div>
 </article>
 {% endblock %}
