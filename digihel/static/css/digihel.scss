@@ -215,6 +215,32 @@ $modular-scale-base: 1em;
   }
 }
 
+//* Theme page */
+
+.theme-info {
+  .card-type {
+    @include clearfix;
+    border-bottom: solid 3px $helsinkired;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+}
+
+.theme-box {
+  margin-bottom: 24px;
+}
+
+.theme-projects {
+  border-top: solid 2px $gray-light;
+}
+
 //* Indicators */
 
 .indicators,
