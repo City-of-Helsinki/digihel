@@ -36,17 +36,20 @@
       </section>
       <section class="themes row">
           {% for theme in page.themes|slice:":3" %}
-          <div class="theme col-md-4">
+          <div class="col-md-4">
+            <div class="theme">
               {% image theme.image fill-280x210 as theme_image %}
               <a class="link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
               <small class="card-type">Teema</small> 
               <h3><a class="link-unstyled" href="{% pageurl theme %}">{{ theme.title }}</a></h3>
               <p>{{ theme.short_description }}</p>
+            </div>
           </div>
           {% endfor %}
       </section>
       <section class="misc row">
-          <div class="col-md-8 blogs">
+          <div class="col-md-8">
+            <div class="blogs">
               {% for blog in page.blog_posts|slice:":3" %}
               <div class="blog-post">
                   <small class="card-type">Blogi</small>
@@ -54,14 +57,17 @@
                   {{ blog.body|first_p|safe }}
               </div>
               {% endfor %}
+            </div>
           </div>
-          <div class="col-md-4 manual-and-events">
+          <div class="col-md-4">
+            <div class="manual-and-events">
               <div class="manual-links">
                   <h2>Digitaalisten palveluiden kehittämisopas</h2>
               </div>
               <div class="events">
                   <h2>Tapahtumat</h2>
               </div>
+            </div>
           </div>
       </section>
   </article>
