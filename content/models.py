@@ -9,12 +9,14 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, \
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
+from wagtail.contrib.table_block.blocks import TableBlock
 
 
 content_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
     ('paragraph', blocks.RichTextBlock()),
     ('image', ImageChooserBlock()),
+    ('table', TableBlock())
 ]
 
 
