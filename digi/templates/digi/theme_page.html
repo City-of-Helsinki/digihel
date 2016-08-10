@@ -6,12 +6,12 @@
     <div class="row">
         <div class="theme-info col-md-8">
             <div class="theme-box">
-                <header class="clearfix">
+                <header class="page-header">
                     <small class="card-type">Teema</small>
                     <h2>{{ page.title }}</h2>
                 </header>
-                {% image page.image width-600 as theme_image %}
-                <img src="{{ theme_image.url }}" />
+                {% image page.image width-800 as theme_image %}
+                <img src="{{ theme_image.url }}" class="theme-header-image"/>
                 <div class="description">
                     {% for block in page.body %}
                     {{ block }}
@@ -20,13 +20,13 @@
             </div>
             <div class="theme-projects">
                 <h3>Teeman projektit</h3>
-                <ul>
+                <ul class="theme-projects-list">
                     {% for project in page.projects %}
                     <li class="list-unstyled media">
                         <div class="media-left">
                             <a href="#">
                                 {% image project.image fill-200x200 as project_image %}
-                                <img src="{{ project_image.url }}" />
+                                <img src="{{ project_image.url }}" class="project-thumbnail"/>
                             </a>
                         </div>
                         <div class="media-body">
@@ -39,19 +39,19 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="digi-manual">
+            <div class="manual-links">
                 <h3>Digitaalisten palveluiden kehittämisopas</h3>
                 <ul>
                     <li><a href="#">Eka linkki</a></li>
                 </ul>
             </div>
-            <div class="contacts">
+            <div class="contacts-list">
                 <h3>Ota yhteyttä</h3>
                 <ul class="list-unstyled">
                     {% for x in "xxx" %}
                     <li class="media">
                         <div class="media-left">
-                            <a href="#"><img src="https://placehold.it/100x100" /></a>
+                            <a href="#"><img src="https://placehold.it/100x100"  class="user-thumbnail"/></a>
                         </div>
                         <div class="media-body">
                             <p class="pull-right">In in pulvinar lacus, nec scelerisque mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur et tristique diam, vel cursus ante. Sed facilisis vitae risus eget facilisis. Integer felis risus, posuere id commodo et, interdum et sem. Aliquam rhoncus malesuada mollis.</p>
