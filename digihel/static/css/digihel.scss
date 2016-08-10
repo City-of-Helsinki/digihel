@@ -340,9 +340,9 @@ img {
   }
 
   .theme-preview {
-    flex:1;
     background-color: $helsinkiturquoise;
     color: $white;
+    flex: 1;
     height: 100%;
     margin-bottom: 1em;
     padding: 1em;
@@ -405,6 +405,58 @@ img {
     }
   }
 }
+
+//* Blog section */
+
+.blog-post-meta {
+  @extend .media;
+  margin-bottom: 1em;
+
+  .blog-post-author-image {
+    @extend .media-left;
+
+    img {
+      @extend .img-circle;
+      height: 52px;
+      max-width: 52px;
+      width: 52px;
+    }
+  }
+
+  .blog-post-author-details {
+    @extend .media-body;
+  }
+}
+
+// Blog Index
+
+.blog-index {
+  .blog-post-item {
+    border-bottom: 2px solid $text-color;
+    padding: 1em 0 2em;
+
+    h2 {
+      font-size: 48px;
+      margin-bottom: .5em;
+    }
+  }
+}
+
+// Blog post
+.blog-post-container {
+  .blog-post-link {
+    h2 {
+      color: $text-color;
+      font-size: 60px;
+      margin-bottom: .5em;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 
 //* Bootsrap grid changes */
 

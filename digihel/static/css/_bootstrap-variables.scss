@@ -1,6 +1,12 @@
 $gray-base:               #333 !default;
 $gray-darker:             lighten($gray-base, 13.5%);
 $text-color:              $gray-darker !default;
+$brand-primary:           #005eb8;
+
+$link-color:            $brand-primary !default;
+$link-hover-color:      darken($link-color, 10%) !default;
+$link-hover-decoration: underline !default;
+
 $font-family-sans-serif:  "helsinki-avoin", Verdana, Helvetica, sans-serif !default;
 $font-family-serif:       "helsinki-avoin", Verdana, Helvetica, sans-serif !default;
 $font-size-base:          16px !default;

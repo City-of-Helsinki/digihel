@@ -2,19 +2,23 @@
 {% load wagtailcore_tags static %}
 
 {% block content %}
+<div class="container main-container" role="main">
+  <div class="page-header">
     {% if category %}
     <h2>{{ category }}</h2>
     {% endif %}
     {% if tag %}
-    <h2>Posts tagged with '{{ tag }}'</h2>
+    <h2>Blogikirjoitukset tagillä '{{ tag }}'</h2>
+    {% else %}
+    <h2>Digipajan Blogi</h2>
     {% endif %}
-
+  </div>
     {% for rl in self.related_links.all %}
         <p>{{ rl.title }}: <a href='{{ rl.link_page.url }}'>{{ rl.link_page }}</a></p>
     {% endfor %}
 
     {% if blogs %}
-        <ul class="list-unstyled the-loop">
+        <ul class="blog-index list-unstyled the-loop">
         {% for blog in blogs %}
             <li class="blog-post-item{% if forloop.first and not category and not tag %} first-reset{% endif %}">
                 {% include 'blog/blog_post.html' with include_context="index_page" %}
@@ -33,5 +37,6 @@
 
     {% else %}
         <p>There are currently no blog posts</p>
-    {% endif %}        
+    {% endif %}    
+  </div>
 {% endblock %}
