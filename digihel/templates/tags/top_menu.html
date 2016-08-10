@@ -23,14 +23,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="visible-xs mobile-search">
-                    <form action="{% url 'search' %}" method="GET" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="query" placeholder="Hae…">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
-                        </div>
-                    </form>
+                    {% include 'includes/navbar-search.html' %}
                 </li>
                 {% for menuitem in menuitems %}
                   <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
@@ -58,14 +51,7 @@
     </div>
     <div class="drop-search">
         <div class="container">
-            <form action="{% url 'search' %}" method="GET" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="q" placeholder="Hae…">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
-                </div>
-            </form>
+            {% include 'includes/navbar-search.html' %}
         </div>
     </div>
 </nav>
