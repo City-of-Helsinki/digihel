@@ -78,16 +78,15 @@ img {
   .page-content {
     padding-top: 67px;
   }
-}
 
-// makes columns inside the .is-flex row equal heights. Test IE support
-.row.is-flex {
-  display: flex;
-  flex-wrap: wrap;
-
-  > [class*='col-'] {
+  // makes columns inside the .is-flex row equal heights. Test IE support
+  .row.is-flex {
     display: flex;
-    flex-direction: column;
+
+    > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
@@ -223,7 +222,6 @@ img {
 
 .theme-info {
   .card-type {
-    @include clearfix;
     border-bottom: solid 3px $helsinkired;
     display: inline-block;
     margin-bottom: 10px;
@@ -342,6 +340,7 @@ img {
   }
 
   .theme-preview {
+    flex:1;
     background-color: $helsinkiturquoise;
     color: $white;
     height: 100%;
@@ -355,7 +354,7 @@ img {
   }
 
   .card-type {
-    @include clearfix;
+    //@include clearfix;
     border-bottom: solid 3px $brand-primary;
     display: inline-block;
     margin-bottom: 10px;
