@@ -9,3 +9,10 @@ $headings-font-weight:    700 !default;
 $headings-line-height:    1.2 !default;
 
 $icon-font-path: "../bootstrap-sass/assets/fonts/bootstrap/" !default;
+ 
+//=== Inverted navbar
+$navbar-inverse-color:                      #fff !default;
+$navbar-inverse-bg:                         #005EB8 !default;
+$navbar-inverse-border:                     $navbar-inverse-bg !default;
+$navbar-inverse-link-color:                 #fff !default;
+$navbar-inverse-link-hover-color:           #05C2DE !default;
