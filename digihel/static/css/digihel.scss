@@ -46,6 +46,11 @@ $modular-scale-base: 1em;
 
 //* Global */
 
+// make all images responsive by default
+img {
+  @extend .img-responsive;
+}
+
 .left {
   float: left;
 }
@@ -75,6 +80,16 @@ $modular-scale-base: 1em;
   }
 }
 
+// makes columns inside the .is-flex row equal heights. Test IE support
+.row.is-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 //* Navigation */
 
@@ -114,6 +129,7 @@ $modular-scale-base: 1em;
   .navbar .navbar-brand {
     //font-size: 20px;
     height: auto;
+
     .navbar-logo {
       height: 48px;
     }
@@ -165,7 +181,7 @@ $modular-scale-base: 1em;
 
 .container .jumbotron,
 .container-fluid .jumbotron {
-  @include linear-gradient(darken($brand-primary, 20%), $brand-primary);
+  background-color: $helsinkiturquoise;
   border-radius: 0;
   color: $white;
   margin-bottom: 4em;
@@ -203,17 +219,6 @@ $modular-scale-base: 1em;
   padding: 0;
 }
 
-.front-page {
-  .manual-links,
-  .events {
-    box-shadow: 0 0 1px 1px $white;
-  }
-
-  .manual-and-events h2 {
-    font-size: 16px;
-  }
-}
-
 //* Theme page */
 
 .theme-info {
@@ -225,11 +230,10 @@ $modular-scale-base: 1em;
     padding-bottom: 10px;
     text-transform: uppercase;
   }
-  
+
   h2 {
     margin-top: 0;
   }
-  
 }
 
 .theme-box {
@@ -242,21 +246,13 @@ $modular-scale-base: 1em;
 
 //* Indicators */
 
-.indicators,
-.col-md-4,
-
-.col-md-8 {
-  border-radius: 10px;
+.indicators {
+  background-color: #eee;
+  padding: 12px;
 }
 
-.indicators.row {
-  margin-bottom: 4em;
-  padding: 1.5em 0;
-}
-
-.indicator.col-md-4 {
-  background-color: transparent;
-  border: 0;
+.indicator {
+  margin-bottom: 1em;
 }
 
 .indicator-icon {
@@ -300,17 +296,15 @@ $modular-scale-base: 1em;
   }
 }
 
-.indicator-value {
-  font-weight: 900;
-}
-
 .front-page {
   .indicators {
     text-align: center;
   }
 
   .indicator-value {
+    color: $helsinkiblue;
     font-size: 36px;
+    font-weight: 900;
   }
 
   .indicator-description {
@@ -320,43 +314,20 @@ $modular-scale-base: 1em;
 
 //* Box stylings */
 
-.indicators.row,
-.col-md-8.blogs {
-  background-image: linear-gradient(to bottom, lighten($gray-light, 10%)  0, $white 100%);
-  border-radius: 0;
-}
-
 .front-page {
+  .manual-and-events h2 {
+    font-size: 16px;
+  }
+
   .manual-links,
   .events {
-    background-image: linear-gradient(to bottom, $brand-primary 0, $white 100%);
-    border: 3px;
-    border-color: $brand-primary;
-    border-style: solid;
-  }
-
-  .theme {
-    //order-top: 10px;
-    //border-right: 3px;
-    //border-bottom: 3px;
-    //border-left: 3px;
-    border: 0;
-    border-radius: 0;
-    border-style: solid;
-
-    &:first-child {
-      background-image: linear-gradient(to bottom, lighten($brand-yellow, 50%) 0, $white 100%);
-    }
-
-    &:nth-child(2) {
-      background-image: linear-gradient(to bottom, lighten($brand-turquoise, 50%) 0, $white 100%);
-    }
-
-    &:last-child {
-      background-image: linear-gradient(to bottom, lighten($brand-red, 50%) 0, $white 100%);
-    }
+    background-color: $helsinkiturquoise;
+    color: $white;
+    margin-bottom: 2em;
+    padding: 1em;
   }
 }
+
 
 .container .richtext-image .full-width,
 .block-image .full-width {
@@ -370,13 +341,17 @@ $modular-scale-base: 1em;
     margin-bottom: 3em;
   }
 
-  .theme {
+  .theme-preview {
+    background-color: $helsinkiturquoise;
+    color: $white;
     height: 100%;
+    margin-bottom: 1em;
     padding: 1em;
+  }
 
-    img {
-      width: 100%;
-    }
+  .theme-thumbnail {
+    display: block;
+    margin-bottom: 1em;
   }
 
   .card-type {
@@ -389,7 +364,7 @@ $modular-scale-base: 1em;
   }
 
   .blogs h3,
-  .theme h3 {
+  .theme-preview h3 {
     margin-top: 0;
   }
 
@@ -402,19 +377,6 @@ $modular-scale-base: 1em;
     }
   }
 
-  .col-md-4.manual-and-events {
-    background: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .manual-links,
-  .events {
-    background-color: $white;
-    border-radius: 6px;
-    margin-bottom: 2em;
-    padding: 0 1em 1em;
-  }
 }
 
 .blog-post:last-child {
@@ -424,15 +386,24 @@ $modular-scale-base: 1em;
 }
 
 .page-footer {
-  background-color: $gray-darker;
+  background-color: $gray-dark;
   color: $white;
   margin-top: 4em;
   min-height: 20em;
   padding-top: 2em;
 
+  .footer-header {
+    font-weight: 800;
+    margin-bottom: 1em;
+  }
+
   .footer-links {
     list-style: none;
     padding-left: 0;
+
+    a {
+      color: $white;
+    }
   }
 }
 
@@ -441,28 +412,6 @@ $modular-scale-base: 1em;
 @media (max-width: 1200px) {
   .jumbotron .rich-text {
     background-image: none;
-  }
-}
-
-@media (min-width: 992px) {
-  .themes.row {
-    align-content: stretch;
-    display: flex;
-  }
-}
-
-@media (max-width: 991px) {
-
-  .theme.col-md-4 {
-    margin-bottom: 2em;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .blogs.col-md-8 {
-    margin-bottom: 2em;
   }
 }
 

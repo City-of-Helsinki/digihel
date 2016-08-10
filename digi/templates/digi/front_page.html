@@ -13,33 +13,39 @@
 </div>
 <div class="container main-container" role="main">
   <article class="front-page">
-      <section class="indicators row">
-          {% for indicator in page.indicators|slice:":3" %}
-          <div class="indicator col-md-4">
-              <div class="indicator-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:#f8d362;}.cls-2{fill:#807f7f;}</style></defs><title>indicator-graph</title>
-                  <g id="Layer_1" data-name="graph-base"><rect class="cls-1" x="54.51" y="324.4" width="290.83" height="8.4"/></g>
-                  <g id="graph-1"><rect class="cls-2" x="54.67" y="156.25" width="54" height="158.15"/></g>
-                  <g id="graph-2"><rect class="cls-2" x="133.56" y="181.35" width="54" height="133.05"/></g>
-                  <g id="graph-3"><rect class="cls-2" x="212.44" y="138.38" width="54" height="176.02"/></g>
-                  <g id="graph-4"><rect class="cls-2" x="291.33" y="84.2" width="54" height="230.2"/></g>
-                </svg>
+      <section class="row">
+          <div class="col-xs-12">
+            <div class="indicators clearfix">
+            {% for indicator in page.indicators|slice:":3" %}
+            <div class="col-md-4">
+              <div class="indicator">
+                <div class="indicator-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:#005eb8;}.cls-2{fill:#005eb8;}</style></defs><title>indicator-graph</title>
+                    <g id="Layer_1" data-name="graph-base"><rect class="cls-1" x="54.51" y="324.4" width="290.83" height="8.4"/></g>
+                    <g id="graph-1"><rect class="cls-2" x="54.67" y="156.25" width="54" height="158.15"/></g>
+                    <g id="graph-2"><rect class="cls-2" x="133.56" y="181.35" width="54" height="133.05"/></g>
+                    <g id="graph-3"><rect class="cls-2" x="212.44" y="138.38" width="54" height="176.02"/></g>
+                    <g id="graph-4"><rect class="cls-2" x="291.33" y="84.2" width="54" height="230.2"/></g>
+                  </svg>
+                </div>
+                <div class="indicator-value">
+                    {{ indicator.value|intcomma }}
+                </div>
+                <div class="indicator-description">
+                    {{ indicator.description }}
+                </div>
               </div>
-              <div class="indicator-value">
-                  {{ indicator.value|intcomma }}
-              </div>
-              <div class="indicator-description">
-                  {{ indicator.description }}
-              </div>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+        </div>
       </section>
-      <section class="themes row">
+      <section class="themes row is-flex">
           {% for theme in page.themes|slice:":3" %}
-          <div class="col-md-4">
-            <div class="theme">
-              {% image theme.image fill-280x210 as theme_image %}
-              <a class="link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+          <div class="col-sm-4">
+            <div class="theme-preview">
+              {% image theme.image fill-560x420 as theme_image %}
+              <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
               <small class="card-type">Teema</small> 
               <h3><a class="link-unstyled" href="{% pageurl theme %}">{{ theme.title }}</a></h3>
               <p>{{ theme.short_description }}</p>
