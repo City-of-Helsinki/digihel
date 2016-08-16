@@ -19,6 +19,47 @@
         <div class="col-md-8 content">
         {% include "content/blocks.html" with blocks=page.body only %}
         </div>
+        <div class="col-md-4">
+          <nav class="sidenav">
+            <ul>
+              <li class="open">
+                <a href="/kehmet/">Kehittämismenetelmät</a>
+                <ul>
+                  <li>
+                    <a href="/kehmet/kayttajaroolit/">Käyttäjäroolit</a>
+                  </li>
+                  <li class="open">
+                    <a href="/kehmet/kokeileva-vaihemalli/">Kokeileva vaihemalli</a>
+                    <ul>
+                      <li><a href="/kehmet/kokeileva-vaihemalli/havainnointivaihe/">Havainnointivaihe</a>
+                      </li>
+                      <li><a href="/kehmet/kokeileva-vaihemalli/alfa-vaihe/">Alfa-vaihe</a></li>
+                      <li class="open"><a href="/kehmet/kokeileva-vaihemalli/beta-vaihe/">Beta-vaihe</a>
+                        <ul>
+                          <li class="active"><a href="/kehmet/kokeileva-vaihemalli/beta-vaihe/scrum/">Scrum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="/kehmet/kokeileva-vaihemalli/tuotanto/">Tuotanto</a></li>
+                      <li><a href="/kehmet/kokeileva-vaihemalli/kaytosta-poistaminen/">Käytöstä poistaminen</a></li>
+                      <li><a href="/kehmet/kokeileva-vaihemalli/tyotavat/">Työtavat</a></li>
+                      <li><a href="/kehmet/kokeileva-vaihemalli/kokeilevan-vaihemallin-tuotokset/">Kokeilevan vaihemallin tuotokset</a></li>
+                      <li><a href="/kehmet/kokeileva-vaihemalli/kokeilevan-vaihemallin-roolit/">Kokeilevan vaihemallin roolit</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="/kehmet/lean-lyhyesti/">Kehittäminen työn osana</a>
+                  </li>
+                  <li>
+                    <a href="/kehmet/menetelmavalintasivu/">Menetelmävalintasivu</a>
+                  </li>
+                  <li>
+                    <a href="/kehmet/projektinhallinta/">Projektinhallinta</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
     </div>
 </article>
 {% endblock %}
