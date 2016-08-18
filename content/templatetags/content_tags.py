@@ -1,6 +1,8 @@
 from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
+
 
 @register.assignment_tag(takes_context=True)
 def get_site_root(context):
@@ -43,3 +45,50 @@ def top_menu_children(context, parent):
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }
+
+
+def list_children(page, target_page):
+    if page.specific == target_page:
+        is_me = True
+    else:
+        is_me = False
+    if target_page.is_descendant_of(page):
+        is_parent = True
+    else:
+        is_parent = False
+
+    children_html = ''
+    if is_parent or is_me:
+        children = page.get_children().live().public().order_by('path')
+        for child in children:
+            children_html += list_children(child, target_page)
+
+    if is_me:
+        klass = 'active'
+    elif is_parent:
+        klass = 'open'
+    else:
+        klass = ''
+    if klass:
+        klass = ' class="{}"'.format(klass)
+
+    html = '<ul><li{klass}><a href="{url}">{title}</a></li>'\
+        .format(url=page.url, title=page.title, klass=klass)
+    html += children_html
+    html += '</ul>'
+    return html
+
+
+@register.simple_tag
+def sidebar_page_nav(page):
+    parent = page
+    while parent is not None and not parent.show_in_menus:
+        print(parent)
+        print(parent.show_in_menus)
+        parent = parent.get_parent()
+    if parent is None:
+        return None
+
+    html = list_children(parent, page)
+
+    return mark_safe(html)
