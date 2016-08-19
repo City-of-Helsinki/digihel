@@ -83,11 +83,9 @@ def list_children(page, target_page):
 def sidebar_page_nav(page):
     parent = page
     while parent is not None and not parent.show_in_menus:
-        print(parent)
-        print(parent.show_in_menus)
         parent = parent.get_parent()
     if parent is None:
-        return None
+        return ''
 
     html = list_children(parent, page)
 
