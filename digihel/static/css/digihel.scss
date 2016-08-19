@@ -447,12 +447,21 @@ img {
   padding-top: 1em;
 }
 
+//* Page Footer section */
+
 .page-footer {
   background-color: $gray-dark;
   color: $white;
   margin-top: 4em;
   min-height: 20em;
-  padding-top: 2em;
+  padding: 4em 0;
+
+  .page-footer-block {
+    margin-bottom: 2em;
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
+  }
 
   .footer-header {
     font-weight: 800;
@@ -465,6 +474,80 @@ img {
 
     a {
       color: $white;
+    }
+  }
+
+  .partner-logo {
+    margin-bottom: 2em;
+    max-width: 5em;
+    @media (max-width: $screen-xs-max) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .heldev-logo {
+    margin: 0 auto 1em;
+    max-width: 5em;
+  }
+}
+
+.footer-branding {
+  margin-bottom: 2em;
+  text-align: center;
+
+  .footer-logo {
+    margin: 0 auto 1em;
+    max-width: 7em;
+  }
+
+  .footer-logo-heldev {
+    max-width: 5em;
+  }
+
+  a {
+    color: $white;
+    display: block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .footer-branding-text {
+    @extend small;
+    margin-bottom: 1.5em;
+  }
+}
+
+.page-footer-small-print {
+  margin-top: 2em;
+  text-align: right;
+
+  .small-print-nav {
+    @extend .list-inline;
+    color: $gray-lighter;
+    font-size: 14px;
+
+    a {
+      color: $gray-lighter;
+    }
+
+    li {
+      padding: 0;
+    }
+
+    li::before {
+      color: $gray-light;
+      content: ' | ';
+    }
+
+    li:first-child::before {
+      content: none;
+    }
+
+    @media screen and (max-width: $screen-sm-max) {
+      text-align: center;
     }
   }
 }
