@@ -12,11 +12,28 @@ from wagtail.wagtailsearch import index
 from wagtail.contrib.table_block.blocks import TableBlock
 
 
-content_blocks = [
+rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
     ('paragraph', blocks.RichTextBlock()),
     ('image', ImageChooserBlock()),
-    ('table', TableBlock())
+    ('table', TableBlock()),
+]
+
+
+class TwoColumnBlock(blocks.StructBlock):
+    left_column = blocks.StreamBlock(rich_text_blocks, icon='arrow-left',
+                                     label=_('Left column content'))
+    right_column = blocks.StreamBlock(rich_text_blocks, icon='arrow-right',
+                                      label=_('Right column content'))
+
+    class Meta:
+        icon = 'placeholder'
+        label = _('Two columns')
+        template = 'content/blocks/two_column.html'
+
+
+content_blocks = rich_text_blocks + [
+    ('two_columns', TwoColumnBlock()),
 ]
 
 
@@ -46,22 +63,8 @@ class LinkFields(models.Model):
         abstract = True
 
 
-class TwoColumnBlock(blocks.StructBlock):
-    left_column = blocks.StreamBlock(content_blocks, icon='arrow-left',
-                                     label=_('Left column content'))
-    right_column = blocks.StreamBlock(content_blocks, icon='arrow-right',
-                                      label=_('Right column content'))
-
-    class Meta:
-        icon = 'placeholder'
-        label = _('Two columns')
-        template = 'content/blocks/two_column.html'
-
-
 class ContentPage(Page):
-    body = StreamField(content_blocks + [
-        ('two_columns', TwoColumnBlock()),
-    ])
+    body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body')

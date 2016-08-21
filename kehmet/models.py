@@ -4,6 +4,8 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailsearch import index
+from content.models import content_blocks
 
 
 class BaseModel(models.Model):
@@ -32,7 +34,7 @@ class DevelopmentMethod(BaseModel):
 class DevelopmentPhase(BaseModel):
     method = models.ForeignKey(DevelopmentMethod)
     order = models.IntegerField(null=True, blank=True)
-    
+
     sort_order_field = 'order'
 
     class Meta:
@@ -60,3 +62,29 @@ class UserRolePage(Page):
         StreamFieldPanel('body'),
     ]
     parent_page_types = ['UserRoleIndex']
+
+
+class KehmetFrontPage(Page):
+    body = StreamField(content_blocks)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body')
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('body')
+    ]
+
+    subpage_types = ['KehmetContentPage']
+
+
+class KehmetContentPage(Page):
+    body = StreamField(content_blocks)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body')
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('body')
+    ]
+
+    parent_page_types = ['KehmetContentPage', 'KehmetFrontPage']
