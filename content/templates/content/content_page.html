@@ -4,6 +4,41 @@
 {% block body_class %}template-contentpage{% endblock %}
 
 {% block content %}
+<div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <form>
+        <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>Digitaalinen Helsinki tarvitsee palautettasi</h4>
+                    <p>Kehitämme digitaalista Helsinkiä jatkuvasti ja toivomme että jätät palautetta sivuston sisällöstä ja toiminnallisuudesta.</p>
+                <div class="form-group">
+                    <label for="inputFeedbackText" class="control-label">Palaute</label>
+                    <div class="">
+                        <textarea class="form-control" rows="3" id="inputFeedbackText"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFeedbackName" class="control-label">Nimi</label>
+                    <div class="">
+                        <input type="email" class="form-control" id="inputFeedbackName" placeholder="Nimi">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFeedbackEmail" class="control-label">Sähköposti</label>
+                    <div class="">
+                        <input type="email" class="form-control" id="inputFeedbackEmail" placeholder="Email">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                <button type="submit" class="btn btn-primary">Lähetä</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
 <article class="container">
     {% if self.get_ancestors|length > 1 %}
     <ol class="breadcrumb">
@@ -18,11 +53,58 @@
     <div class="row">
         <div class="col-md-8 content">
         {% include "content/blocks.html" with blocks=page.body only %}
+        <div class="feedback-module">
+            <a class="" role="button" data-toggle="collapse" href="#feedback-module" aria-expanded="false" aria-controls="feedback-module">
+                <div class="feedback-module-header">
+                    <h5><span class="feedback-icon glyphicon glyphicon-hand-right"></span> Löysitkö etsimäsi? Opitko uutta? Mitä voisimme tehdä paremmin?</h5>
+                </div>
+            </a>
+            <div class="feedback-module-content collapse" id="feedback-module">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputFeedbackName" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            <h4>Lähetä meille palautetta</h4>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFeedbackName" class="col-sm-2 control-label">Nimi</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputFeedbackName" placeholder="Nimi">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFeedbackEmail" class="col-sm-2 control-label">Sähköposti</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputFeedbackEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFeedbackText" class="col-sm-2 control-label">Palaute</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="inputFeedbackText"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> </label>
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-default">Lähetä</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         </div>
         <div class="col-md-4">
             <nav class="sidenav">
                 {% sidebar_page_nav page %}
             </nav>
+            <a href="#" class="" data-toggle="modal" data-target=".bs-example-modal-lg">
+            <div class="feedback-banner">
+                    <h5>Anna palautetta</h5>
+                    Palautteesi auttaa digitaalista Helsinkiä kehittymään entistä paremmaksi.
+            </div>
+                </a>
         </div>
     </div>
 </article>
