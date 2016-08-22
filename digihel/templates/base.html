@@ -36,17 +36,54 @@
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                <!-- Logo here -->
-                {% for section in request.site.root_page.specific.footer_link_sections %}
-                    <div class="col-sm-4">
-                        {% if section.title %}<div class="footer-header">{{ section.title }}</div>{% endif %}
-                        <ul class="footer-links">
-                        {% for link in section.links.all %}
-                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                        </ul>
+                    <div class="col-md-3 col-md-push-6 col-sm-4 col-sm-push-4">
+                    {% for section in request.site.root_page.specific.footer_link_sections %}
+                        <div class="page-footer-block">
+                            {% if section.title %}<div class="footer-header">{{ section.title }}</div>{% endif %}
+                            <ul class="footer-links">
+                            {% for link in section.links.all %}
+                                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
                     </div>
-                {% endfor %}
+                    <div class="col-md-3 col-md-pull-3 col-sm-4 col-sm-pull-4">
+                        <div class="footer-branding footer-branding-helsinki">
+                            <a href="http://www.hel.fi">
+                                <img alt="Helsingin vaakuna" src="{% static "images/helsinki-vaakuna.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
+                                <div class="footer-branding-text">Helsingin kaupunki</div>
+                            </a>
+                        </div>
+                        <div class="footer-branding footer-branding-heldev">
+                            <a href="http://dev.hel.fi">
+                                <img alt="Helsinki loves developers" src="{% static "images/heldev_logo-white-mini.svg" %}" class="footer-logo footer-logo-heldev" aria-hidden="true">
+                                <div class="footer-branding-text">Helsingin kaupungin avoin ohjelmistokehitys</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-md-push-3 col-sm-4">
+                        <div class="page-footer-block">
+                            <div class="footer-header">Yhteistyössä</div>
+                            <ul class="footer-links">
+                                <li></li>
+                                <li><a href="http://hri.fi"><img alt="Helsinki Region Infoshare" src="{% static "images/hri_logo_darkBG.svg" %}" class="partner-logo" aria-hidden="true"></a></li>
+                                <li><a href="http://6aika.fi"><img alt="Helsingin vaakuna" src="{% static "images/6aika-tunnus-RGB-W.png" %}" class="partner-logo" aria-hidden="true"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="page-footer-small-print">
+                            <ul class="small-print-nav">
+                                <li><a href="#">Ota yhteyttä</a></li>
+                                <li><a href="#">Käyttöehdot</a></li>
+                                <li><a href="#">Tietoa palvelusta</a></li>
+                                <li>2016 Helsingin kaupunki</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
