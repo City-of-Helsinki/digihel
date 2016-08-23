@@ -5,7 +5,9 @@
   <div class="blog-post-header">
 {% else %}
 <div class="container main-container blog-post-container" role="main">
-  <div class="page-header">
+    <div class="row">
+  <div class="page-header page-header-blogpost col-sm-10">
+      <a href="/blogikirjoitukset">Blogi</a>
 {% endif %}
 
   <a class="blog-post-link" href="{% pageurl blog %}">
@@ -28,17 +30,14 @@
       <a href="{% pageurl blog %}">Lue koko kirjoitus &raquo;</a>
   </div>
   {% else %}
-  <div class="blog-body">
-      {{ blog.body|richtext }}
-  </div>
-  {% endif %}
-
-  <div class="meta">
+    </div>
+    <div class="row">
+  <div class="col-sm-2">
+    <div class="meta">
       <div class="tags">
           {% if blog.tags.all %}
-              Tags: 
                   {% for tag in blog.tags.all %}
-                      <a href="{% url 'blog:tag' tag.slug %}/">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+                      <a href="{% url 'blog:tag' tag.slug %}/" class="label label-info">{{ tag }}</a>{% if not forloop.last %} {% endif %}
                   {% endfor %}
           {% endif %}
       </div>
@@ -59,4 +58,11 @@
           </div>
       </div>
   </div>
+</div>
+  <div class="blog-body col-sm-8">
+      {{ blog.body|richtext }}
+  </div>
+    </div>
+  {% endif %}
+
 </div>

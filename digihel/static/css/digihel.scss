@@ -646,15 +646,24 @@ img {
 .blog-post-meta {
   @extend .media;
   margin-bottom: 1em;
+  line-height: 16px;
+  h4 {
+    font-size: 16px;
+    margin: 0;
+    line-height: 16px;
+  }
+  .blog-post-date {
+    color: $gray-light;
+  }
 
   .blog-post-author-image {
     @extend .media-left;
 
     img {
       @extend .img-circle;
-      height: 52px;
-      max-width: 52px;
-      width: 52px;
+      height: 32px;
+      max-width: 32px;
+      width: 32px;
     }
   }
 
@@ -665,15 +674,41 @@ img {
 
 // Blog Index
 
+/*h2*/.blog-section-header {
+  border-bottom: 4px solid $helsinkired;
+  font-size: 24px;
+  float: left;
+  margin-bottom: 1em;
+  margin-top: 2em;
+  padding-bottom: .5em;
+}
+
 .blog-index {
+  margin-top: 2em;
   .blog-post-item {
-    border-bottom: 2px solid $text-color;
-    padding: 1em 0 2em;
+    @extend .col-sm-6;
+    //border-bottom: 2px solid $text-color;
+    //padding: 1em 0 2em;
 
     h2 {
-      font-size: 48px;
+      border-top: 2px solid $helsinkired;
+      padding-top: 1em;
+      font-size: 24px;
       margin-bottom: .5em;
     }
+  }
+}
+
+.blog-index-highlight {
+  background: $helsinkiturquoise;
+  background-size: cover;
+  padding: 1em;
+  height: 20em;
+  @media screen and (min-width: $screen-sm-max) {
+    height: 24em;
+  }
+  @media screen and (min-width: $screen-md-max) {
+    height: 28em;
   }
 }
 

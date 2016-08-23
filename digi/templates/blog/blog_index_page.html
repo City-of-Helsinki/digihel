@@ -3,22 +3,40 @@
 
 {% block content %}
 <div class="container main-container" role="main">
-  <div class="page-header">
-    {% if category %}
-    <h2>{{ category }}</h2>
-    {% endif %}
-    {% if tag %}
-    <h2>Blogikirjoitukset tagillä '{{ tag }}'</h2>
-    {% else %}
-    <h2>Digipajan Blogi</h2>
-    {% endif %}
+  <div class="row">
+    <div class="col-xs-12">
+      {% if category %}
+      <h2 class="blog-section-header">{{ category }}</h2>
+      {% endif %}
+      {% if tag %}
+      <h2 class="blog-section-header">Blogikirjoitukset tagillä '{{ tag }}'</h2>
+      {% else %}
+      <h2 class="blog-section-header">Digipajan Blogi</h2>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="blog-index-highlight" style="background-image: url('http://loremflickr.com/1280/800/helsinki')">
+            <div class="blog-hilight-image"></div>
+            <div class="blog-hilight-header"><h2>Tässä nostettu kirjoitus</h2>
+            <div class="blog-post-meta meta date">
+                <div class="blog-post-author-image"><img class="media-object" src="http://placekitten.com/72/72" alt="salonal"></div>
+                <div class="blog-post-author-details">
+                  <h4 class="media-heading blog-post-author">salonal</h4>
+                  <div class="blog-post-date">27.6.2016</div>
+                </div>
+              </div>
+            </div>
+            <div class="blog-hilight-content">Nostokirjoitus voi olla uusin tai nostettavaksi merkitty kirjoitus.</div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
   </div>
     {% for rl in self.related_links.all %}
         <p>{{ rl.title }}: <a href='{{ rl.link_page.url }}'>{{ rl.link_page }}</a></p>
     {% endfor %}
-
     {% if blogs %}
-        <ul class="blog-index list-unstyled the-loop">
+        <ul class="blog-index list-unstyled the-loop row">
         {% for blog in blogs %}
             <li class="blog-post-item{% if forloop.first and not category and not tag %} first-reset{% endif %}">
                 {% include 'blog/blog_post.html' with include_context="index_page" %}
