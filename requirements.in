@@ -3,6 +3,7 @@ wagtail
 Jinja2
 psycopg2
 -e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
+-e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git#egg=wagtail_svgmap
 pytest
 pytest-django
 raven

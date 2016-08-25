@@ -10,6 +10,7 @@ from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
 from wagtail.contrib.table_block.blocks import TableBlock
+from wagtail_svgmap.blocks import ImageMapBlock
 
 
 rich_text_blocks = [
@@ -17,6 +18,7 @@ rich_text_blocks = [
     ('paragraph', blocks.RichTextBlock()),
     ('image', ImageChooserBlock()),
     ('table', TableBlock()),
+    ('image_map', ImageMapBlock()),
 ]
 
 

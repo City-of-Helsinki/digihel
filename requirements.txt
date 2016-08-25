@@ -5,6 +5,7 @@
 #    pip-compile --output-file requirements.txt requirements.in
 #
 -e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
+-e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git#egg=wagtail_svgmap
 beautifulsoup4==4.5.1     # via wagtail
 click==6.6                # via pip-tools
 contextlib2==0.5.4        # via raven
@@ -19,7 +20,7 @@ django-modelcluster==2.0  # via wagtail
 django-taggit==0.18.3     # via wagtail
 django-treebeard==4.0.1   # via wagtail
 Django==1.9.9             # via django-allauth, django-bower, django-treebeard, wagtail
-djangorestframework==3.4.5  # via wagtail
+djangorestframework==3.4.6  # via wagtail
 elasticsearch==2.4.0
 first==2.0.1              # via pip-tools
 html5lib==0.999999        # via wagtail
@@ -32,10 +33,10 @@ pip-tools==1.7.0
 psycopg2==2.6.2
 py==1.4.31                # via pytest
 pytest-django==3.0.0
-pytest==3.0.0
+pytest==3.0.1
 python3-openid==3.0.10    # via django-allauth
 pytz==2016.6.1            # via django-modelcluster
-raven==5.24.3
+raven==5.25.0
 rcssmin==1.0.6            # via django-compressor
 requests-oauthlib==0.6.2  # via django-allauth
 requests==2.11.1          # via django-allauth, requests-oauthlib

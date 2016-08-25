@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'taggit',
     'blog',
     'djangobower',
+    'wagtail_svgmap',
 
     'allauth',
     'allauth.account',
