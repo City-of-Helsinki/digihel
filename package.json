@@ -1,0 +1,17 @@
+{
+  "name": "digihel",
+  "version": "0.0.1",
+  "description": "Digital Helsinki Wagtail site",
+  "main": "index.js",
+  "dependencies": {
+    "autoprefixer": "^6.4.0",
+    "bower": "^1.7.9",
+    "postcss-cli": "^2.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juha Yrjölä <juha.yrjola@iki.fi>",
+  "license": "MIT"
+}

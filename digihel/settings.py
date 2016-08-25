@@ -181,6 +181,7 @@ COMPRESS_CSS_FILTERS = (
 COMPRESS_ENABLED = True
 COMPRESS_AUTOPREFIXER_BINARY = os.path.join(BASE_DIR, 'node_modules/.bin/postcss')
 
+BOWER_PATH = os.path.join(BASE_DIR, 'node_modules/.bin/bower')
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components/')
 
 BOWER_INSTALLED_APPS = [
