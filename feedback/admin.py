@@ -1,3 +1,13 @@
 from django.contrib import admin
+from .models import Feedback, SlackNotifier
 
-# Register your models here.
+
+class FeedbackAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Feedback, FeedbackAdmin)
+
+
+class SlackNotifierAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(SlackNotifier, SlackNotifierAdmin)
