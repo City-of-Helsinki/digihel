@@ -25,8 +25,12 @@ class FeedbackView(APIView):
         if 'user' in request.data:
             del request.data['user']
 
+        user_agent = request.data.get('user_agent')
+        if not user_agent:
+            user_agent = request.META.get('HTTP_USER_AGENT', None)
+
         serializer = FeedbackSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user=user)
+            serializer.save(user=user, user_agent=user_agent)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

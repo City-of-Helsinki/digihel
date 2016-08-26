@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-25 22:03+0300\n"
+"POT-Creation-Date: 2016-08-26 16:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,38 +56,43 @@ msgstr "Unohditko?"
 msgid "Signing in..."
 msgstr "Kirjaudutaan sisään"
 
-#: feedback/models.py:12
+#: feedback/models.py:14
 msgid "URL of the page where the user was"
-msgstr ""
-
-#: feedback/models.py:13
-msgid "The user agent string of the user's browser"
-msgstr ""
+msgstr "Sivu jolta palaute jätettiin"
 
 #: feedback/models.py:15
-msgid "Subject"
-msgstr ""
-
-#: feedback/models.py:16
-msgid "Email"
-msgstr ""
+msgid "The user agent string of the user's browser"
+msgstr "Käyttäjän selaimen tyyppi"
 
 #: feedback/models.py:17
+msgid "Subject"
+msgstr "Otsikko"
+
+#: feedback/models.py:18 kehmet/models.py:12
+msgid "Name"
+msgstr "Nimi"
+
+#: feedback/models.py:19
+msgid "Email"
+msgstr "Sähköposti"
+
+#: feedback/models.py:20
 msgid "Body"
+msgstr "Sisältö"
+
+#: feedback/models.py:53
+#, python-format
+msgid "Unsupported notifier type: %s"
 msgstr ""
 
-#: feedback/models.py:40
-msgid "You must implement this method in a subclass"
-msgstr ""
-
-#: feedback/models.py:51
+#: feedback/models.py:84
 #, python-brace-format
 msgid "New feedback received for {url}"
 msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
 
-#: kehmet/models.py:12
-msgid "Name"
-msgstr "Nimi"
+#: feedback/models.py:86
+msgid "User agent"
+msgstr "Selain"
 
 #: kehmet/models.py:13
 msgid "Short description"
