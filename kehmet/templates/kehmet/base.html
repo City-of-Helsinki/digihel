@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags kehmet_tags static %}
+
+{% block content %}
+<div class="modal page-feedback-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <form class="page-feedback-form" role="form" data-toggle="validator">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>Digitaalinen Helsinki tarvitsee palautettasi</h4>
+                    <p>Kehitämme digitaalista Helsinkiä jatkuvasti ja toivomme että jätät palautetta sivuston sisällöstä ja toiminnallisuudesta.</p>
+                <div class="form-group">
+                    <label for="inputFeedbackText" class="control-label">Palaute</label>
+                    <textarea class="form-control" rows="3" name="body" id="inputFeedbackText" required data-error="Täytä tämä kenttä."></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFeedbackName" class="control-label">Nimi</label>
+                    <input type="text" class="form-control" name="name" id="inputFeedbackName" placeholder="Nimi">
+                </div>
+                <div class="form-group">
+                    <label for="inputFeedbackEmail" class="control-label">Sähköposti</label>
+                    <input type="email" class="form-control" name="email" id="inputFeedbackEmail" placeholder="Sähköposti" data-error="Sähköpostiosoite on väärin.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                <button type="submit" class="btn btn-primary">Lähetä</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+  </div>
+</div>
+
+<article class="container">
+    {% block breadcrumb %}
+    {% if self.get_ancestors|length > 1 %}
+    <ol class="breadcrumb">
+        {% for page in self.get_ancestors %}
+        {% if not page.is_root and not page.get_parent.is_root %}
+        <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
+        {% endif %}
+        {% endfor %}
+        <li class="active">{{ self.title }}</li>
+    </ol>
+    {% endif %}
+    {% endblock breadcrumb %}
+
+    <div class="row">
+        <div class="col-md-8 content">
+        {% block kehmet_content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+            <nav class="sidenav">
+                {% sidebar_page_nav page %}
+            </nav>
+            <a href="#" class="" data-toggle="modal" data-target=".page-feedback-modal">
+                <div class="feedback-banner">
+                    <h5>Anna palautetta</h5>
+                    <p>Palautteesi auttaa digitaalista Helsinkiä kehittymään entistä paremmaksi.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</article>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'bootstrap-validator/dist/validator.min.js' %}"></script>
+<script src="{% static 'remarkable-bootstrap-notify/dist/bootstrap-notify.min.js' %}"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('.page-feedback-form').validator().on('submit', function(ev) {
+        if (ev.isDefaultPrevented()) {
+            // Form is invalid
+            return;
+        }
+        ev.preventDefault();
+
+        var form = this;
+        var inputArray = $(form).serializeArray();
+        var data = {};
+
+        for (i in inputArray) {
+            var entry = inputArray[i];
+            var val = entry.value;
+
+            if (typeof(val) === 'string') {
+                val = val.trim();
+                if (!val)
+                    continue;
+            }
+            data[entry.name] = val;
+        }
+        data.url = '{{ page.full_url }}';
+        data.content_type = {{ page.content_type_id }};
+        data.object_id = {{ page.id }};
+
+        headers = {};
+        var TOKEN_NAME = 'csrf_middlewaretoken';
+        if (TOKEN_NAME in data) {
+            headers['X-CSRFToken'] = data[TOKEN_NAME];
+            delete data[TOKEN_NAME];
+        }
+        $.ajax({
+            type: 'POST',
+            url: '{% url "post_feedback" %}',
+            data: data,
+            headers: headers,
+            success: function(ret) {
+                $('.page-feedback-modal').modal('hide');
+                form.reset();
+                $.notify({
+                    message: 'Kiitos palautteestasi!'
+                }, {
+                    type: 'success'
+                });
+            },
+            error: function(ret) {
+                console.log(ret);
+                $('.page-feedback-modal').modal('hide');
+                $.notify({
+                    message: 'Palautteen lähettäminen epäonnistui.'
+                }, {
+                    type: 'danger'
+                });
+            },
+            dataType: 'json'
+        });
+    });
+});
+</script>
+{% endblock %}

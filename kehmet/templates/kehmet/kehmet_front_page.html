@@ -1,29 +1,7 @@
-{% extends "base.html" %}
-{% load wagtailcore_tags kehmet_tags %}
+{% extends "kehmet/base.html" %}
 
-{% block body_class %}template-contentpage{% endblock %}
+{% block body_class %}template-kehmet-front-page{% endblock %}
 
-{% block content %}
-<article class="container">
-    {% if self.get_ancestors|length > 1 %}
-    <ol class="breadcrumb">
-        {% for page in self.get_ancestors %}
-        {% if not page.is_root and not page.get_parent.is_root %}
-        <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
-        {% endif %}
-        {% endfor %}
-        <li class="active">{{ self.title }}</li>
-    </ol>
-    {% endif %}
-    <div class="row">
-        <div class="col-md-8 content">
-        {% include "content/blocks.html" with blocks=page.body only %}
-        </div>
-        <div class="col-md-4">
-            <nav class="sidenav">
-                {% sidebar_page_nav page %}
-            </nav>
-        </div>
-    </div>
-</article>
+{% block kehmet_content %}
+{% include "content/blocks.html" with blocks=page.body only %}
 {% endblock %}

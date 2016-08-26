@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'content',
     'kehmet',
     'digi',
+    'feedback',
     'search',
 
     'wagtail.wagtailforms',
@@ -193,6 +194,8 @@ BOWER_INSTALLED_APPS = [
     'bourbon#4.2.7',
     'bootstrap-sass#3.3.7',
     'jquery#<3.0',
+    'bootstrap-validator#0.11.5',
+    'remarkable-bootstrap-notify#3.1.3',
 ]
 
 

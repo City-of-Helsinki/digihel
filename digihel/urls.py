@@ -8,6 +8,7 @@ from wagtail.wagtailcore import urls as wagtail_urls
 
 from search import views as search_views
 from digi.views import sitemap_view
+from feedback.views import FeedbackView
 
 admin.autodiscover()
 
@@ -22,6 +23,7 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
     url(r'^blogi/', include('blog.urls', namespace="blog")),
     url(r'^sivukartta/$', sitemap_view),
+    url(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
 
     url(r'', include(wagtail_urls)),
 ]
@@ -30,7 +32,6 @@ urlpatterns = [
 if settings.DEBUG:
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-    from django.views.generic import TemplateView
 
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
