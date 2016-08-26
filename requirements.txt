@@ -6,13 +6,18 @@
 #
 -e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
 -e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git#egg=wagtail_svgmap
+amqp==1.4.9               # via kombu
+anyjson==0.3.3            # via kombu
 beautifulsoup4==4.5.1     # via wagtail
+billiard==3.3.0.23        # via celery
+celery==3.1.23
 click==6.6                # via pip-tools
 contextlib2==0.5.4        # via raven
 defusedxml==0.4.1         # via python3-openid
 django-allauth==0.27.0
 django-appconf==1.0.2     # via django-compressor
 django-bower==5.1.0
+django-celery==3.1.17
 django-compressor-autoprefixer==0.1.0
 django-compressor==2.1
 django-libsass==0.7
@@ -25,6 +30,7 @@ elasticsearch==2.4.0
 first==2.0.1              # via pip-tools
 html5lib==0.999999        # via wagtail
 Jinja2==2.8
+kombu==3.0.35             # via celery
 libsass==0.11.1           # via django-libsass
 MarkupSafe==0.23          # via jinja2
 oauthlib==1.1.2           # via requests-oauthlib
@@ -35,9 +41,10 @@ py==1.4.31                # via pytest
 pytest-django==3.0.0
 pytest==3.0.1
 python3-openid==3.0.10    # via django-allauth
-pytz==2016.6.1            # via django-modelcluster
+pytz==2016.6.1            # via celery, django-modelcluster
 raven==5.25.0
 rcssmin==1.0.6            # via django-compressor
+redis==2.10.5
 requests-oauthlib==0.6.2  # via django-allauth
 requests==2.11.1          # via django-allauth, requests-oauthlib
 rjsmin==1.0.12            # via django-compressor

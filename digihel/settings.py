@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'blog',
     'djangobower',
     'wagtail_svgmap',
+    'djcelery',
 
     'allauth',
     'allauth.account',
@@ -117,6 +118,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# celery
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+BROKER_URL = 'redis://localhost:6379/0'
 
 
 # Internationalization

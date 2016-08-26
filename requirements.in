@@ -15,3 +15,6 @@ django-libsass
 django-compressor-autoprefixer
 django-bower
 elasticsearch
+celery
+django-celery
+redis
