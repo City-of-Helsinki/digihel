@@ -178,7 +178,7 @@ img {
 
 .sidenav {
   border-left: 2px solid $gray-lighter;
-
+  margin-bottom: 2em;
   .closed {
     ul {
       display: none;
@@ -549,6 +549,48 @@ img {
     @media screen and (max-width: $screen-sm-max) {
       text-align: center;
     }
+  }
+}
+
+//* Site feedback */
+
+.modal-body {
+  padding: 2em;
+}
+.feedback-module {
+  background: $gray-lighter;
+  //border: 2px solid $helsinkiblue;
+  //color: $helsinkiyellow;
+  padding: 1em;
+  margin: 2em 0;
+  //box-shadow: 4px 4px $helsinkiblue;
+}
+
+.feedback-module-header {
+
+}
+
+.feedback-icon {
+  //color: $helsinkiyellow;
+  //font-size: 1.5em;
+  margin: 6px;
+}
+
+.feedback-module-content {
+  //border-top: 2px solid $helsinkiblue;
+  margin: 0;
+  h4 {
+    margin: 2em 0 2em 0;
+  }
+}
+
+.feedback-banner {
+  padding: 1em;
+  //border-top: 2px solid $helsinkiyellow;
+  background-color: $gray-lighter;
+  h5 {
+    line-height: 1.666;
+    margin: 0;
   }
 }
 
