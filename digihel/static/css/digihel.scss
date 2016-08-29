@@ -28,6 +28,7 @@
 @import 'bootstrap-variables';
 @import 'bootstrap-custom';
 @import 'bourbon/app/assets/stylesheets/bourbon';
+@import 'digihel-icons';
 
 $helsinkiyellow: #ffc72b;
 $helsinkiblue: #005eb8;
@@ -471,6 +472,10 @@ img {
   .footer-links {
     list-style: none;
     padding-left: 0;
+    .icon {
+      font-size: 1.2em;
+      margin-right: .25em;;
+    }
 
     a {
       color: $white;
