@@ -19,7 +19,7 @@ django-appconf==1.0.2     # via django-compressor
 django-bower==5.1.0
 django-celery==3.1.17
 django-compressor-autoprefixer==0.1.0
-django-compressor==2.1
+django-compressor==2.1    # via django-compressor-autoprefixer, django-libsass
 django-libsass==0.7
 django-modelcluster==2.0  # via wagtail
 django-taggit==0.18.3     # via wagtail
@@ -52,5 +52,5 @@ six==1.10.0               # via django-bower, html5lib, libsass, pip-tools
 Unidecode==0.4.19         # via wagtail
 urllib3==1.16             # via elasticsearch
 wagtail-blog==1.6.7
-wagtail==1.6
+wagtail==1.6.1
 Willow==0.3.1             # via wagtail

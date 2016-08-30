@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-26 16:33+0300\n"
+"POT-Creation-Date: 2016-08-30 15:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,14 @@ msgstr "Indikaattori"
 #: digi/models.py:43
 msgid "Indicators"
 msgstr "Indikaattorit"
+
+#: digi/models.py:97
+msgid "Theme"
+msgstr "Teema"
+
+#: digi/models.py:138
+msgid "Project"
+msgstr "Projekti"
 
 #: digihel/templates/wagtailadmin/login.html:3
 #: digihel/templates/wagtailadmin/login.html:73
@@ -68,7 +76,7 @@ msgstr "Käyttäjän selaimen tyyppi"
 msgid "Subject"
 msgstr "Otsikko"
 
-#: feedback/models.py:18 kehmet/models.py:12
+#: feedback/models.py:18 feedback/models.py:86 kehmet/models.py:12
 msgid "Name"
 msgstr "Nimi"
 
@@ -90,7 +98,7 @@ msgstr ""
 msgid "New feedback received for {url}"
 msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
 
-#: feedback/models.py:86
+#: feedback/models.py:88
 msgid "User agent"
 msgstr "Selain"
 
@@ -121,3 +129,7 @@ msgstr "Kehitysvaihe"
 #: kehmet/models.py:42
 msgid "Development phases"
 msgstr "Kehitysvaiheet"
+
+#: people/wagtail_hooks.py:9
+msgid "People"
+msgstr "Henkilöt"

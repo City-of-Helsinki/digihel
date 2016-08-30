@@ -30,6 +30,7 @@ LOCALE_PATHS = (
 INSTALLED_APPS = [
     'users',
     'helusers',
+    'people',
     'content',
     'kehmet',
     'digi',

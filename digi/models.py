@@ -84,6 +84,7 @@ class ThemePage(Page):
         ImageChooserPanel('image'),
         FieldPanel('short_description'),
         FieldPanel('blog_category'),
+        InlinePanel('roles', label="Roles"),
         StreamFieldPanel('body'),
     ]
     search_fields = Page.search_fields + [
@@ -92,9 +93,26 @@ class ThemePage(Page):
     ]
     subpage_types = ['ProjectPage']
 
+    def get_human_type(self):
+        return _('Theme')
+
     @property
     def projects(self):
         return self.get_children().exact_type(ProjectPage).live().specific()
+
+
+class ThemeRole(Orderable):
+    theme = ParentalKey(ThemePage, related_name='roles')
+    person = models.ForeignKey('people.Person', db_index=True)
+    role = models.CharField(max_length=100, null=True, blank=True)
+
+    panels = [
+        FieldPanel('person'),
+        FieldPanel('role'),
+    ]
+
+    def __str__(self):
+        return "{} with role {} on {}".format(self.person, self.role, self.theme)
 
 
 class ProjectPage(Page):
@@ -115,6 +133,18 @@ class ProjectPage(Page):
         index.SearchField('body'),
     ]
     parent_page_types = ['ThemePage']
+
+    def get_human_type(self):
+        return _('Project')
+
+
+class ProjectRole(Orderable):
+    project = ParentalKey(ProjectPage, db_index=True)
+    person = models.ForeignKey('people.Person', db_index=True)
+    role = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return "{} with role {} on {}".format(self.person, self.role, self.theme)
 
 
 class FrontPage(Page):
