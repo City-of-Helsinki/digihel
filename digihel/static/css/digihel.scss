@@ -173,7 +173,15 @@ img {
 
 .sidenav {
   border-left: 2px solid $gray-lighter;
-  margin-bottom: 2em;
+  line-height: 1;
+  margin-bottom: $line-height-computed;
+
+  @media (max-width: $screen-sm-max) {
+    border: 2px solid $gray-lighter;
+    margin-top: $line-height-computed;
+    padding: $line-height-computed $padding-large-horizontal;
+  }
+
   .closed {
     ul {
       display: none;
@@ -181,27 +189,39 @@ img {
   }
 
   ul {
-    padding-left: 15px;
-  }
+    padding-left: $padding-large-horizontal;
 
-  ul li {
-    list-style: none;
+    li {
+      list-style: none;
+      margin-bottom: $padding-large-vertical;
 
-    a {
-      color: $gray-light;
+      a {
+        color: $gray-light;
+      }
+
+      a:hover {
+        color: $gray;
+      }
     }
   }
 
   li.active {
     > a {
       color: $helsinkiblue;
-      font-weight: 800;
+
+      &:hover {
+        color: $helsinkiblue;
+      }
     }
   }
 
   li.open {
     > a {
-      font-weight: 800;
+      color: $gray-dark;
+
+      &:hover {
+        color: $gray-darker;
+      }
     }
   }
 }
