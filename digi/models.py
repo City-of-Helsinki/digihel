@@ -72,6 +72,7 @@ class ThemeIndexPage(Page):
 class ThemePage(Page):
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
+    type = models.CharField(max_length=10, default="Teema")
     short_description = models.TextField()
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
@@ -82,6 +83,7 @@ class ThemePage(Page):
     parent_page_types = ['ThemeIndexPage']
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
+        FieldPanel('type'),
         FieldPanel('short_description'),
         FieldPanel('blog_category'),
         InlinePanel('roles', label="Roles"),
@@ -92,9 +94,6 @@ class ThemePage(Page):
         index.SearchField('body'),
     ]
     subpage_types = ['ProjectPage']
-
-    def get_human_type(self):
-        return _('Theme')
 
     @property
     def projects(self):
@@ -116,6 +115,7 @@ class ThemeRole(Orderable):
 
 
 class ProjectPage(Page):
+    type = _('Project')
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
     short_description = models.TextField(null=True, blank=True)
@@ -133,9 +133,6 @@ class ProjectPage(Page):
         index.SearchField('body'),
     ]
     parent_page_types = ['ThemePage']
-
-    def get_human_type(self):
-        return _('Project')
 
 
 class ProjectRole(Orderable):
