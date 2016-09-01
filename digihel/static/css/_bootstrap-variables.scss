@@ -1,21 +1,100 @@
-$brand-primary:           #005eb8;
+
+$gray-base:              #000 !default;
+$gray-darker:            #333;
+$gray-dark:              #444;
+$gray:                   #666;
+$gray-light:             #8f8f8c; // Helsinki Silver
+$gray-lighter:           #eee;
+
+$brand-primary:         #005eb8;
+$brand-success:         #a1d661;
+$brand-info:            #05add6;
+$brand-warning:         #f59930;
+$brand-danger:          #e51a3c;
+
+$body-bg:               #fff;
+$text-color:            $gray-darker;
 
 $link-color:            $brand-primary !default;
-$link-hover-color:      darken($link-color, 10%) !default;
-$link-hover-decoration: underline !default;
+$link-hover-color:      #0396d1;
+$link-hover-decoration: none;
 
-$font-family-sans-serif:  "helsinki-avoin", Verdana, Helvetica, sans-serif !default;
-$font-family-serif:       "helsinki-avoin", Verdana, Helvetica, sans-serif !default;
-$font-size-base:          16px !default;
-$line-height-base:        1.666 !default;
-$headings-font-weight:    700 !default;
-$headings-line-height:    1.2 !default;
+$font-family-sans-serif:  "helsinki-avoin", Verdana, Helvetica, sans-serif;
+$font-family-serif:       Georgia, Times, "Times New Roman", serif;
+$font-size-base:          16px;
+$font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small:         ceil(($font-size-base * 0.75)) !default; // ~12px
 
-$icon-font-path: "../bootstrap-sass/assets/fonts/bootstrap/" !default;
- 
+$font-size-h1:            floor(($font-size-base * 3)) !default; // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h5:            $font-size-base !default;
+$font-size-h6:            ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$line-height-base:        1.5;
+$line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+$headings-font-weight:    600;
+$headings-line-height:    1;
+//$headings-color:          $brand-primary !default;
+
+$icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
+
+//== Components
+
+$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   12px !default;
+
+$padding-large-vertical:    10px !default;
+$padding-large-horizontal:  16px !default;
+
+$padding-small-vertical:    5px !default;
+$padding-small-horizontal:  10px !default;
+
+$padding-xs-vertical:       1px !default;
+$padding-xs-horizontal:     5px !default;
+
+$line-height-large:         1; // extra decimals for Win 8.1 Chrome
+$line-height-small:         1.666;
+
+$border-radius-base:        3px;
+$border-radius-large:       4px !default;
+$border-radius-small:       3px !default;
+
+//== Grid system
+
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:         24px;
+
+//== Navbar
+
+// Basics of a navbar
+$navbar-height:                    65px;
+$navbar-margin-bottom:             $line-height-computed !default;
+$navbar-border-radius:             0;
+$navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
+$navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
+$navbar-collapse-max-height:       340px !default;
+
 //=== Inverted navbar
-$navbar-inverse-color:                      #fff !default;
-$navbar-inverse-bg:                         #005EB8 !default;
-$navbar-inverse-border:                     $navbar-inverse-bg !default;
-$navbar-inverse-link-color:                 #fff !default;
-$navbar-inverse-link-hover-color:           #05C2DE !default;
+// Reset inverted navbar basics
+$navbar-inverse-color:                      $brand-primary;
+$navbar-inverse-bg:                         #005eb8;
+$navbar-inverse-border:                     $navbar-inverse-bg;
+
+// Inverted navbar links
+$navbar-inverse-link-color:                 #fff;
+$navbar-inverse-link-hover-color:           #05c2de;
+$navbar-inverse-link-hover-bg:              transparent !default;
+$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
+$navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%) !default;
+$navbar-inverse-link-disabled-color:        #444 !default;
+$navbar-inverse-link-disabled-bg:           transparent !default;
+
+// Inverted navbar brand label
+$navbar-inverse-brand-color:                $navbar-inverse-link-color !default;
+$navbar-inverse-brand-hover-color:          #fff !default;
+$navbar-inverse-brand-hover-bg:             transparent !default;
+
+
