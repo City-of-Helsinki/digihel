@@ -14,6 +14,12 @@ dummy_page = Page(title="dummy", path="1234", slug="dummy-slug", depth=1)
 from pprint import pprint
 
 def convert_page(page, target_model):
+    try:
+        page.kehmetcontentpage
+        return
+    except:
+        pass
+
     kcp_type = ContentType.objects.get_for_model(target_model)
     cp_page = page.specific
     kcp_page = target_model(body=cp_page.body, page_ptr=page)
@@ -25,7 +31,8 @@ def convert_page(page, target_model):
         setattr(cp_page, f.name, getattr(dummy_page, f.name))
     cp_page.page_ptr_id = dummy_page.id
     cp_page.save()
-    print(models.Model.delete(cp_page, keep_parents=True))
+    print(page)
+    ret = models.Model.delete(cp_page, keep_parents=True)
 
     page.content_type = kcp_type
     page.save(update_fields=['content_type'])
