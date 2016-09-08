@@ -1,4 +1,4 @@
-{% load wagtailcore_tags static %}
+{% load wagtailcore_tags digi_tags static %}
 
 {% if include_context == "index_page" %}
 <div class="blog-post-preview">
@@ -6,15 +6,29 @@
 {% else %}
 <div class="container main-container blog-post-container" role="main">
     <div class="row">
-  <div class="page-header page-header-blogpost col-sm-10">
-      <a href="/blogikirjoitukset">Blogi</a>
+    <div class="col-xs-12">
+        <h2 class="blog-section-header"><a href="/blogikirjoitukset">Digipajan Blogi</a></h2>
+    </div>
+  <div class="page-header-blogpost col-sm-10">
 {% endif %}
 
   <a class="blog-post-link" href="{% pageurl blog %}">
+      <img src="http://loremflickr.com/1280/640/helsinki" />
       <h2>{{ blog.title }}</h2>
   </a>
 
-  {% if blog.date %}  
+  </div>
+  {% if include_context == "index_page" %}
+  <div class="blog-intro">
+      {{ blog.body|richtext|first_p|safe }} 
+      <a href="{% pageurl blog %}">Lue koko kirjoitus &raquo;</a>
+  </div>
+  {% else %}
+    </div>
+    <div class="row">
+  <div class="col-sm-2">
+    <div class="meta">
+    {% if blog.date %}
       <div class="blog-post-meta meta date">
         <div class="blog-post-author-image"><img class="media-object" src="http://placekitten.com/72/72" alt="{{ blog.author }}"></div>
         <div class="blog-post-author-details">
@@ -23,17 +37,6 @@
         </div>
       </div>
   {% endif %}
-  </div>
-  {% if include_context == "index_page" %}
-  <div class="blog-intro">
-      {{ blog.body|richtext|truncatewords_html:70 }} 
-      <a href="{% pageurl blog %}">Lue koko kirjoitus &raquo;</a>
-  </div>
-  {% else %}
-    </div>
-    <div class="row">
-  <div class="col-sm-2">
-    <div class="meta">
       <div class="tags">
           {% if blog.tags.all %}
                   {% for tag in blog.tags.all %}
@@ -48,14 +51,6 @@
                       <a href="{% url 'blog:category' cat.category.slug %}">{{ cat.category.name }}</a>{% if not forloop.last %}, {% endif %}
                   {% endfor %} | 
           {% endif %}
-
-          <div id="comments" class="comments">
-          {% if COMMENTS_APP == 'django_comments_xtd' %}
-              {% include 'blog/blog_post_comments_xtd_link.html' with blog=blog %}
-          {% elif False %}
-              <a href="{% pageurl blog %}#disqus_thread">No Comments</a>
-          {% endif %}
-          </div>
       </div>
   </div>
 </div>
