@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<div class="container main-container page-content" role="main">
+    <h1>{{ page.title }}</h1>
+    {% for group in page.get_groups %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ group.name }}
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        {% for person in group.people.all %}
+        <div class="col-md-4">
+            <img src="{{ person.get_avatar_url }}" />
+            <div class="name">{{ person.get_display_name }}</div>
+            {% if person.title %}
+            <div class="title">{{ person.title }}</div>
+            {% endif %}
+            {% if person.theme_roles.all or person.project_roles.all %}
+            <ul>
+                {% for role in person.theme_roles.all %}
+                <li>
+                    <div>{{ role.role }}</div>
+                    <a href="{% pageurl role.theme %}">{{ role.theme.title }}</a>
+                </li>
+                {% endfor %}
+                {% for role in person.project_roles.all %}
+                <li>
+                    <a href="{% pageurl role.project %}">{{ role.project.title }}</a>
+                    {{ role.role }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

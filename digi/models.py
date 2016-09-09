@@ -102,7 +102,7 @@ class ThemePage(Page):
 
 class ThemeRole(Orderable):
     theme = ParentalKey(ThemePage, related_name='roles')
-    person = models.ForeignKey('people.Person', db_index=True)
+    person = models.ForeignKey('people.Person', db_index=True, related_name='theme_roles')
     role = models.CharField(max_length=100, null=True, blank=True)
 
     panels = [
@@ -137,7 +137,7 @@ class ProjectPage(Page):
 
 class ProjectRole(Orderable):
     project = ParentalKey(ProjectPage, db_index=True)
-    person = models.ForeignKey('people.Person', db_index=True)
+    person = models.ForeignKey('people.Person', db_index=True, related_name='project_roles')
     role = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
