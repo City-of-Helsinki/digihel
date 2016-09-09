@@ -41,12 +41,16 @@
             {% endif %}
         </div>
         <div class="col-md-4">
+            {% if page.links.all %}
             <div class="manual-links">
-                <h3>Digitaalisten palveluiden kehittämisopas</h3>
+                <h3>Linkkejä</h3>
                 <ul>
-                    <li><a href="#">Eka linkki</a></li>
+                    {% for link in page.links.all %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
+            {% endif %}
             <div class="contacts-list">
                 <h3>Ota yhteyttä</h3>
                 <ul class="list-unstyled">

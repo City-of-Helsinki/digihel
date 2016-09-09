@@ -54,7 +54,7 @@ class FooterLinkSection(ClusterableModel):
     panels = [
         FieldPanel('title'),
         FieldPanel('sort_order'),
-        InlinePanel('links', label="Links"),
+        InlinePanel('links', label=_("Links")),
     ]
 
     def __str__(self):
@@ -86,7 +86,8 @@ class ThemePage(Page):
         FieldPanel('type'),
         FieldPanel('short_description'),
         FieldPanel('blog_category'),
-        InlinePanel('roles', label="Roles"),
+        InlinePanel('roles', label=_("Roles")),
+        InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
     ]
     search_fields = Page.search_fields + [
@@ -114,6 +115,10 @@ class ThemeRole(Orderable):
         return "{} with role {} on {}".format(self.person, self.role, self.theme)
 
 
+class ThemeLink(Orderable, RelatedLink):
+    theme = ParentalKey('digi.ThemePage', related_name='links')
+
+
 class ProjectPage(Page):
     type = _('Project')
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
@@ -126,6 +131,8 @@ class ProjectPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         FieldPanel('short_description'),
+        InlinePanel('roles', label=_("Roles")),
+        InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
     ]
     search_fields = Page.search_fields + [
@@ -136,12 +143,16 @@ class ProjectPage(Page):
 
 
 class ProjectRole(Orderable):
-    project = ParentalKey(ProjectPage, db_index=True)
+    project = ParentalKey(ProjectPage, db_index=True, related_name='roles')
     person = models.ForeignKey('people.Person', db_index=True, related_name='project_roles')
     role = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return "{} with role {} on {}".format(self.person, self.role, self.theme)
+
+
+class ProjectLink(Orderable, RelatedLink):
+    theme = ParentalKey('digi.ProjectPage', related_name='links')
 
 
 class FrontPage(Page):
