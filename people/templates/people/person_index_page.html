@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags people_tags %}
 
 {% block content %}
 <div class="container main-container page-content" role="main">
@@ -14,7 +14,7 @@
     <div class="row">
         {% for person in group.people.all %}
         <div class="col-md-4">
-            <img src="{{ person.get_avatar_url }}" />
+            <img src="{% person_avatar person 80 %}" />
             <div class="name">{{ person.get_display_name }}</div>
             {% if person.title %}
             <div class="title">{{ person.title }}</div>
