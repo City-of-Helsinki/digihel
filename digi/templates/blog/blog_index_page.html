@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static %}
+{% load wagtailcore_tags digi_tags static %}
 
 {% block content %}
 <div class="container main-container" role="main">
@@ -15,16 +15,19 @@
         <div class="col-xs-12">
           <h2 class="blog-section-header"><a href="/blogikirjoitukset">Digipajan Blogi</a></h2>
         </div>
+        {% for blog in blogs|slice:":1" %}
         <div class="col-xs-12">
           <div class="blog-index-highlight" style="background-image: url('http://loremflickr.com/1280/800/helsinki')">
-            <a href ="#"><div class="blog-highlight-content">
-              <div class="blog-hilight-header"><h2>Tässä nostettu kirjoitus jolla on aika pitkä ja polveileva otsikko</h2>
+            <a class="link-unstyled" href="{% pageurl blog %}">
+              <div class="blog-highlight-content">
+              <div class="blog-hilight-header"><h2>{{ blog.title }}</h2>
                 <small>27.6.2016</small>
               </div>
-              <div class="blog-highlight-blurb">Nostokirjoitus voi olla uusin tai nostettavaksi merkitty kirjoitus.</div>
+              <div class="blog-highlight-blurb">{{ blog.body|first_p|safe }}</div>
             </div></a>
           </div>
         </div>
+        {% endfor %}
       </div>
       {% endif %}
     </div>
@@ -39,70 +42,6 @@
                 {% include 'blog/blog_post.html' with include_context="index_page" %}
             </li>
         {% endfor %}
-        <li class="blog-post-item">
-            <div class="blog-post-preview">
-              <div class="blog-post-header">
-              <a class="blog-post-link" href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">
-                  <img src="http://loremflickr.com/1280/640/helsinki">
-                  <h2>Tämä on todell pitkä blogitekstin otsikko joka jatkuu useammalle riville koska kirjoittajalla on ollut ongelmia tiivistämisen kanssa</h2>
-              </a>
-              </div>
-              <div class="blog-intro">
-                  <div class="rich-text"><p>Fusce nisi felis, iaculis id efficitur et, vestibulum at nibh. Morbi ex metus, convallis fringilla ornare sit amet, molestie at lectus. Suspendisse at sem nibh. Ut faucibus suscipit turpis, sed congue nunc egestas semper. Etiam sed efficitur nunc. Mauris a consequat mauris. In eleifend, justo eget lobortis vestibulum, risus nunc.
-            </p>
-                  <a href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">Lue koko kirjoitus »</a>
-              </div>
-            </div>
-            </div>
-          </li>
-        <li class="blog-post-item">
-            <div class="blog-post-preview">
-              <div class="blog-post-header">
-              <a class="blog-post-link" href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">
-                  <img src="http://loremflickr.com/1280/640/helsinki">
-                  <h2>Tämä kirjoittaja osaa tiivistää :)</h2>
-              </a>
-              </div>
-              <div class="blog-intro">
-                  <div class="rich-text"><p>Fusce nisi felis, iaculis id efficitur et, vestibulum at nibh. Morbi ex metus, convallis fringilla ornare sit amet, molestie at lectus. Suspendisse at sem nibh. Ut faucibus suscipit turpis, sed congue nunc egestas semper. Etiam sed efficitur nunc. Mauris a consequat mauris.
-            </p>
-                  <a href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">Lue koko kirjoitus »</a>
-              </div>
-            </div>
-            </div>
-          </li>
-<li class="blog-post-item">
-            <div class="blog-post-preview">
-              <div class="blog-post-header">
-              <a class="blog-post-link" href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">
-                  <img src="http://loremflickr.com/1280/640/helsinki">
-                  <h2>Tämä kirjoittaja osaa tiivistää :)</h2>
-              </a>
-              </div>
-              <div class="blog-intro">
-                  <div class="rich-text"><p>Fusce nisi felis, iaculis id efficitur et, vestibulum at nibh. Morbi ex metus, convallis fringilla ornare sit amet, molestie at lectus. Suspendisse at sem nibh. Ut faucibus suscipit turpis, sed congue nunc egestas semper. Etiam sed efficitur nunc. Mauris a consequat mauris.
-            </p>
-                  <a href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">Lue koko kirjoitus »</a>
-              </div>
-            </div>
-            </div>
-          </li>
-<li class="blog-post-item">
-            <div class="blog-post-preview">
-              <div class="blog-post-header">
-              <a class="blog-post-link" href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">
-                  <img src="http://loremflickr.com/1280/640/helsinki">
-                  <h2>Tämä kirjoittaja osaa tiivistää :)</h2>
-              </a>
-              </div>
-              <div class="blog-intro">
-                  <div class="rich-text"><p>Fusce nisi felis, iaculis id efficitur et, vestibulum at nibh. Morbi ex metus, convallis fringilla ornare sit amet, molestie at lectus. Suspendisse at sem nibh. Ut faucibus suscipit turpis, sed congue nunc egestas semper. Etiam sed efficitur nunc. Mauris a consequat mauris.
-            </p>
-                  <a href="/blogikirjoitukset/terveisia-helsingin-kaupungin-digipajalta/">Lue koko kirjoitus »</a>
-              </div>
-            </div>
-            </div>
-          </li>
         </ul>
 
         <ul class="pager">

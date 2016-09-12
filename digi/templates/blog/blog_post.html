@@ -20,7 +20,10 @@
   </div>
   {% if include_context == "index_page" %}
   <div class="blog-intro">
-      {{ blog.body|richtext|first_p|safe }} 
+      {% if blog.date %}
+        <div class="blog-post-date">{{ blog.date|date:"j.n.Y" }}</div>
+      {% endif %}
+      {{ blog.body|richtext|first_p|safe }}
       <a href="{% pageurl blog %}">Lue koko kirjoitus &raquo;</a>
   </div>
   {% else %}
