@@ -68,6 +68,9 @@ class FooterLink(Orderable, RelatedLink):
 class ThemeIndexPage(Page):
     subpage_types = ['ThemePage']
 
+    @property
+    def themes(self):
+        return ThemePage.objects.all()
 
 class ThemePage(Page):
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,

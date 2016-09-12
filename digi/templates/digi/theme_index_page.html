@@ -1,13 +1,21 @@
 {% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
 
 {% block content %}
 <div class="container main-container page-content" role="main">
     <div class="row">
-        {% for theme in page.themes %}
-        <div class="col-md-8">
-            {{ theme.title }}
-        </div>
-        {% endfor %}
+          <!-- Grid layout needs rework to wrap and align properly -->
+          {% for theme in page.themes %}
+          <div class="col-sm-4">
+            <div class="theme-preview">
+              {% image theme.image fill-560x420 as theme_image %}
+              <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+              <small class="card-type">{{ theme.type }}</small>
+              <h3><a class="link-unstyled" href="{% pageurl theme %}">{{ theme.title }}</a></h3>
+              <p>{{ theme.short_description }}</p>
+            </div>
+          </div>
+          {% endfor %}
     </div>
 </div>
 {% endblock %}
