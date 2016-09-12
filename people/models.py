@@ -17,9 +17,8 @@ class Person(models.Model):
         ordering = ('last_name',)
 
     def get_avatar_url(self, size=40):
-        email = self.email or ''
-        email_hash = hashlib.md5(email.lower().encode('utf8')).hexdigest()
-        return 'https://www.gravatar.com/avatar/{}?s={}&d=mm'.format(email_hash, size)
+        identifier = self.email or hashlib.md5(''.encode('utf8')).hexdigest()
+        return 'https://api.hel.fi/avatar/{id}?s={size}'.format(id=identifier, size=size)
 
     def get_display_name(self):
         return "{} {}".format(self.first_name, self.last_name)
