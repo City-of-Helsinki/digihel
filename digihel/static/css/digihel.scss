@@ -631,6 +631,16 @@ img {
   }
 }
 
+//* People section */
+
+.person-list-item {
+  height: $line-height-base * 20em;
+}
+
+.person-list--avatar {
+  box-shadow: 2px 2px 0 8px $gray-lighter;
+}
+
 //* Blog section */
 
 .blog-post-meta {
