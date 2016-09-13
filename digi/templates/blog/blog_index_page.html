@@ -38,7 +38,7 @@
     {% if blogs %}
         <ul class="blog-index list-unstyled the-loop row">
         {% for blog in blogs %}
-            <li class="blog-post-item{% if forloop.first and not category and not tag %} first-reset{% endif %}">
+            <li class="blog-post-item{% if forloop.first and not category and not tag %} first-reset{% endif %} match-height">
                 {% include 'blog/blog_post.html' with include_context="index_page" %}
             </li>
         {% endfor %}

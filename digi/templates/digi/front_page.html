@@ -40,10 +40,10 @@
           </div>
         </div>
       </section>
-      <section class="themes row is-flex">
+      <section class="themes row">
           {% for theme in page.themes|slice:":3" %}
           <div class="col-sm-4">
-            <div class="theme-preview">
+            <div class="theme-preview match-height">
               {% image theme.image fill-560x420 as theme_image %}
               <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
               <small class="card-type">{{ theme.type }}</small>
