@@ -1,28 +1,16 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags content_tags %}
+{% load wagtailcore_tags content_tags people_tags %}
 
 {% block body_class %}template-contentpage{% endblock %}
 
 {% block content %}
-<article class="container">
-    {% if self.get_ancestors|length > 1 %}
-    <ol class="breadcrumb">
-        {% for page in self.get_ancestors %}
-        {% if not page.is_root and not page.get_parent.is_root %}
-        <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
-        {% endif %}
-        {% endfor %}
-        <li class="active">{{ self.title }}</li>
-    </ol>
-    {% endif %}
+<article class="container main-container page-content">
     <div class="row">
         <div class="col-md-8 content">
         {% include "content/blocks.html" with blocks=page.body only %}
         </div>
         <div class="col-md-4">
-            <nav class="sidenav">
-                {% sidebar_page_nav page %}
-            </nav>
+            {% include "includes/sidebar_links_and_roles.html" %}
         </div>
     </div>
 </article>

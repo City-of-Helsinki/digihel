@@ -1,16 +1,17 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, \
-    PageChooserPanel
+    PageChooserPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail_svgmap.blocks import ImageMapBlock
+from modelcluster.fields import ParentalKey
 
 
 rich_text_blocks = [
@@ -65,6 +66,21 @@ class LinkFields(models.Model):
         abstract = True
 
 
+class RelatedLink(LinkFields):
+    title = models.CharField(max_length=255, help_text="Link title")
+
+    panels = [
+        FieldPanel('title'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        abstract = True
+
+
 class ContentPage(Page):
     body = StreamField(content_blocks)
 
@@ -74,3 +90,34 @@ class ContentPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('body')
     ]
+
+
+class LinkedContentPage(Page):
+    body = StreamField(content_blocks)
+
+    content_panels = Page.content_panels + [
+        InlinePanel('roles', label=_("Roles")),
+        InlinePanel('links', label=_("Links")),
+        StreamFieldPanel('body'),
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
+
+
+class LinkedContentPageRole(Orderable):
+    page = ParentalKey(LinkedContentPage, related_name='roles')
+    person = models.ForeignKey('people.Person', db_index=True, related_name='+')
+    role = models.CharField(max_length=100, null=True, blank=True)
+
+    panels = [
+        FieldPanel('person'),
+        FieldPanel('role'),
+    ]
+
+    def __str__(self):
+        return "{} with role {} on {}".format(self.person, self.role, self.theme)
+
+
+class LinkedContentPageLink(Orderable, RelatedLink):
+    page = ParentalKey(LinkedContentPage, related_name='links')

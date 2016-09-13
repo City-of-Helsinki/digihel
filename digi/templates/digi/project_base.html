@@ -43,40 +43,7 @@
             {% endif %}
         </div>
         <div class="col-md-4">
-            {% if page.links.all %}
-            <div class="manual-links">
-                <h3>Linkkejä</h3>
-                <ul>
-                    {% for link in page.links.all %}
-                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-            {% if page.roles.all %}
-            <div class="contacts-list">
-                <h3>Ota yhteyttä</h3>
-                <ul class="list-unstyled">
-                    {% for role in page.roles.all %}
-                    <li class="media">
-                        <div class="media-left">
-                            <a href="#"><img src="{% person_avatar role.person 240 %}" class="user-thumbnail"/></a>
-                        </div>
-                        <div class="media-body">
-                            <h4>{{role.person.get_display_name}}</h4>
-                            <span>{{role.role}}</span>
-                            {% if role.person.email %}
-                            <div class="email"><a href="mailto:{{ person.email }}">{{ role.person.email }}</a></div>
-                            {% endif %}
-                            {% if role.person.telephone %}
-                            <div class="telephone">{{ role.person.telephone }}</div>
-                            {% endif %}
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
+            {% include "includes/sidebar_links_and_roles.html" %}
         </div>
 </div>
 {% endblock %}

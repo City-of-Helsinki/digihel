@@ -6,28 +6,13 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, \
-    InlinePanel, MultiFieldPanel
+    InlinePanel
 from wagtail.wagtailsearch import index
 from blog.models import BlogPage, BlogCategory
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 
-from content.models import LinkFields
-
-
-class RelatedLink(LinkFields):
-    title = models.CharField(max_length=255, help_text="Link title")
-
-    panels = [
-        FieldPanel('title'),
-        MultiFieldPanel(LinkFields.panels, "Link"),
-    ]
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        abstract = True
+from content.models import RelatedLink
 
 
 class Indicator(models.Model):
