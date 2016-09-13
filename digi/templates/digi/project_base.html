@@ -4,12 +4,14 @@
 {% block content %}
 <div class="container main-container page-content" role="main">
     <div class="row">
+        <header class="page-header">
+            <small class="card-type">{{ page.type }}</small>
+            <h2>{{ page.title }}</h2>
+        </header>
+    </div>
+    <div class="row">
         <div class="theme-info col-md-8">
             <div class="theme-box">
-                <header class="page-header">
-                    <small class="card-type">{{ page.type }}</small>
-                    <h2>{{ page.title }}</h2>
-                </header>
                 {% image page.image width-800 as page_image %}
                 <img src="{{ page_image.url }}" class="theme-header-image"/>
                 <div class="description">
@@ -61,8 +63,14 @@
                             <a href="#"><img src="{% person_avatar role.person 240 %}" class="user-thumbnail"/></a>
                         </div>
                         <div class="media-body">
-                            <h4 style="margin-top: 0px;">{{role.person.get_display_name}}</h4>
+                            <h4>{{role.person.get_display_name}}</h4>
                             <span>{{role.role}}</span>
+                            {% if role.person.email %}
+                            <div class="email"><a href="mailto:{{ person.email }}">{{ role.person.email }}</a></div>
+                            {% endif %}
+                            {% if role.person.telephone %}
+                            <div class="telephone">{{ role.person.telephone }}</div>
+                            {% endif %}
                         </div>
                     </li>
                     {% endfor %}
