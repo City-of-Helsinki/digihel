@@ -18,5 +18,7 @@ $(function() {
 			$('#js-toggle-search').trigger('click');
 		}
 	});
-    
+
+    $('.match-height').matchHeight();
+
 });

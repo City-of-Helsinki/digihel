@@ -3,11 +3,12 @@
 
 {% block content %}
 <div class="container main-container page-content" role="main">
+    <h1>{{ page.title }}</h1>
     <div class="row">
           <!-- Grid layout needs rework to wrap and align properly -->
           {% for theme in page.themes %}
-          <div class="col-sm-4">
-            <div class="theme-preview">
+          <div class="col-sm-6 col-md-4">
+            <div class="theme-preview match-height">
               {% image theme.image fill-560x420 as theme_image %}
               <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
               <small class="card-type">{{ theme.type }}</small>

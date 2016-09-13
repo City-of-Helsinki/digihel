@@ -197,6 +197,7 @@ BOWER_INSTALLED_APPS = [
     'jquery#<3.0',
     'bootstrap-validator#0.11.5',
     'remarkable-bootstrap-notify#3.1.3',
+    'matchHeight#0.7.0',
 ]
 
 

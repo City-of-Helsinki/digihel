@@ -14,8 +14,8 @@
     <div class="row">
         {% for person in group.people.all %}
         <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="person-list-item">
-            <img src="{% person_avatar person 120 %}" class="person-list--avatar img-circle" />
+            <div class="person-list-item match-height">
+            <div class="person-list--avatar" style="background-image: url('{% person_avatar person 240 %}');"></div>
             <div class="name"><h4>{{ person.get_display_name }}</h4></div>
             {% if person.title %}
             <div class="title">{{ person.title }}</div>

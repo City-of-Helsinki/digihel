@@ -9,11 +9,12 @@
     <div class="col-xs-12">
         <h2 class="blog-section-header"><a href="/blogikirjoitukset">Digipajan Blogi</a></h2>
     </div>
-  <div class="page-header-blogpost col-sm-10">
+  <div class="page-header-blogpost col-xs-12 col-sm-10">
 {% endif %}
 
   <a class="blog-post-link" href="{% pageurl blog %}">
-      <img src="http://loremflickr.com/1280/640/helsinki" />
+      <div class="blog-post-main-image" style="background-image: url('http://loremflickr.com/1280/640/helsinki')">
+      </div>
       <h2>{{ blog.title }}</h2>
   </a>
 
