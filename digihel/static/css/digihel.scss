@@ -683,6 +683,7 @@ img {
 
   .blog-post-date {
     color: $gray-light;
+    font-size: $font-size-large;
   }
 
   .blog-post-author-image {
@@ -739,6 +740,10 @@ img {
   .blog-post-item {
     @extend .col-sm-6;
     margin-bottom: $line-height-computed * 2;
+
+    .blog-post-date {
+      color: $gray-light;
+    }
 
     .blog-post-link {
       border-top: 3px solid $helsinkired;

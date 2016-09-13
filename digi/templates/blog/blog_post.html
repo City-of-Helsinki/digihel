@@ -35,11 +35,7 @@
     <div class="meta">
     {% if blog.date %}
       <div class="blog-post-meta meta date">
-        <div class="blog-post-author-image"><img class="media-object" src="http://placekitten.com/72/72" alt="{{ blog.author }}"></div>
-        <div class="blog-post-author-details">
-          <h4 class="media-heading blog-post-author">{{ blog.author }}</h4>
           <div class="blog-post-date">{{ blog.date|date:"j.n.Y" }}</div>
-        </div>
       </div>
   {% endif %}
       <div class="tags">
