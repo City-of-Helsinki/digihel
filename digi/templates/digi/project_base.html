@@ -51,6 +51,7 @@
                 </ul>
             </div>
             {% endif %}
+            {% if page.roles.all %}
             <div class="contacts-list">
                 <h3>Ota yhteyttä</h3>
                 <ul class="list-unstyled">
@@ -67,6 +68,7 @@
                     {% endfor %}
                 </ul>
             </div>
+            {% endif %}
         </div>
 </div>
 {% endblock %}
