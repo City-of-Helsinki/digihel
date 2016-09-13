@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load humanize wagtailimages_tags digi_tags wagtailcore_tags %}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags people_tags %}
 
 {% block content %}
 <div class="container main-container page-content" role="main">
@@ -57,11 +57,11 @@
                     {% for role in page.roles.all %}
                     <li class="media">
                         <div class="media-left">
-                            <a href="#"><img src="{{role.person.get_avatar_url}}"  class="user-thumbnail"/></a>
+                            <a href="#"><img src="{% person_avatar role.person 240 %}" class="user-thumbnail"/></a>
                         </div>
                         <div class="media-body">
                             <h4 style="margin-top: 0px;">{{role.person.get_display_name}}</h4>
-                            <small>{{role.role}}</small>
+                            <span>{{role.role}}</span>
                         </div>
                     </li>
                     {% endfor %}
