@@ -4,15 +4,8 @@
 {% block content %}
 <div class="container main-container page-content" role="main">
     <h1>{{ page.title }}</h1>
-    {% for group in page.get_groups %}
     <div class="row">
-        <div class="col-md-12">
-            <h2>{{ group.name }}</h2>
-            <hr />
-        </div>
-    </div>
-    <div class="row">
-        {% for person in group.people.all %}
+        {% for person in page.get_people %}
         <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="person-list-item match-height">
             <div class="person-list--avatar" style="background-image: url('{% person_avatar person 240 %}');"></div>
@@ -25,6 +18,13 @@
             {% endif %}
             {% if person.email %}
             <div class="email"><a href="mailto:{{ person.email }}">{{ person.email }}</a></div>
+            {% endif %}
+            {% if person.groups.all %}
+            <div class="groups">
+                {% for group in person.groups.all %}
+                <div>{{ group.name }}</div>
+                {% endfor %}
+            </div>
             {% endif %}
             {% if person.theme_roles.all or person.project_roles.all %}
             <h5>Projektit</h5>
@@ -47,6 +47,5 @@
         </div>
         {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

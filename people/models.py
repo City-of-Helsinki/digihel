@@ -14,7 +14,7 @@ class Person(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
-        ordering = ('last_name',)
+        ordering = ('last_name', 'first_name')
 
     def get_avatar_url(self, size=40):
         identifier = self.email or hashlib.md5(''.encode('utf8')).hexdigest()
@@ -23,13 +23,17 @@ class Person(models.Model):
     def get_display_name(self):
         return "{} {}".format(self.first_name, self.last_name)
 
+    def get_groups_as_text(self):
+        return ', '.join([group.name for group in self.groups.all()])
+
     def __str__(self):
         return self.get_display_name()
 
 
 class Group(models.Model):
     name = models.CharField(max_length=100)
-    people = models.ManyToManyField(Person, through='people.Membership', blank=True)
+    people = models.ManyToManyField(Person, through='people.Membership', blank=True,
+                                    related_name='groups')
 
     class Meta:
         ordering = ('name',)
@@ -39,8 +43,8 @@ class Group(models.Model):
 
 
 class Membership(models.Model):
-    group = models.ForeignKey(Group, db_index=True)
-    person = models.ForeignKey(Person, db_index=True, related_name='groups')
+    group = models.ForeignKey(Group, db_index=True, related_name='memberships')
+    person = models.ForeignKey(Person, db_index=True, related_name='memberships')
 
     panels = [
         FieldPanel('group'),
@@ -59,3 +63,6 @@ class PersonIndexPage(Page):
 
     def get_groups(self):
         return Group.objects.all()
+
+    def get_people(self):
+        return Person.objects.all()
