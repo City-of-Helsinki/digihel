@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags digi_tags static %}
+{% load wagtailcore_tags digi_tags static wagtailimages_tags %}
 
 {% block content %}
 <div class="container main-container" role="main">
@@ -17,7 +17,8 @@
         </div>
         {% for blog in blogs|slice:":1" %}
         <div class="col-xs-12">
-          <div class="blog-index-highlight" style="background-image: url('http://loremflickr.com/1280/800/helsinki')">
+          {% image blog.header_image max-1920x1080 as blog_image %}
+          <div class="blog-index-highlight" style="background-image: url('{{ blog_image.url }}')">
             <a class="link-unstyled" href="{% pageurl blog %}">
               <div class="blog-highlight-content">
               <div class="blog-hilight-header"><h2>{{ blog.title }}</h2>
@@ -37,7 +38,7 @@
     {% endfor %}
     {% if blogs %}
         <ul class="blog-index list-unstyled the-loop row">
-        {% for blog in blogs %}
+        {% for blog in blogs|slice:"1:" %}
             <li class="blog-post-item{% if forloop.first and not category and not tag %} first-reset{% endif %} match-height">
                 {% include 'blog/blog_post.html' with include_context="index_page" %}
             </li>
