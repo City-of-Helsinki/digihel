@@ -47,15 +47,15 @@
               {% image theme.image fill-560x420 as theme_image %}
               <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
               <small class="card-type">{{ theme.type }}</small>
-              <h3><a class="link-unstyled" href="{% pageurl theme %}">{{ theme.title }}</a></h3>
-              <p>{{ theme.short_description }}</p>
+              <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+              <p>{{ theme.short_description }}</p></a>
             </div>
           </div>
           {% endfor %}
       </section>
       <section class="misc row">
           <div class="col-md-8">
-            <div class="blogs">
+            <div class="blogs-preview">
               {% for blog in page.blog_posts|slice:":3" %}
               <div class="blog-post">
                   <small class="card-type">Blogi</small>
@@ -68,11 +68,21 @@
           <div class="col-md-4">
               <div class="events-highlights">
                   <h2>Tapahtumia</h2>
-                      <img src="https://loremflickr.com/300/180/helsinki" />
-                      <h6 class="event-title">Kaupungintalon valtaus!</h6>
-                      <div class="event-date"><time itemprop="startDate" datetime="2016-9-08">17.8.2016</time></div>
-                      <div class="event-location">Jätkäsaaren infokeskus ja kirjasto</div>
-                      <div class="event-description">Digitaalinen Helsinki ottaa kaupungintalon valtaansa. Tule tutustumaan digitaalisen Helsingin luomiseen ja osallistumaan uusien palveluiden kehittämiseen.</div>
+
+                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
+                  <div class="event-date"><time itemprop="startDate" datetime="2016-09-29">to 29.9.2016 15:00</time></div>
+                  <div class="event-location">Helsinki Think Company</div>
+                  <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrcyrxe">Lue lisää »</a>
+
+                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
+                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-13">to 13.10.2016 15:00</time></div>
+                  <div class="event-location">Helsinki Think Company</div>
+                  <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrc3zp4">Lue lisää »</a>
+
+                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
+                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-27">to 27.10.2016 15:00</time></div>
+                  <div class="event-location">Helsinki Think Company</div>
+                  <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrc6zue">Lue lisää »</a>
                 </div>
           </div>
       </section>

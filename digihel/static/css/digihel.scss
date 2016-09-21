@@ -67,6 +67,10 @@ h4 {
   margin-top: $line-height-computed;
 }
 
+.page-title {
+  clear: both;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
@@ -297,6 +301,20 @@ img {
 
 //* Theme page */
 
+.project-section-header {
+  border-bottom: 4px solid $helsinkiblue;
+  float: left;
+  font-size: 24px;
+  margin-bottom: 1em;
+  margin-top: 0;
+  padding-bottom: .5em;
+  text-transform: uppercase;
+
+  a {
+    color: $text-color;
+  }
+}
+
 .theme-info {
   .card-type {
     border-bottom: solid 3px $helsinkired;
@@ -426,18 +444,21 @@ img {
 
 .events-highlights {
   .event-title {
+    margin-top: 0;
+
+    &::before {
+      content: '—';
+      display: block;
+    }
   }
 
   .event-date {
-    font-size: $font-size-small;
   }
 
   .event-location {
-    font-size: $font-size-small;
   }
 
   .event-description {
-    font-size: $font-size-small;
   }
 }
 
@@ -500,12 +521,9 @@ img {
   color: $white;
   margin-bottom: 1em;
   padding: 1em;
-}
 
-.front-page {
-
-  section {
-    margin-bottom: 3em;
+  a:hover {
+    color: $white;
   }
 
   .theme-thumbnail {
@@ -513,20 +531,31 @@ img {
     margin-bottom: 1em;
   }
 
-  .blogs h3,
-  .theme-preview h3 {
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.front-page {
+  section {
+    margin-bottom: 3em;
+  }
+}
+
+.blogs-preview {
+
+  h3 {
     margin-top: 0;
   }
 
   .blog-post {
     margin-bottom: 1.5em;
     margin-top: 1.5em;
-
-    .card-type {
-      border-color: $brand-red;
-    }
   }
 
+  .card-type {
+    border-color: $brand-red;
+  }
 }
 
 .blog-post:last-child {
@@ -738,11 +767,10 @@ img {
 
 .blog-section-header {
   border-bottom: 4px solid $helsinkired;
-  clear: right;
   float: left;
   font-size: 24px;
   margin-bottom: 1em;
-  margin-top: 2em;
+  margin-top: 0;
   padding-bottom: .5em;
 
   a {
