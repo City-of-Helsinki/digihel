@@ -41,15 +41,15 @@
               {% image theme.image fill-560x420 as theme_image %}
               <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
               <small class="card-type">{{ theme.type }}</small>
-              <h3><a class="link-unstyled" href="{% pageurl theme %}">{{ theme.title }}</a></h3>
-              <p>{{ theme.short_description }}</p>
+              <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+              <p>{{ theme.short_description }}</p></a>
             </div>
           </div>
           {% endfor %}
       </section>
       <section class="misc row">
           <div class="col-md-8">
-            <div class="blogs">
+            <div class="blogs-preview">
               {% for blog in page.blog_posts|slice:":3" %}
               <div class="blog-post">
                   <small class="card-type">Blogi</small>
@@ -64,16 +64,19 @@
                   <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257.03 228.81"><title>hki-palaute copy</title><polygon points="147.2 166.53 189.5 222.43 189.5 162 147.2 166.53" fill="#1c52b0" stroke="#05c2de" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/><path d="M238.23,158.83a15.15,15.15,0,0,1-12.95,11.7c-14.61,1.79-50.78,4.57-96.9,4.57-45.57,0-79.55-.7-94.35-2.49a15.17,15.17,0,0,1-13.1-12.38A376.43,376.43,0,0,1,20.8,28.8,15.17,15.17,0,0,1,34.72,16.34c17.62-1.18,57.68-5.19,100.21-5.19,40.83,0,75.74,1.84,90.18,3a15.16,15.16,0,0,1,13.5,11.55c3,12.24,7.11,34.58,7.11,64.07A320.67,320.67,0,0,1,238.23,158.83Z" fill="#1c52b0" stroke="#05c2de" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/><path d="M46.25,108c-3.38-1.16-7.12,2.06-9.44,4.27a22.38,22.38,0,0,0-6.45,11.64c-1.6,8,5.72,13.3,12.76,8.52,6.11-4.14,11.84-17.21,8.29-24.3-1.14-2.29-3.79-3.84-6.2-2.35-3.15,2-3.31,7.77-2.28,10.82.61,1.82,3.51,1,2.89-.8a7.34,7.34,0,0,1,0-5.36q4.38-1.59,3.39,2.58A21.45,21.45,0,0,1,48,119.53c-1.28,3.9-3.46,8.73-7.24,10.68-9,4.64-8-6.93-5.14-11.68,1.43-2.38,6.42-8.78,9.81-7.61,1.83.63,2.62-2.27.8-2.89Z" fill="#05c2de"/><path d="M67.06,100.89c-2.91,1.15-9.29,4.72-8.34,8.8.47,2,2.88,2.6,4.29,3.67,2.73,2.07,4.05,4.82,1.73,7.63-2.61,3.17-6.4,2.13-9.63.7-1.75-.77-3.28,1.81-1.51,2.59,6.45,2.85,12.5,2.36,15.2-4.79,1.13-3,.78-5.09-1.77-7.14-1-.8-4.09-1.81-4.71-2.88-1.37-2.35,3.89-5,5.54-5.69s1-3.6-.8-2.89Z" fill="#05c2de"/><path d="M89.92,97.29c-5.34-.31-8.22,4.26-10.54,8.42-1.64,2.95-5.92,10.15-2.79,13.33,7.56,7.68,15.9-18.34,17.19-21.87.67-1.84-2.18-2.55-2.89-.8-1.81,4.43-3.11,10.14-1.91,14.91.62,2.45,2.76,4.12,4.79,1.93,1.31-1.41-.8-3.54-2.12-2.12.73-.78.11-6.14.25-7.19a27.44,27.44,0,0,1,1.88-6.73l-2.89-.8c-1.23,3.36-2.45,6.74-3.9,10-1.16,2.63-2.58,6.88-4.8,8.76q-1.05,1.94-3.48.27a19.36,19.36,0,0,1,.61-2.23,31,31,0,0,1,2.29-5.3c1.74-3.25,4-7.87,8.31-7.62,1.93.11,1.92-2.89,0-3Z" fill="#05c2de"/><path d="M110.23,70.81a426.22,426.22,0,0,0-11.42,60c-.22,1.91,2.78,1.9,3,0a420.62,420.62,0,0,1,11.31-59.22,1.5,1.5,0,0,0-2.89-.8Z" fill="#05c2de"/><path d="M130.34,58.61a155.17,155.17,0,0,0-14.2,60.45c-.06,1.93,2.94,1.93,3,0a151.36,151.36,0,0,1,13.79-58.94c.8-1.74-1.78-3.27-2.59-1.51Z" fill="#05c2de"/><path d="M137.85,85.06a57.55,57.55,0,0,0-3.36,22c.08,1.92,3.08,1.93,3,0a55.4,55.4,0,0,1,3.26-21.21c.65-1.82-2.24-2.6-2.89-.8Z" fill="#05c2de"/><path d="M146.87,71.49a3.8,3.8,0,0,0-2.77.37,1.5,1.5,0,1,0,1.51,2.59.44.44,0,0,1,.46-.07,1.5,1.5,0,0,0,.8-2.89Z" fill="#05c2de"/><path d="M160.48,72.5c-5.26,1.79-15.43,8.36-5.15,10.64,6,1.32,12.41,1.6,18.11,3.94,3.21,1.32,3.09,5.24-.61,7a17.31,17.31,0,0,1-4.21.87,79,79,0,0,1-12,1.05c-1.93,0-1.93,3,0,3,5.15-.09,27.25-.08,23.23-10.31-1.74-4.42-8.45-5.49-12.4-6.32-3.18-.66-6.4-1.1-9.58-1.73q-1.3-.24-2.59-.55-2.86-.07-1-.86c.36-1.45,5.81-3.39,7-3.81,1.82-.62,1-3.52-.8-2.89Z" fill="#05c2de"/><path d="M192.06,55.46a296.69,296.69,0,0,0-9.27,47.05c-.22,1.91,2.78,1.9,3,0a291.76,291.76,0,0,1,9.16-46.26,1.5,1.5,0,0,0-2.89-.8Z" fill="#05c2de"/><path d="M179.45,79Q190.33,76.76,201,73.6c1.85-.55,1.06-3.45-.8-2.89q-10.64,3.17-21.51,5.44c-1.89.39-1.09,3.29.8,2.89Z" fill="#05c2de"/><path d="M206.25,67.4C205,71,200.5,85.72,208.61,84.52c7.61-1.13,12.37-9.81,15.64-15.8l-2.74-1.16L216,83.62c-.63,1.83,2.27,2.62,2.89.8l5.53-16.05c.56-1.61-1.93-2.64-2.74-1.16-2.5,4.57-5.11,9.5-9.55,12.49-.69.46-2.57,1.73-3.34,1.69-2.37-.13-1.74-2.5-1.63-3.86a39.23,39.23,0,0,1,2-9.33c.61-1.84-2.28-2.62-2.89-.8Z" fill="#05c2de"/></svg>
                   <h2>Tapahtumia</h2>
 
-                  <h5 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h5>
-                  <div class="event-date"><time itemprop="startDate" datetime="2016-09-29">to 29.9.2016 15:00</time> – Helsinki Think Company</div>
+                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
+                  <div class="event-date"><time itemprop="startDate" datetime="2016-09-29">to 29.9.2016 15:00</time></div>
+                  <div class="event-location">Helsinki Think Company</div>
                   <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrcyrxe">Lue lisää »</a>
 
-                  <h5 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h5>
-                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-13">to 13.10.2016 15:00</time> – Helsinki Think Company</div>
+                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
+                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-13">to 13.10.2016 15:00</time></div>
+                  <div class="event-location">Helsinki Think Company</div>
                   <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrc3zp4">Lue lisää »</a>
 
-                  <h5 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h5>
-                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-27">to 27.10.2016 15:00</time> – Helsinki Think Company</div>
+                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
+                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-27">to 27.10.2016 15:00</time></div>
+                  <div class="event-location">Helsinki Think Company</div>
                   <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrc6zue">Lue lisää »</a>
 
                 </div>
