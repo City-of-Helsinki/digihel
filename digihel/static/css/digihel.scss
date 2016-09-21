@@ -241,6 +241,9 @@ img {
 .container .jumbotron,
 .container-fluid .jumbotron {
   background-color: $helsinkiturquoise;
+  background-size: auto 100%;;
+  background-repeat: no-repeat;
+  background-position: bottom;
   border-radius: 0;
   color: $white;
   margin-bottom: 4em;
@@ -272,7 +275,7 @@ img {
     color: $white;
     font-size: 16px;
     margin: 0 auto;
-    padding: 48px 10%;
+    padding: 48px;
     text-align: center;
     width: 100%;
 
@@ -280,9 +283,18 @@ img {
       font-size: 16px;
     }
 
+    @media screen and (min-width: $screen-md-min) {
+      font-size: 18px;
+      width: 600px;
+
+      p {
+        font-size: 18px;
+      }
+    }
+
     @media screen and (min-width: $screen-lg-min) {
       font-size: 24px;
-      width: 66%;
+      width: 800px;
 
       p {
         font-size: 24px;
@@ -429,15 +441,15 @@ img {
   }
 
   .event-date {
-    font-size: $font-size-small;
+    //font-size: $font-size-small;
   }
 
   .event-location {
-    font-size: $font-size-small;
+    //font-size: $font-size-small;
   }
 
   .event-description {
-    font-size: $font-size-small;
+    //font-size: $font-size-small;
   }
 }
 
