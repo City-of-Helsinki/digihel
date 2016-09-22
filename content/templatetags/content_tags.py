@@ -10,8 +10,10 @@ def get_site_root(context):
     # so object-comparison to self will return false as objects would differ
     return context['request'].site.root_page
 
+
 def has_menu_children(page):
     return page.get_children().live().in_menu().exists()
+
 
 # Retrieves the top menu items - the immediate children of the parent page
 # The has_menu_children method is necessary because the bootstrap menu requires
@@ -26,6 +28,11 @@ def top_menu(context, parent, calling_page=None):
         # if the variable passed as calling_page does not exist.
         menuitem.active = (calling_page.url.startswith(menuitem.url)
                            if calling_page else False)
+
+    site = context['request'].site
+    if 'test' not in site.site_name.lower():
+        menuitems = [x for x in menuitems if x.content_type.app_label != 'kehmet']
+
     return {
         'calling_page': calling_page,
         'menuitems': menuitems,
