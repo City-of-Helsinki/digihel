@@ -20,12 +20,13 @@ django-bower==5.1.0
 django-celery==3.1.17
 django-compressor-autoprefixer==0.1.0
 django-compressor==2.1    # via django-compressor-autoprefixer, django-libsass
+django-compressor==2.1    # via django-compressor-autoprefixer, django-libsass
 django-libsass==0.7
 django-modelcluster==2.0  # via wagtail
 django-taggit==0.18.3     # via wagtail
 django-treebeard==4.0.1   # via wagtail
 Django==1.9.9             # via django-allauth, django-bower, django-treebeard, wagtail
-djangorestframework==3.4.6  # via wagtail
+djangorestframework==3.4.7  # via wagtail
 elasticsearch==2.4.0
 first==2.0.1              # via pip-tools
 html5lib==0.999999        # via wagtail
@@ -33,24 +34,24 @@ Jinja2==2.8
 kombu==3.0.35             # via celery
 libsass==0.11.1           # via django-libsass
 MarkupSafe==0.23          # via jinja2
-oauthlib==1.1.2           # via requests-oauthlib
+oauthlib==2.0.0           # via requests-oauthlib
 Pillow==3.3.1             # via wagtail
 pip-tools==1.7.0
 psycopg2==2.6.2
 py==1.4.31                # via pytest
 pytest-django==3.0.0
-pytest==3.0.1
+pytest==3.0.2
 python3-openid==3.0.10    # via django-allauth
 pytz==2016.6.1            # via celery, django-modelcluster
-raven==5.25.0
+raven==5.27.1
 rcssmin==1.0.6            # via django-compressor
 redis==2.10.5
-requests-oauthlib==0.6.2  # via django-allauth
+requests-oauthlib==0.7.0  # via django-allauth
 requests==2.11.1          # via django-allauth, requests-oauthlib
 rjsmin==1.0.12            # via django-compressor
 six==1.10.0               # via django-bower, html5lib, libsass, pip-tools
 Unidecode==0.4.19         # via wagtail
-urllib3==1.16             # via elasticsearch
+urllib3==1.17             # via elasticsearch
 wagtail-blog==1.6.7
-wagtail==1.6.1
+wagtail==1.6.2
 Willow==0.3.1             # via wagtail
