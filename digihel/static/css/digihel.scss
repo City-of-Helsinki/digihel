@@ -719,14 +719,22 @@ img {
 
 .person-list-item {
   margin-bottom: $line-height-computed * 3;
+
+  .title {
+    font-weight: 600;
+  }
 }
 
 .person-list--avatar {
   background-position: center;
   background-size: cover;
-  box-shadow: 2px 2px 0 8px $gray-lighter;
+  box-shadow: 8px 8px 0 0 $helsinkiblue;
   height: $line-height-computed * 7;
   width: $line-height-computed * 7;
+}
+
+.projectlist-role {
+
 }
 
 //* Blog section */
