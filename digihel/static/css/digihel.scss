@@ -893,3 +893,13 @@ img {
     }
   }
 }
+
+//* Search page */
+
+.search-results {
+  @extend .list-unstyled;
+}
+
+.search-results-item {
+  border-bottom: 1px solid $helsinkiblue;
+}
