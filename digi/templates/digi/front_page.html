@@ -17,7 +17,7 @@
           <div class="col-xs-12">
             <div class="indicators clearfix">
             {% for indicator in page.indicators|slice:":3" %}
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <div class="indicator">
                 <div class="indicator-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:#005eb8;}.cls-2{fill:#005eb8;}</style></defs><title>indicator-graph</title>
@@ -42,13 +42,17 @@
       </section>
       <section class="themes row">
           {% for theme in page.themes|slice:":3" %}
-          <div class="col-sm-4">
-            <div class="theme-preview match-height">
-              {% image theme.image fill-560x420 as theme_image %}
-              <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
-              <small class="card-type">{{ theme.type }}</small>
-              <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
-              <p>{{ theme.short_description }}</p></a>
+          <div class="col-md-4">
+            <div class="theme-preview match-height clearfix">
+              <div class="col-xs-12 col-sm-6 col-md-12">
+                {% image theme.image fill-560x420 as theme_image %}
+                <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-12">
+                <small class="card-type">{{ theme.type }}</small>
+                <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+                <p>{{ theme.short_description }}</p></a>
+              </div>
             </div>
           </div>
           {% endfor %}
