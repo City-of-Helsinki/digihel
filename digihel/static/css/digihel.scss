@@ -246,7 +246,7 @@ img {
 .container-fluid .jumbotron {
   background-color: $helsinkiturquoise;
   background-size: auto 100%;;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-position: bottom;
   border-radius: 0;
   color: $white;
@@ -386,15 +386,6 @@ img {
 
 //* Indicators */
 
-.indicators {
-  background-color: #eee;
-  padding: 12px;
-}
-
-.indicator {
-  margin-bottom: 1em;
-}
-
 .indicator-icon {
   margin: 0 auto;
   width: 100px;
@@ -439,22 +430,55 @@ img {
 .front-page {
   .indicators {
     text-align: center;
+    background-color: lighten($helsinkiturquoise, 45%);
+    padding: 12px;
+  }
+
+  .indicator {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 12em;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+  }
+
+  .indicator-icon svg {
+    width: 100%;
+  }
+  .indicator-content {
+      width: 100%;
   }
 
   .indicator-value {
     color: $helsinkiblue;
     font-size: 36px;
     font-weight: 900;
+    width: 100%;
   }
 
   .indicator-description {
+    color: $helsinkiblue;
     text-transform: uppercase;
+    font-weight: 900;
+    width: 100%;
   }
 }
 
 //* Box stylings */
 
 .events-highlights {
+  position: relative;
+
+  .event-illustration {
+    height: 5em;
+    display: block;
+    position: absolute;
+    top: -2em;
+    right: -1em;
+  }
+
   .event-title {
     margin-top: 0;
 
