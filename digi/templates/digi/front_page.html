@@ -60,7 +60,7 @@
       <section class="misc row">
           <div class="col-md-8">
             <div class="blogs-preview">
-              {% for blog in page.blog_posts|slice:":3" %}
+              {% for blog in page.blog_posts|slice:":2" %}
               <div class="blog-post">
                   <small class="card-type">Blogi</small>
                   <h3><a class="link-unstyled" href="{% pageurl blog %}">{{ blog.title }}</a></h3>

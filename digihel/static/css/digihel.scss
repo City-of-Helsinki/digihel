@@ -338,7 +338,7 @@ img {
 }
 
 .theme-projects {
-  border-top: solid 2px $gray-lighter;
+  border-top: 1px dotted $gray-base;
 }
 
 .theme-projects-list {
@@ -352,7 +352,7 @@ img {
   li {
     padding-bottom: $line-height-computed;;
     padding-top: $line-height-computed;;
-    border-bottom: 2px solid $gray-lighter;
+    border-bottom: 1px dotted $gray-base;
   }
 
   h4 {
@@ -365,7 +365,7 @@ img {
   padding: 1em;
 
   .media {
-    border-top: 2px solid $gray-light;
+    border-top: 1px dotted $gray-base;
     padding-top: $line-height-computed;
   }
   .user-thumbnail {
@@ -797,7 +797,7 @@ img {
 }
 
 .page-header-blogpost {
-  border-bottom: 1px solid $gray-lighter;
+  border-bottom: 1px dotted $gray-base;
   margin-bottom: $line-height-computed;
 }
 

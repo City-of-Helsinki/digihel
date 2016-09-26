@@ -4,7 +4,7 @@
 <div class="blog-post-preview">
   <div class="blog-post-header">
 {% else %}
-<div class="container main-container blog-post-container" role="main">
+<div class="container main-container page-content blog-post-container" role="main">
     <div class="row">
     <div class="col-xs-12">
         <h2 class="blog-section-header"><a href="/blogikirjoitukset">Blogi</a></h2>
@@ -50,7 +50,7 @@
               Posted in 
                   {% for cat in blog.categories.all %}
                       <a href="{% url 'blog:category' cat.category.slug %}">{{ cat.category.name }}</a>{% if not forloop.last %}, {% endif %}
-                  {% endfor %} | 
+                  {% endfor %} |
           {% endif %}
       </div>
   </div>
