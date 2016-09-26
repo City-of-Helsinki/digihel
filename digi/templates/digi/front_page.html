@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% load humanize wagtailimages_tags digi_tags wagtailcore_tags %}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static %}
 
 {% block body_class %}template-front-page{% endblock %}
 
 {% block content %}
 <div class="container-fluid header-container" role="main">
-  <section class="jumbotron fullscreen-hero js-fullscreen" style="background-image: url('static/images/front-bg.png')">
+  <section class="jumbotron fullscreen-hero js-fullscreen" style="background-image: url('{% static "images/front-bg.png" %}')">
       {% for block in page.hero %}
       {{ block }}
       {% endfor %}
@@ -17,7 +17,7 @@
           <div class="col-xs-12">
             <div class="indicators clearfix">
               <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('static/images/hki-palaute.svg');">
+              <div class="indicator" style="background-image: url('{% static "images/hki-palaute.svg" %}');">
                 <div class="indicator-content">
                   <div class="indicator-value">
                       149
@@ -29,7 +29,7 @@
               </div>
               </div>
               <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('static/images/hki-mies.svg');">
+              <div class="indicator" style="background-image: url('{% static "images/hki-mies.svg" %}');">
                 <div class="indicator-content">
                 <div class="indicator-value">
                     630&nbsp;752
@@ -41,7 +41,7 @@
               </div>
             </div>
               <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('static/images/hki-tietoaineisto.svg');">
+              <div class="indicator" style="background-image: url('{% static "images/hki-tietoaineisto.svg" %}');">
                 <div class="indicator-content">
                 <div class="indicator-value">
                     569
@@ -87,7 +87,7 @@
           </div>
           <div class="col-md-4">
               <div class="events-highlights">
-                  <img src="static/images/osallistu.svg" class="event-illustration">
+                  <img src="{% static "images/osallistu.svg" %}" class="event-illustration">
                   <h2>Tapahtumia</h2>
 
                   <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
