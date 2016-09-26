@@ -15,7 +15,7 @@
             <div class="person-list--avatar" style="background-image: url('{% person_avatar person 240 %}');"></div>
             <div class="name">
                 <h3>{{ person.get_display_name }}
-                {% if person.title %}
+                {% if person.title %}<br>
                 <small>{{ person.title }}</small>
                 {% endif %}
                 </h3>

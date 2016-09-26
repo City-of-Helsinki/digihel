@@ -342,11 +342,21 @@ img {
 }
 
 .theme-projects-list {
-  margin-top: 2em;
+  margin-top: $line-height-computed;
   padding-left: 0;
+
+  .project-thumbnail {
+    margin-bottom: $line-height-computed;
+  }
+
   li {
-    padding-bottom: 1em;
+    padding-bottom: $line-height-computed;;
+    padding-top: $line-height-computed;;
     border-bottom: 2px solid $gray-lighter;
+  }
+
+  h4 {
+    margin-top: 0;
   }
 }
 
