@@ -25,15 +25,15 @@
                 <h3>Teeman projektit</h3>
                 <ul class="theme-projects-list">
                     {% for project in page.projects %}
-                    <li class="list-unstyled media">
-                        <div class="media-left">
+                    <li class="list-unstyled row">
+                        <div class="col-sm-4">
                             <a href="{% pageurl project %}">
-                                {% image project.image fill-200x200 as project_image %}
+                                {% image project.image fill-400x400 as project_image %}
                                 <img src="{{ project_image.url }}" class="project-thumbnail"/>
                             </a>
                         </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ project.title }}</h4>
+                        <div class="col-sm-8">
+                            <a href="{% pageurl project %}"><h4>{{ project.title }}</h4></a>
                             <p>{{ project.short_description }}</p>
                         </div>
                     </li>

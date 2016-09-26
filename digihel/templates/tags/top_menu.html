@@ -42,10 +42,10 @@
                         <li><a href="{% url 'account_logout' %}?next={{request.path }}">Kirjaudu ulos</a></li>
                     </ul>
                 </li>
-                {% else %}
+                {% elif 'test' in request.site.site_name %}
                 <li class="menuitem-login"><a href="{% url 'helsinki_login' %}?next={{ request.path }}">Kirjaudu</a></li>
                 {% endif %}
-                <li class="hidden-xs"><a href="#" id="js-toggle-search" class="animate"><span class="glyphicon glyphicon-search"></span></a></li>
+                <li class="hidden-xs"><a href="#" id="js-toggle-search" class="animate" aria-label="Avaa haku"><span class="glyphicon glyphicon-search"></span></a></li>
             </ul>
         </div>
     </div>

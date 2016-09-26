@@ -354,11 +354,21 @@ img {
 }
 
 .theme-projects-list {
-  margin-top: 2em;
+  margin-top: $line-height-computed;
   padding-left: 0;
+
+  .project-thumbnail {
+    margin-bottom: $line-height-computed;
+  }
+
   li {
-    padding-bottom: 1em;
+    padding-bottom: $line-height-computed;;
+    padding-top: $line-height-computed;;
     border-bottom: 2px solid $gray-lighter;
+  }
+
+  h4 {
+    margin-top: 0;
   }
 }
 
@@ -755,14 +765,22 @@ img {
 
 .person-list-item {
   margin-bottom: $line-height-computed * 3;
+
+  .title {
+    font-weight: 600;
+  }
 }
 
 .person-list--avatar {
   background-position: center;
   background-size: cover;
-  box-shadow: 2px 2px 0 8px $gray-lighter;
+  box-shadow: 8px 8px 0 0 $helsinkiblue;
   height: $line-height-computed * 7;
   width: $line-height-computed * 7;
+}
+
+.projectlist-role {
+
 }
 
 //* Blog section */
@@ -928,4 +946,14 @@ img {
       text-decoration: none;
     }
   }
+}
+
+//* Search page */
+
+.search-results {
+  @extend .list-unstyled;
+}
+
+.search-results-item {
+  border-bottom: 1px solid $helsinkiblue;
 }
