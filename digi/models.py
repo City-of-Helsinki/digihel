@@ -162,7 +162,7 @@ class FrontPage(Page):
 
     @property
     def blog_posts(self):
-        return BlogPage.objects.all()
+        return BlogPage.objects.all().order_by('-date')
 
     @property
     def footer_link_sections(self):
