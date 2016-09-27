@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% load humanize wagtailimages_tags digi_tags wagtailcore_tags %}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static %}
 
 {% block body_class %}template-front-page{% endblock %}
 
 {% block content %}
 <div class="container-fluid header-container" role="main">
-  <section class="jumbotron fullscreen-hero js-fullscreen">
+  <section class="jumbotron fullscreen-hero js-fullscreen" style="background-image: url('{% static "images/front-bg.png" %}')">
       {% for block in page.hero %}
       {{ block }}
       {% endfor %}
@@ -16,39 +16,58 @@
       <section class="row">
           <div class="col-xs-12">
             <div class="indicators clearfix">
-            {% for indicator in page.indicators|slice:":3" %}
-            <div class="col-md-4">
-              <div class="indicator">
-                <div class="indicator-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:#005eb8;}.cls-2{fill:#005eb8;}</style></defs><title>indicator-graph</title>
-                    <g id="Layer_1" data-name="graph-base"><rect class="cls-1" x="54.51" y="324.4" width="290.83" height="8.4"/></g>
-                    <g id="graph-1"><rect class="cls-2" x="54.67" y="156.25" width="54" height="158.15"/></g>
-                    <g id="graph-2"><rect class="cls-2" x="133.56" y="181.35" width="54" height="133.05"/></g>
-                    <g id="graph-3"><rect class="cls-2" x="212.44" y="138.38" width="54" height="176.02"/></g>
-                    <g id="graph-4"><rect class="cls-2" x="291.33" y="84.2" width="54" height="230.2"/></g>
-                  </svg>
+              <div class="col-sm-4">
+              <div class="indicator" style="background-image: url('{% static "images/hki-palaute.svg" %}');">
+                <div class="indicator-content">
+                  <div class="indicator-value">
+                      149
+                  </div>
+                  <div class="indicator-description">
+                      sähköisesti käsiteltyä palautetta päivässä
+                  </div>
                 </div>
+              </div>
+              </div>
+              <div class="col-sm-4">
+              <div class="indicator" style="background-image: url('{% static "images/hki-mies.svg" %}');">
+                <div class="indicator-content">
                 <div class="indicator-value">
-                    {{ indicator.value|intcomma }}
+                    630&nbsp;752
                 </div>
                 <div class="indicator-description">
-                    {{ indicator.description }}
+                    helsinkiläistä
+                </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
+              <div class="col-sm-4">
+              <div class="indicator" style="background-image: url('{% static "images/hki-tietoaineisto.svg" %}');">
+                <div class="indicator-content">
+                <div class="indicator-value">
+                    569
+                </div>
+                <div class="indicator-description">
+                    avointa tietoaineistoa
+                </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
       <section class="themes row">
           {% for theme in page.themes|slice:":3" %}
-          <div class="col-sm-4">
-            <div class="theme-preview match-height">
-              {% image theme.image fill-560x420 as theme_image %}
-              <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
-              <small class="card-type">{{ theme.type }}</small>
-              <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
-              <p>{{ theme.short_description }}</p></a>
+          <div class="col-md-4">
+            <div class="theme-preview match-height clearfix">
+              <div class="col-xs-12 col-sm-6 col-md-12">
+                {% image theme.image fill-560x420 as theme_image %}
+                <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-12">
+                <small class="card-type">{{ theme.type }}</small>
+                <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+                <p>{{ theme.short_description }}</p></a>
+              </div>
             </div>
           </div>
           {% endfor %}
@@ -56,10 +75,11 @@
       <section class="misc row">
           <div class="col-md-8">
             <div class="blogs-preview">
-              {% for blog in page.blog_posts|slice:":3" %}
+              {% for blog in page.blog_posts|slice:":2" %}
               <div class="blog-post">
                   <small class="card-type">Blogi</small>
                   <h3><a class="link-unstyled" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
+                <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
                   {{ blog.body|first_p|safe }}
               </div>
               {% endfor %}
@@ -67,6 +87,7 @@
           </div>
           <div class="col-md-4">
               <div class="events-highlights">
+                  <img src="{% static "images/osallistu.svg" %}" class="event-illustration">
                   <h2>Tapahtumia</h2>
 
                   <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
@@ -83,6 +104,7 @@
                   <div class="event-date"><time itemprop="startDate" datetime="2016-10-27">to 27.10.2016 15:00</time></div>
                   <div class="event-location">Helsinki Think Company</div>
                   <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrc6zue">Lue lisää »</a>
+
                 </div>
           </div>
       </section>

@@ -13,35 +13,33 @@
         <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="person-list-item match-height">
             <div class="person-list--avatar" style="background-image: url('{% person_avatar person 240 %}');"></div>
-            <div class="name"><h4>{{ person.get_display_name }}</h4></div>
-            {% if person.title %}
-            <div class="title">{{ person.title }}</div>
+            <div class="name">
+                <h3>{{ person.get_display_name }}
+                {% if person.title %}<br>
+                <small>{{ person.title }}</small>
+                {% endif %}
+                </h3>
+            </div>
+            {% if person.email %}
+            <div class="email"><a href="mailto:{{ person.email }}">{{ person.email }}</a></div>
             {% endif %}
             {% if person.telephone %}
             <div class="telephone">{{ person.telephone }}</div>
             {% endif %}
-            {% if person.email %}
-            <div class="email"><a href="mailto:{{ person.email }}">{{ person.email }}</a></div>
-            {% endif %}
             {% if person.groups.all %}
-            <div class="groups">
-                {% for group in person.groups.all %}
-                <div>{{ group.name }}</div>
-                {% endfor %}
-            </div>
             {% endif %}
             {% if person.theme_roles.all or person.project_roles.all %}
             <h5>Projektit</h5>
             <ul class="person-list--projectlist list-unstyled">
                 {% for role in person.theme_roles.all %}
                 <li>
-                    <div>{{ role.role }}</div>
+                    <div class="projectlist-role">{{ role.role }}</div>
                     <a href="{% pageurl role.theme %}">{{ role.theme.title }}</a>
                 </li>
                 {% endfor %}
                 {% for role in person.project_roles.all %}
                 <li>
-                    <div>{{ role.role }}</div>
+                    <div class="projectlist-role">{{ role.role }}</div>
                     <a href="{% pageurl role.project %}">{{ role.project.title }}</a>
                 </li>
                 {% endfor %}

@@ -245,6 +245,9 @@ img {
 .container .jumbotron,
 .container-fluid .jumbotron {
   background-color: $helsinkiturquoise;
+  background-size: auto 100%;;
+  background-repeat: repeat-x;
+  background-position: bottom;
   border-radius: 0;
   color: $white;
   margin-bottom: 4em;
@@ -276,7 +279,7 @@ img {
     color: $white;
     font-size: 16px;
     margin: 0 auto;
-    padding: 48px 10%;
+    padding: 48px;
     text-align: center;
     width: 100%;
 
@@ -284,9 +287,18 @@ img {
       font-size: 16px;
     }
 
+    @media screen and (min-width: $screen-md-min) {
+      font-size: 18px;
+      width: 600px;
+
+      p {
+        font-size: 18px;
+      }
+    }
+
     @media screen and (min-width: $screen-lg-min) {
       font-size: 24px;
-      width: 66%;
+      width: 800px;
 
       p {
         font-size: 24px;
@@ -338,15 +350,25 @@ img {
 }
 
 .theme-projects {
-  border-top: solid 2px $gray-lighter;
+  border-top: 1px dotted $gray-base;
 }
 
 .theme-projects-list {
-  margin-top: 2em;
+  margin-top: $line-height-computed;
   padding-left: 0;
+
+  .project-thumbnail {
+    margin-bottom: $line-height-computed;
+  }
+
   li {
-    padding-bottom: 1em;
-    border-bottom: 2px solid $gray-lighter;
+    padding-bottom: $line-height-computed;;
+    padding-top: $line-height-computed;;
+    border-bottom: 1px dotted $gray-base;
+  }
+
+  h4 {
+    margin-top: 0;
   }
 }
 
@@ -355,7 +377,7 @@ img {
   padding: 1em;
 
   .media {
-    border-top: 2px solid $gray-light;
+    border-top: 1px dotted $gray-base;
     padding-top: $line-height-computed;
   }
   .user-thumbnail {
@@ -373,15 +395,6 @@ img {
 }
 
 //* Indicators */
-
-.indicators {
-  background-color: #eee;
-  padding: 12px;
-}
-
-.indicator {
-  margin-bottom: 1em;
-}
 
 .indicator-icon {
   margin: 0 auto;
@@ -427,22 +440,55 @@ img {
 .front-page {
   .indicators {
     text-align: center;
+    background-color: lighten($helsinkiturquoise, 45%);
+    padding: 12px;
+  }
+
+  .indicator {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 12em;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+  }
+
+  .indicator-icon svg {
+    width: 100%;
+  }
+  .indicator-content {
+      width: 100%;
   }
 
   .indicator-value {
     color: $helsinkiblue;
     font-size: 36px;
     font-weight: 900;
+    width: 100%;
   }
 
   .indicator-description {
+    color: $helsinkiblue;
     text-transform: uppercase;
+    font-weight: 900;
+    width: 100%;
   }
 }
 
 //* Box stylings */
 
 .events-highlights {
+  position: relative;
+
+  .event-illustration {
+    height: 5em;
+    display: block;
+    position: absolute;
+    top: -2em;
+    right: -1em;
+  }
+
   .event-title {
     margin-top: 0;
 
@@ -719,14 +765,22 @@ img {
 
 .person-list-item {
   margin-bottom: $line-height-computed * 3;
+
+  .title {
+    font-weight: 600;
+  }
 }
 
 .person-list--avatar {
   background-position: center;
   background-size: cover;
-  box-shadow: 2px 2px 0 8px $gray-lighter;
+  box-shadow: 8px 8px 0 0 $helsinkiblue;
   height: $line-height-computed * 7;
   width: $line-height-computed * 7;
+}
+
+.projectlist-role {
+
 }
 
 //* Blog section */
@@ -779,7 +833,7 @@ img {
 }
 
 .page-header-blogpost {
-  border-bottom: 1px solid $gray-lighter;
+  border-bottom: 1px dotted $gray-base;
   margin-bottom: $line-height-computed;
 }
 
@@ -892,4 +946,14 @@ img {
       text-decoration: none;
     }
   }
+}
+
+//* Search page */
+
+.search-results {
+  @extend .list-unstyled;
+}
+
+.search-results-item {
+  border-bottom: 1px solid $helsinkiblue;
 }
