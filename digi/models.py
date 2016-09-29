@@ -165,14 +165,6 @@ class FrontPage(RelativeURLMixin, Page):
     @property
     def blog_posts(self):
         posts = BlogPage.objects.all().order_by('-date')
-        from wagtail.wagtailcore.models import Site
-        site = Site.objects.first()
-        for p in posts:
-            print(p)
-            try:
-                print(p.relative_url(site))
-            except Exception as e:
-                print(e)
         return posts
 
     @property
