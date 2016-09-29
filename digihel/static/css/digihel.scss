@@ -764,23 +764,39 @@ img {
 //* People section */
 
 .person-list-item {
+  font-size: $font-size-small;
   margin-bottom: $line-height-computed * 3;
+
+  h3 {
+    font-size: $font-size-h4;
+    margin-bottom: $line-height-computed / 2;
+  }
 
   .title {
     font-weight: 600;
+  }
+
+  @media screen and (min-width: $screen-sm-min) {
+    font-size: $font-size-base;
+
+    h3 {
+      font-size: $font-size-h3;
+    }
   }
 }
 
 .person-list--avatar {
   background-position: center;
   background-size: cover;
-  box-shadow: 8px 8px 0 0 $helsinkiblue;
-  height: $line-height-computed * 7;
-  width: $line-height-computed * 7;
-}
+  box-shadow: 4px 4px 0 0 $helsinkiblue;
+  height: $line-height-computed * 5;
+  width: $line-height-computed * 5;
 
-.projectlist-role {
-
+  @media screen and (min-width: $screen-sm-min) {
+    box-shadow: 8px 8px 0 0 $helsinkiblue;
+    height: $line-height-computed * 7;
+    width: $line-height-computed * 7;
+  }
 }
 
 //* Blog section */

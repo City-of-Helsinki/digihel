@@ -24,7 +24,7 @@
             <div class="email"><a href="mailto:{{ person.email }}">{{ person.email }}</a></div>
             {% endif %}
             {% if person.telephone %}
-            <div class="telephone">{{ person.telephone }}</div>
+            <div class="telephone"><a href="tel:{{ person.telephone }}">{{ person.telephone }}</a></div>
             {% endif %}
             {% if person.groups.all %}
             {% endif %}
