@@ -482,11 +482,11 @@ img {
   position: relative;
 
   .event-illustration {
-    height: 5em;
+    height: 6em;
     display: block;
     position: absolute;
     top: -2em;
-    right: -1em;
+    right: -1.5em;
   }
 
   .event-title {
@@ -595,19 +595,14 @@ img {
   }
 
   .blog-post {
-    margin-bottom: 1.5em;
-    margin-top: 1.5em;
+    border-bottom: 1px dotted $gray-base;
+    margin-bottom: $line-height-computed / 2;
+    padding-bottom: $line-height-computed / 2;
   }
 
   .card-type {
     border-color: $brand-red;
   }
-}
-
-.blog-post:last-child {
-  border-top: 1px dotted $gray-base;
-  margin-top: 0;
-  padding-top: 1em;
 }
 
 //* Page Footer section */
