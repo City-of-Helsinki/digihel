@@ -13,6 +13,8 @@ from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail_svgmap.blocks import ImageMapBlock
 from modelcluster.fields import ParentalKey
 
+from digihel.mixins import RelativeURLMixin
+
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -81,7 +83,7 @@ class RelatedLink(LinkFields):
         abstract = True
 
 
-class ContentPage(Page):
+class ContentPage(RelativeURLMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [
@@ -92,7 +94,7 @@ class ContentPage(Page):
     ]
 
 
-class LinkedContentPage(Page):
+class LinkedContentPage(RelativeURLMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [

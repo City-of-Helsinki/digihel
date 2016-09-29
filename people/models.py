@@ -4,6 +4,8 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from users.models import User
 
+from digihel.mixins import RelativeURLMixin
+
 
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True)
@@ -58,7 +60,7 @@ class Membership(models.Model):
         return "{} in {}".format(self.person, self.group)
 
 
-class PersonIndexPage(Page):
+class PersonIndexPage(RelativeURLMixin, Page):
     groups = models.ManyToManyField(Group)
 
     def get_groups(self):

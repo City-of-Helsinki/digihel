@@ -7,6 +7,8 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailsearch import index
 from content.models import content_blocks
 
+from digihel.mixins import RelativeURLMixin
+
 
 class BaseModel(models.Model):
     name = models.CharField(max_length=100, verbose_name=_('Name'))
@@ -47,11 +49,11 @@ class DevelopmentPhase(BaseModel):
 # Pages
 #
 
-class UserRoleIndex(Page):
+class UserRoleIndex(RelativeURLMixin, Page):
     subpage_types = ['UserRolePage']
 
 
-class UserRolePage(Page):
+class UserRolePage(RelativeURLMixin, Page):
     user_role = models.OneToOneField(UserRole, on_delete=models.PROTECT)
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
@@ -64,7 +66,7 @@ class UserRolePage(Page):
     parent_page_types = ['UserRoleIndex']
 
 
-class KehmetFrontPage(Page):
+class KehmetFrontPage(RelativeURLMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [
@@ -77,7 +79,7 @@ class KehmetFrontPage(Page):
     subpage_types = ['KehmetContentPage']
 
 
-class KehmetContentPage(Page):
+class KehmetContentPage(RelativeURLMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [

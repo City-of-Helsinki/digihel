@@ -13,6 +13,7 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 
 from content.models import RelatedLink
+from digihel.mixins import RelativeURLMixin
 
 
 class Indicator(models.Model):
@@ -50,14 +51,15 @@ class FooterLink(Orderable, RelatedLink):
     section = ParentalKey('digi.FooterLinkSection', related_name='links')
 
 
-class ThemeIndexPage(Page):
+class ThemeIndexPage(RelativeURLMixin, Page):
     subpage_types = ['ThemePage']
 
     @property
     def themes(self):
         return ThemePage.objects.all()
 
-class ThemePage(Page):
+
+class ThemePage(RelativeURLMixin, Page):
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
     type = models.CharField(max_length=10, default="Teema")
@@ -107,7 +109,7 @@ class ThemeLink(Orderable, RelatedLink):
     theme = ParentalKey('digi.ThemePage', related_name='links')
 
 
-class ProjectPage(Page):
+class ProjectPage(RelativeURLMixin, Page):
     type = _('Project')
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
@@ -143,7 +145,7 @@ class ProjectLink(Orderable, RelatedLink):
     theme = ParentalKey('digi.ProjectPage', related_name='links')
 
 
-class FrontPage(Page):
+class FrontPage(RelativeURLMixin, Page):
     hero = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ])
@@ -162,7 +164,16 @@ class FrontPage(Page):
 
     @property
     def blog_posts(self):
-        return BlogPage.objects.all().order_by('-date')
+        posts = BlogPage.objects.all().order_by('-date')
+        from wagtail.wagtailcore.models import Site
+        site = Site.objects.first()
+        for p in posts:
+            print(p)
+            try:
+                print(p.relative_url(site))
+            except Exception as e:
+                print(e)
+        return posts
 
     @property
     def footer_link_sections(self):
