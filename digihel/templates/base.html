@@ -98,6 +98,23 @@
         <script src="{% static 'bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
         <script src="{% static 'matchHeight/jquery.matchHeight-min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/digihel.js' %}"></script>
+        <!-- Piwik -->
+        <script type="text/javascript">
+            var _paq = _paq || [];
+            _paq.push(["setDomains", ["*.digi.hel.fi","*.digi.hel.ninja"]]);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+                var u="//analytics.hel.ninja/pwk/";
+                _paq.push(['setTrackerUrl', u+'pw.php']);
+                _paq.push(['setSiteId', '11']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'pw.js'; s.parentNode.insertBefore(g,s);
+            })();
+        </script>
+        <noscript><p><img src="//analytics.hel.ninja/pwk/pw.php?idsite=11" style="border:0;" alt="" /></p></noscript>
+        <!-- End Piwik Code -->
+
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
