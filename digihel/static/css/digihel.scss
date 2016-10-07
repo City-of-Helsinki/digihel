@@ -896,7 +896,7 @@ img {
   }
 
   .blog-highlight-content {
-    background: $helsinkiturquoise;
+    background: rgba($helsinkiblue, .75);
     color: $white;
     left: 1em;
     padding: 1em;
@@ -915,7 +915,6 @@ img {
   }
 
   h2 {
-    background: $helsinkiturquoise;
     font-size: $font-size-h3;
     margin-top: 0;
 
