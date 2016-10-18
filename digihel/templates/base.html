@@ -8,10 +8,20 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - {% block title_suffix %}{% if self.get_site.site_name %}{{ self.get_site.site_name }}{% else %}{{ self.get_site.hostname }}{% endif %}{% endblock %}</title>
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - Digitaalinen Helsinki</title>
 
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <meta property="og:title" content="{% block sometitle %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - Digitaalinen Helsinki">
+        {% if self.search_description %}
+        <meta property="og:description" content="{{ self.search_description }}"/>
+        {% else %}
+        <meta property="og:description" content="Helsingin kaupunki digitalisoi palvelujaan. Tulevaisuudessa kaupungin palvelut ovat helppokäyttöisiä ja kätevästi kaupunkilaisten ulottuvilla. Parempia palveluja kehitetään yhdessä asiantuntijoiden, kaupunkilaisten ja yritysten kanssa.">
+        {% endif %}
+        <meta property="og:image" content="https://digi.hel.fi{% static "images/share-default.jpg" %}">
+        <meta property="og:url" content="https://digi.hel.fi{{ request.get_full_path }}">
+        <meta name="twitter:card" content="summary_large_image">
 
         {# Global stylesheets #}
 
