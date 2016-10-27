@@ -84,6 +84,8 @@ class SlackNotifier(Notifier):
             message = gettext('New feedback received for {url}').format(url=feedback.url)
             if feedback.name:
                 fields.append({'title': gettext('Name'), 'value': feedback.name, 'short': False})
+            if feedback.email:
+                fields.append({'title': gettext('Email'), 'value': feedback.email, 'short': False})
             if feedback.user_agent:
                 fields.append({'title': gettext('User agent'), 'value': feedback.user_agent, 'short': False})
 

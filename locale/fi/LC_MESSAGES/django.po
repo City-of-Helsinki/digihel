@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-30 15:36+0300\n"
+"POT-Creation-Date: 2016-10-27 16:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: content/models.py:27
+#: content/models.py:30
 msgid "Left column content"
 msgstr "Vasemman sarakkeen sisältö"
 
-#: content/models.py:29
+#: content/models.py:32
 msgid "Right column content"
 msgstr "Oikean sarakkeen sisältö"
 
-#: content/models.py:33
+#: content/models.py:36
 msgid "Two columns"
 msgstr "Kaksi saraketta"
 
-#: digi/models.py:42
+#: content/models.py:101 digi/models.py:79 digi/models.py:124
+msgid "Roles"
+msgstr ""
+
+#: content/models.py:102 digi/models.py:43 digi/models.py:80 digi/models.py:125
+msgid "Links"
+msgstr ""
+
+#: digi/models.py:28
 msgid "Indicator"
 msgstr "Indikaattori"
 
-#: digi/models.py:43
+#: digi/models.py:29
 msgid "Indicators"
 msgstr "Indikaattorit"
 
-#: digi/models.py:97
-msgid "Theme"
-msgstr "Teema"
-
-#: digi/models.py:138
+#: digi/models.py:113
 msgid "Project"
 msgstr "Projekti"
 
@@ -76,11 +80,11 @@ msgstr "Käyttäjän selaimen tyyppi"
 msgid "Subject"
 msgstr "Otsikko"
 
-#: feedback/models.py:18 feedback/models.py:86 kehmet/models.py:12
+#: feedback/models.py:18 feedback/models.py:86 kehmet/models.py:14
 msgid "Name"
 msgstr "Nimi"
 
-#: feedback/models.py:19
+#: feedback/models.py:19 feedback/models.py:88
 msgid "Email"
 msgstr "Sähköposti"
 
@@ -98,35 +102,35 @@ msgstr ""
 msgid "New feedback received for {url}"
 msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
 
-#: feedback/models.py:88
+#: feedback/models.py:90
 msgid "User agent"
 msgstr "Selain"
 
-#: kehmet/models.py:13
+#: kehmet/models.py:15
 msgid "Short description"
 msgstr "Lyhyt kuvaus"
 
-#: kehmet/models.py:24
+#: kehmet/models.py:26
 msgid "User role"
 msgstr "Käyttäjärooli"
 
-#: kehmet/models.py:25
+#: kehmet/models.py:27
 msgid "User roles"
 msgstr "Käyttäjäroolit"
 
-#: kehmet/models.py:30
+#: kehmet/models.py:32
 msgid "Development method"
 msgstr "Kehitysmenetelmä"
 
-#: kehmet/models.py:31
+#: kehmet/models.py:33
 msgid "Development methods"
 msgstr "Kehitysmenetelmät"
 
-#: kehmet/models.py:41
+#: kehmet/models.py:43
 msgid "Development phase"
 msgstr "Kehitysvaihe"
 
-#: kehmet/models.py:42
+#: kehmet/models.py:44
 msgid "Development phases"
 msgstr "Kehitysvaiheet"
 
