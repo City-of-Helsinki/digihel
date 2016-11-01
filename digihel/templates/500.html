@@ -6,12 +6,127 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Internal server error</title>
+        <title>Virhe palvelimella - 500</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" crossorigin="anonymous">
+
+        <style>
+           @font-face {
+            font-family: 'helsinki-avoin';
+            src: url("/static/fonts/helsinkiavoinsans-bold-webfont.woff2?06a241d2eece") format("woff2"), url("/static/fonts/helsinkiavoinsans-bold-webfont.woff?06a241d2eece") format("woff");
+            font-weight: 700;
+            font-style: normal; }
+
+          @font-face {
+            font-family: 'helsinki-avoin';
+            src: url("/static/fonts/helsinkiavoinsans-regular-webfont.woff2?06a241d2eece") format("woff2"), url("/static/fonts/helsinkiavoinsans-regular-webfont.woff?06a241d2eece") format("woff");
+            font-weight: 400;
+            font-style: normal; }
+
+          body, html {
+            height: 100%; }
+
+          html {
+            font-size: 16px;
+            line-height: 1.3; }
+            @media (min-width: 720px) {
+              html {
+                font-size: 18px; } }
+            @media (min-width: 1200px) {
+              html {
+                font-size: 30px;
+                line-height: 1.4; } }
+
+          body {
+            background: #005eb8;
+            color: #fff;
+            font-family: "helsinki-avoin", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+          a {
+            color: #fff;
+          }
+
+          .lander-content {
+            position: absolute;
+            padding: 12px; }
+            @media (min-width: 720px) {
+              .lander-content {
+                padding: 48px; } }
+
+          h1 {
+            font-size: 38px;
+            margin-top: 0;
+            line-height: 1; }
+            @media (min-width: 720px) {
+              h1 {
+                font-size: 60px; } }
+            @media (min-width: 1200px) {
+              h1 {
+                font-size: 72px; } }
+
+          .lander {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center; }
+
+          .helsinki-branding--text {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            text-align: right;
+            color: #fff;
+            font-size: 12px;
+            line-height: 1.3; }
+            @media (min-width: 720px) {
+              .helsinki-branding--text {
+                font-size: 14px;
+                bottom: 48px;
+                right: 48px; } }
+            @media (min-width: 1200px) {
+              .helsinki-branding--text {
+                font-size: 24px;
+                line-height: 1.4; } }
+            .helsinki-branding--text a {
+              color: #005eb8;
+              text-decoration: none; }
+            .helsinki-branding--text p {
+              margin: 0; }
+
+          .helsinki-branding--seal {
+            position: absolute;
+            bottom: 12px;
+            left: 12px; }
+            .helsinki-branding--seal img {
+              height: 5em; }
+            @media (min-width: 720px) {
+              .helsinki-branding--seal {
+                bottom: 48px;
+                left: 48px; }
+                .helsinki-branding--seal img {
+                  height: 6em; } }
+            @media (min-width: 1200px) {
+              .helsinki-branding--seal img {
+                height: 5em; } }
+        </style>
+
     </head>
     <body>
-        <h1>Internal server error</h1>
+        <div class="lander">
+          <div class="lander-content">
+            <h1>dev.hel.fi</h1>
+            <h2>500 - Virhe palvelimella</h2>
+            <p>Palvelimella on tapahtunut virhe. Palaa <a href="/">etusivulle</a> tai kokeile ladata sivu uudelleen.</p>
+          </div>
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
+          <div class="helsinki-branding--seal">
+            <!-- possibly add seal here in some point -->
+          </div>
+          <div class="helsinki-branding--text">
+            <p>Helsingin Kaupunki</p>
+            <p><a href="http://hel.fi">hel.fi</a></p>
+          </div>
+        </div>
     </body>
 </html>
