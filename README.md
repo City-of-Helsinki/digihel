@@ -75,3 +75,15 @@ pinned versions for updates.
 To remove a dependency, remove it from `requirements.in`,
 run `pip-compile` and then `pip-sync`. If everything works
 as expected, commit the changes.
+
+Configuration
+-------------
+
+These settings are recognized in the Django settings.
+
+You can acquire the Twitter keys from the Twitter developer portal (https://apps.twitter.com).
+
+* `TWITTER_CONSUMER_KEY`: "Consumer Key (API Key)"
+* `TWITTER_CONSUMER_SECRET`: "Consumer Secret (API Secret)"
+* `TWITTER_ACCESS_TOKEN`: A personal (read-only) access token
+* `TWITTER_ACCESS_TOKEN_SECRET`: The secret for the personal (read-only) access token

@@ -16,5 +16,6 @@ pytest
 pytest-django
 raven
 redis
+tweepy
 wagtail
 wagtail-blog
