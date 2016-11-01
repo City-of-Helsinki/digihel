@@ -1,6 +1,6 @@
 language: python
 python: '3.4'
-env: DEBUG=1
+env: DATABASE_USER=postgres
 install:
   - nvm install 4.5.0
   - node -v
@@ -8,6 +8,9 @@ install:
   - pip install -r requirements.txt
   - npm install
   - python manage.py bower install
+
+before_script:
+  - psql -c 'create database digihel;' -U postgres
 
 script: py.test --reuse-db
 
