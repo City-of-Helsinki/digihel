@@ -1,13 +1,15 @@
-from django.utils.translation import ugettext_lazy as _
-from django.db import models
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.wagtailsearch import index
 from content.models import content_blocks
-
 from digihel.mixins import RelativeURLMixin
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
+from taggit.models import TaggedItemBase
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailcore import blocks
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.models import Orderable, Page
+from wagtail.wagtailsearch import index
 
 
 class BaseModel(models.Model):
@@ -79,11 +81,18 @@ class KehmetFrontPage(RelativeURLMixin, Page):
     subpage_types = ['KehmetContentPage']
 
 
+class KehmetContentPageTag(TaggedItemBase):
+    content_object = ParentalKey('kehmet.KehmetContentPage', related_name='tagged_items')
+
+
 class KehmetContentPage(RelativeURLMixin, Page):
     body = StreamField(content_blocks)
+    tags = ClusterTaggableManager(through=KehmetContentPageTag, blank=True)
 
-    content_panels = Page.content_panels + [
-        StreamFieldPanel('body')
+    content_panels = [
+        FieldPanel('title', classname='full title'),
+        FieldPanel('tags'),
+        StreamFieldPanel('body'),
     ]
     search_fields = Page.search_fields + [
         index.SearchField('body')
