@@ -10,6 +10,12 @@ This [Wagtail](https://wagtail.io/)-based CMS powers the [Digital Helsinki](http
 Installation
 ------------
 
+Set the DEBUG environment variable to 1
+
+```
+export DEBUG=1
+```
+
 Install required Python packages
 
 ```
