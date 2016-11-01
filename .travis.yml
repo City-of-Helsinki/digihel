@@ -1,11 +1,6 @@
 language: python
-
-python:
-  - '3.4'
-
-env:
-  - DJANGO=Django>=1.9
-
+python: '3.4'
+env: DEBUG=1
 install:
   - nvm install 4.5.0
   - node -v
