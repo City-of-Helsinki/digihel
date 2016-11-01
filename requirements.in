@@ -1,5 +1,5 @@
--e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
--e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git#egg=wagtail_svgmap
+-e git+https://github.com/City-of-Helsinki/django-helusers.git@v0.1#egg=django-helusers
+-e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.1#egg=wagtail_svgmap
 celery
 django-allauth
 django-bower
