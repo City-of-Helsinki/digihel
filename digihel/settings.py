@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+CI = bool(os.environ.get('CI'))  # When running in Travis.
 DEBUG = (os.environ.get('DEBUG') == '1')
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -210,6 +211,18 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
         'WIDGET': 'digihel.tinymce.DigiHelTinyMCERichTextArea',
     },
 }
+
+if CI:
+    # Use Elasticsearch in CI environments.
+    # You can also use this as a template for your `local_settings` file.
+    WAGTAILSEARCH_BACKENDS = {
+        'default': {
+            'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch',
+            'URLS': ['http://localhost:9200'],
+            'INDEX': 'digihel',
+            'TIMEOUT': 5,
+        },
+    }
 
 
 # local_settings.py can be used to override environment-specific settings
