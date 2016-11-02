@@ -1,20 +1,21 @@
-Django>=1.9,<1.10
-wagtail
-Jinja2
-psycopg2
 -e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
 -e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git#egg=wagtail_svgmap
+celery
+django-allauth
+django-bower
+django-celery
+django-compressor-autoprefixer
+django-libsass
+Django>=1.9,<1.10
+django_compressor
+elasticsearch
+Jinja2
+pip-tools
+psycopg2
 pytest
 pytest-django
 raven
-pip-tools
-django-allauth
-wagtail-blog
-django_compressor
-django-libsass
-django-compressor-autoprefixer
-django-bower
-elasticsearch
-celery
-django-celery
 redis
+tweepy
+wagtail
+wagtail-blog

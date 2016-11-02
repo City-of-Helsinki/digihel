@@ -45,10 +45,11 @@ pytz==2016.6.1            # via celery, django-modelcluster
 raven==5.27.1
 rcssmin==1.0.6            # via django-compressor
 redis==2.10.5
-requests-oauthlib==0.7.0  # via django-allauth
-requests==2.11.1          # via django-allauth, requests-oauthlib
+requests-oauthlib==0.7.0  # via django-allauth, tweepy
+requests==2.11.1          # via django-allauth, requests-oauthlib, tweepy
 rjsmin==1.0.12            # via django-compressor
-six==1.10.0               # via django-bower, html5lib, libsass, pip-tools
+six==1.10.0               # via django-bower, html5lib, libsass, pip-tools, tweepy
+tweepy==3.5.0
 Unidecode==0.4.19         # via wagtail
 urllib3==1.18             # via elasticsearch
 wagtail-blog==1.6.7
