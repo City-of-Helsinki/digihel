@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
 from wagtail.wagtailcore.models import Page
@@ -13,7 +11,6 @@ k_root = Page.objects.get(url_path='/digietu/kehmet/')
 pages = k_root.get_descendants().type(ContentPage)
 
 dummy_page = Page(title="dummy", path="1234", slug="dummy-slug", depth=1)
-
 
 
 def convert_page(page, target_model):
@@ -35,10 +32,11 @@ def convert_page(page, target_model):
     cp_page.page_ptr_id = dummy_page.id
     cp_page.save()
     print(page)
-    ret = models.Model.delete(cp_page, keep_parents=True)
+    models.Model.delete(cp_page, keep_parents=True)
 
     page.content_type = kcp_type
     page.save(update_fields=['content_type'])
+
 
 with transaction.atomic():
     dummy_page.save()

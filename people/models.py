@@ -1,7 +1,7 @@
 import hashlib
 
 from django.db import models
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailcore.models import Page
 
 from digihel.mixins import RelativeURLMixin
