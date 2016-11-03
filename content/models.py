@@ -1,20 +1,19 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import StreamField
+from modelcluster.fields import ParentalKey
+from wagtail.contrib.table_block.blocks import TableBlock
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+)
 from wagtail.wagtailcore import blocks
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, \
-    PageChooserPanel, InlinePanel, MultiFieldPanel
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
-from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail_svgmap.blocks import ImageMapBlock
-from modelcluster.fields import ParentalKey
 
 from digihel.mixins import RelativeURLMixin
-
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),

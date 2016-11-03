@@ -1,8 +1,9 @@
+from django.contrib.contenttypes.models import ContentType
+from django.db import models, transaction
+from wagtail.wagtailcore.models import Page
+
 from content.models import ContentPage
 from kehmet.models import KehmetContentPage, KehmetFrontPage
-from django.contrib.contenttypes.models import ContentType
-from django.db import transaction, models
-from wagtail.wagtailcore.models import Page
 
 cp_type = ContentType.objects.get_for_model(ContentPage)
 
@@ -11,7 +12,6 @@ pages = k_root.get_descendants().type(ContentPage)
 
 dummy_page = Page(title="dummy", path="1234", slug="dummy-slug", depth=1)
 
-from pprint import pprint
 
 def convert_page(page, target_model):
     try:
@@ -32,10 +32,11 @@ def convert_page(page, target_model):
     cp_page.page_ptr_id = dummy_page.id
     cp_page.save()
     print(page)
-    ret = models.Model.delete(cp_page, keep_parents=True)
+    models.Model.delete(cp_page, keep_parents=True)
 
     page.content_type = kcp_type
     page.save(update_fields=['content_type'])
+
 
 with transaction.atomic():
     dummy_page.save()

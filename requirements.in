@@ -1,6 +1,7 @@
 -e git+https://github.com/City-of-Helsinki/django-helusers.git@v0.1#egg=django-helusers
 -e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.1#egg=wagtail_svgmap
 -e git+https://github.com/City-of-Helsinki/wagtailtinymce.git@extensibility#egg=wagtailtinymce==4.4.3.0
+autopep8
 celery
 django-allauth
 django-bower
@@ -10,6 +11,7 @@ django-libsass
 Django>=1.9,<1.10
 django_compressor
 elasticsearch
+isort
 Jinja2
 pip-tools
 psycopg2

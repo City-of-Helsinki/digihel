@@ -5,4 +5,5 @@ class FeedbackConfig(AppConfig):
     name = 'feedback'
 
     def ready(self):
-        from .signals import send_feedback_notification
+        # Import the module to cause registration of the signal
+        from .signals import send_feedback_notification  # noqa

@@ -1,6 +1,6 @@
-from wagtail.contrib.modeladmin.options import \
-    ModelAdmin, ModelAdminGroup, modeladmin_register
-from .models import UserRole, DevelopmentMethod, DevelopmentPhase
+from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register, ModelAdminGroup
+
+from .models import DevelopmentMethod, DevelopmentPhase, UserRole
 
 
 class UserRoleAdmin(ModelAdmin):

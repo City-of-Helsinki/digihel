@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from blog.models import BlogIndexPage
 import pytest
-from digi.models import FrontPage
+from blog.models import BlogIndexPage
 from wagtail.wagtailcore.models import Page, Site
+
+from digi.models import FrontPage
 
 
 def root_page():

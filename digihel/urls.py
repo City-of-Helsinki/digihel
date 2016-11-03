@@ -1,14 +1,13 @@
-from django.conf.urls import include, url
 from django.conf import settings
+from django.conf.urls import include, url
 from helusers import admin
-
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
+from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
-from search import views as search_views
 from digi.views import sitemap_view
 from feedback.views import FeedbackView
+from search import views as search_views
 
 admin.autodiscover()
 
