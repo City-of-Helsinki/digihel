@@ -1,5 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 from .models import Feedback
 from .tasks import notify_new_feedback
 

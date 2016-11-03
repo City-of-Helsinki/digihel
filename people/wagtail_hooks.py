@@ -1,6 +1,6 @@
-from wagtail.contrib.modeladmin.options import \
-    ModelAdmin, modeladmin_register
 from django.utils.translation import ugettext_lazy as _
+from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+
 from .models import Person
 
 

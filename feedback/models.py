@@ -1,13 +1,13 @@
-from django.db import models
+import requests
 from django.apps import apps
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils.translation import gettext, ugettext_lazy as _
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
 from django.utils import translation
-
-import requests
+from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext
 
 
 class Feedback(models.Model):

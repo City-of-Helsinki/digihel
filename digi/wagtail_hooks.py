@@ -1,8 +1,8 @@
-from wagtail.contrib.modeladmin.options import \
-    ModelAdmin, ModelAdminGroup, modeladmin_register
-from .models import Indicator, FooterLinkSection
 from django.utils.html import format_html
+from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register, ModelAdminGroup
 from wagtail.wagtailcore import hooks
+
+from .models import FooterLinkSection, Indicator
 
 
 class IndicatorAdmin(ModelAdmin):

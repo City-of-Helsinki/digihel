@@ -1,5 +1,3 @@
-from content.models import content_blocks
-from digihel.mixins import RelativeURLMixin
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -10,6 +8,9 @@ from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailsearch import index
+
+from content.models import content_blocks
+from digihel.mixins import RelativeURLMixin
 
 
 class BaseModel(models.Model):

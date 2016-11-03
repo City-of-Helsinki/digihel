@@ -1,10 +1,11 @@
 import hashlib
+
 from django.db import models
-from wagtail.wagtailcore.models import Page
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
-from users.models import User
+from wagtail.wagtailcore.models import Page
 
 from digihel.mixins import RelativeURLMixin
+from users.models import User
 
 
 class Person(models.Model):
