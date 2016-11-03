@@ -4,8 +4,9 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
--e git+https://github.com/City-of-Helsinki/django-helusers.git#egg=django-helusers
--e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.0#egg=wagtail_svgmap
+-e git+https://github.com/City-of-Helsinki/django-helusers.git@v0.1#egg=django-helusers
+-e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.1#egg=wagtail_svgmap
+-e git+https://github.com/City-of-Helsinki/wagtailtinymce.git@extensibility#egg=wagtailtinymce==4.4.3.0
 amqp==1.4.9               # via kombu
 anyjson==0.3.3            # via kombu
 beautifulsoup4==4.5.1     # via wagtail

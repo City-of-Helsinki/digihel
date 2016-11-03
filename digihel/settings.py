@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'content',
     'kehmet',
     'digi',
+    'digihel',
     'feedback',
     'search',
 
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'blog',
     'djangobower',
     'wagtail_svgmap',
+    'wagtailtinymce',
     'djcelery',
 
     'allauth',
@@ -164,14 +166,9 @@ SOCIALACCOUNT_ADAPTER = 'helusers.providers.helsinki.provider.SocialAccountAdapt
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'djangobower.finders.BowerFinder',
     'compressor.finders.CompressorFinder',
-]
-
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -207,6 +204,12 @@ BOWER_INSTALLED_APPS = [
 
 WAGTAIL_SITE_NAME = "digihel"
 SITE_ID = 1
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'digihel.tinymce.DigiHelTinyMCERichTextArea',
+    },
+}
 
 
 # local_settings.py can be used to override environment-specific settings
