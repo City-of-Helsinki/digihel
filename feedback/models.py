@@ -62,11 +62,49 @@ class SlackNotifier(Notifier):
     icon_url = models.URLField(null=True, blank=True)
 
     def notify(self, feedback):
-        attachment = {}
-        fields = []
-        attachment['fields'] = fields
-        attachment['text'] = feedback.body
+        """
+        Send a Slack notification for the given feedback.
 
+        :param feedback: Feedback object
+        :type feedback: feedback.models.Feedback
+        """
+        data = self.build_slack_message(feedback)
+        resp = requests.post(self.webhook_url, json=data)
+        if resp.status_code != 200:
+            raise Exception('Slack notify failed with HTTP status %d' % resp.status_code)
+
+    def build_slack_message(self, feedback):
+        """
+        Build a Slack message dict from the feedback object.
+
+        :param feedback: Feedback object
+        :type feedback: feedback.models.Feedback
+        :return: Slack message dict
+        :rtype: dict
+        """
+        with translation.override(self.language):
+            message = gettext('New feedback received for {url}').format(url=feedback.url)
+        data = {
+            'text': message,
+            'attachments': [self.build_slack_attachment_from_feedback(feedback)],
+        }
+        data.update(self._get_notifier_config_for_slack_message())
+        return data
+
+    def build_slack_attachment_from_feedback(self, feedback):
+        """
+        Build a Slack attachment entity from the given Feedback object.
+
+        :param feedback: Feedback object
+        :type feedback: feedback.models.Feedback
+        :return: Slack attachment dictionary
+        :rtype: dict
+        """
+        attachment = {
+            'text': feedback.body,
+            'ts': int(feedback.created_at.timestamp()),
+        }
+        attachment['fields'] = fields = []
         # If the feedback refers to a Wagtail Page, add some more
         # information to the Slack notification.
         try:
@@ -78,28 +116,35 @@ class SlackNotifier(Notifier):
                 attachment['title_link'] = page.full_url
         except (LookupError, ObjectDoesNotExist):
             pass
-
-        attachment['ts'] = int(feedback.created_at.timestamp())
         with translation.override(self.language):
-            message = gettext('New feedback received for {url}').format(url=feedback.url)
             if feedback.name:
                 fields.append({'title': gettext('Name'), 'value': feedback.name, 'short': False})
             if feedback.email:
                 fields.append({'title': gettext('Email'), 'value': feedback.email, 'short': False})
             if feedback.user_agent:
                 fields.append({'title': gettext('User agent'), 'value': feedback.user_agent, 'short': False})
+        return attachment
 
-        data = {'text': message, 'attachments': [attachment]}
+    def _get_notifier_config_for_slack_message(self):
+        """
+        Convert the notifier's configuration into fields for a Slack message
+
+        :return: Part of a Slack message, to be combined into other things
+        :rtype: dict
+        """
+        data = {}
+
         if self.username:
             data['username'] = self.username
+
         if self.icon_url:
             data['icon_url'] = self.icon_url
+
         if self.icon_emoji:
             emoji = self.icon_emoji.strip(':')
             data['icon_emoji'] = ':' + emoji + ':'
+
         if self.channel:
             data['channel'] = self.channel
 
-        resp = requests.post(self.webhook_url, json=data)
-        if resp.status_code != 200:
-            raise Exception('Slack notify failed with HTTP status %d' % resp.status_code)
+        return data
