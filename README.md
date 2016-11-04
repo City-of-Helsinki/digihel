@@ -25,7 +25,7 @@ Install required Python packages
 Create the database
 
 ```
-sudo -u postgres createuser -L -R -S digihel
+sudo -u postgres createuser digihel
 sudo -u postgres createdb -O digihel digihel
 ```
 
