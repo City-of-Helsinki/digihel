@@ -53,4 +53,5 @@ class DigiHelTinyMCERichTextArea(TinyMCERichTextArea):
         )
         args.pop('menubar', None)  # Always enable the menubar
         args['content_css'].append(static('css/tinymce-content.css'))
+        args['skin'] = 'wagtail'
         return args
