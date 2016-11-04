@@ -2,6 +2,7 @@ import tweepy
 from django import template
 from django.conf import settings
 
+from digi.tweet_utils import render_tweet_html
 from digi.utils import get_cached_with_mtime
 
 TWEET_CACHE_REFRESH_AGE = 60 * 15  # if tweets are 15 minutes old, attempt reload
@@ -30,9 +31,12 @@ def twitter_search(query):
     :return:
     :rtype:
     """
-    return get_cached_with_mtime(
+    results = list(get_cached_with_mtime(
         cache_key='twitter_%s' % query,
         max_mtime=TWEET_CACHE_REFRESH_AGE,
         getter=lambda: get_tweepy_api().search(q=query, rpp=100, result_type='recent'),
         default=[],
-    )
+    ))
+    for result in results:
+        result.html = render_tweet_html(result)
+    return results

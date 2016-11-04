@@ -20,5 +20,6 @@ pytest-django
 raven
 redis
 tweepy
+twitter-text-python
 wagtail
 wagtail-blog
