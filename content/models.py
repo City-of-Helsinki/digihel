@@ -14,6 +14,8 @@ from wagtail.wagtailsearch import index
 from wagtail_svgmap.blocks import ImageMapBlock
 
 from digihel.mixins import RelativeURLMixin
+#from glossy.blocks import TermCategoryBlock
+
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -21,6 +23,7 @@ rich_text_blocks = [
     ('image', ImageChooserBlock()),
     ('table', TableBlock()),
     ('image_map', ImageMapBlock()),
+    #('term_category', TermCategoryBlock()),
 ]
 
 
