@@ -37,6 +37,19 @@ class DigiHelTinyMCERichTextArea(TinyMCERichTextArea):
         'visualchars',
         'wordcount',
     ]
+    default_buttons = [
+        [
+            ['undo', 'redo'],
+            ['styleselect'],
+            ['bold', 'italic', 'termspan'],
+            ['bullist', 'numlist', 'outdent', 'indent'],
+            ['table'],
+            ['link', 'unlink'],
+            ['wagtaildoclink', 'wagtailimage', 'wagtailembed'],
+            ['pastetext', 'fullscreen'],
+            ['termspan'],
+        ],
+    ]
     default_options = {
         'image_advtab': True,
         'browser_spellcheck': True,
