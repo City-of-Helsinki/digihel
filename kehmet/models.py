@@ -11,6 +11,7 @@ from wagtail.wagtailsearch import index
 
 from content.models import content_blocks
 from digihel.mixins import RelativeURLMixin
+from search.fields import tag_search_field
 
 
 class BaseModel(models.Model):
@@ -96,7 +97,8 @@ class KehmetContentPage(RelativeURLMixin, Page):
         StreamFieldPanel('body'),
     ]
     search_fields = Page.search_fields + [
-        index.SearchField('body')
+        index.SearchField('body'),
+        tag_search_field,
     ]
 
     parent_page_types = ['KehmetContentPage', 'KehmetFrontPage']
