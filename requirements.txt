@@ -54,6 +54,7 @@ requests==2.11.1          # via django-allauth, requests-oauthlib, tweepy
 rjsmin==1.0.12            # via django-compressor
 six==1.10.0               # via django-bower, html5lib, libsass, pip-tools, tweepy
 tweepy==3.5.0
+twitter-text-python==1.1.0
 Unidecode==0.4.19         # via wagtail
 urllib3==1.18             # via elasticsearch
 wagtail-blog==1.6.7
