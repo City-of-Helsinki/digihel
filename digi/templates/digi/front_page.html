@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static twitter_tags%}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static compress twitter_tags%}
 
 {% block body_class %}template-front-page{% endblock %}
 
@@ -102,12 +102,8 @@
               <div class="events-highlights">
                   <img src="{% static "images/osallistu.svg" %}" class="event-illustration">
                   <h2>Tapahtumia</h2>
-
-                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
-                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-27">to 8.12.2016 15:00</time></div>
-                  <div class="event-location">Helsinki Think Company</div>
-                  <a class="event-readmore" href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrdgjwy">Lue lisää »</a>
-              </div>
+                  <ul></ul>
+             </div>
               <div class="twitter-feed">
                   <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
                   <h2>#digiHelsinki</h2>
@@ -133,4 +129,12 @@
       </section>
   </article>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{% compress js inline %}
+<script type="text/javascript">
+    $.getJSON('/event_data/?future=true', function(json) {return displayEvents(json,false)});
+</script>
+{% endcompress %}
 {% endblock %}

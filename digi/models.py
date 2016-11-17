@@ -166,5 +166,10 @@ class FrontPage(RelativeURLMixin, Page):
         return posts
 
     @property
+    def events(self):
+        events = EventIndexPage.objects.all().order_by('-date')
+        return events
+
+    @property
     def footer_link_sections(self):
         return FooterLinkSection.objects.order_by('sort_order')
