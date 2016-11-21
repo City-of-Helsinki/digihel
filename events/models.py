@@ -21,7 +21,7 @@ class EventsIndexPage(Page):
     type = _('Events')
     data_source = EnumIntegerField(DataSources, verbose_name=_('Event data source'), default=DataSources.LINKEDEVENTS)
     facebook_page_id = models.CharField(default='1415745085336451', max_length=200)
-    linkedevents_params = models.CharField(default='?keyword=yso:p8692', max_length=200)
+    linkedevents_params = models.CharField(default='?keyword=yso:p8692,yso:p26655', max_length=200)
 
     content_panels = Page.content_panels + [
         FieldPanel('data_source'),
