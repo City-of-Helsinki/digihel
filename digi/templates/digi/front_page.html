@@ -99,10 +99,14 @@
             </div>
           </div>
           <div class="col-md-4">
+              {% if self.event_index %}
               <div class="events-highlights">
                   <a class="link-unstyled" href="{% pageurl self.event_index %}"><img src="{% static "images/osallistu.svg" %}" class="event-illustration">
                   <h2>Tapahtumia</h2></a>
                   <ul></ul>
+              {% else %}
+                  Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
+              {% endif %}
              </div>
               <div class="twitter-feed">
                   <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
