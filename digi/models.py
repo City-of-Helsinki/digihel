@@ -12,6 +12,7 @@ from wagtail.wagtailsearch import index
 
 from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
+from events.models import EventsIndexPage
 
 
 class Indicator(models.Model):
@@ -47,6 +48,8 @@ class FooterLinkSection(ClusterableModel):
 
 class FooterLink(Orderable, RelatedLink):
     section = ParentalKey('digi.FooterLinkSection', related_name='links')
+
+
 
 
 class ThemeIndexPage(RelativeURLMixin, Page):
@@ -166,9 +169,8 @@ class FrontPage(RelativeURLMixin, Page):
         return posts
 
     @property
-    def events(self):
-        events = EventIndexPage.objects.all().order_by('-date')
-        return events
+    def event_index(self):
+        return EventsIndexPage.objects.live().first()
 
     @property
     def footer_link_sections(self):

@@ -77,7 +77,7 @@ class EventsIndexPage(Page):
                                   self.urls[self.data_source] +
                                   'event/' +
                                   self.linkedevents_params +
-                                  '&sort=-end_time&page_size=100').json()
+                                  '&include=location&sort=-end_time&page_size=100').json()
         events = event_list.get('data')
 
         # make sure we have all the events fetched
@@ -97,7 +97,6 @@ class EventsIndexPage(Page):
         except (TimeoutError, ConnectionError, LookupError):
             # if the event source is unreachable or down or data is invalid
             events = []
-        print(len(events))
         if future:
             # the methods are assumed to return events latest first, reverse the order
             tz = pytz.timezone(settings.TIME_ZONE)

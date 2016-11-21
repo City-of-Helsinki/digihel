@@ -1,26 +1,37 @@
 window.displayEvents = (eventData, grid = false) ->
-  $list = $(".events-highlights")
+  $list = $(".events-highlights, .events-index")
   if Object.keys(eventData).length == 0
     $list.append $("<h4 class='event-title'>Tällä hetkellä ei tulevia tapahtumia.</h4>")
   for event in eventData
     if event.info_url?
-      eventLink=event.info_url
+      eventLink=event.info_url.fi
     else
       eventLink = "http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=" + event.id
     if event.images.length > 0
       eventImage=event.images[0].url
     else
-      eventImage = "/static/images/helsinki-vaakuna.svg"
+      eventImage = "/static/images/share-default.jpg"
+    if event.location?
+      eventLocationLink = "https://palvelukartta.hel.fi/unit/" + event.location.id.split('tprek:').pop()
+      eventLocationName = event.location.name.fi
+    else
+      eventLocationLink = null
+      eventLocationName = event.location_extra_info.fi
+    if event.short_description?
+      eventDescription = event.short_description.fi
+    else
+      eventDescription = event.description.fi.substr(0,event.description.fi.indexOf('.')+1)
     if grid
       $li = $("<div class='col-sm-6 col-md-4' />")
       template = """
         <div class='theme-preview match-height'>
           <a class='theme-thumbnail link-unstyled' href="#{eventLink}"><img src="#{eventImage}" /></a>
           <small class="card-type">
-            <time datetime="#{event.start_time}"></time>#{event.start_time} @ #{event.location}
+            <time datetime="#{event.start_time}">#{event.start_time}</time> @
+            <a href="#{eventLocationLink}">#{eventLocationName}</a>
           </small>
-          <a class='link-unstyled' href="#{eventLink}"><h3>#{event.name}</h3></a>
-          <p>#{event.short_description}</p>
+          <a class='link-unstyled' href="#{eventLink}"><h3>#{event.name.fi}</h3></a>
+          <p>#{eventDescription}</p>
         </div>
       """
     else
@@ -28,7 +39,7 @@ window.displayEvents = (eventData, grid = false) ->
       template = """
         <h4 class="event-title">#{event.name.fi}</h4>
         <div class="event-date"><time itemprop="startDate" datetime="#{event.start_time}">#{event.start_time}</time></div>
-        <div class="event-location">#{event.location}</div>
+        <div class="event-location"><a href="#{eventLocationLink}">#{eventLocationName}</a></div>
         <a href="#{eventLink}">Lue lisää »</a>
       """
     $li.append $($.trim template)
