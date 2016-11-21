@@ -21,13 +21,14 @@ window.displayEvents = (eventData, grid = false) ->
       eventDescription = event.short_description.fi
     else
       eventDescription = event.description.fi.substr(0,event.description.fi.indexOf('.')+1)
+    eventTime = moment(event.start_time).format('dd DD.MM.YYYY HH:mm')
     if grid
       $li = $("<div class='col-sm-6 col-md-4' />")
       template = """
         <div class='theme-preview match-height'>
           <a class='theme-thumbnail link-unstyled' href="#{eventLink}"><img src="#{eventImage}" /></a>
           <small class="card-type">
-            <time datetime="#{event.start_time}">#{event.start_time}</time> @
+            <time datetime="#{eventTime}">#{eventTime}</time> @
             <a href="#{eventLocationLink}">#{eventLocationName}</a>
           </small>
           <a class='link-unstyled' href="#{eventLink}"><h3>#{event.name.fi}</h3></a>
@@ -38,12 +39,9 @@ window.displayEvents = (eventData, grid = false) ->
       $li = $("<div class='event-list__item' />")
       template = """
         <h4 class="event-title">#{event.name.fi}</h4>
-        <div class="event-date"><time itemprop="startDate" datetime="#{event.start_time}">#{event.start_time}</time></div>
+        <div class="event-date"><time datetime="#{eventTime}">#{eventTime}</time></div>
         <div class="event-location"><a href="#{eventLocationLink}">#{eventLocationName}</a></div>
         <a href="#{eventLink}">Lue lisää »</a>
       """
     $li.append $($.trim template)
     $list.append $li
-  # format dates
-  $.timeago.settings.relativeTime = true
-  $("time").timeago()
