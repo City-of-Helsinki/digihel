@@ -640,12 +640,37 @@ img {
 
 .blogs-preview {
 
+  margin-bottom: $line-height-computed * 2;
+
+  .card-type {
+    margin-bottom: $line-height-computed;
+  }
+
   h3 {
+    color: $helsinkiblue;
+    margin-bottom: $line-height-computed / 2;
     margin-top: 0;
   }
 
+  time {
+    color: $gray-light;
+    margin-bottom: $line-height-computed / 2;
+  }
+
+  .blog-post-main-image {
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    margin-bottom: $line-height-computed * 2;
+
+    @media screen and (max-width: $screen-sm-max) {
+      height: $line-height-computed * 8;
+      margin-bottom: $line-height-computed;
+    }
+  }
+
   .blog-post {
-    border-bottom: 1px dotted $gray-base;
+    //border-bottom: 1px dotted $gray-base;
     margin-bottom: $line-height-computed / 2;
     padding-bottom: $line-height-computed / 2;
   }
