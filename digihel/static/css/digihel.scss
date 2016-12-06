@@ -529,13 +529,12 @@ img {
 //* Box stylings */
 
 .events-highlights {
-  position: relative;
 
   .event-illustration {
     height: 6em;
     display: block;
     position: absolute;
-    top: -2em;
+    top: -1.5em;
     right: -1.5em;
   }
 
@@ -549,21 +548,78 @@ img {
   }
 
   .event-date {
+    color: lighten($helsinkiturquoise, 45%);
   }
 
   .event-location {
+    color: lighten($helsinkiturquoise, 45%);
   }
 
   .event-description {
   }
+
+}
+
+.twitter-feed {
+  .twitter-illustration {
+    height: 6em;
+    display: block;
+    position: absolute;
+    top: -1.5em;
+    right: -1.5em;
+  }
+
+  .tweet {
+    margin-bottom: $line-height-computed;
+    //border: 1px solid lighten($helsinkiturquoise,40%);
+    //padding: $line-height-computed / 2;
+    a {
+      color: lighten($helsinkiturquoise,45%);
+    }
+  }
+
+  .tweet__author {
+    @extend .media;
+    margin-bottom: 6px;
+  }
+
+  .tweet__avatar {
+    @extend .media-left;
+    padding-right: 10px;
+  }
+
+  .tweet__fullname {
+    color: lighten($helsinkiturquoise,45%);
+    display: block;
+    font-size: 1.15em;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .tweet__username {
+    display: block;
+    color: #fff;
+    font-size: $font-size-small;
+  }
+
+  .tweet__timestamp {
+    font-size: $font-size-small;
+    color: #fff;
+  }
+
+  .tweet__tweettext {
+    margin-bottom: 6px;
+  }
 }
 
 .manual-links,
-.events-highlights {
+.events-highlights,
+.twitter-feed {
   background-color: $helsinkiturquoise;
   color: $white;
   margin-bottom: 2em;
   padding: 1em;
+  position: relative;
 
   h2,
   h3 {
