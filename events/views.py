@@ -8,7 +8,7 @@ from events.models import EventsIndexPage
 def event_data(request):
     future = request.GET.get('future', 'False')
     try:
-        if future.lower() == 'True'.lower():
+        if future.lower() == 'true':
             data = EventsIndexPage.objects.get().events(future=True)
         else:
             data = EventsIndexPage.objects.get().events()
