@@ -162,7 +162,7 @@ class FrontPage(RelativeURLMixin, Page):
 
     @property
     def blog_posts(self):
-        posts = BlogPage.objects.all().order_by('-date')
+        posts = BlogPage.objects.all().live().order_by('-date')
         return posts
 
     @property
