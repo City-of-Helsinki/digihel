@@ -83,11 +83,7 @@ class EventsIndexPage(Page):
                                   '&include=location&sort=-end_time&page_size=100').json()
         events = event_list.get('data')
 
-        # make sure we have all the events fetched
-
-        while event_list.get('meta').get('next'):
-            event_list = requests.get(event_list.get('meta').get('next')).json()
-            events.extend(event_list.get('data'))
+        # we will be happy with 100 latest events for now
         cache.add('linkedevents', events, 3600)
         return events
 
