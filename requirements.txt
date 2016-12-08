@@ -26,7 +26,7 @@ django-libsass==0.7
 django-modelcluster==2.0  # via wagtail
 django-taggit==0.18.3     # via wagtail
 django-treebeard==4.0.1   # via wagtail
-Django==1.9.10            # via django-allauth, django-bower, django-treebeard, wagtail
+Django==1.9.12            # via django-allauth, django-bower, django-treebeard, wagtail
 djangorestframework==3.4.7  # via wagtail
 elasticsearch==2.4.0
 first==2.0.1              # via pip-tools
