@@ -57,6 +57,13 @@ class ThemeIndexPage(RelativeURLMixin, Page):
         return ThemePage.objects.all()
 
 
+class GuideFrontPage(RelativeURLMixin, Page):
+
+    @property
+    def blog_posts(self):
+        posts = BlogPage.objects.all().live().filter(tags__name='digipalveluopas').order_by('-date')
+        return posts
+
 class ThemePage(RelativeURLMixin, Page):
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
