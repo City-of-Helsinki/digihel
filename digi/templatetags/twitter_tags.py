@@ -11,14 +11,18 @@ register = template.Library()
 
 
 def get_tweepy_api():
-    auth = tweepy.OAuthHandler(
-        consumer_key=settings.TWITTER_CONSUMER_KEY,
-        consumer_secret=settings.TWITTER_CONSUMER_SECRET,
-    )
-    auth.set_access_token(
-        key=settings.TWITTER_ACCESS_TOKEN,
-        secret=settings.TWITTER_ACCESS_TOKEN_SECRET,
-    )
+    try:
+        auth = tweepy.OAuthHandler(
+            consumer_key=settings.TWITTER_CONSUMER_KEY,
+            consumer_secret=settings.TWITTER_CONSUMER_SECRET,
+        )
+        auth.set_access_token(
+            key=settings.TWITTER_ACCESS_TOKEN,
+            secret=settings.TWITTER_ACCESS_TOKEN_SECRET,
+        )
+    except AttributeError:
+        print('No Twitter tokens found in settings')
+        return None
     return tweepy.API(auth)
 
 
@@ -31,12 +35,19 @@ def twitter_search(query):
     :return:
     :rtype:
     """
-    results = list(get_cached_with_mtime(
-        cache_key='twitter_%s' % query,
-        max_mtime=TWEET_CACHE_REFRESH_AGE,
-        getter=lambda: get_tweepy_api().search(q=query, rpp=100, result_type='recent'),
-        default=[],
-    ))
+    tweepy_api = get_tweepy_api()
+    if not tweepy_api:
+        return None
+    try:
+        results = list(get_cached_with_mtime(
+            cache_key='twitter_%s' % query,
+            max_mtime=TWEET_CACHE_REFRESH_AGE,
+            getter=lambda: tweepy_api.search(q=query, rpp=100, result_type='recent'),
+            default=[],
+        ))
+    except tweepy.TweepError as error:
+        print('Tweepy responded with error: ' + str(error))
+        return None
     for result in results:
         result.html = render_tweet_html(result)
     return results
