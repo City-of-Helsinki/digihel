@@ -23,6 +23,10 @@ rich_text_blocks = [
     ('image', ImageChooserBlock()),
 ]
 
+guide_blocks = rich_text_blocks + [
+    ('raw_content', blocks.RawHTMLBlock()),
+]
+
 class Indicator(models.Model):
     description = models.CharField(max_length=200)
     value = models.IntegerField()  # no history data for now
@@ -74,8 +78,8 @@ class GuideFrontPage(RelativeURLMixin, Page):
         return posts
 
 class GuideContentPage(RelativeURLMixin, Page):
-    body = StreamField(rich_text_blocks)
-    sidebar = StreamField(rich_text_blocks)
+    body = StreamField(guide_blocks)
+    sidebar = StreamField(guide_blocks)
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),

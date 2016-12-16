@@ -5,14 +5,20 @@
 
 {% block content %}
 <div class="container main-container page-content guidepage-container" role="main">
-    <h2 class="blog-section-header"><a href="/digipalveluopas">Digiopas</a></h2>
-    <h1 class="page-title">{{ page.title }}</h1>
 
     <div class="row">
         <div class="col-md-8 content">
+            <h2 class="guidepage-section-header"><a href="/digipalveluopas">Digipalveluopas</a></h2>
+            <h1 class="page-title">{{ page.title }}</h1>
             {% include "content/blocks.html" with blocks=page.body only %}
         </div>
         <div class="col-md-4">
+            <div class="guidepage-infobox">
+                <h4>Digipalveluopas kehittyy</h4>
+                <p>Helsingin digipalveluiden kehittämisopas auttaa kaupungin organisaatiota ja sen yhteistyökumppaneita, kuten yrityksiä ja muita kehittäjiä noudattamaan yhteisiä periaatteita ja käyttämään sopivia työkaluja, kun kaupungin digitaalisia palveluita suunnitellaan ja rakennetaan.</p>
+
+                <p>Digipalveluoppaan sisältöä laajennetaan vuonna 2017 kattaamaan käyttökokemukseen, palveluiden ulkoasuun ja teknologiaan liittyviä ohjeistuksia.</p>
+            </div>
             {% include "content/blocks.html" with blocks=page.sidebar only %}
         </div>
     </div>
