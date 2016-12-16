@@ -99,15 +99,19 @@
             </div>
           </div>
           <div class="col-md-4">
-              {% if self.event_index %}
               <div class="events-highlights">
+                {% if self.event_index %}
                   <a class="link-unstyled" href="{% pageurl self.event_index %}"><img src="{% static "images/osallistu.svg" %}" class="event-illustration">
                   <h2>Tapahtumia</h2></a>
                   <ul></ul>
-              {% else %}
+                  <div class="events-source">
+                      <a class="link-unstyled" href="{% pageurl self.event_index %}">Tapahtumatiedot</a>
+                      <a class="link-unstyled" href="https://dev.hel.fi/projects/linked-events/">Linked Events -rajapinnasta</a>
+                  </div>
+                {% else %}
                   Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
-              {% endif %}
-             </div>
+                {% endif %}
+              </div>
               <div class="twitter-feed">
                   <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
                   <h2>#digiHelsinki</h2>

@@ -1,5 +1,8 @@
 window.displayEvents = (eventData, grid = false) ->
   $list = $(".events-highlights, .events-index")
+  $footnote = $(".events-source")
+  if not grid
+    eventData = eventData[..2]
   if Object.keys(eventData).length == 0
     $list.append $("<h4 class='event-title'>Tällä hetkellä ei tulevia tapahtumia.</h4>")
   for event in eventData
@@ -35,6 +38,8 @@ window.displayEvents = (eventData, grid = false) ->
           <p>#{eventDescription}</p>
         </div>
       """
+      $li.append $($.trim template)
+      $list.append $li
     else
       $li = $("<div class='event-list__item' />")
       template = """
@@ -43,5 +48,5 @@ window.displayEvents = (eventData, grid = false) ->
         <div class="event-location"><a href="#{eventLocationLink}">#{eventLocationName}</a></div>
         <a href="#{eventLink}">Lue lisää »</a>
       """
-    $li.append $($.trim template)
-    $list.append $li
+      $li.append $($.trim template)
+      $footnote.before $li
