@@ -3,16 +3,29 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+)
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
 
 from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
 
+rich_text_blocks = [
+    ('heading', blocks.CharBlock(classname="full title")),
+    ('paragraph', blocks.RichTextBlock()),
+    ('image', ImageChooserBlock()),
+]
+
+guide_blocks = rich_text_blocks + [
+    ('raw_content', blocks.RawHTMLBlock()),
+]
 
 class Indicator(models.Model):
     description = models.CharField(max_length=200)
@@ -56,6 +69,25 @@ class ThemeIndexPage(RelativeURLMixin, Page):
     def themes(self):
         return ThemePage.objects.all()
 
+
+class GuideFrontPage(RelativeURLMixin, Page):
+
+    @property
+    def blog_posts(self):
+        posts = BlogPage.objects.all().live().filter(tags__name='digipalveluopas').order_by('-date')
+        return posts
+
+class GuideContentPage(RelativeURLMixin, Page):
+    body = StreamField(guide_blocks)
+    sidebar = StreamField(guide_blocks)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+        StreamFieldPanel('sidebar')
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('body')
+    ]
 
 class ThemePage(RelativeURLMixin, Page):
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,

@@ -1098,3 +1098,187 @@ img {
 .search-results-item {
   border-bottom: 1px solid $helsinkiblue;
 }
+
+
+//* Digi Guide */
+
+.design-principles-banner {
+  border-top: 3px solid $helsinkiturquoise;
+  border-bottom: 3px solid $helsinkiturquoise;
+  margin-top: $line-height-computed;
+
+  p {
+    font-size: 18px;
+  }
+
+  a {
+    color: $helsinkiturquoise;
+  }
+}
+
+.design-principles {
+  background: #3040aa;
+  color: #fff;
+  @extend .clearfix;
+
+  h2 {
+    color: $helsinkiturquoise;
+    margin-top: $line-height-computed;
+  }
+
+  .principle {
+    float: left;
+    margin: 5px 2%;
+    width: 46%;
+
+    @media screen and (min-width: $screen-md-min) {
+      margin: 5px 1%;
+      width: 18%;
+    }
+  }
+
+  .principle__content {
+    background: #05add6;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    font-size: 24px;
+    height: $line-height-computed * 7;
+    line-height: 1;
+    margin-bottom: $line-height-computed / 2;
+    padding: 6px;
+    text-align: center;
+  }
+
+  .principle__content:hover {
+    .principle__figure {
+      //color: #3040aa;
+    }
+
+    .principle__figure::after {
+      bottom: -8px;
+    }
+
+    .principle__figure::before {
+      top: -8px;
+    }
+  }
+
+  .principle__figure {
+    display: block;
+    position: relative;
+    font-size: 34px;
+    font-weight: 700;
+    width: 60px;
+    margin: $line-height-computed auto;
+    text-align: center;
+    transition: all .5s;
+
+    &::after, &::before {
+      border: 4px solid #fff;
+      content: "";
+      display: block;
+      position: absolute;
+      left: 5px;
+      height: 8px;
+      width: 50px;
+      transition: all .5s;
+    }
+
+    &::after {
+      bottom: -12px;
+      border-top: 0;
+    }
+
+    &::before {
+      top: -12px;
+      border-bottom: 0;
+    }
+  }
+}
+
+.guidepage-section-header {
+  border-bottom: 4px solid #3842a6;
+  float: left;
+  font-size: 24px;
+  margin-bottom: 1em;
+  margin-top: 0;
+  padding-bottom: .5em;
+
+  a {
+    color: $text-color;
+  }
+}
+
+.guidepage-infobox {
+  background-color: #3842a6;
+  color: $white;
+  margin-bottom: 2em;
+  padding: 1em;
+  position: relative;
+}
+
+.guide-principle {
+
+  margin-bottom: $line-height-computed * 2;
+  margin-top: $line-height-computed * 2;
+
+  border-top: 3px solid $helsinkiturquoise;
+
+  .principle-header {
+    @extend .clearfix;
+    color: $helsinkiblue;
+
+    .principle--title {
+      margin-left: 90px;
+      display: block;
+      font-size: $font-size-h2;
+    }
+  }
+
+  .principle--figure {
+    display: block;
+    float: left;
+    width: 60px;
+    font-size: 60px;
+    font-weight: 700;
+    //margin: $line-height-computed / 2 auto;
+    text-align: center;
+
+    &::after {
+      border: 6px solid $helsinkiturquoise;
+      border-top: 0;
+      content: "";
+      display: block;
+      height: 10px;
+      margin: 0 auto;
+      width: 60px;
+    }
+
+    &::before {
+      border: 6px solid $helsinkiturquoise;
+      border-bottom: 0;
+      content: "";
+      display: block;
+      height: 10px;
+      margin: 0 auto;
+      width: 60px;
+    }
+  }
+
+  p {
+    //@extend .lead;
+    font-size: $font-size-large;
+    color: $helsinkiblue;
+  }
+
+  .principle-tags {
+    .principle-tag {
+      @extend .label;
+      //@extend .label-info;
+      background: $helsinkiturquoise;
+    }
+  }
+
+}
