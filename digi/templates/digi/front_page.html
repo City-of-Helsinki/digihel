@@ -14,44 +14,23 @@
 <div class="container main-container" role="main">
   <article class="front-page">
       <section class="row">
-          <div class="col-xs-12">
-            <div class="indicators clearfix">
+        <div class="col-xs-12">
+          <div class="indicators clearfix">
+            {% for ind in page.indicators %}
               <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('{% static "images/hki-palaute.svg" %}');">
-                <div class="indicator-content">
-                  <div class="indicator-value">
-                      149
+                <div class="indicator" id="{{ind.id}}" style="background-image: url('{% static ind.illustration_filename %}');">
+                  <div class="indicator-content">
+                    <div class="indicator-value">
+                      {{ ind.value }}
+                    </div>
+                    <div class="indicator-description">
+                      {{ ind.description }}
+                    </div>
                   </div>
-                  <div class="indicator-description">
-                      sähköisesti käsiteltyä palautetta päivässä
-                  </div>
                 </div>
+                <a href="{{ind.source_url}}">{{ ind.source_description }}</a>
               </div>
-              </div>
-              <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('{% static "images/hki-mies.svg" %}');">
-                <div class="indicator-content">
-                <div class="indicator-value">
-                    630&nbsp;752
-                </div>
-                <div class="indicator-description">
-                    helsinkiläistä
-                </div>
-                </div>
-              </div>
-            </div>
-              <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('{% static "images/hki-tietoaineisto.svg" %}');">
-                <div class="indicator-content">
-                <div class="indicator-value">
-                    569
-                </div>
-                <div class="indicator-description">
-                    avointa tietoaineistoa
-                </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </section>
