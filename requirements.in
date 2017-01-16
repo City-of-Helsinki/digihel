@@ -8,6 +8,7 @@ django-bower
 django-celery
 django-compressor-autoprefixer
 django-libsass
+django-social-widgets
 Django>=1.9,<1.10
 django_compressor
 elasticsearch
