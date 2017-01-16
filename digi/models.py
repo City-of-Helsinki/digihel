@@ -102,6 +102,7 @@ class ThemePage(RelativeURLMixin, Page):
     ], null=True, blank=True)
     blog_category = models.ForeignKey(BlogCategory, help_text='Corresponding blog category',
                                       null=True, blank=True, on_delete=models.SET_NULL)
+    twitter_hashtag = models.CharField(max_length=255, default="")
 
     parent_page_types = ['ThemeIndexPage']
     content_panels = Page.content_panels + [
@@ -109,6 +110,7 @@ class ThemePage(RelativeURLMixin, Page):
         FieldPanel('type'),
         FieldPanel('short_description'),
         FieldPanel('blog_category'),
+        FieldPanel('twitter_hashtag'),
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
