@@ -40,13 +40,12 @@ class EventsIndexPage(Page):
             return events
         events = []
         # facebook feed returns events latest first
-        feed = requests.get('https://' +
-                            self.urls[self.data_source] +
-                            self.facebook_page_id +
-                            '?fields=feed{link,message,object_id}' +
-                            '&access_token=' +
-                            str(settings.FACEBOOK_APP_ID) + '|' +
-                            settings.FACEBOOK_APP_SECRET).json()['feed']['data']
+        url = 'https://{}{}?fields=feed{{link,message,object_id}}&access_token={}|{}'.format(
+            self.urls[self.data_source],
+            self.facebook_page_id,
+            str(settings.FACEBOOK_APP_ID),
+            settings.FACEBOOK_APP_SECRET)
+        feed = requests.get(url).json()['feed']['data']
 
         # filter the events from the feed
 
@@ -59,13 +58,12 @@ class EventsIndexPage(Page):
 
         event_ids = ','.join([event['object_id'] for event in events])
         details = []
-        details = requests.get('https://' +
-                            self.urls[self.data_source] +
-                            '?ids=' + event_ids +
-                            '&fields=description,cover,end_time,name,start_time,id,picture,place' +
-                            '&access_token=' +
-                            str(settings.FACEBOOK_APP_ID) + '|' +
-                            settings.FACEBOOK_APP_SECRET).json()
+        url = 'https://{}?ids={}&fields=description,cover,end_time,name,start_time,id,picture,place&access_token={}|{}'.format(
+            self.urls[self.data_source],
+            event_ids,
+            str(settings.FACEBOOK_APP_ID),
+            settings.FACEBOOK_APP_SECRET)
+        details = requests.get(url).json()
         for event in events:
             event['details'] = details[event['object_id']]
         cache.add('facebook', events, 3600)
@@ -76,11 +74,10 @@ class EventsIndexPage(Page):
         if events:
             return events
         # the methods are assumed to return events latest first
-        event_list = requests.get('https://' +
-                                  self.urls[self.data_source] +
-                                  'event/' +
-                                  self.linkedevents_params +
-                                  '&include=location&sort=-end_time&page_size=100').json()
+        url = 'https://{}event/{}&include=location&sort=-end_time&page_size=100'.format(
+            self.urls[self.data_source],
+            self.linkedevents_params)
+        event_list = requests.get(url).json()
         events = event_list.get('data')
 
         # we will be happy with 100 latest events for now
