@@ -1232,11 +1232,8 @@ img {
 }
 
 .guide-principle {
-
-  margin-bottom: $line-height-computed * 2;
-  margin-top: $line-height-computed * 2;
-
-  border-top: 3px solid $helsinkiturquoise;
+  margin: 0;
+  padding: $navbar-height 0 0 0;
 
   .principle-header {
     @extend .clearfix;
