@@ -730,7 +730,6 @@ img {
   }
 
   .blog-post {
-    //border-bottom: 1px dotted $gray-base;
     margin-bottom: $line-height-computed / 2;
     padding-bottom: $line-height-computed / 2;
   }
@@ -979,7 +978,6 @@ img {
 }
 
 .page-header-blogpost {
-  border-bottom: 1px dotted $gray-base;
   margin-bottom: $line-height-computed;
 }
 
@@ -1066,7 +1064,7 @@ img {
     background-color: $helsinkiturquoise;
     background-position: center;
     background-size: cover;
-    height: $line-height-computed * 8;
+    height: $line-height-computed * 12;
 
     @media screen and (min-width: $screen-sm-min) {
       height: $line-height-computed * 16;
