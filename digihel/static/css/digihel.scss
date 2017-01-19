@@ -562,6 +562,12 @@ img {
   .event-description {
   }
 
+  .events-source {
+    @extend .small;
+    border-top: 1px solid lighten($helsinkiturquoise, 45%);
+    margin-top: $line-height-computed;
+  }
+
 }
 
 .twitter-feed {

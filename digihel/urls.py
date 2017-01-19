@@ -6,6 +6,7 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from digi.views import sitemap_view
+from events.views import event_data
 from feedback.views import FeedbackView
 from search import views as search_views
 
@@ -23,6 +24,9 @@ urlpatterns = [
     url(r'^blogi/', include('blog.urls', namespace="blog")),
     url(r'^sivukartta/$', sitemap_view),
     url(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
+
+    # client endpoints for external API data
+    url(r'^event_data/', event_data),
 
     url(r'', include(wagtail_urls)),
 ]

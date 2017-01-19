@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load digi_tags wagtailcore_tags compress wagtailimages_tags %}
+{% load humanize %}
+
+{% block content %}
+<div class="container main-container page-content" role="main">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-title">{{ page.title }}</h1>
+        </div>
+    </div>
+    <div class="row events-index">
+          <!-- Grid layout needs rework to wrap and align properly -->
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% compress js inline %}
+<script type="text/javascript">
+    $.getJSON('/event_data/', function(json) {return displayEvents(json,true)});
+</script>
+{% endcompress %}
+{% endblock %}
