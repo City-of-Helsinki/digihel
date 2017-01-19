@@ -19,7 +19,7 @@
 {% block extra_js %}
 {% compress js inline %}
 <script type="text/javascript">
-    $.getJSON('/event_data/', function(json) {return displayEvents(json,true)});
+    $.getJSON('/event_data/?future=true', function(json) {return displayEvents(json,true)});
 </script>
 {% endcompress %}
 {% endblock %}
