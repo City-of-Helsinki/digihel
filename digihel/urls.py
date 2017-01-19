@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^', include('glossy.urls')),
 
     url(r'^search/$', search_views.search, name='search'),
     url(r'^blogi/', include('blog.urls', namespace="blog")),

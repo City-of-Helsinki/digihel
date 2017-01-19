@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'digihel',
     'feedback',
     'search',
+    'glossy',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',

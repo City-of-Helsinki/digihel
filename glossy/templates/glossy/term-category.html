@@ -1,0 +1,9 @@
+{% load wagtailcore_tags %}
+{% for term in terms %}
+    <div class="term-definition">
+        <h2>{{ term }}</h2>
+        <div class="term-content">
+            {{ term.body|richtext }}
+        </div>
+    </div>
+{% endfor %}
