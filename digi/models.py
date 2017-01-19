@@ -16,6 +16,7 @@ from wagtail.wagtailsearch import index
 
 from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
+from events.models import EventsIndexPage
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -62,6 +63,8 @@ class FooterLink(Orderable, RelatedLink):
     section = ParentalKey('digi.FooterLinkSection', related_name='links')
 
 
+
+
 class ThemeIndexPage(RelativeURLMixin, Page):
     subpage_types = ['ThemePage']
 
@@ -99,6 +102,7 @@ class ThemePage(RelativeURLMixin, Page):
     ], null=True, blank=True)
     blog_category = models.ForeignKey(BlogCategory, help_text='Corresponding blog category',
                                       null=True, blank=True, on_delete=models.SET_NULL)
+    twitter_hashtag = models.CharField(max_length=255, default="")
 
     parent_page_types = ['ThemeIndexPage']
     content_panels = Page.content_panels + [
@@ -106,6 +110,7 @@ class ThemePage(RelativeURLMixin, Page):
         FieldPanel('type'),
         FieldPanel('short_description'),
         FieldPanel('blog_category'),
+        FieldPanel('twitter_hashtag'),
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
@@ -196,6 +201,10 @@ class FrontPage(RelativeURLMixin, Page):
     def blog_posts(self):
         posts = BlogPage.objects.all().live().order_by('-date')
         return posts
+
+    @property
+    def event_index(self):
+        return EventsIndexPage.objects.live().first()
 
     @property
     def footer_link_sections(self):

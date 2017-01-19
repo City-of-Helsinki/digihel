@@ -22,6 +22,7 @@ django-bower==5.2.0
 django-celery==3.1.17
 django-compressor-autoprefixer==0.1.0
 django-compressor==2.1    # via django-compressor-autoprefixer, django-libsass
+django-enumfields==0.8.2
 django-libsass==0.7
 django-modelcluster==2.0  # via wagtail
 django-social-widgets==0.4.0
@@ -30,6 +31,7 @@ django-treebeard==4.0.1   # via wagtail
 Django==1.9.12            # via django-allauth, django-bower, django-social-widgets, django-treebeard, wagtail
 djangorestframework==3.4.7  # via wagtail
 elasticsearch==2.4.0
+enum34==1.1.6             # via django-enumfields
 first==2.0.1              # via pip-tools
 html5lib==0.999999        # via wagtail
 isort==4.2.5
@@ -54,7 +56,7 @@ redis==2.10.5
 requests-oauthlib==0.7.0  # via django-allauth, tweepy
 requests==2.11.1          # via django-allauth, requests-oauthlib, tweepy
 rjsmin==1.0.12            # via django-compressor
-six==1.10.0               # via django-bower, html5lib, libsass, pip-tools, tweepy
+six==1.10.0               # via django-bower, django-enumfields, html5lib, libsass, pip-tools, tweepy
 tweepy==3.5.0
 twitter-text-python==1.1.0
 Unidecode==0.4.19         # via wagtail

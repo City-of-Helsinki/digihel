@@ -452,6 +452,7 @@ img {
 .contacts-list {
   background: $gray-lighter;
   padding: 1em;
+  margin-bottom: 2em;
 
   .media {
     border-top: 1px dotted $gray-base;
@@ -583,6 +584,12 @@ img {
   }
 
   .event-description {
+  }
+
+  .events-source {
+    @extend .small;
+    border-top: 1px solid lighten($helsinkiturquoise, 45%);
+    margin-top: $line-height-computed;
   }
 
 }
@@ -753,7 +760,6 @@ img {
   }
 
   .blog-post {
-    //border-bottom: 1px dotted $gray-base;
     margin-bottom: $line-height-computed / 2;
     padding-bottom: $line-height-computed / 2;
   }
@@ -1014,7 +1020,6 @@ img {
 }
 
 .page-header-blogpost {
-  border-bottom: 1px dotted $gray-base;
   margin-bottom: $line-height-computed;
 }
 
@@ -1101,7 +1106,7 @@ img {
     background-color: $helsinkiturquoise;
     background-position: center;
     background-size: cover;
-    height: $line-height-computed * 8;
+    height: $line-height-computed * 12;
 
     @media screen and (min-width: $screen-sm-min) {
       height: $line-height-computed * 16;
@@ -1269,11 +1274,8 @@ img {
 }
 
 .guide-principle {
-
-  margin-bottom: $line-height-computed * 2;
-  margin-top: $line-height-computed * 2;
-
-  border-top: 3px solid $helsinkiturquoise;
+  margin: 0;
+  padding: $navbar-height 0 0 0;
 
   .principle-header {
     @extend .clearfix;
