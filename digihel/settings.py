@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'wagtail_svgmap',
     'wagtailtinymce',
     'djcelery',
+    'social_widgets',
 
     'allauth',
     'allauth.account',
