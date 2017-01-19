@@ -177,6 +177,29 @@ img {
   }
 }
 
+//* Social Share Widgets */
+
+.social-widgets {
+  border-bottom: $gray-lighter 2px solid;
+  border-top: $gray-lighter 2px solid;
+  list-style: none;
+  margin-bottom: $line-height-computed ;
+  padding: ($line-height-computed / 2) 0 0;
+
+  li {
+    margin-bottom: .5em;
+    margin-left: 0;
+  }
+
+  @media screen and (max-width: $screen-sm-max) {
+    li {
+      display: inline-block;
+      height: $line-height-computed;
+      vertical-align: middle;
+    }
+  }
+}
+
 //* Navigation */
 
 .site-title {
@@ -563,6 +586,12 @@ img {
   .event-description {
   }
 
+  .events-source {
+    @extend .small;
+    border-top: 1px solid lighten($helsinkiturquoise, 45%);
+    margin-top: $line-height-computed;
+  }
+
 }
 
 .twitter-feed {
@@ -731,7 +760,6 @@ img {
   }
 
   .blog-post {
-    //border-bottom: 1px dotted $gray-base;
     margin-bottom: $line-height-computed / 2;
     padding-bottom: $line-height-computed / 2;
   }
@@ -944,6 +972,10 @@ img {
   }
 
   .blog-post-date {
+    margin-bottom: $line-height-computed;
+  }
+
+  .blog-post-date {
     color: $gray-light;
     font-size: $font-size-large;
   }
@@ -961,6 +993,14 @@ img {
 
   .blog-post-author-details {
     @extend .media-body;
+  }
+
+  .blog-post-tags {
+    margin-bottom: $line-height-computed;
+  }
+
+  .blog-post-categories {
+    margin-bottom: $line-height-computed;
   }
 }
 
@@ -980,7 +1020,6 @@ img {
 }
 
 .page-header-blogpost {
-  border-bottom: 1px dotted $gray-base;
   margin-bottom: $line-height-computed;
 }
 
@@ -1067,7 +1106,7 @@ img {
     background-color: $helsinkiturquoise;
     background-position: center;
     background-size: cover;
-    height: $line-height-computed * 8;
+    height: $line-height-computed * 12;
 
     @media screen and (min-width: $screen-sm-min) {
       height: $line-height-computed * 16;
@@ -1235,11 +1274,8 @@ img {
 }
 
 .guide-principle {
-
-  margin-bottom: $line-height-computed * 2;
-  margin-top: $line-height-computed * 2;
-
-  border-top: 3px solid $helsinkiturquoise;
+  margin: 0;
+  padding: $navbar-height 0 0 0;
 
   .principle-header {
     @extend .clearfix;

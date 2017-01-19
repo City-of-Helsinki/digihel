@@ -16,6 +16,7 @@ from wagtail.wagtailsearch import index
 
 from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
+from events.models import EventsIndexPage
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -60,6 +61,8 @@ class FooterLinkSection(ClusterableModel):
 
 class FooterLink(Orderable, RelatedLink):
     section = ParentalKey('digi.FooterLinkSection', related_name='links')
+
+
 
 
 class ThemeIndexPage(RelativeURLMixin, Page):
@@ -198,6 +201,10 @@ class FrontPage(RelativeURLMixin, Page):
     def blog_posts(self):
         posts = BlogPage.objects.all().live().order_by('-date')
         return posts
+
+    @property
+    def event_index(self):
+        return EventsIndexPage.objects.live().first()
 
     @property
     def footer_link_sections(self):
