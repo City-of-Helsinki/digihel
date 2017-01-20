@@ -1,0 +1,24 @@
+{% load static twitter_tags %}
+{% if page.twitter_hashtag %}
+<div class="twitter-feed">
+    <img src="{% static "images/twitter.svg " %}" class="twitter-illustration">
+    <h2>#{{ page.twitter_hashtag }}</h2>
+    {% twitter_search "#"|add:page.twitter_hashtag|add:" exclude:retweets" as tweets %} {% for t in tweets|slice:":3" %}
+    <div class="tweet">
+        <a href="https://twitter.com/{{t.user.screen_name}}">
+            <div class="tweet__author">
+                <div class="tweet__avatar"><img src="{{ t.user.profile_image_url_https }}" class="media-object"></div>
+                <div class="media-body">
+                    <span class="tweet__fullname">{{ t.user.name }}</span>
+                    <span class="tweet__username">@{{ t.user.screen_name }}</span>
+                </div>
+            </div>
+        </a>
+        <div class="tweet__tweettext">{{ t.html }}</div>
+        <a href="https://www.twitter.com/{{ t.user.screen_name }}/status/{{ t.id }}">
+            <div class="tweet__timestamp">{{ t.created_at }}</div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

@@ -1,7 +1,7 @@
 import tweepy
 from django import template
 from django.conf import settings
-
+from django.utils.text import slugify
 from digi.tweet_utils import render_tweet_html
 from digi.utils import get_cached_with_mtime
 
@@ -40,7 +40,7 @@ def twitter_search(query):
         return None
     try:
         results = list(get_cached_with_mtime(
-            cache_key='twitter_%s' % query,
+            cache_key='twitter_%s' % slugify(query),
             max_mtime=TWEET_CACHE_REFRESH_AGE,
             getter=lambda: tweepy_api.search(q=query, rpp=100, result_type='recent'),
             default=[],

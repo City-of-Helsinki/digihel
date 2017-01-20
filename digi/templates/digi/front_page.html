@@ -114,9 +114,9 @@
               </div>
               <div class="twitter-feed">
                   <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
-                  <h2>#digiHelsinki</h2>
+                  <h2><a href="https://twitter.com/hashtag/digihelsinki?f=tweets&vertical=default">#digiHelsinki</a></h2>
 
-                  {% twitter_search "#digihelsinki" as tweets %}
+                  {% twitter_search "#digihelsinki exclude:retweets" as tweets %}
                   {% for t in tweets|slice:":3" %}
                     <div class="tweet">
                       <a href ="https://twitter.com/{{t.user.screen_name}}">
