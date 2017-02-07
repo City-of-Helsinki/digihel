@@ -30,9 +30,13 @@ guide_blocks = rich_text_blocks + [
 
 class Indicator(models.Model):
     description = models.CharField(max_length=200)
+    slug = models.CharField(max_length=100, default='')
     value = models.IntegerField()  # no history data for now
     order = models.IntegerField(null=True, blank=True)
     front_page = models.BooleanField(default=False)
+    illustration_filename = models.CharField(max_length=100, default='images/hki-tietoaineisto.svg')
+    source_description = models.CharField(max_length=200, default='')
+    source_url = models.CharField(max_length=100, default='http://dev.hel.fi/apis')
 
     sort_order_field = 'order'
 
