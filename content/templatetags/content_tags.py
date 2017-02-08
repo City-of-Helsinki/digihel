@@ -124,8 +124,8 @@ class TableOfContentsNode(template.Node):
         toc_anchor_count = 1
 
         for block in blocks:
-            if not (isinstance(block, BoundBlock) or
-                        not isinstance(block.value, RichText)):
+            if (not isinstance(block, BoundBlock) or not
+            isinstance(block.value, RichText)):
                 continue
             soup = BeautifulSoup(block.value.source)
             h2_tags = soup.find_all('h2')
