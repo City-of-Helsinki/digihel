@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags kehmet_tags static %}
+{% load wagtailcore_tags kehmet_tags content_tags static %}
 
 {% block content %}
+{% do_table_of_contents page.body as toc %}
+
 <div class="modal page-feedback-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -54,6 +56,16 @@
         {% block kehmet_content %}{% endblock %}
         </div>
         <div class="col-md-4">
+            {% if toc %}
+            <nav class="page-nav">
+                <h5>Tällä sivulla</h5>
+                    <ul>
+                        {% for heading, anchor in toc %}
+                        <li><a href="#{{ anchor }}">{{ heading }}</a></li>
+                        {% endfor %}
+                    </ul>
+            </nav>
+            {% endif %}
             <nav class="sidenav">
                 {% sidebar_page_nav page %}
             </nav>
