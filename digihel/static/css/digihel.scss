@@ -131,53 +131,130 @@ img {
   }
 }
 
-.phase-label--draft {
-  background-color: lighten($gray, 40%);
+$discoverycolor:  #b8d154;
+$alphacolor:      #3bbfbb;
+$betacolor:       #05c2de;
+$livecolor:       #0396d1;
+$retirementcolor: #999999;
+$inactivecolor:   #dedede;
+$labelheight:     22px;
 
-  &::after,
-  &::before {
-    border-color: lighten($gray, 40%);
+.phase-process {
+    margin:  6px 0;
+    padding: 0;
+    list-style: none;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    li {
+      display: table-cell;
+      width: 25%;
+      transition: width 0.2s;
+    }
+    li:hover {
+      width: 50%;
+    }
+  .phase-label {
+    display: block;
+  }
+  li:first-child {
+    .phase-label {
+      margin-left: 0;
+    }
+    .phase-label::before {
+      border: 0;
+    }
+  }
+  li:last-child {
+    .phase-label {
+      margin-right: 0;
+    }
+    .phase-label::after {
+      border: 0;
+    }
+  }
+}
+
+
+.phase-label--discovery {
+ background-color: $discoverycolor;
+  &::after, &::before {
+    border-color: $discoverycolor;
+  }
+}
+
+.phase-label--alpha {
+ background-color: $alphacolor;
+  &::after, &::before {
+    border-color: $alphacolor;
+  }
+}
+
+.phase-label--beta {
+ background-color: $betacolor;
+  &::after, &::before {
+    border-color: $betacolor;
+  }
+}
+
+.phase-label--live {
+ background-color: $livecolor;
+  &::after, &::before {
+    border-color: $livecolor;
+  }
+}
+
+.phase-label--retirement {
+ background-color: $retirementcolor;
+  &::after, &::before {
+    border-color: $retirementcolor;
   }
 }
 
 .phase-label {
-  color: $white;
   display: inline-block;
-  font-size: $line-height-computed / 2;
-  font-weight: bold;
-  height: $line-height-computed;
-  line-height: $line-height-computed;
-  margin: $line-height-computed / 2;
-  padding: 0 $line-height-computed / 4;
-  position: relative;
-  text-align: center;
-  text-transform: uppercase;
-
-  &::after,
-  &::before {
-    content: '';
-    height: 0;
-    position: absolute;
-    top: 0;
-    width: 0;
-  }
-
+    position: relative;
+    height: $labelheight;
+    line-height: $labelheight;
+    margin: 0 $labelheight / 2;
+    font-size: $labelheight / 2;
+    padding: 0 $labelheight / 4;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
   &::after {
-    border-bottom-color: transparent !important;
-    border-right-color: transparent !important;
-    border-style: solid;
-    border-top-color: transparent !important;
-    border-width: $line-height-computed / 2;
-    left: 100%;
+    content:"";
+    position: absolute;
+    top:0;
+    left:100%;
+    height:0;
+    width:0;
+    border-width: $labelheight / 2;
+    border-style:solid;
+    border-top-color:transparent !important;
+    border-bottom-color:transparent !important;
+    border-right-color:transparent !important;
   }
-
   &::before {
-    border-bottom-color: transparent !important;
-    border-left-color: transparent !important;
-    border-style: solid;
-    border-top-color: transparent !important;
-    border-width: $line-height-computed / 2;
-    right: 100%;
+    content:"";
+    position: absolute;
+    top:0;
+    right:100%;
+    height:0;
+    width:0;
+    border-width: $labelheight / 2;
+    border-style:solid;
+    border-top-color:transparent !important;
+    border-bottom-color:transparent !important;
+    border-left-color:transparent !important;
+  }
+}
+
+.phase-label.is-inactive {
+  background: #dedede;
+  &::before, &::after {
+    border-color: #dedede;
   }
 }
 
@@ -517,6 +594,11 @@ img {
 
   .theme-header-image {
     margin-bottom: 2em;
+  }
+
+  .phase-process {
+    margin-top: 0;
+    margin-bottom: $line-height-computed;
   }
 }
 
@@ -1228,6 +1310,11 @@ img {
     &:hover {
       text-decoration: none;
     }
+  }
+
+  .phase-process {
+    margin-top: 0;
+    margin-bottom: $line-height-computed;
   }
 }
 
