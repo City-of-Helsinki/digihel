@@ -1,4 +1,4 @@
-from blog.models import BlogCategory, BlogPage
+from blog.models import BlogCategory, BlogPage, BlogIndexPage
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
@@ -81,7 +81,7 @@ class GuideFrontPage(RelativeURLMixin, Page):
 
     @property
     def blog_posts(self):
-        posts = BlogPage.objects.all().live().filter(tags__name='digipalveluopas').order_by('-date')
+        posts = BlogPage.objects.descendant_of(self).live().order_by('-date')
         return posts
 
 class GuideContentPage(RelativeURLMixin, Page):
@@ -203,7 +203,8 @@ class FrontPage(RelativeURLMixin, Page):
 
     @property
     def blog_posts(self):
-        posts = BlogPage.objects.all().live().order_by('-date')
+        main_blog_index = BlogIndexPage.objects.get(slug="blogikirjoitukset")
+        posts = BlogPage.objects.descendant_of(main_blog_index).live().order_by('-date')
         return posts
 
     @property
