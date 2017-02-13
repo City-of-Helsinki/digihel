@@ -28,14 +28,16 @@ window.displayEvents = (eventData, grid = false) ->
     if grid
       $li = $("<div class='col-sm-6 col-md-4' />")
       template = """
-        <div class='theme-preview match-height'>
-          <a class='theme-thumbnail link-unstyled' href="#{eventLink}"><img src="#{eventImage}" /></a>
-          <small class="card-type">
-            <time datetime="#{eventTime}">#{eventTime}</time> @
-            <a href="#{eventLocationLink}">#{eventLocationName}</a>
-          </small>
-          <a class='link-unstyled' href="#{eventLink}"><h3>#{event.name.fi}</h3></a>
-          <p>#{eventDescription}</p>
+        <div class='event-preview'>
+          <a class='link-unstyled' href="#{eventLink}"><div class='event-thumbnail' style='background-image: url("#{eventImage}")'></div></a>
+          <div class="event-meta">
+            <span class='event-meta__time'><time datetime="#{eventTime}">#{eventTime}</time></span>
+            <span class='event-meta__place'><a href="#{eventLocationLink}">#{eventLocationName}</a></span>
+          </div>
+          <a class='link-unstyled' href="#{eventLink}"><h4 class='event-headline'>#{event.name.fi}</h4></a>
+          <div class='event-description'>
+          #{eventDescription}
+          </div>
         </div>
       """
       $li.append $($.trim template)
@@ -50,3 +52,4 @@ window.displayEvents = (eventData, grid = false) ->
       """
       $li.append $($.trim template)
       $footnote.before $li
+  $('.event-preview').matchHeight();
