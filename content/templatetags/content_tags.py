@@ -1,5 +1,13 @@
+import re
+from collections import Sequence
+
+from bs4 import BeautifulSoup
+
 from django import template
 from django.utils.safestring import mark_safe
+
+from wagtail.wagtailcore.blocks.base import BoundBlock
+from wagtail.wagtailcore.rich_text import RichText
 
 register = template.Library()
 
@@ -97,3 +105,86 @@ def sidebar_page_nav(page):
     html = list_children(parent, page)
 
     return mark_safe(html)
+
+
+class TableOfContentsNode(template.Node):
+    def __init__(self, html_accessor, toc_var_name):
+        self.html_accessor = html_accessor
+        self.html_var = template.Variable(html_accessor)
+        self.toc_var_name = toc_var_name
+
+    def render(self, context):
+
+        blocks = self.html_var.resolve(context)
+
+        if not isinstance(blocks, Sequence):
+            blocks = [blocks]
+
+        headings_and_anchors = []
+        toc_anchor_count = 1
+
+        for block in blocks:
+            if (not isinstance(block, BoundBlock) or not
+            isinstance(block.value, RichText)):
+                continue
+            soup = BeautifulSoup(block.value.source)
+            h2_tags = soup.find_all('h2')
+
+            if not h2_tags:
+                continue
+
+            for t in h2_tags:
+                # let's not add empty headings to table of contents
+                if not t.string.strip():
+                    continue
+                anchor = 'toc-{}'.format(toc_anchor_count)
+                headings_and_anchors.append((t.string, anchor))
+                t.insert_before(soup.new_tag('span', id=anchor))
+                toc_anchor_count += 1
+
+            new_source = str(soup)
+            # See wagtail.wagtailcore.rich_text expand_db_html and
+            # replace_embed_tag - if the embed tag doesn't close itself,
+            # replace_embed_tag doesn't recognize it, and can't replace it
+            # with img tag
+            new_source = new_source.replace('></embed>', '/>')
+            block.value.source = new_source
+
+
+        context[self.toc_var_name] = headings_and_anchors
+
+        return ''
+
+    def __unicode__(self):
+        return u'String repr'
+
+
+def do_table_of_contents(parser, token):
+    """
+    Use like this:
+    {% do_table_of_contents <context variable> as
+    <table of contents item list> %}
+
+    This takes a WagTail BoundBlock or a list of them, and for each block with
+    RichText value, goes through H2 elements, and adds an anchor to them. It
+    puts out a list or headings and anchors, as in
+    [('Heading 1', 'toc-1'), ...], which can be used to render a table of
+    contents in the template.
+    """
+    try:
+        # Splitting by None == splitting by spaces.
+        tag_name, arg = token.contents.split(None, 1)
+    except ValueError:
+        raise template.TemplateSyntaxError(
+            "%r tag requires arguments" % token.contents.split()[0]
+        )
+    m = re.search(r'(.*?) as (\w+)', arg)
+    if not m:
+        raise template.TemplateSyntaxError("%r tag had invalid arguments" %
+                                           tag_name)
+    format_string, var_name = m.groups()
+
+    return TableOfContentsNode(format_string, var_name)
+
+
+register.tag('do_table_of_contents', do_table_of_contents)
