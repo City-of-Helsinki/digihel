@@ -56,10 +56,11 @@
         {% block kehmet_content %}{% endblock %}
         </div>
         <div class="col-md-4">
+            <div class="floating-sidebar" id="js-affix">
             {% if toc %}
-            <nav class="page-nav">
+            <nav class="pagenav" id="js-navbar">
                 <h5>Tällä sivulla</h5>
-                    <ul>
+                    <ul class="nav nav-stacked">
                         {% for heading, anchor in toc %}
                         <li><a href="#{{ anchor }}">{{ heading }}</a></li>
                         {% endfor %}
@@ -75,6 +76,7 @@
                     <p>Palautteesi auttaa digitaalista Helsinkiä kehittymään entistä paremmaksi.</p>
                 </div>
             </a>
+            </div>
         </div>
     </div>
     <span class="phase-label phase-label--draft">Luonnos</span>
@@ -87,6 +89,17 @@
 
 <script type="text/javascript">
 $(function() {
+    $('body').scrollspy({ target: '#js-navbar' });
+
+    $('#js-affix').affix({
+      offset: {
+        top: 210,
+        bottom: function () {
+          return (this.bottom = $('.page-footer').outerHeight(true))
+        }
+      }
+    })
+
     $('.page-feedback-form').validator().on('submit', function(ev) {
         if (ev.isDefaultPrevented()) {
             // Form is invalid
