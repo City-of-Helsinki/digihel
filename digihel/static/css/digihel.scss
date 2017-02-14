@@ -75,6 +75,10 @@ hr {
   clear: both;
 }
 
+.content {
+  margin-bottom: $line-height-computed * 2;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
@@ -254,63 +258,91 @@ img {
   }
 }
 
-//* Page Content Navigation */
+//* Fixed Side Bar */
 
-.page-nav {
-  //background: $gray-lighter;
-  border: 3px solid $gray-lighter;
-  //border-top: 5px solid $gray-lighter;
-  margin-bottom: $line-height-computed;
-  font-size: 14px;
-  line-height: 1.2;
-
-  h5 {
-    //border-left: 3px solid $brand-primary;
-    color: $brand-primary;
-    padding: 0 0 0 10px;
-    //margin: 0 0 6px 0;
+.floating-sidebar {
+  .affix-bottom,
+  .affix  {
+    position: relative;
   }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  li {
-    padding: 0 0 0 $padding-small-horizontal;
-    margin: 0 0 $padding-large-vertical 0;
-    //border-left: 3px solid $gray;
-
-    a {
-      color: $gray-light;
-    }
-  }
-
 }
 
-//* Side Bar Floating */
-
-.float-navi {
-  &.affix {
-    width: 364px;
-    top: 100px;
-    @media (max-width: $screen-md-max) {
-      width: 297px;
+@media screen and (min-width: $screen-sm-max) {
+  .floating-sidebar {
+    &.affix {
+      position: fixed;
+      top: 84px;
+      width: 300px;
     }
-    @media (max-width: $screen-sm-max) {
-      position: relative !important;
-      width: auto;
-      top: 0;
-      .page-nav {
-        display: none;
-      }
+
+    &.affix-bottom {
+      position: absolute;
+      width: 300px;
     }
   }
+}
+
+//* TOC navigation */
+
+.pagenav {
+  margin-bottom: $line-height-computed * 2;
+
+  @media screen and (min-width: $screen-sm-max) {
+    width: 300px;
+  }
+
+  &::before {
+    border-top: 3px solid $helsinkiblue;
+    display: block;
+    content: " ";
+    padding-bottom: $line-height-computed / 2;
+  }
+
+  &::after {
+    border-bottom: 3px solid $helsinkiblue;
+    content: " ";
+    display: block;
+    padding-top: $line-height-computed / 2;
+  }
+
+  h5 {
+    margin-left: $padding-small-horizontal;
+    margin-top: 0;
+  }
+
+  .nav {
+    li {
+      margin-left: $padding-small-horizontal;
+    }
+
+    li a {
+      color: $gray;
+      padding: 5px $padding-small-horizontal;
+      line-height: 1;
+
+      &:hover {
+        background: transparent;
+        color: $helsinkiturquoise;
+      }
+    }
+
+    li.active a {
+      background: $gray-lighter;
+    }
+  }
+}
+
+// add spacing on anchors to accommodate navbar
+.toc-anchor {
+  display: block;
+  height: $navbar-height;
+  margin-bottom: -2em;
 }
 
 //* Side Navigation */
 
 .sidenav {
-  border-left: 3px solid $gray-lighter;
+  font-size: 14px;
   line-height: 1;
   margin-bottom: $line-height-computed;
 
@@ -332,20 +364,23 @@ img {
     }
   }
 
+  > ul {
+    border-left: 2px solid $gray-lighter;
+    margin-top: $line-height-computed;
+  }
+
   ul {
     padding-left: $padding-small-horizontal;
+  }
 
-    li {
-      font-size: 14px;
-      line-height: 1.2;
-      list-style: none;
-      margin-bottom: $padding-large-vertical;
+  li {
+    list-style: none;
+    margin-bottom: $padding-large-vertical;
 
-      a {
-        color: $gray-light;
-      }
+    a {
+      color: $gray-light;
 
-      a:hover {
+      &:hover {
         color: $gray;
       }
     }
@@ -354,6 +389,7 @@ img {
   li.active {
     > a {
       color: $helsinkiblue;
+      font-weight: 700;
 
       &:hover {
         color: $helsinkiblue;
@@ -363,7 +399,8 @@ img {
 
   li.open {
     > a {
-      color: $gray-dark;
+      color: $gray;
+      font-weight: 700;
 
       &:hover {
         color: $gray-darker;
