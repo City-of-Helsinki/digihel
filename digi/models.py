@@ -48,6 +48,22 @@ class Indicator(models.Model):
     def __str__(self):
         return self.description
 
+class Phase():
+    NONE = ''
+    DISCOVERY = 'DI'
+    ALPHA = 'AL'
+    BETA = 'BE'
+    LIVE = 'LI'
+    RETIREMENT = 'RE'
+
+    PHASE_CHOICES = (
+        (NONE, 'No phase'),
+        (DISCOVERY, 'Selvitys'),
+        (ALPHA, 'Alfa'),
+        (BETA, 'Beta'),
+        (LIVE, 'Tuotanto'),
+        (RETIREMENT, 'Poisto'),
+    )
 
 class FooterLinkSection(ClusterableModel):
     title = models.CharField(max_length=100, null=True, blank=True)
@@ -147,12 +163,16 @@ class ThemeRole(Orderable):
 class ThemeLink(Orderable, RelatedLink):
     theme = ParentalKey('digi.ThemePage', related_name='links')
 
-
 class ProjectPage(RelativeURLMixin, Page):
     type = _('Project')
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
     short_description = models.TextField(null=True, blank=True)
+    phase = models.CharField(
+        max_length=2,
+        choices=Phase.PHASE_CHOICES,
+        default=Phase.NONE,
+    )
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ], null=True, blank=True)
@@ -160,6 +180,7 @@ class ProjectPage(RelativeURLMixin, Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         FieldPanel('short_description'),
+        FieldPanel('phase'),
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),

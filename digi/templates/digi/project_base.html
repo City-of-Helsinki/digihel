@@ -11,6 +11,7 @@
     </div>
     <div class="row">
         <div class="theme-info col-md-8">
+            {% phases_indicator page.phase %}
             <div class="theme-box">
                 {% image page.image width-800 as page_image %}
                 <img src="{{ page_image.url }}" class="theme-header-image"/>
