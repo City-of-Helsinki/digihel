@@ -77,10 +77,12 @@
           </div>
       </section>
 
-      <h2>Tarinoita digipajalta</h2>
+      {% if  self.blog_posts %}
+
+      <h2>Digitarinoita</h2>
 
       <ul class="blog-index list-unstyled the-loop row">
-            {% for blog in page.blog_posts|slice:":2" %}
+            {% for blog in self.blog_posts|slice:":2" %}
             <li class="blog-post-item first-reset match-height" style="height: 560px;">
               <div class="blog-post-preview">
                 <div class="blog-post-header">
@@ -100,6 +102,10 @@
             </div></li>
             {% endfor %}
         </ul>
-      <p class="text-center"><a href="/blogikirjoitukset" class="btn btn-default">Lisää tarinoita blogissa</a></p>
+        {% if self.blog_posts|length > 2 %}
+        <p class="text-center"><a href="tarinat/" class="btn btn-default">Kaikki digitarinat</a></p>
+        {% endif %}
+
+      {% endif %}
     </div>
 {% endblock %}
