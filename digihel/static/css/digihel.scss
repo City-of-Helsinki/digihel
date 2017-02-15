@@ -75,6 +75,10 @@ hr {
   clear: both;
 }
 
+.content {
+  margin-bottom: $line-height-computed * 2;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
@@ -331,10 +335,91 @@ $labelheight:     22px;
   }
 }
 
+//* Fixed Side Bar */
+
+.floating-sidebar {
+  .affix-bottom,
+  .affix  {
+    position: relative;
+  }
+}
+
+@media screen and (min-width: $screen-sm-max) {
+  .floating-sidebar {
+    &.affix {
+      position: fixed;
+      top: 84px;
+      width: 300px;
+    }
+
+    &.affix-bottom {
+      position: absolute;
+      width: 300px;
+    }
+  }
+}
+
+//* TOC navigation */
+
+.pagenav {
+  margin-bottom: $line-height-computed * 2;
+
+  @media screen and (min-width: $screen-sm-max) {
+    width: 300px;
+  }
+
+  &::before {
+    border-top: 3px solid $helsinkiblue;
+    display: block;
+    content: " ";
+    padding-bottom: $line-height-computed / 2;
+  }
+
+  &::after {
+    border-bottom: 3px solid $helsinkiblue;
+    content: " ";
+    display: block;
+    padding-top: $line-height-computed / 2;
+  }
+
+  h5 {
+    margin-left: $padding-small-horizontal;
+    margin-top: 0;
+  }
+
+  .nav {
+    li {
+      margin-left: $padding-small-horizontal;
+    }
+
+    li a {
+      color: $gray;
+      padding: 5px $padding-small-horizontal;
+      line-height: 1;
+
+      &:hover {
+        background: transparent;
+        color: $helsinkiturquoise;
+      }
+    }
+
+    li.active a {
+      background: $gray-lighter;
+    }
+  }
+}
+
+// add spacing on anchors to accommodate navbar
+.toc-anchor {
+  display: block;
+  height: $navbar-height;
+  margin-bottom: -2em;
+}
+
 //* Side Navigation */
 
 .sidenav {
-  border-left: 2px solid $gray-lighter;
+  font-size: 14px;
   line-height: 1;
   margin-bottom: $line-height-computed;
 
@@ -344,24 +429,35 @@ $labelheight:     22px;
     padding: $line-height-computed $padding-large-horizontal;
   }
 
+  > ul > li a, > ul > li.open a {
+    font-weight: 700;
+    font-size: 16px;
+    color: $brand-primary;
+  }
+
   .closed {
     ul {
       display: none;
     }
   }
 
+  > ul {
+    border-left: 2px solid $gray-lighter;
+    margin-top: $line-height-computed;
+  }
+
   ul {
-    padding-left: $padding-large-horizontal;
+    padding-left: $padding-small-horizontal;
+  }
 
-    li {
-      list-style: none;
-      margin-bottom: $padding-large-vertical;
+  li {
+    list-style: none;
+    margin-bottom: $padding-large-vertical;
 
-      a {
-        color: $gray-light;
-      }
+    a {
+      color: $gray-light;
 
-      a:hover {
+      &:hover {
         color: $gray;
       }
     }
@@ -370,6 +466,7 @@ $labelheight:     22px;
   li.active {
     > a {
       color: $helsinkiblue;
+      font-weight: 700;
 
       &:hover {
         color: $helsinkiblue;
@@ -379,7 +476,8 @@ $labelheight:     22px;
 
   li.open {
     > a {
-      color: $gray-dark;
+      color: $gray;
+      font-weight: 700;
 
       &:hover {
         color: $gray-darker;

@@ -139,7 +139,7 @@ class TableOfContentsNode(template.Node):
                     continue
                 anchor = 'toc-{}'.format(toc_anchor_count)
                 headings_and_anchors.append((t.string, anchor))
-                t.insert_before(soup.new_tag('span', id=anchor))
+                t.insert_before(soup.new_tag('span', id=anchor, **{'class':'toc-anchor'}))
                 toc_anchor_count += 1
 
             new_source = str(soup)
