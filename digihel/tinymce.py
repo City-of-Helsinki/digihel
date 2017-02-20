@@ -41,13 +41,13 @@ class DigiHelTinyMCERichTextArea(TinyMCERichTextArea):
         [
             ['undo', 'redo'],
             ['styleselect'],
-            ['bold', 'italic', 'termspan'],
+            ['bold', 'italic'],
             ['bullist', 'numlist', 'outdent', 'indent'],
             ['table'],
             ['link', 'unlink'],
             ['wagtaildoclink', 'wagtailimage', 'wagtailembed'],
             ['pastetext', 'fullscreen'],
-            ['termspan'],
+            ['termlink'],
         ],
     ]
     default_options = {

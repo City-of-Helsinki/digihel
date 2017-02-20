@@ -1,0 +1,30 @@
+{% extends "kehmet/base.html" %}
+
+{% block body_class %}template-kehmet-content-page{% endblock %}
+
+{% block toc %}
+<nav class="pagenav" id="js-navbar">
+    <h5>Tällä sivulla</h5>
+    <ul class="nav nav-stacked">
+        {% for term in page.category.ordered_terms.all %}
+        {% if term.list_visible %}
+        <li><a href="#{{ term.name|slugify }}">{{ term.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock toc %}
+
+{% block kehmet_content %}
+
+<h1>{{ page.category.name }}</h1>
+
+{% for term in page.category.ordered_terms.all %}
+{% if term.list_visible %}
+<h2 id="{{ term.name|slugify }}">{{ term.name }}</h2>
+<div>{{ term.body|safe }}</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}
+

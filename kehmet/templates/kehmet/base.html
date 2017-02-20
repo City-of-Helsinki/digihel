@@ -2,7 +2,7 @@
 {% load wagtailcore_tags kehmet_tags content_tags static %}
 
 {% block content %}
-{% do_table_of_contents page.body as toc %}
+{% if page.body %}{% do_table_of_contents page.body as toc %}{% endif %}
 
 <div class="modal page-feedback-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
@@ -57,6 +57,7 @@
         </div>
         <div class="col-md-4">
             <div class="floating-sidebar" id="js-affix">
+            {% block toc %}
             {% if toc %}
             <nav class="pagenav" id="js-navbar">
                 <h5>Tällä sivulla</h5>
@@ -67,6 +68,7 @@
                     </ul>
             </nav>
             {% endif %}
+            {% endblock toc %}
             <nav class="sidenav">
                 {% sidebar_page_nav page %}
             </nav>
