@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'feedback',
     'search',
     'glossy',
-
+    'events',
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
     'wagtail.wagtailembeds',
@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'wagtail_svgmap',
     'wagtailtinymce',
     'djcelery',
+    'social_widgets',
 
     'allauth',
     'allauth.account',
@@ -181,6 +182,7 @@ MEDIA_URL = '/media/'
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
+    ('text/coffeescript', 'coffee --compile --stdio'),
 )
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
@@ -199,6 +201,7 @@ BOWER_INSTALLED_APPS = [
     'bootstrap-validator#0.11.5',
     'remarkable-bootstrap-notify#3.1.3',
     'matchHeight#0.7.0',
+    'moment',
 ]
 
 

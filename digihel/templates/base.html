@@ -105,11 +105,15 @@
         </footer>
 
         {# Global javascript #}
-        <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-        <script src="{% static 'bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
-        <script src="{% static 'matchHeight/jquery.matchHeight-min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/digihel.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/glossy-terms.js' %}"></script>
+            <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+            <script src="{% static 'bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
+            <script src="{% static 'matchHeight/jquery.matchHeight-min.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/digihel.js' %}"></script>
+            <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
+            <script type="text/javascript" src="{% static 'moment/locale/fi.js' %}"></script>
+        {% compress js %}
+            <script type="text/coffeescript" src="{% static 'events/displayEvents.coffee' %}"></script>
+        {% endcompress %}
         <!-- Piwik -->
         <script type="text/javascript">
             var _paq = _paq || [];

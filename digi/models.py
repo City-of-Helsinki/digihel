@@ -1,24 +1,42 @@
-from blog.models import BlogCategory, BlogPage
+from blog.models import BlogCategory, BlogPage, BlogIndexPage
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+)
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsearch import index
 
 from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
+from events.models import EventsIndexPage
 
+rich_text_blocks = [
+    ('heading', blocks.CharBlock(classname="full title")),
+    ('paragraph', blocks.RichTextBlock()),
+    ('image', ImageChooserBlock()),
+]
+
+guide_blocks = rich_text_blocks + [
+    ('raw_content', blocks.RawHTMLBlock()),
+]
 
 class Indicator(models.Model):
     description = models.CharField(max_length=200)
+    slug = models.CharField(max_length=100, default='')
     value = models.IntegerField()  # no history data for now
     order = models.IntegerField(null=True, blank=True)
     front_page = models.BooleanField(default=False)
+    illustration_filename = models.CharField(max_length=100, default='images/hki-tietoaineisto.svg')
+    source_description = models.CharField(max_length=200, default='')
+    source_url = models.CharField(max_length=100, default='http://dev.hel.fi/apis')
 
     sort_order_field = 'order'
 
@@ -30,6 +48,22 @@ class Indicator(models.Model):
     def __str__(self):
         return self.description
 
+class Phase():
+    NONE = ''
+    DISCOVERY = 'DI'
+    ALPHA = 'AL'
+    BETA = 'BE'
+    LIVE = 'LI'
+    RETIREMENT = 'RE'
+
+    PHASE_CHOICES = (
+        (NONE, 'No phase'),
+        (DISCOVERY, 'Selvitys'),
+        (ALPHA, 'Alfa'),
+        (BETA, 'Beta'),
+        (LIVE, 'Tuotanto'),
+        (RETIREMENT, 'Poisto'),
+    )
 
 class FooterLinkSection(ClusterableModel):
     title = models.CharField(max_length=100, null=True, blank=True)
@@ -49,6 +83,8 @@ class FooterLink(Orderable, RelatedLink):
     section = ParentalKey('digi.FooterLinkSection', related_name='links')
 
 
+
+
 class ThemeIndexPage(RelativeURLMixin, Page):
     subpage_types = ['ThemePage']
 
@@ -56,6 +92,25 @@ class ThemeIndexPage(RelativeURLMixin, Page):
     def themes(self):
         return ThemePage.objects.all()
 
+
+class GuideFrontPage(RelativeURLMixin, Page):
+
+    @property
+    def blog_posts(self):
+        posts = BlogPage.objects.descendant_of(self).live().order_by('-date')
+        return posts
+
+class GuideContentPage(RelativeURLMixin, Page):
+    body = StreamField(guide_blocks)
+    sidebar = StreamField(guide_blocks)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+        StreamFieldPanel('sidebar')
+    ]
+    search_fields = Page.search_fields + [
+        index.SearchField('body')
+    ]
 
 class ThemePage(RelativeURLMixin, Page):
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
@@ -67,6 +122,7 @@ class ThemePage(RelativeURLMixin, Page):
     ], null=True, blank=True)
     blog_category = models.ForeignKey(BlogCategory, help_text='Corresponding blog category',
                                       null=True, blank=True, on_delete=models.SET_NULL)
+    twitter_hashtag = models.CharField(max_length=255, default="")
 
     parent_page_types = ['ThemeIndexPage']
     content_panels = Page.content_panels + [
@@ -74,6 +130,7 @@ class ThemePage(RelativeURLMixin, Page):
         FieldPanel('type'),
         FieldPanel('short_description'),
         FieldPanel('blog_category'),
+        FieldPanel('twitter_hashtag'),
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
@@ -106,12 +163,16 @@ class ThemeRole(Orderable):
 class ThemeLink(Orderable, RelatedLink):
     theme = ParentalKey('digi.ThemePage', related_name='links')
 
-
 class ProjectPage(RelativeURLMixin, Page):
     type = _('Project')
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
     short_description = models.TextField(null=True, blank=True)
+    phase = models.CharField(
+        max_length=2,
+        choices=Phase.PHASE_CHOICES,
+        default=Phase.NONE,
+    )
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ], null=True, blank=True)
@@ -119,6 +180,7 @@ class ProjectPage(RelativeURLMixin, Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         FieldPanel('short_description'),
+        FieldPanel('phase'),
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
@@ -162,8 +224,13 @@ class FrontPage(RelativeURLMixin, Page):
 
     @property
     def blog_posts(self):
-        posts = BlogPage.objects.all().order_by('-date')
+        main_blog_index = BlogIndexPage.objects.get(slug="blogikirjoitukset")
+        posts = BlogPage.objects.descendant_of(main_blog_index).live().order_by('-date')
         return posts
+
+    @property
+    def event_index(self):
+        return EventsIndexPage.objects.live().first()
 
     @property
     def footer_link_sections(self):
