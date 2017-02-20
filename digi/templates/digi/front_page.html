@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static %}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static compress twitter_tags%}
 
 {% block body_class %}template-front-page{% endblock %}
 
@@ -14,44 +14,23 @@
 <div class="container main-container" role="main">
   <article class="front-page">
       <section class="row">
-          <div class="col-xs-12">
-            <div class="indicators clearfix">
+        <div class="col-xs-12">
+          <div class="indicators clearfix">
+            {% for ind in page.indicators %}
               <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('{% static "images/hki-palaute.svg" %}');">
-                <div class="indicator-content">
-                  <div class="indicator-value">
-                      149
+                <div class="indicator" id="{{ind.id}}" style="background-image: url('{% static ind.illustration_filename %}');">
+                  <div class="indicator-content">
+                    <div class="indicator-value">
+                      {{ ind.value }}
+                    </div>
+                    <div class="indicator-description">
+                      {{ ind.description }}
+                    </div>
                   </div>
-                  <div class="indicator-description">
-                      sähköisesti käsiteltyä palautetta päivässä
-                  </div>
                 </div>
+                <a href="{{ind.source_url}}">{{ ind.source_description }}</a>
               </div>
-              </div>
-              <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('{% static "images/hki-mies.svg" %}');">
-                <div class="indicator-content">
-                <div class="indicator-value">
-                    630&nbsp;752
-                </div>
-                <div class="indicator-description">
-                    helsinkiläistä
-                </div>
-                </div>
-              </div>
-            </div>
-              <div class="col-sm-4">
-              <div class="indicator" style="background-image: url('{% static "images/hki-tietoaineisto.svg" %}');">
-                <div class="indicator-content">
-                <div class="indicator-value">
-                    569
-                </div>
-                <div class="indicator-description">
-                    avointa tietoaineistoa
-                </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -75,12 +54,24 @@
       <section class="misc row">
           <div class="col-md-8">
             <div class="blogs-preview">
-              {% for blog in page.blog_posts|slice:":2" %}
+              <div class="card-type">Blogin uusimmat</div>
+              {% for blog in page.blog_posts|slice:":3" %}
               <div class="blog-post">
-                  <small class="card-type">Blogi</small>
+                <div class="row">
+                <div class="col-sm-5">
+                  <div class="match-height clearfix">
+                    {% image blog.header_image max-1920x1080 as blog_image %}
+                    <a class="link-unstyled" href="{% pageurl blog %}"><div class="blog-post-main-image" style="background-image: url('{{ blog_image.url }}')"></div></a>
+                  </div>
+                </div>
+                <div class="col-sm-7">
+                  <div class="match-height clearfix">
                   <h3><a class="link-unstyled" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
-                <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
+                  <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
                   {{ blog.body|first_p|safe }}
+                  </div>
+                </div>
+                </div>
               </div>
               {% endfor %}
               <a href="blogikirjoitukset/" class="blogs-preview-read-all">Kaikki blogitekstit</a>
@@ -88,26 +79,49 @@
           </div>
           <div class="col-md-4">
               <div class="events-highlights">
-                  <img src="{% static "images/osallistu.svg" %}" class="event-illustration">
-                  <h2>Tapahtumia</h2>
+                {% if self.event_index %}
+                  <a class="link-unstyled" href="{% pageurl self.event_index %}"><img src="{% static "images/osallistu.svg" %}" class="event-illustration">
+                  <h2>Tapahtumia</h2></a>
+                  <ul></ul>
+                  <div class="events-source">
+                      <a class="link-unstyled" href="{% pageurl self.event_index %}">Tapahtumatiedot</a>
+                      <a class="link-unstyled" href="https://dev.hel.fi/projects/linked-events/">Linked Events -rajapinnasta</a>
+                  </div>
+                {% else %}
+                  Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
+                {% endif %}
+              </div>
+              <div class="twitter-feed">
+                  <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
+                  <h2><a href="https://twitter.com/hashtag/digihelsinki?f=tweets&vertical=default">#digiHelsinki</a></h2>
 
-                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
-                  <div class="event-date"><time itemprop="startDate" datetime="2016-09-29">to 10.11.2016 15:00</time></div>
-                  <div class="event-location">Helsinki Think Company</div>
-                  <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrdbice">Lue lisää »</a>
-
-                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
-                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-13">to 24.11.2016 15:00</time></div>
-                  <div class="event-location">Helsinki Think Company</div>
-                  <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrddoju">Lue lisää »</a>
-
-                  <h4 class="event-title">Hel&lt;3Dev Avoimen datan avokonttori</h4>
-                  <div class="event-date"><time itemprop="startDate" datetime="2016-10-27">to 8.12.2016 15:00</time></div>
-                  <div class="event-location">Helsinki Think Company</div>
-                  <a href="http://www.hel.fi/www/helsinki/fi/tapahtumakalenteri/tapahtuma/?id=helsinki:aflhrdgjwy">Lue lisää »</a>
+                  {% twitter_search "#digihelsinki exclude:retweets" as tweets %}
+                  {% for t in tweets|slice:":3" %}
+                    <div class="tweet">
+                      <a href ="https://twitter.com/{{t.user.screen_name}}">
+                        <div class="tweet__author">
+                          <div class="tweet__avatar"><img src="{{ t.user.profile_image_url_https }}" class="media-object"></div>
+                          <div class="media-body">
+                          <span class="tweet__fullname">{{ t.user.name }}</span>
+                          <span class="tweet__username">@{{ t.user.screen_name }}</span>
+                          </div>
+                        </div>
+                      </a>
+                      <div class="tweet__tweettext">{{ t.html }}</div>
+                      <a href="https://www.twitter.com/{{ t.user.screen_name }}/status/{{ t.id }}"><div class="tweet__timestamp">{{ t.created_at }}</div></a>
+                    </div>
+                  {% endfor %}
               </div>
           </div>
       </section>
   </article>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{% compress js inline %}
+<script type="text/javascript">
+    $.getJSON('/event_data/?future=true', function(json) {return displayEvents(json,false)});
+</script>
+{% endcompress %}
 {% endblock %}

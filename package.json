@@ -6,6 +6,7 @@
   "dependencies": {
     "autoprefixer": "^6.4.0",
     "bower": "^1.7.9",
+    "coffee-script": "^1.11.1",
     "postcss-cli": "^2.5.2"
   },
   "devDependencies": {},

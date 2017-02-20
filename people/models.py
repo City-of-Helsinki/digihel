@@ -3,6 +3,7 @@ import hashlib
 from django.db import models
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.fields import RichTextField
 
 from digihel.mixins import RelativeURLMixin
 from users.models import User
@@ -63,6 +64,11 @@ class Membership(models.Model):
 
 class PersonIndexPage(RelativeURLMixin, Page):
     groups = models.ManyToManyField(Group)
+    body = RichTextField(default='')
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname='additional-content'),
+    ]
 
     def get_groups(self):
         return Group.objects.all()

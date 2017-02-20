@@ -1,4 +1,4 @@
-{% load wagtailcore_tags digi_tags static wagtailimages_tags %}
+{% load wagtailcore_tags digi_tags static wagtailimages_tags social_widgets %}
 
 {% if include_context == "index_page" %}
 <div class="blog-post-preview">
@@ -7,7 +7,7 @@
 <div class="container main-container page-content blog-post-container" role="main">
     <div class="row">
     <div class="col-xs-12">
-        <h2 class="blog-section-header"><a href="/blogikirjoitukset">Blogi</a></h2>
+        <h2 class="blog-section-header"><a href="{{ self.get_blog_index.url }}">{{self.get_blog_index.title}}</a></h2>
     </div>
   <div class="page-header-blogpost col-xs-12 col-sm-10">
 {% endif %}
@@ -32,20 +32,24 @@
     </div>
     <div class="row">
   <div class="col-sm-2">
-    <div class="meta">
+    <div class="meta blog-post-meta">
     {% if blog.date %}
-      <div class="blog-post-meta meta date">
+      <div class="blog-post-date">
           <div class="blog-post-date">{{ blog.date|date:"j.n.Y" }}</div>
       </div>
   {% endif %}
-      <div class="tags">
+      <ul class="social-widgets">
+        <li>{% social_widget_render "facebook/share_button.html" href="{{ pageurl blog }}" layout="button" %}</li>
+        <li>{% social_widget_render "twitter/share_button.html" href="{{ pageurl blog }}" hashtag="digihelsinki" %}</li>
+      </ul>
+      <div class="blog-post-tags">
           {% if blog.tags.all %}
                   {% for tag in blog.tags.all %}
                       <a href="{% url 'blog:tag' tag.slug %}/" class="label label-info">{{ tag }}</a>{% if not forloop.last %} {% endif %}
                   {% endfor %}
           {% endif %}
       </div>
-      <div class="tags-and-comments">
+      <div class="blog-post-categories">
           {% if blog.categories.all %}
               Posted in 
                   {% for cat in blog.categories.all %}
@@ -56,6 +60,7 @@
   </div>
 </div>
   <div class="blog-body col-sm-8">
+      {% phases_indicator page.phase %}
       {{ blog.body|richtext }}
   </div>
     </div>
