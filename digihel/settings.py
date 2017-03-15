@@ -30,6 +30,7 @@ LOCALE_PATHS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'digiedu',
     'users',
     'helusers',
     'people',
@@ -77,7 +78,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -92,6 +94,7 @@ MIDDLEWARE_CLASSES = [
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'digihel.urls'
@@ -102,13 +105,18 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(PROJECT_DIR, 'templates'),
         ],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                ('django.template.loaders.cached.Loader', [
+                    'django.template.loaders.app_directories.Loader',
+                    'django.template.loaders.filesystem.Loader',
+                ]),
             ],
         },
     },
@@ -204,6 +212,9 @@ BOWER_INSTALLED_APPS = [
     'moment',
 ]
 
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
 
 # Wagtail settings
 
