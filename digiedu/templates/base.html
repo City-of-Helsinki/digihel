@@ -1,9 +1,33 @@
 {% extends "base.html" %}
 {% load static compress %}
 
-{% block extra_css %}
+{% block main_css %}
         {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "css/digiedu.scss" %}" />
         {% endcompress %}
 {% endblock %}
-jdshfbsdljhfb sdlhjfbdsal
+
+{% block footer_branding %}
+    <div class="footer-branding footer-branding-helsinki">
+        <a href="http://www.hel.fi">
+            <img alt="Helsingin vaakuna" src="{% static "images/helsinki-vaakuna.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
+            <div class="footer-branding-text">Helsingin kaupunki</div>
+        </a>
+    </div>
+{% endblock footer_branding %}
+
+{% block footer_links %}
+        <div class="page-footer-block">
+            <div class="footer-header">Yhteistyössä</div>
+            <ul class="footer-links">
+                <li></li>
+                <li><a href="https://dev.hel.fi"><img alt="Helsinki Loves Developers" src="{% static "images/heldev_logo-white-mini.svg" %}" class="partner-logo" aria-hidden="true"></a></li>
+            </ul>
+            <div class="footer-header">Katso myös</div>
+            <ul class="footer-links">
+                <li></li>
+                <li><a href="http://www.slideshare.net/DigitalHelsinki"><span class="icon icon-linkedin-rect"></span> Slideshare</a></li>
+                <li><a href="https://twitter.com/search?q=%23digihelsinki"><span class="icon icon-twitter-bird"></span> #digihelsinki</a></li>
+            </ul>
+        </div>
+{% endblock footer_links %}

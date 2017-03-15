@@ -26,9 +26,11 @@
 
         {# Global stylesheets #}
 
-        {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "css/digihel.scss" %}" />
-        {% endcompress %}
+        {% block main_css %}
+            {% compress css %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static "css/digihel.scss" %}" />
+            {% endcompress %}
+        {% endblock %}
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -48,6 +50,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-md-push-6 col-sm-4 col-sm-push-4">
+                    {% block footer_menu %}
                     {% for section in request.site.root_page.specific.footer_link_sections %}
                         <div class="page-footer-block">
                             {% if section.title %}<div class="footer-header">{{ section.title }}</div>{% endif %}
@@ -58,8 +61,10 @@
                             </ul>
                         </div>
                     {% endfor %}
+                    {% endblock footer_menu %}
                     </div>
                     <div class="col-md-3 col-md-pull-3 col-sm-4 col-sm-pull-4">
+                    {% block footer_branding %}
                         <div class="footer-branding footer-branding-helsinki">
                             <a href="http://www.hel.fi">
                                 <img alt="Helsingin vaakuna" src="{% static "images/helsinki-vaakuna.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
@@ -72,8 +77,10 @@
                                 <div class="footer-branding-text">Helsingin kaupungin avoin ohjelmistokehitys</div>
                             </a>
                         </div>
+                    {% endblock footer_branding %}
                     </div>
                     <div class="col-md-3 col-md-push-3 col-sm-4">
+                    {% block footer_links %}
                         <div class="page-footer-block">
                             <div class="footer-header">Yhteistyössä</div>
                             <ul class="footer-links">
@@ -89,16 +96,19 @@
                                 <li><a href="https://twitter.com/search?q=%23digihelsinki"><span class="icon icon-twitter-bird"></span> #digihelsinki</a></li>
                             </ul>
                         </div>
+                    {% endblock footer_links %}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
+                        {% block footer_smallprint %}
                         <div class="page-footer-small-print">
                             <ul class="small-print-nav">
                                 <li><a href="/yhteystiedot/">Ota yhteyttä</a></li>
                                 <li>2016 Helsingin kaupunki</li>
                             </ul>
                         </div>
+                        {% endblock footer_smallprint %}
                     </div>
                 </div>
             </div>

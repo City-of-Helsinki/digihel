@@ -1,3 +1,12 @@
-h1, h2, h3, h4 ,h5 {
-    color: aquamarine !important;
+@import 'bourbon/app/assets/stylesheets/bourbon';
+@import 'digihel/static/css/custom-fonts';
+@import 'bootstrap-variables';
+@import 'digihel/static/css/bootstrap-custom';
+@import 'digihel/static/css/digihel-icons';
+@import 'digihel/static/css/common-styles';
+
+.front-page {
+    .indicators {
+        background-color: lighten($brand-secondary, 30%);
+    }
 }
