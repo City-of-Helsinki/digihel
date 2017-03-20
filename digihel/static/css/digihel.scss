@@ -968,6 +968,9 @@ $labelheight:     22px;
   .footer-header {
     font-weight: 800;
     margin-bottom: 1em;
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
   }
 
   .footer-links {
@@ -983,9 +986,21 @@ $labelheight:     22px;
     }
   }
 
+  .footer-partners {
+    list-style: none;
+    padding-left: 0;
+    li {
+      vertical-align: top;
+      display: inline-block;
+      @media (max-width: $screen-xs-max) {
+        display: block;
+      }
+    }
+  }
+
   .partner-logo {
-    margin-bottom: 2em;
-    max-width: 5em;
+    margin: 1em 0 2em 2em;
+    width: 5em;
     @media (max-width: $screen-xs-max) {
       margin-left: auto;
       margin-right: auto;
@@ -1004,11 +1019,11 @@ $labelheight:     22px;
 
   .footer-logo {
     margin: 0 auto 1em;
-    max-width: 7em;
+    max-width: 4.5em;
   }
 
   .footer-logo-heldev {
-    max-width: 5em;
+    max-width: 4em;
   }
 
   a {
@@ -1029,6 +1044,7 @@ $labelheight:     22px;
 .page-footer-small-print {
   margin-top: 2em;
   text-align: right;
+  //border-top: 1px solid #FFF;
 
   .small-print-nav {
     @extend .list-inline;
