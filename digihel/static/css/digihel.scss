@@ -922,6 +922,15 @@ $labelheight:     22px;
     margin-top: 0;
   }
 
+  .blog-section-tag {
+    color: $gray-light;
+    font-weight: 600;
+
+    &::after {
+      content: ' -';
+    }
+  }
+
   time {
     color: $gray-light;
     margin-bottom: $line-height-computed / 2;
