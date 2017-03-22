@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags content_tags people_tags %}
+{% load wagtailcore_tags content_tags static people_tags %}
 
 {% block body_class %}template-contentpage{% endblock %}
 
@@ -13,6 +13,11 @@
             {% include "content/blocks.html" with blocks=page.body only %}
         </div>
         <div class="col-md-4">
+            <div class="partner-banner partner-banner--side">
+                <div class="partner-banner__logo"><img alt="6Aika" src="{% static "images/6aika-color.svg" %}" class="partner-logo" aria-hidden="true"></div>
+                <div class="partner-banner__logo"><img alt="Vipuvoimaa EU:lta 2014-2020" src="{% static "images/eu-vipuvoimaa-color.svg" %}" class="partner-logo" aria-hidden="true"></div>
+                <div class="partner-banner__logo"><img alt="Euroopan aluekehitysrahasto" src="{% static "images/eu-aluekehitys-color.svg" %}" class="partner-logo" aria-hidden="true"></div>
+            </div>
             <div class="guidepage-infobox">
                 <h4>Digipalveluopas kehittyy</h4>
                 <p>Helsingin digipalveluiden kehittämisopas auttaa kaupungin organisaatiota ja sen yhteistyökumppaneita, kuten yrityksiä ja muita kehittäjiä, noudattamaan yhteisiä periaatteita ja käyttämään sopivia työkaluja, kun kaupungin digitaalisia palveluita suunnitellaan ja rakennetaan.</p>

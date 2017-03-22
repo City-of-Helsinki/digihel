@@ -112,7 +112,7 @@ img {
 
 // make space for navbar
 .page-content {
-  padding-top: 50px;
+  padding-top: $navbar-height;
 }
 
 @media screen and (min-width: $screen-sm-min) {
@@ -1415,6 +1415,27 @@ $labelheight:     22px;
 
 //* Digi Guide */
 
+.partner-banner {
+  text-align: center;
+  background-color: $white;
+  @include box-shadow(rgba($gray-dark, .3) 2px 2px 5px);
+  margin-bottom: $line-height-computed;
+  .partner-banner__logo {
+    display: inline-block;
+    width: 5.5em;
+    padding: $line-height-computed/2;
+    vertical-align: middle;
+  }
+}
+
+.partner-banner--top {
+  margin-bottom: 0;
+    @media screen and (min-width: $screen-md-min) {
+    position: absolute;
+    right: 10%;
+    top: $navbar-height + $line-height-computed;
+  }
+}
 .design-principles-banner {
   border-top: 3px solid $helsinkiturquoise;
   border-bottom: 3px solid $helsinkiturquoise;
