@@ -1,14 +1,25 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags content_tags static people_tags %}
+{% load wagtailcore_tags content_tags static people_tags guide_tags %}
 
 {% block body_class %}template-contentpage{% endblock %}
 
 {% block content %}
-<div class="container main-container page-content guidepage-container" role="main">
-
+<div class="container main-container guidepage-container" role="main">
+    {% block breadcrumb %}
+    {% if self.get_ancestors|length > 1 %}
+    <ol class="breadcrumb">
+        {% for page in self.get_ancestors %}
+        {% if not page.is_root and not page.get_parent.is_root %}
+        <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
+        {% endif %}
+        {% endfor %}
+        <li class="active">{{ self.title }}</li>
+    </ol>
+    {% endif %}
+    {% endblock breadcrumb %}
     <div class="row">
         <div class="col-md-8 content">
-            <h2 class="guidepage-section-header"><a href="/digipalveluopas">Digipalveluopas</a></h2>
+            
             <h1 class="page-title">{{ page.title }}</h1>
             {% include "content/blocks.html" with blocks=page.body only %}
         </div>
@@ -18,13 +29,10 @@
                 <div class="partner-banner__logo"><img alt="Vipuvoimaa EU:lta 2014-2020" src="{% static "images/eu-vipuvoimaa-color.svg" %}" class="partner-logo" aria-hidden="true"></div>
                 <div class="partner-banner__logo"><img alt="Euroopan aluekehitysrahasto" src="{% static "images/eu-aluekehitys-color.svg" %}" class="partner-logo" aria-hidden="true"></div>
             </div>
-            <div class="guidepage-infobox">
-                <h4>Digipalveluopas kehittyy</h4>
-                <p>Helsingin digipalveluiden kehittämisopas auttaa kaupungin organisaatiota ja sen yhteistyökumppaneita, kuten yrityksiä ja muita kehittäjiä, noudattamaan yhteisiä periaatteita ja käyttämään sopivia työkaluja, kun kaupungin digitaalisia palveluita suunnitellaan ja rakennetaan.</p>
-
-                <p>Digipalveluoppaan sisältöä laajennetaan vuonna 2017 kattaamaan käyttökokemukseen, palveluiden ulkoasuun ja teknologiaan liittyviä ohjeistuksia.</p>
-            </div>
             {% include "content/blocks.html" with blocks=page.sidebar only %}
+            <nav class="sidenav">
+                {% sidebar_page_nav page %}
+            </nav>
         </div>
     </div>
 </article>
