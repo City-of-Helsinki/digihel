@@ -4,7 +4,7 @@
 autopep8
 celery
 django-allauth
-django-bower
+django-npm
 django-celery
 django-compressor-autoprefixer
 django-enumfields
