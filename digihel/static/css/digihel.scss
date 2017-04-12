@@ -1,39 +1,24 @@
-//@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
+@import url('https://dev.hel.fi/~terotik/cdn/fonts/HelsinkiGrotesk.css');
 
-@font-face {
-  font-family: 'helsinki-avoin';
-  src: url('../fonts/helsinkiavoinsans-bold-webfont.woff2') format('woff2'), url('../fonts/helsinkiavoinsans-bold-webfont.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'helsinki-avoin';
-  src: url('../fonts/helsinkiavoinsans-bolditalic-webfont.woff2') format('woff2'), url('../fonts/helsinkiavoinsans-bolditalic-webfont.woff') format('woff');
-  font-weight: 700;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'helsinki-avoin';
-  src: url('../fonts/helsinkiavoinsans-italic-webfont.woff2') format('woff2'), url('../fonts/helsinkiavoinsans-italic-webfont.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'helsinki-avoin';
-  src: url('../fonts/helsinkiavoinsans-regular-webfont.woff2') format('woff2'), url('../fonts/helsinkiavoinsans-regular-webfont.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
+@import 'hel-bootstrap-3/src/sass/hel-variables';
 
-@import 'bootstrap-variables';
+$theme-primary-dark: $bus;
+$theme-primary-light: $engel;
+
+$theme-highlight-dark: $brick;
+$theme-highlight-light: $suomenlinna;
+
+@import 'hel-bootstrap-3/src/sass/custom-bootstrap-variables';
 @import 'bootstrap-custom';
 @import 'bourbon/app/assets/stylesheets/bourbon';
 @import 'digihel-icons';
 
-$helsinkiyellow: #ffc72b;
-$helsinkiblue: #005eb8;
-$helsinkiturquoise: #05c2de;
-$helsinkired: #d10057;
+
+
+$helsinkiyellow: $summer;
+$helsinkiblue: $bus;
+$helsinkiturquoise: $copper;
+$helsinkired: $suomenlinna;
 
 $brand-red: $helsinkired;
 $brand-blue: $helsinkiblue;
@@ -1084,7 +1069,7 @@ $labelheight:     22px;
 
   .footer-logo {
     margin: 0 auto 1em;
-    max-width: 4.5em;
+    max-width: 8em;
   }
 
   .footer-logo-heldev {
