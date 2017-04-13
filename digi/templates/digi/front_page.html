@@ -67,7 +67,7 @@
                 <div class="col-sm-7">
                   <div class="match-height clearfix">
                   <h3><a class="link-unstyled" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
-                  <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
+                  <span class="blog-section-tag">{{ blog.parent_title }}</span> <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
                   {{ blog.body|first_p|safe }}
                   </div>
                 </div>

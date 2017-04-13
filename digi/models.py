@@ -224,8 +224,9 @@ class FrontPage(RelativeURLMixin, Page):
 
     @property
     def blog_posts(self):
-        main_blog_index = BlogIndexPage.objects.get(slug="blogikirjoitukset")
-        posts = BlogPage.objects.descendant_of(main_blog_index).live().order_by('-date')
+        posts = BlogPage.objects.live().order_by('-date')
+        for blogpost in posts:
+          blogpost.parent_title = blogpost.get_parent().title
         return posts
 
     @property

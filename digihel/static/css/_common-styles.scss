@@ -1,5 +1,3 @@
-
-
 //* Global */
 
 // Bootstrap overrides
@@ -39,6 +37,25 @@ img {
   @extend .img-responsive;
 }
 
+// Use responsive media embed trick on tinymce embedded objects
+.responsive-object {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  position: relative;
+}
+
+.responsive-object iframe,
+.responsive-object object,
+.responsive-object embed {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 .media img {
   max-width: none;
 }
@@ -67,7 +84,7 @@ img {
 
 // make space for navbar
 .page-content {
-  padding-top: 50px;
+  padding-top: $navbar-height;
 }
 
 @media screen and (min-width: $screen-sm-min) {
@@ -262,10 +279,47 @@ $labelheight:     22px;
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@media (max-width: $screen-md-max) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
+
+@media screen and (min-width: $screen-lg-min) {
   .navbar .drop-search {
     @include transition(all .5s ease);
-    background-color: $brand-primary;
+    background-color: $helsinkiblue;
     display: block;
     max-height: 0;
     overflow-y: hidden;
@@ -285,8 +339,8 @@ $labelheight:     22px;
   }
 
   .menuitem-login {
-    border-left: 1px solid lighten($brand-primary, 20%);
-    border-right: 1px solid lighten($brand-primary, 20%);
+    border-left: 1px solid lighten($helsinkiblue, 20%);
+    border-right: 1px solid lighten($helsinkiblue, 20%);
   }
 }
 
@@ -324,14 +378,14 @@ $labelheight:     22px;
   }
 
   &::before {
-    border-top: 3px solid $brand-primary;
+    border-top: 3px solid $helsinkiblue;
     display: block;
     content: " ";
     padding-bottom: $line-height-computed / 2;
   }
 
   &::after {
-    border-bottom: 3px solid $brand-primary;
+    border-bottom: 3px solid $helsinkiblue;
     content: " ";
     display: block;
     padding-top: $line-height-computed / 2;
@@ -354,7 +408,7 @@ $labelheight:     22px;
 
       &:hover {
         background: transparent;
-        color: $brand-secondary;
+        color: $helsinkiturquoise;
       }
     }
 
@@ -420,11 +474,11 @@ $labelheight:     22px;
 
   li.active {
     > a {
-      color: $brand-primary;
+      color: $helsinkiblue;
       font-weight: 700;
 
       &:hover {
-        color: $brand-primary;
+        color: $helsinkiblue;
       }
     }
   }
@@ -451,7 +505,7 @@ $labelheight:     22px;
 
 .container .jumbotron,
 .container-fluid .jumbotron {
-  background-color: $brand-secondary;
+  background-color: $helsinkiturquoise;
   background-size: auto 100%;;
   background-repeat: repeat-x;
   background-position: bottom;
@@ -521,7 +575,7 @@ $labelheight:     22px;
 //* Theme page */
 
 .project-section-header {
-  border-bottom: 4px solid $brand-primary;
+  border-bottom: 4px solid $helsinkiblue;
   float: left;
   font-size: 24px;
   margin-bottom: 1em;
@@ -653,7 +707,7 @@ $labelheight:     22px;
 .front-page {
   .indicators {
     text-align: center;
-    background-color: lighten($brand-secondary, 45%);
+    background-color: lighten($helsinkiturquoise, 45%);
     padding: 12px;
   }
 
@@ -675,14 +729,14 @@ $labelheight:     22px;
   }
 
   .indicator-value {
-    color: $brand-primary;
+    color: $helsinkiblue;
     font-size: 36px;
     font-weight: 900;
     width: 100%;
   }
 
   .indicator-description {
-    color: $brand-primary;
+    color: $helsinkiblue;
     text-transform: uppercase;
     font-weight: 900;
     width: 100%;
@@ -711,11 +765,11 @@ $labelheight:     22px;
   }
 
   .event-date {
-    color: lighten($brand-secondary, 45%);
+    color: lighten($helsinkiturquoise, 45%);
   }
 
   .event-location {
-    color: lighten($brand-secondary, 45%);
+    color: lighten($helsinkiturquoise, 45%);
   }
 
   .event-description {
@@ -723,7 +777,7 @@ $labelheight:     22px;
 
   .events-source {
     @extend .small;
-    border-top: 1px solid lighten($brand-secondary, 45%);
+    border-top: 1px solid lighten($helsinkiturquoise, 45%);
     margin-top: $line-height-computed;
   }
 
@@ -740,10 +794,10 @@ $labelheight:     22px;
 
   .tweet {
     margin-bottom: $line-height-computed;
-    //border: 1px solid lighten($brand-secondary,40%);
+    //border: 1px solid lighten($helsinkiturquoise,40%);
     //padding: $line-height-computed / 2;
     a {
-      color: lighten($brand-secondary,45%);
+      color: lighten($helsinkiturquoise,45%);
     }
   }
 
@@ -758,7 +812,7 @@ $labelheight:     22px;
   }
 
   .tweet__fullname {
-    color: lighten($brand-secondary,45%);
+    color: lighten($helsinkiturquoise,45%);
     display: block;
     font-size: 1.15em;
     font-weight: 700;
@@ -784,7 +838,7 @@ $labelheight:     22px;
 .manual-links,
 .events-highlights,
 .twitter-feed {
-  background-color: $brand-secondary;
+  background-color: $helsinkiturquoise;
   color: $white;
   margin-bottom: 2em;
   padding: 1em;
@@ -830,7 +884,7 @@ $labelheight:     22px;
 }
 
 .card-type {
-  border-bottom: solid 3px $brand-primary;
+  border-bottom: solid 3px $theme-highlight-dark;
   display: inline-block;
   margin-bottom: 10px;
   padding-bottom: 10px;
@@ -838,8 +892,8 @@ $labelheight:     22px;
 }
 
 .theme-preview {
-  background-color: $brand-secondary;
-  color: $white;
+  background-color: $helsinkiturquoise;
+  color: $black;
   margin-bottom: 1em;
   padding: 1em;
 
@@ -872,9 +926,18 @@ $labelheight:     22px;
   }
 
   h3 {
-    color: $brand-primary;
+    color: $helsinkiblue;
     margin-bottom: $line-height-computed / 2;
     margin-top: 0;
+  }
+
+  .blog-section-tag {
+    color: $gray-light;
+    font-weight: 600;
+
+    &::after {
+      content: ' -';
+    }
   }
 
   time {
@@ -923,6 +986,9 @@ $labelheight:     22px;
   .footer-header {
     font-weight: 800;
     margin-bottom: 1em;
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
   }
 
   .footer-links {
@@ -938,9 +1004,21 @@ $labelheight:     22px;
     }
   }
 
+  .footer-partners {
+    list-style: none;
+    padding-left: 0;
+    li {
+      vertical-align: top;
+      display: inline-block;
+      @media (max-width: $screen-xs-max) {
+        display: block;
+      }
+    }
+  }
+
   .partner-logo {
-    margin-bottom: 2em;
-    max-width: 5em;
+    margin: 1em 0 2em 2em;
+    width: 5em;
     @media (max-width: $screen-xs-max) {
       margin-left: auto;
       margin-right: auto;
@@ -959,11 +1037,11 @@ $labelheight:     22px;
 
   .footer-logo {
     margin: 0 auto 1em;
-    max-width: 7em;
+    max-width: 8em;
   }
 
   .footer-logo-heldev {
-    max-width: 5em;
+    max-width: 4em;
   }
 
   a {
@@ -984,6 +1062,7 @@ $labelheight:     22px;
 .page-footer-small-print {
   margin-top: 2em;
   text-align: right;
+  //border-top: 1px solid #FFF;
 
   .small-print-nav {
     @extend .list-inline;
@@ -1020,11 +1099,11 @@ $labelheight:     22px;
 }
 .feedback-module {
   background: $gray-lighter;
-  //border: 2px solid $brand-primary;
+  //border: 2px solid $helsinkiblue;
   //color: $helsinkiyellow;
   padding: 1em;
   margin: 2em 0;
-  //box-shadow: 4px 4px $brand-primary;
+  //box-shadow: 4px 4px $helsinkiblue;
 }
 
 .feedback-module-header {
@@ -1038,7 +1117,7 @@ $labelheight:     22px;
 }
 
 .feedback-module-content {
-  //border-top: 2px solid $brand-primary;
+  //border-top: 2px solid $helsinkiblue;
   margin: 0;
   h4 {
     margin: 2em 0 2em 0;
@@ -1082,12 +1161,12 @@ $labelheight:     22px;
 .person-list--avatar {
   background-position: center;
   background-size: cover;
-  box-shadow: 4px 4px 0 0 $brand-primary;
+  box-shadow: 4px 4px 0 0 $helsinkiblue;
   height: $line-height-computed * 5;
   width: $line-height-computed * 5;
 
   @media screen and (min-width: $screen-sm-min) {
-    box-shadow: 8px 8px 0 0 $brand-primary;
+    box-shadow: 8px 8px 0 0 $helsinkiblue;
     height: $line-height-computed * 7;
     width: $line-height-computed * 7;
   }
@@ -1162,7 +1241,7 @@ $labelheight:     22px;
   margin-top: 2em;
 
   .blog-post-main-image {
-    background-color: $brand-secondary;
+    background-color: $helsinkiturquoise;
     background-position: center;
     background-size: cover;
     height: $line-height-computed * 8;
@@ -1194,7 +1273,7 @@ $labelheight:     22px;
 }
 
 .blog-index-highlight {
-  background: $brand-secondary;
+  background: $helsinkiturquoise;
   background-position: center;
   background-size: cover;
   height: 28em;
@@ -1206,7 +1285,7 @@ $labelheight:     22px;
   }
 
   .blog-highlight-content {
-    background: rgba($brand-primary, .75);
+    background: rgba($helsinkiblue, .75);
     color: $white;
     left: 1em;
     padding: 1em;
@@ -1238,7 +1317,7 @@ $labelheight:     22px;
 .blog-post-container {
 
   .blog-post-main-image {
-    background-color: $brand-secondary;
+    background-color: $helsinkiturquoise;
     background-position: center;
     background-size: cover;
     height: $line-height-computed * 12;
@@ -1280,7 +1359,7 @@ $labelheight:     22px;
 }
 
 .search-results-item {
-  border-bottom: 1px solid $brand-primary;
+  border-bottom: 1px solid $helsinkiblue;
 }
 
 //* Events page */
@@ -1288,7 +1367,7 @@ $labelheight:     22px;
 .events-index {
 
   .event-preview {
-    background: $brand-secondary;
+    background: $helsinkiturquoise;
     margin-bottom: $line-height-computed;
 
     a {
@@ -1307,7 +1386,7 @@ $labelheight:     22px;
   }
 
   .event-meta  {
-    color: lighten($brand-secondary, 45%);
+    color: lighten($helsinkiturquoise, 45%);
     padding: 0 $padding-large-vertical;
   }
 
@@ -1345,9 +1424,30 @@ $labelheight:     22px;
 
 //* Digi Guide */
 
+.partner-banner {
+  text-align: center;
+  background-color: $white;
+  @include box-shadow(rgba($gray-dark, .3) 2px 2px 5px);
+  margin-bottom: $line-height-computed;
+  .partner-banner__logo {
+    display: inline-block;
+    width: 5.5em;
+    padding: $line-height-computed/2;
+    vertical-align: middle;
+  }
+}
+
+.partner-banner--top {
+  margin-bottom: 0;
+    @media screen and (min-width: $screen-md-min) {
+    position: absolute;
+    right: 10%;
+    top: $navbar-height + $line-height-computed;
+  }
+}
 .design-principles-banner {
-  border-top: 3px solid $brand-secondary;
-  border-bottom: 3px solid $brand-secondary;
+  border-top: 3px solid $helsinkiturquoise;
+  border-bottom: 3px solid $helsinkiturquoise;
   margin-top: $line-height-computed;
 
   p {
@@ -1355,7 +1455,7 @@ $labelheight:     22px;
   }
 
   a {
-    color: $brand-secondary;
+    color: $helsinkiturquoise;
   }
 }
 
@@ -1365,7 +1465,7 @@ $labelheight:     22px;
   @extend .clearfix;
 
   h2 {
-    color: $brand-secondary;
+    color: $helsinkiturquoise;
     margin-top: $line-height-computed;
   }
 
@@ -1478,7 +1578,7 @@ $labelheight:     22px;
 
   .principle-header {
     @extend .clearfix;
-    color: $brand-primary;
+    color: $helsinkiblue;
 
     .principle--title {
       margin-left: 90px;
@@ -1497,7 +1597,7 @@ $labelheight:     22px;
     text-align: center;
 
     &::after {
-      border: 6px solid $brand-secondary;
+      border: 6px solid $helsinkiturquoise;
       border-top: 0;
       content: "";
       display: block;
@@ -1507,7 +1607,7 @@ $labelheight:     22px;
     }
 
     &::before {
-      border: 6px solid $brand-secondary;
+      border: 6px solid $helsinkiturquoise;
       border-bottom: 0;
       content: "";
       display: block;
@@ -1520,14 +1620,14 @@ $labelheight:     22px;
   p {
     //@extend .lead;
     font-size: $font-size-large;
-    color: $brand-primary;
+    color: $helsinkiblue;
   }
 
   .principle-tags {
     .principle-tag {
       @extend .label;
       //@extend .label-info;
-      background: $brand-secondary;
+      background: $helsinkiturquoise;
     }
   }
 
