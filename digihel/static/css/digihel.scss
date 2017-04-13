@@ -916,7 +916,7 @@ $labelheight:     22px;
 }
 
 .card-type {
-  border-bottom: solid 3px $brand-primary;
+  border-bottom: solid 3px $theme-highlight-dark;
   display: inline-block;
   margin-bottom: 10px;
   padding-bottom: 10px;
@@ -925,7 +925,7 @@ $labelheight:     22px;
 
 .theme-preview {
   background-color: $helsinkiturquoise;
-  color: $white;
+  color: $black;
   margin-bottom: 1em;
   padding: 1em;
 
