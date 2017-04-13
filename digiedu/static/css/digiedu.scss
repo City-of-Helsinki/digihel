@@ -1,8 +1,34 @@
 @import 'bourbon/app/assets/stylesheets/bourbon';
-@import 'digihel/static/css/custom-fonts';
-@import 'bootstrap-variables';
+@import url('https://dev.hel.fi/~terotik/cdn/fonts/HelsinkiGrotesk.css');
+
+@import 'hel-bootstrap-3/src/sass/hel-variables';
+
+$theme-primary-dark: $bus;
+$theme-primary-light: $engel;
+
+$theme-highlight-dark: $brick;
+$theme-highlight-light: $suomenlinna;
+
+@import 'hel-bootstrap-3/src/sass/custom-bootstrap-variables';
 @import 'digihel/static/css/bootstrap-custom';
 @import 'digihel/static/css/digihel-icons';
+
+$helsinkiyellow: $summer;
+$helsinkiblue: $bus;
+$helsinkiturquoise: $copper;
+$helsinkired: $suomenlinna;
+
+$brand-red: $helsinkired;
+$brand-blue: $helsinkiblue;
+$brand-yellow: $helsinkiyellow;
+$brand-turquoise: $helsinkiturquoise;
+$brand-secondary: $helsinkiturquoise;
+
+$white: #fff;
+
+$modular-scale-ratio: $major-third;
+$modular-scale-base: 1em;
+
 @import 'digihel/static/css/common-styles';
 
 .front-page {
