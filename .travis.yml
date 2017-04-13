@@ -7,7 +7,6 @@ install:
   - pip install -U pip
   - pip install -r requirements.txt
   - npm install
-  - python manage.py bower install
 
 before_script:
   - psql -c 'create database digihel;' -U postgres
