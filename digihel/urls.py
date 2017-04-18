@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.conf.urls import include, url
+from django.views.generic import TemplateView
+
 from helusers import admin
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
@@ -24,7 +26,8 @@ urlpatterns = [
     url(r'^blogi/', include('blog.urls', namespace="blog")),
     url(r'^sivukartta/$', sitemap_view),
     url(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
-
+    url(r'^docs/$', TemplateView.as_view(template_name="digi/docs.html")),
+    url(r'^docs/doc/$', TemplateView.as_view(template_name="digi/doc.html")),
     # client endpoints for external API data
     url(r'^event_data/', event_data),
 

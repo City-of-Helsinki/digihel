@@ -1,7 +1,69 @@
 @import 'bourbon/app/assets/stylesheets/bourbon';
-@import url('https://dev.hel.fi/~terotik/cdn/fonts/HelsinkiGrotesk.css');
+
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/565d73a693abe0776c801607ac28f0bf.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/5bb29e3b7b1d3ef30121229bbe67c3e1.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/7c46f288e8133b87e6b12b45dac71865.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/e62dc97e83a385e4d8cdc939cf1e4213.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/533af26cf28d7660f24c2884d3c27eac.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/20d494430c87e15e194932b729d48270.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/a50a1bd245ce63abcc0d1da80ff790d2.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: 'HelsinkiGrotesk';
+  src: url('https://makasiini.hel.ninja/delivery/HelsinkiGrotesk/62a1781d8b396fbb025b0552cf6304d2.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
 
 @import 'hel-bootstrap-3/src/sass/hel-variables';
+
+$icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 $theme-primary-dark: $bus;
 $theme-primary-light: $engel;
@@ -30,9 +92,40 @@ $modular-scale-ratio: $major-third;
 $modular-scale-base: 1em;
 
 @import 'digihel/static/css/common-styles';
+@import 'hel-bootstrap-3/src/sass/documentation-styles';
 
-.front-page {
-    .indicators {
-        background-color: lighten($brand-secondary, 30%);
-    }
+.navbar {
+  background-color: $copper;
+
+  .navbar-toggle .icon-bar {
+    background-color: $bus;
+  }
+  
+  .site-title {
+    font-weight: 600;
+  }
+}
+
+.digiedu-frontpage-header {
+  padding-bottom: $line-height-computed * 3;
+  padding-top: $line-height-computed * 3;
+  color: $bus;
+}
+
+.file-list__item {
+  padding: $line-height-computed / 2;
+  background: $engel;
+  margin-bottom: $line-height-computed;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  .file-list__link {
+  }
+}
+
+.file-view__details {
+  padding: $line-height-computed / 2;
+  background: $engel;
 }

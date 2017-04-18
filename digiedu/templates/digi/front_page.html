@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static compress twitter_tags%}
+
+{% block body_class %}template-front-page{% endblock %}
+
+{% block content %}
+<div class="container-fluid header-container" role="main">
+  <section class="jumbotron fullscreen-hero js-fullscreen" style="background-image: url('{% static "images/front-bg.png" %}')">
+    <div class="container digiedu-frontpage-header">
+      <h1>Hyvä oppiminen<br>Helsingissä</h1>
+      <br>
+      <h3>Tietoteknologialla tulevaisuuden tekijäksi<br>
+        Helsingin kaupungin opetuksen digitalisaatio-ohjelma vuosille 2016–2019</h3>
+    </div>
+  </section>
+</div>
+<div class="container main-container" role="main">
+  <article class="front-page">
+      <section class="row">
+        <div class="col-xs-12">
+          <img src="http://loremflickr.com/1600/450/school">
+        </div>
+      </section>
+      <section class="themes row">
+          {% for theme in page.themes|slice:":3" %}
+          <div class="col-md-4">
+            <div class="theme-preview match-height clearfix">
+              <div class="col-xs-12 col-sm-6 col-md-12">
+                {% image theme.image fill-560x420 as theme_image %}
+                <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-12">
+                <small class="card-type">{{ theme.type }}</small>
+                <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+                <p>{{ theme.short_description }}</p></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </section>
+      <section class="misc row">
+          <div class="col-md-8">
+            <div class="blogs-preview">
+              <div class="card-type">Ajankohtaista</div>
+              {% for blog in page.blog_posts|slice:":3" %}
+              <div class="blog-post">
+                <div class="row">
+                <div class="col-sm-5">
+                  <div class="match-height clearfix">
+                    {% image blog.header_image max-1920x1080 as blog_image %}
+                    <a class="link-unstyled" href="{% pageurl blog %}"><div class="blog-post-main-image" style="background-image: url('{{ blog_image.url }}')"></div></a>
+                  </div>
+                </div>
+                <div class="col-sm-7">
+                  <div class="match-height clearfix">
+                  <h3><a class="link-unstyled" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
+                  <span class="blog-section-tag">{{ blog.parent_title }}</span> <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
+                  {{ blog.body|first_p|safe }}
+                  </div>
+                </div>
+                </div>
+              </div>
+              {% endfor %}
+              <a href="blogikirjoitukset/" class="blogs-preview-read-all">Kaikki uutiset</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+              <div class="events-highlights">
+                {% if self.event_index %}
+                  <a class="link-unstyled" href="{% pageurl self.event_index %}"><img src="{% static "images/osallistu.svg" %}" class="event-illustration">
+                  <h2>Tapahtumia</h2></a>
+                  <ul></ul>
+                  <div class="events-source">
+                      <a class="link-unstyled" href="{% pageurl self.event_index %}">Tapahtumatiedot</a>
+                      <a class="link-unstyled" href="https://dev.hel.fi/projects/linked-events/">Linked Events -rajapinnasta</a>
+                  </div>
+                {% else %}
+                  Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
+                {% endif %}
+              </div>
+          </div>
+      </section>
+  </article>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% compress js inline %}
+<script type="text/javascript">
+    $.getJSON('/event_data/?future=true', function(json) {return displayEvents(json,false)});
+</script>
+{% endcompress %}
+{% endblock %}

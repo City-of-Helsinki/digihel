@@ -10,8 +10,7 @@
 {% block footer_branding %}
     <div class="footer-branding footer-branding-helsinki">
         <a href="http://www.hel.fi">
-            <img alt="Helsingin vaakuna" src="{% static "images/helsinki-vaakuna.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
-            <div class="footer-branding-text">Helsingin kaupunki</div>
+            <img alt="Helsingin vaakuna" src="{% static "images/helsinki-logo-white.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
         </a>
     </div>
 {% endblock footer_branding %}
@@ -31,3 +30,12 @@
             </ul>
         </div>
 {% endblock footer_links %}
+
+{% block footer_smallprint %}
+        <div class="page-footer-small-print">
+            <ul class="small-print-nav">
+                <li><a href="/yhteystiedot/">Ota yhteyttä</a></li>
+                <li>2017 Helsingin kaupunki</li>
+            </ul>
+        </div>
+{% endblock footer_smallprint %}
