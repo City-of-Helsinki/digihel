@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^sivukartta/$', sitemap_view),
     url(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
     url(r'^docs/$', TemplateView.as_view(template_name="digi/docs.html")),
-
+    url(r'^docs/doc/$', TemplateView.as_view(template_name="digi/doc.html")),
     # client endpoints for external API data
     url(r'^event_data/', event_data),
 

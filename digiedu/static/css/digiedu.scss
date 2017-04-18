@@ -3,6 +3,8 @@
 
 @import 'hel-bootstrap-3/src/sass/hel-variables';
 
+$icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
+
 $theme-primary-dark: $bus;
 $theme-primary-light: $engel;
 
@@ -43,9 +45,14 @@ $modular-scale-base: 1em;
   margin-bottom: $line-height-computed;
 
   h4 {
-    margin: 0;
+    margin-top: 0;
   }
 
   .file-list__link {
   }
+}
+
+.file-view__details {
+  padding: $line-height-computed / 2;
+  background: $engel;
 }
