@@ -97,10 +97,18 @@ $modular-scale-base: 1em;
 .navbar {
   background-color: $copper;
 
+  a {
+    color: $black;
+
+    &:hover {
+      color: $bus;
+    }
+  }
+
   .navbar-toggle .icon-bar {
     background-color: $bus;
   }
-  
+
   .site-title {
     font-weight: 600;
   }
