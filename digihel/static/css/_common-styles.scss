@@ -1,3 +1,7 @@
+
+$modular-scale-ratio: $major-third;
+$modular-scale-base: 1em;
+
 //* Global */
 
 // Bootstrap overrides
@@ -319,7 +323,7 @@ $labelheight:     22px;
 @media screen and (min-width: $screen-lg-min) {
   .navbar .drop-search {
     @include transition(all .5s ease);
-    background-color: $helsinkiblue;
+    background-color: $theme-primary-dark;
     display: block;
     max-height: 0;
     overflow-y: hidden;
@@ -339,8 +343,8 @@ $labelheight:     22px;
   }
 
   .menuitem-login {
-    border-left: 1px solid lighten($helsinkiblue, 20%);
-    border-right: 1px solid lighten($helsinkiblue, 20%);
+    border-left: 1px solid lighten($theme-primary-dark, 20%);
+    border-right: 1px solid lighten($theme-primary-dark, 20%);
   }
 }
 
@@ -378,14 +382,14 @@ $labelheight:     22px;
   }
 
   &::before {
-    border-top: 3px solid $helsinkiblue;
+    border-top: 3px solid $theme-primary-dark;
     display: block;
     content: " ";
     padding-bottom: $line-height-computed / 2;
   }
 
   &::after {
-    border-bottom: 3px solid $helsinkiblue;
+    border-bottom: 3px solid $theme-primary-dark;
     content: " ";
     display: block;
     padding-top: $line-height-computed / 2;
@@ -408,7 +412,7 @@ $labelheight:     22px;
 
       &:hover {
         background: transparent;
-        color: $helsinkiturquoise;
+        color: $theme-primary-light;
       }
     }
 
@@ -474,11 +478,11 @@ $labelheight:     22px;
 
   li.active {
     > a {
-      color: $helsinkiblue;
+      color: $theme-primary-dark;
       font-weight: 700;
 
       &:hover {
-        color: $helsinkiblue;
+        color: $theme-primary-dark;
       }
     }
   }
@@ -505,7 +509,7 @@ $labelheight:     22px;
 
 .container .jumbotron,
 .container-fluid .jumbotron {
-  background-color: $helsinkiturquoise;
+  background-color: $theme-primary-light;
   background-size: auto 100%;;
   background-repeat: repeat-x;
   background-position: bottom;
@@ -575,7 +579,7 @@ $labelheight:     22px;
 //* Theme page */
 
 .project-section-header {
-  border-bottom: 4px solid $helsinkiblue;
+  border-bottom: 4px solid $theme-secondary-dark;
   float: left;
   font-size: 24px;
   margin-bottom: 1em;
@@ -590,7 +594,7 @@ $labelheight:     22px;
 
 .theme-info {
   .card-type {
-    border-bottom: solid 3px $helsinkired;
+    border-bottom: solid 3px $theme-secondary-dark;
     display: inline-block;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -707,7 +711,7 @@ $labelheight:     22px;
 .front-page {
   .indicators {
     text-align: center;
-    background-color: lighten($helsinkiturquoise, 45%);
+    background-color: $theme-secondary-light;
     padding: 12px;
   }
 
@@ -729,14 +733,14 @@ $labelheight:     22px;
   }
 
   .indicator-value {
-    color: $helsinkiblue;
+    color: $theme-primary-dark;
     font-size: 36px;
     font-weight: 900;
     width: 100%;
   }
 
   .indicator-description {
-    color: $helsinkiblue;
+    color: $theme-primary-dark;
     text-transform: uppercase;
     font-weight: 900;
     width: 100%;
@@ -765,11 +769,11 @@ $labelheight:     22px;
   }
 
   .event-date {
-    color: lighten($helsinkiturquoise, 45%);
+    color: $theme-primary-dark;
   }
 
   .event-location {
-    color: lighten($helsinkiturquoise, 45%);
+    color: $theme-primary-dark;
   }
 
   .event-description {
@@ -777,7 +781,7 @@ $labelheight:     22px;
 
   .events-source {
     @extend .small;
-    border-top: 1px solid lighten($helsinkiturquoise, 45%);
+    border-top: 1px solid $theme-primary-light;
     margin-top: $line-height-computed;
   }
 
@@ -794,10 +798,10 @@ $labelheight:     22px;
 
   .tweet {
     margin-bottom: $line-height-computed;
-    //border: 1px solid lighten($helsinkiturquoise,40%);
+    //border: 1px solid lighten($theme-primary-light,40%);
     //padding: $line-height-computed / 2;
     a {
-      color: lighten($helsinkiturquoise,45%);
+      color: $theme-primary-dark;
     }
   }
 
@@ -812,7 +816,7 @@ $labelheight:     22px;
   }
 
   .tweet__fullname {
-    color: lighten($helsinkiturquoise,45%);
+    color: $theme-primary-dark;
     display: block;
     font-size: 1.15em;
     font-weight: 700;
@@ -838,8 +842,8 @@ $labelheight:     22px;
 .manual-links,
 .events-highlights,
 .twitter-feed {
-  background-color: $helsinkiturquoise;
-  color: $white;
+  background-color: $theme-primary-light;
+  color: $black;
   margin-bottom: 2em;
   padding: 1em;
   position: relative;
@@ -850,7 +854,7 @@ $labelheight:     22px;
   }
 
   a {
-    color: $white;
+    color: $black;
 
     &:hover {
       text-decoration: underline;
@@ -884,7 +888,7 @@ $labelheight:     22px;
 }
 
 .card-type {
-  border-bottom: solid 3px $theme-highlight-dark;
+  border-bottom: solid 3px $theme-secondary-dark;
   display: inline-block;
   margin-bottom: 10px;
   padding-bottom: 10px;
@@ -892,13 +896,13 @@ $labelheight:     22px;
 }
 
 .theme-preview {
-  background-color: $helsinkiturquoise;
+  background-color: $theme-primary-light;
   color: $black;
   margin-bottom: 1em;
   padding: 1em;
 
   a:hover {
-    color: $white;
+    color: $theme-highlight-dark;
   }
 
   .theme-thumbnail {
@@ -926,7 +930,7 @@ $labelheight:     22px;
   }
 
   h3 {
-    color: $helsinkiblue;
+    color: $theme-primary-dark;
     margin-bottom: $line-height-computed / 2;
     margin-top: 0;
   }
@@ -963,7 +967,7 @@ $labelheight:     22px;
   }
 
   .card-type {
-    border-color: $brand-red;
+    border-color: $theme-secondary-dark;
   }
 }
 
@@ -1099,11 +1103,11 @@ $labelheight:     22px;
 }
 .feedback-module {
   background: $gray-lighter;
-  //border: 2px solid $helsinkiblue;
+  //border: 2px solid $theme-primary-dark;
   //color: $helsinkiyellow;
   padding: 1em;
   margin: 2em 0;
-  //box-shadow: 4px 4px $helsinkiblue;
+  //box-shadow: 4px 4px $theme-primary-dark;
 }
 
 .feedback-module-header {
@@ -1117,7 +1121,7 @@ $labelheight:     22px;
 }
 
 .feedback-module-content {
-  //border-top: 2px solid $helsinkiblue;
+  //border-top: 2px solid $theme-primary-dark;
   margin: 0;
   h4 {
     margin: 2em 0 2em 0;
@@ -1161,12 +1165,12 @@ $labelheight:     22px;
 .person-list--avatar {
   background-position: center;
   background-size: cover;
-  box-shadow: 4px 4px 0 0 $helsinkiblue;
+  box-shadow: 4px 4px 0 0 $theme-primary-dark;
   height: $line-height-computed * 5;
   width: $line-height-computed * 5;
 
   @media screen and (min-width: $screen-sm-min) {
-    box-shadow: 8px 8px 0 0 $helsinkiblue;
+    box-shadow: 8px 8px 0 0 $theme-primary-dark;
     height: $line-height-computed * 7;
     width: $line-height-computed * 7;
   }
@@ -1221,7 +1225,7 @@ $labelheight:     22px;
 // Blog Index
 
 .blog-section-header {
-  border-bottom: 4px solid $helsinkired;
+  border-bottom: 4px solid $theme-secondary-dark;
   float: left;
   font-size: 24px;
   margin-bottom: 1em;
@@ -1241,7 +1245,7 @@ $labelheight:     22px;
   margin-top: 2em;
 
   .blog-post-main-image {
-    background-color: $helsinkiturquoise;
+    background-color: $theme-primary-light;
     background-position: center;
     background-size: cover;
     height: $line-height-computed * 8;
@@ -1260,7 +1264,7 @@ $labelheight:     22px;
     }
 
     .blog-post-link {
-      border-top: 3px solid $helsinkired;
+      border-top: 3px solid $theme-secondary-dark;
       display: block;
       padding-top: 1em;
     }
@@ -1273,7 +1277,7 @@ $labelheight:     22px;
 }
 
 .blog-index-highlight {
-  background: $helsinkiturquoise;
+  background: $theme-primary-light;
   background-position: center;
   background-size: cover;
   height: 28em;
@@ -1285,7 +1289,7 @@ $labelheight:     22px;
   }
 
   .blog-highlight-content {
-    background: rgba($helsinkiblue, .75);
+    background: rgba($theme-primary-dark, .75);
     color: $white;
     left: 1em;
     padding: 1em;
@@ -1317,7 +1321,7 @@ $labelheight:     22px;
 .blog-post-container {
 
   .blog-post-main-image {
-    background-color: $helsinkiturquoise;
+    background-color: $theme-primary-light;
     background-position: center;
     background-size: cover;
     height: $line-height-computed * 12;
@@ -1359,7 +1363,7 @@ $labelheight:     22px;
 }
 
 .search-results-item {
-  border-bottom: 1px solid $helsinkiblue;
+  border-bottom: 1px solid $theme-primary-dark;
 }
 
 //* Events page */
@@ -1367,12 +1371,12 @@ $labelheight:     22px;
 .events-index {
 
   .event-preview {
-    background: $helsinkiturquoise;
+    background: $theme-primary-light;
     margin-bottom: $line-height-computed;
 
     a {
       &:hover {
-        color: $white;
+        color: $theme-highlight-dark;
         text-decoration: underline;
       }
     }
@@ -1386,7 +1390,7 @@ $labelheight:     22px;
   }
 
   .event-meta  {
-    color: lighten($helsinkiturquoise, 45%);
+    color: $theme-primary-light;
     padding: 0 $padding-large-vertical;
   }
 
@@ -1399,7 +1403,7 @@ $labelheight:     22px;
     margin-bottom: $line-height-computed / 2;
 
     a {
-      color: $white;
+      color: $black;
 
       &:hover {
         text-decoration: underline;
@@ -1446,8 +1450,8 @@ $labelheight:     22px;
   }
 }
 .design-principles-banner {
-  border-top: 3px solid $helsinkiturquoise;
-  border-bottom: 3px solid $helsinkiturquoise;
+  border-top: 3px solid $theme-primary-light;
+  border-bottom: 3px solid $theme-primary-light;
   margin-top: $line-height-computed;
 
   p {
@@ -1455,7 +1459,7 @@ $labelheight:     22px;
   }
 
   a {
-    color: $helsinkiturquoise;
+    color: $theme-primary-light;
   }
 }
 
@@ -1465,7 +1469,7 @@ $labelheight:     22px;
   @extend .clearfix;
 
   h2 {
-    color: $helsinkiturquoise;
+    color: $theme-primary-light;
     margin-top: $line-height-computed;
   }
 
@@ -1578,7 +1582,7 @@ $labelheight:     22px;
 
   .principle-header {
     @extend .clearfix;
-    color: $helsinkiblue;
+    color: $theme-primary-dark;
 
     .principle--title {
       margin-left: 90px;
@@ -1597,7 +1601,7 @@ $labelheight:     22px;
     text-align: center;
 
     &::after {
-      border: 6px solid $helsinkiturquoise;
+      border: 6px solid $theme-primary-light;
       border-top: 0;
       content: "";
       display: block;
@@ -1607,7 +1611,7 @@ $labelheight:     22px;
     }
 
     &::before {
-      border: 6px solid $helsinkiturquoise;
+      border: 6px solid $theme-primary-light;
       border-bottom: 0;
       content: "";
       display: block;
@@ -1620,14 +1624,14 @@ $labelheight:     22px;
   p {
     //@extend .lead;
     font-size: $font-size-large;
-    color: $helsinkiblue;
+    color: $theme-primary-dark;
   }
 
   .principle-tags {
     .principle-tag {
       @extend .label;
       //@extend .label-info;
-      background: $helsinkiturquoise;
+      background: $theme-primary-light;
     }
   }
 
