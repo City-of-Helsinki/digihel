@@ -2,7 +2,7 @@
 
 You will need a Linux-style server and root-account
 
-2. Open a SSH-connection to the server
+1. Open a SSH-connection to the server
    ssh root@server
 2. Install the necessary packages for installing Ansible:
    (Ansible is not yet Python 3 safe)
@@ -19,3 +19,9 @@ You will need a Linux-style server and root-account
 
 The installation roles are configured in config/digiedu-cms-dev.yml
 Change django_external_name to change the user visible name of the server.
+
+# Testing using Vagrant
+
+If you have Vagrant installed you can test the deployment:
+
+vagrant up

@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Environment variables to fetch hostname and tags from
+HOSTNAME_KEY = 'MACHINE_NAME'
+PLAYBOOK_KEY = 'PLAYBOOK'
+TAGS_KEY = 'TAGS'
+
+Vagrant.configure("2") do |config|
+        ip_address = "192.168.79.2"
+        machinename = ENV.fetch(HOSTNAME_KEY, "digiedu")
+        config.vm.box = "ubuntu/xenial64"
+        config.vm.hostname = machinename
+	tags = ENV.fetch(TAGS_KEY, "")
+	config.vm.define machinename do |machine|
+        end
+
+        # Run on host-only network, access through port forwardings
+        config.vm.network "private_network", type: "dhcp"
+        config.vm.network "forwarded_port", guest: 22, host: 2279, id: "ssh", auto_correct: true
+#	config.vm.network "forwarded_port", guest: 8000, host:8000, id: "django_devserver"
+
+        config.vm.provider "virtualbox" do |v|
+                v.customize ["modifyvm", :id, "--cpus", "2"]
+                v.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
+                v.memory = 2048
+                v.name = machinename
+        end
+
+        # Python2 in a requirement for Ansibling things
+        $script = <<SCRIPT
+apt-get -y install python-minimal
+SCRIPT
+
+        config.vm.provision "shell", inline: $script
+
+        config.vm.provision "ansible" do |ansible|
+		ansible.playbook = ENV.fetch(PLAYBOOK_KEY, "playbook.yml")
+                ansible.host_key_checking = false
+                ansible.verbose = "v"
+        end
+end
