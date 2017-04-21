@@ -1,32 +1,12 @@
-@import 'bourbon/app/assets/stylesheets/bourbon';
 @import url('https://dev.hel.fi/~terotik/cdn/fonts/HelsinkiGrotesk.css');
 
-@import 'hel-bootstrap-3/src/sass/hel-variables';
+@import 'hel-bootstrap-3/src/sass/helsinki-variables';
+@import 'hel-bootstrap-3/src/sass/application-variables';
 
-$theme-primary-dark: $bus;
-$theme-primary-light: $engel;
-
-$theme-highlight-dark: $brick;
-$theme-highlight-light: $suomenlinna;
+$icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 @import 'hel-bootstrap-3/src/sass/custom-bootstrap-variables';
 @import 'bootstrap-custom';
+@import 'bourbon/app/assets/stylesheets/bourbon';
 @import 'digihel-icons';
-
-$helsinkiyellow: $summer;
-$helsinkiblue: $bus;
-$helsinkiturquoise: $copper;
-$helsinkired: $suomenlinna;
-
-$brand-red: $helsinkired;
-$brand-blue: $helsinkiblue;
-$brand-yellow: $helsinkiyellow;
-$brand-turquoise: $helsinkiturquoise;
-$brand-secondary: $helsinkiturquoise;
-
-$white: #fff;
-
-$modular-scale-ratio: $major-third;
-$modular-scale-base: 1em;
-
 @import 'common-styles';
