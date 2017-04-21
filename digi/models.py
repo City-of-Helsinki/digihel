@@ -168,11 +168,7 @@ class ProjectPage(RelativeURLMixin, Page):
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
     short_description = models.TextField(null=True, blank=True)
-    phase = models.CharField(
-        max_length=2,
-        choices=Phase.PHASE_CHOICES,
-        default=Phase.NONE,
-    )
+    phase = models.CharField(max_length=2,choices=Phase.PHASE_CHOICES,default=Phase.NONE,null=True, blank=True)
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ], null=True, blank=True)
