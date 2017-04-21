@@ -1,0 +1,15 @@
+- hosts: digiedu
+  become: yes
+  vars_files:
+  - config/digiedu-cms-dev.yml
+  roles:
+  - role: node-support
+    tags: ['node-support','digiedu']
+  - role: postgres
+    tags: ['database', 'digiedu']
+  - role: django-configuration
+    tags: ['application', 'digiedu']
+  - role: python-container
+    tags: ['application-server', 'digiedu']
+  - role: nginx
+    tags: ['web-server', 'digiedu']

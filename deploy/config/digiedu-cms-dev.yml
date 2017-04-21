@@ -1,0 +1,55 @@
+postgres_user: "{{pycont_user}}"
+postgres_pass: pgqKBmrthBMk8WItf8tv
+postgres_postgis: no
+postgres_hstore: no
+postgres_dbname: "{{ pycont_user }}"
+
+django_user: digiedu-dev
+django_name: digiedu-dev
+django_python3: yes
+django_pillow: yes
+
+django_git_url: https://github.com/City-of-Helsinki/digihel.git
+django_git_version: digiedu
+
+django_virtualhosts:
+  - digiedu.dev.hel.ninja
+django_external_name: digiedu.dev.hel.ninja
+
+django_db_name: "{{ pycont_user }}"
+django_db_postgis: no
+
+django_debug: yes
+django_debug_logging: no
+django_site_state: dev
+
+node_support_user: "{{ django_user }}"
+node_support_nodeversion: v4
+node_support_upgrade_npm: True
+node_support_npm_modules:
+  - coffee-script
+
+django_shell_commands:
+  - npm i
+
+django_contract_socket: "{{ pycont_contract_socket }}"
+django_sentry_dsn: https://2f8f1bef02634775823dce41f21c7607:e578058da6084f2b80b878f3b9e223fd@sentry.hel.ninja/16
+django_sentry_environment: test
+
+pycont_user: "{{ django_user }}"
+pycont_name: "{{ django_name }}"
+pycont_path: "/home/digiedu-dev/nvm/versions/node/v4.8.2/bin"
+pycont_app_name: digihel
+pycont_app_path: digiedu-dev
+pycont_contract_socket: /run/uwsgi/app/{{ django_name }}/contract_socket
+
+nginx_sitename: "{{ django_name }}"
+nginx_virtualhost: "{{ django_virtualhosts[0] }}"
+nginx_canonical_name: "{{ nginx_virtualhost }}"
+# Uncomment these if you have certificates available locally
+# roles expect them to be in private/tls/{{nginx_canonical_name}}/{{nginx_canonical_name.key && -fullchain.pem}}
+#nginx_certchain: /etc/letsencrypt/live/{{ django_external_name }}/fullchain.pem
+#nginx_privkey: /etc/letsencrypt/live/{{ django_external_name }}/privkey.pem
+nginx_site_user:  "{{ django_user }}"
+nginx_site_appdir: "{{ django_name }}"
+nginx_contract_socket: "{{pycont_contract_socket}}"

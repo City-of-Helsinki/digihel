@@ -1,0 +1,40 @@
+server {
+        listen {{ nginx_listen_port }};
+
+        server_name {{ nginx_virtualhost }};
+
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+	location / {
+                # Proxy-Connection must not be passed
+                # through reverse-proxies and is
+                # illegal with HTTP/2 to boot
+		# Safari will by Very Unhappy if you do it
+                proxy_hide_header Proxy-Connection;
+		# Nginx will, by default, remove Host-header, which breaks
+		# name-based virtualhosting
+                proxy_set_header Host $http_host;
+		# Disables rewriting Location and Refresh -headers
+                proxy_redirect off;
+		# Some random headers from some long forgotten template
+		# All these are de-facto practices, that are interpreted
+		# as the application developer sees fit.
+		# $scheme is 'http' or 'https'
+		# $proxy_add_x_forwarded_for is X-Forwarded-For header from client
+		# with $remote_addr (upstream IP from nginx) appended,
+                proxy_set_header X-Scheme $scheme;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+		# Timeout for TCP connection establishment
+                proxy_connect_timeout 10;
+		# Timeout between successive reads from socket
+                proxy_read_timeout 30;
+                proxy_pass http://{{ nginx_reverse_host }}:{{ nginx_reverse_port }}/;
+        }
+
+        # Used for Let's Encrypt certificate (re-)issuance process
+        location /.well-known/acme-challenge {
+            alias /srv/letsencrypt/challenges;
+        }
+}

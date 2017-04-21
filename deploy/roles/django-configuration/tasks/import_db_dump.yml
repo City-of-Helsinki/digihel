@@ -1,0 +1,13 @@
+---
+- name: Download initial SQL dump
+  become_user: "{{ django_user }}"
+  get_url: dest=/home/{{django_user}}/initial_{{django_db_name}}.sql.bz2
+           url={{django_sql_dump_url}}
+           url_username={{django_dump_url_user|default(omit)}}
+           url_password={{django_dump_url_pass|default(omit)}}
+  when: django_sql_dump_url is defined
+
+- name: Apply SQL dump
+  become_user: "{{ django_user }}"
+  shell: bunzip2 -c /home/{{django_user}}/initial_{{django_db_name}}.sql.bz2 | psql {{postgres_dbname}}
+  when: django_sql_dump_url is defined

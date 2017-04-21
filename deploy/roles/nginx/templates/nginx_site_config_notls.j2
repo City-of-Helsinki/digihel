@@ -1,0 +1,48 @@
+{# This template is for no-encryption case, to avoid too many ifdefs #}
+# {{ansible_managed}}
+server {
+        listen {{nginx_http_listen_port|default(80)}};
+        listen [::]:{{nginx_http_listen_port|default(80)}};
+
+        # this root is normally not available, either the site location
+	# is at root, or frontend server only forwards prefixed requests
+        root /usr/share/nginx/html;
+
+        # HTTP-Host:
+        server_name {{nginx_virtualhost}};
+
+	{% if nginx_increased_body_size is defined and nginx_increased_body_size%}
+        client_max_body_size 100m;
+        {% endif %}
+
+	# public files that do not directly belong to the application
+	# like accessibility statements or robots.txt
+        location {{ "/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/public/ {
+                alias /home/{{ nginx_site_user }}/public/;
+        }
+
+        # Django collectstatic is configured to gather everything here
+{# Location can be configured to be in a subtree to make reverse proxy configuration easier. #}
+        location {{"/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/static/ {
+                alias /home/{{nginx_site_user}}/static/;
+        }
+
+        # Media files uploaded by users
+        location {{ "/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/media/ {
+                alias /home/{{nginx_site_user}}/media/;
+        }
+
+        location {{ "/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/ {
+                include uwsgi_params;
+                {% if nginx_contract_port is defined %}
+                uwsgi_pass 127.0.0.1:{{nginx_contract_port}};
+                {% elif nginx_contract_socket is defined %}
+                uwsgi_pass unix://{{nginx_contract_socket}};
+                {% endif %}
+        }
+
+        # Used for Let's Encrypt certificate (re-)issuance process
+        location /.well-known/acme-challenge {
+            alias /srv/letsencrypt/challenges;
+        }
+}

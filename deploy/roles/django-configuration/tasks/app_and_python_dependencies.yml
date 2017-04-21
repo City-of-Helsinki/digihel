@@ -1,0 +1,59 @@
+- name: Clone the configured version of the project source
+  become_user: "{{django_user}}"
+  git: repo={{django_git_url}}
+       dest=/home/{{django_user}}/{{django_name}}
+       version={{django_git_version}}
+       force={{django_git_force_pull|default(false)}}
+  tags: [ 'code_update', 'git_operations' ]
+  register: git_deploy
+  until: git_deploy|succeeded
+
+- name: Create Python 3.x venv
+  become_user: "{{django_user}}"
+  environment:
+    LC_CTYPE: C.UTF-8
+  shell: virtualenv -p /usr/bin/python3 /home/{{django_user}}/venv
+         creates=/home/{{django_user}}/venv
+  tags: venv
+
+- name: Upgrade pip & setuptools in virtualenv
+  become_user: "{{django_user}}"
+  environment:
+    LC_CTYPE: C.UTF-8
+  pip: name={{item}} virtualenv=/home/{{django_user}}/venv state=latest
+  # Maybe with python 2.x as well? Although nothing needs that anymore?
+  with_items:
+    - setuptools
+    - pip
+
+- name: Install requirements.txt into virtualenv
+  become_user: "{{django_user}}"
+  # pip processing does not read the encoding header in Python files, thus
+  # causing a failure if there are non-ASCII characters in setup.py, workaround
+  # this by setting locale (this should be verified as this over year ago)
+  environment:
+    LC_ALL: C.UTF-8
+  pip: requirements=/home/{{django_user}}/{{django_name}}/requirements.txt
+       virtualenv=/home/{{django_user}}/venv
+       virtualenv_site_packages=no
+       state={{ django_upgrade_requirements | default(False) | ternary('latest', 'present') }}
+  tags: [ venv, code_update ]
+
+- name: Install configuration specific Python packages into virtualenv
+  become_user: "{{django_user}}"
+  # pip processing does not read the encoding header in Python files, thus
+  # causing a failure if there are non-ASCII characters in setup.py, workaround
+  # this by setting locale (this should be verified as this over year ago)
+  environment:
+    LC_ALL: C.UTF-8
+  pip: name={{item}}
+       virtualenv=/home/{{django_user}}/venv
+       virtualenv_site_packages=no
+       state=latest
+  with_items: "{{django_service_pypis|default([])}}"
+  tags: [ venv, code_update ]
+
+# This is a convenience for in situ debugging
+- name: Make virtualenv activate by default
+  become_user: "{{django_user}}"
+  lineinfile: dest=/home/{{django_user}}/.bashrc line=". ~/venv/bin/activate"

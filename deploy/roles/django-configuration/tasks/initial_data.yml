@@ -1,0 +1,15 @@
+- name: Copy & extract any service specific data archives
+  become_user: "{{ django_user}}"
+  unarchive: src={{ item.archive }}
+             dest=/home/{{ django_user }}/{{ item.extract_path }}
+  with_items: "{{django_data_archives | default([])}}"
+
+- name: Run Django management commands to import initial data
+  become_user: "{{django_user}}"
+  environment:
+    # LC_ALL is the big hammer to get rid of character set problems
+    LC_ALL: C.UTF-8
+  django_manage: command={{ item }} app_path=/home/{{django_user}}/{{django_name}}
+                  virtualenv=/home/{{django_user}}/venv
+  with_items: "{{django_data_import_commands|default([])}}"
+  ignore_errors: "{{django_data_import_ignore_errors|default(False)}}"

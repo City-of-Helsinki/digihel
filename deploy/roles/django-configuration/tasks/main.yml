@@ -1,0 +1,21 @@
+- name: Create system user for the Django project
+  user: name={{django_user}} comment="{{pycont_name}} system user" system=yes
+
+- name: Import DB dump
+  include: import_db_dump.yml
+
+- name: Install needed system packages
+  include: system_deb.yml
+
+- name: Install app & Python dependencides
+  include: app_and_python_dependencies.yml
+
+- name: Configure application
+  include: configure_app.yml
+
+- name: Import initial data
+  include: initial_data.yml
+  tags: initial_data
+
+- name: Setup runtime
+  include: runtime.yml

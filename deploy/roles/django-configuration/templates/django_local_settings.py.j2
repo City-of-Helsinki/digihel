@@ -1,0 +1,145 @@
+# {{ansible_managed}}
+# Read in a fragment directory. Easier than trying to splice them
+# all over the template
+{% if django_enable_local_settings_d|default(True) %}
+import os
+local_settings_d = os.path.join(BASE_DIR, 'local_settings.d')
+if os.path.isdir(local_settings_d):
+    for file in sorted(os.listdir(local_settings_d)):
+        if not file.endswith('.py'):
+            continue
+        exec(open(os.path.join(local_settings_d, file), "rb").read())
+{% endif %}
+
+ALLOWED_HOSTS = {{ django_virtualhosts }}
+
+DATABASES = {
+    'default': {
+        'ENGINE': '{% if django_db_postgis|default(False) %}django.contrib.gis.db.backends.postgis{% else %}django.db.backends.postgresql_psycopg2{% endif %}',
+        'NAME': '{{django_db_name}}',
+        'USER': '{{django_user}}',
+        'CONN_MAX_AGE': 600,
+        'ATOMIC_REQUESTS': {{ django_atomic_requests|default(False) }},
+    }
+}
+
+DEBUG = {{ 'True' if django_debug else 'False' }}
+
+{% if django_cors_whitelist is defined %}
+CORS_ORIGIN_WHITELIST = ['{{ django_cors_whitelist }}']
+{% endif %}
+
+LOGIN_REDIRECT_URL = 'https://api.hel.fi{{ "/" ~ django_url_prefix if django_url_prefix is defined else "" }}/admin/'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_COOKIE_NAME = '{{ django_name }}-csrftoken'
+CSRF_COOKIE_PATH = '/{{ django_url_prefix|default("") }}'
+SESSION_COOKIE_NAME = '{{ django_name }}-sessionid'
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_PATH = '/{{ django_url_prefix|default("") }}'
+
+SITE_TYPE = '{{ django_site_state }}'
+
+{% if django_debug_logging|default(False) %}
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(module)s %(asctime)s %(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    'loggers': {
+        'django.db': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'generic': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'requests': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        }
+    }
+}
+{% else %}
+# Django default logging without debug does not output anything
+# to std*, let use log errors and worse. They should end up
+# in the runtime (ie. uwsgi) logs
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+        },
+    },
+}
+{% endif %}
+
+{% if django_sentry_dsn is defined %}
+import raven
+
+RAVEN_CONFIG = {
+    'dsn': '{{django_sentry_dsn}}',
+    # Needs to change if settings.py is not in an immediate child of the project
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+{% if django_sentry_environment is defined %}    'environment': '{{django_sentry_environment}}'{% endif %}
+}
+{% endif %}
+
+STATIC_ROOT = '/home/{{django_user}}/static'
+MEDIA_ROOT = '/home/{{django_user}}/media'
+STATIC_URL = '{{ "/" ~ django_url_prefix if django_url_prefix is defined else ""}}/static/'
+MEDIA_URL = '{{ "/" ~ django_url_prefix if django_url_prefix is defined else "" }}/media/'
+
+{% if django_jwt_secret|default(False) %}
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USER_ID_HANDLER': 'helusers.jwt.get_user_id_from_payload_handler',
+    'JWT_SECRET_KEY': '{{django_jwt_secret}}',
+    'JWT_AUDIENCE': '{{django_jwt_audience}}'
+}
+{% endif %}
+
+{# haystack configurations are wery complex and require a fwagment #}
+{% include django_haystack_config_fragment|default("non_existent") ignore missing %}
+
+{% if django_kerrokantasi_ui_location|default(False) %}
+DEMOCRACY_UI_BASE_URL = 'http://{{ django_kerrokantasi_ui_location }}'
+{% endif %}

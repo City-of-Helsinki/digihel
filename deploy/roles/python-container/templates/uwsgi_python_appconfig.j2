@@ -1,0 +1,42 @@
+# {{ansible_managed}}
+uwsgi:
+  # Take heed! Plugins must be near top. Uwsgi will automagically
+  # attempt to find a plugin providing unknown configuration options
+  # If the parser encounters 'callable'-option it will load the first
+  # Python module providing that. Whether it is 'python' or 'python3'
+  # Then you application will be run using that python and you will
+  # be quite confused.
+  plugins: python3
+  chdir: /home/{{pycont_user}}/{{pycont_app_path}}
+{% if pycont_url_prefix is defined %}
+  mount: "/{{pycont_url_prefix}}={{pycont_app_name}}/wsgi.py"
+  # This causes uwsgi to cut off the mountpoint name from URLs it
+  # passes on to the the WSGI-application. Or at least it causes Django
+  # to work when not installed in the root of URI-space
+  manage-script-name: true
+{% else %}
+  wsgi-file: {{pycont_app_name}}/wsgi.py
+{% endif %}
+  callable: "application"
+{% if pycont_path is defined %}
+  env: PATH={{pycont_path}}:$(PATH)
+{% endif %}
+  env: DJANGO_SETTINGS_MODULE={{pycont_app_name}}.settings
+  env: LANG=en_US.UTF-8
+  virtualenv: /home/{{pycont_user}}/venv
+{% if pycont_contract_port is defined %}
+  socket: 127.0.0.1:{{pycont_contract_port}}
+{% elif pycont_contract_socket is defined %}
+  socket: {{pycont_contract_socket}}
+{% endif %}
+  processes: {{pycont_uwsgi_processes|default(4)}}
+  threads: {{ pycont_uwsgi_threads|default(1)}}
+  master: true
+  uid: {{pycont_user}}
+
+  # Based on AKX
+  master: true
+  reload-on-rss: 300
+  touch-reload: /home/{{pycont_user}}/service_state/touch_to_reload
+  # Allow large image uploads
+  chunked-input-limit: 10485760

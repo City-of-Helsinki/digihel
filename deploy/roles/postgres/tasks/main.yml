@@ -1,0 +1,82 @@
+---
+- name: Ensure fi_FI.UTF-8 locale exists
+  locale_gen: name=fi_FI.UTF-8 state=present
+
+# tasks file for postgres
+- name: Install packages for Postgres
+  become: yes
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - postgresql
+    - python-psycopg2
+
+- name: Install Postgis extension for Ubuntu 16.04
+  become: yes
+  package: name={{item}} state=present
+  with_items:
+    - postgis
+  when: postgres_postgis|default(False) and ansible_distribution_major_version == "16"
+
+- name: Install Postgis extension for Ubuntu 14.04
+  become: yes
+  package: name={{item}} state=present
+  with_items:
+    - postgresql-9.3-postgis-2.1
+    - postgis
+  when: postgres_postgis|default(False) and ansible_distribution_major_version == "14"
+  
+- name: Create database user
+  become_user: postgres
+  postgresql_user: name={{postgres_user}} password={{postgres_pass}} state=present
+
+- name: Check if database exists already
+  command: psql -tAc "SELECT 1 FROM pg_database WHERE datname='{{ postgres_dbname }}'"
+  become_user: postgres
+  register: postgres_database_exists
+  tags: db
+
+# This fails if the database was previously created using a different
+# locale, even if it is an alias of the locale being set. Thus test for
+# existence
+- name: Create database
+  become_user: postgres
+  postgresql_db: name={{postgres_dbname}} encoding=utf8
+                 lc_collate=fi_FI.utf8 lc_ctype=fi_FI.utf8
+                 owner={{postgres_user}} template=template0 state=present
+  when: not postgres_database_exists.stdout
+   
+
+- name: Create PostGIS extension
+  become_user: postgres
+  postgresql_ext: db={{postgres_dbname}} name=postgis
+  when: "{{ postgres_postgis | default(False) }}"
+
+- name: Inserting ETRS-GK25 coordinate system into PostGIS
+  sudo_user: postgres
+  script: setup_3879.sh {{ postgres_dbname }}
+  when: "{{ postgres_postgis | default(False) }}"
+
+- name: Install HSTORE extension for Ubuntu 14.04
+  become: yes
+  package: name={{item}} state=present
+  with_items:
+    - postgresql-contrib-9.3
+  when: postgres_hstore|default(False) and ansible_distribution_major_version == "14"
+
+- name: Create hstore extension
+  become_user: postgres
+  postgresql_ext: db={{postgres_dbname}} name=hstore
+  when: "{{ postgres_hstore | default(False) }}"
+
+- name: Download initial SQL dump
+  become_user: postgres
+  get_url: dest=/var/lib/postgresql/initial_{{postgres_dbname}}.sql.bz2
+           url={{postgres_sql_dump_url}}
+           url_username={{postgres_url_user|default(omit)}}
+           url_password={{postgres_url_pass|default(omit)}}
+  when: postgres_sql_dump_url is defined
+
+- name: Apply SQL dump
+  become_user: postgres
+  shell: bunzip2 -c /var/lib/postgresql/initial_{{postgres_dbname}}.sql.bz2 | psql {{postgres_dbname}}
+  when: postgres_sql_dump_url is defined
