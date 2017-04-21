@@ -1,0 +1,90 @@
+server {
+        listen {{ nginx_listen_port }};
+        # This is tricksy, examples show ipv6only=no, but that must only be
+        # set at default host (same applies to any other listen options)
+        listen [::]:{{ nginx_listen_port }};
+
+        server_name {{ nginx_virtualhost }};
+
+        # Supports Let's Encrypt certificate (re-)issuance process
+        # /srv/letsencrypt/challenges only needs to be readable
+        # by the web server process
+        location /.well-known/acme-challenge/ {
+                alias /srv/letsencrypt/challenges;
+                try_files $uri @forward_https;
+        }
+
+        # These two handle forwarding to TLS protected URI
+        # for all other cases
+        location @forward_https {
+                return 301   https://$host$request_uri;
+        }
+        location / {
+                return 301   https://$host$request_uri;
+        }
+}
+
+server {
+        listen {{ nginx_tls_listen_port }} ssl;
+
+        server_name {{ nginx_virtualhost }};
+
+        client_max_body_size 100m;
+
+        # ssl_certificate is supposed to include any chained certs
+        ssl_certificate {{ nginx_certchain|default("non_existent")}};
+        ssl_certificate_key {{nginx_privkey|default("non_existent")}};
+        ssl_session_timeout 1d;
+        ssl_session_cache shared:SSL:50m;
+
+        # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
+        ssl_dhparam /etc/ssl/dhparam.pem;
+
+        # intermediate configuration. tweak to your needs.
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:ECDHE-ECDSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+        ssl_prefer_server_ciphers on;
+
+        # HSTS (ngx_http_headers_module is required) (15768000 seconds = 6 months)
+	# disabled for now (soon parametrized)
+        # add_header Strict-Transport-Security max-age=15768000;
+
+        # OCSP Stapling ---
+        # fetch OCSP records from URL in ssl_certificate and cache them
+        ssl_stapling on;
+        ssl_stapling_verify on;
+
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+	location / {
+                # Proxy-Connection must not be passed
+                # through reverse-proxies and is
+                # illegal with HTTP/2 to boot
+		# Safari will by Very Unhappy if you do it
+                proxy_hide_header Proxy-Connection;
+		# Nginx will, by default, remove Host-header
+                proxy_set_header Host $http_host;
+		# Disables rewriting Location and Refresh -headers
+                proxy_redirect off;
+		# Some random headers from some long forgotten template		
+		# All these are de-facto practices, that are interpreted
+		# as the application developer sees fit.
+		# $scheme is 'http' or 'https'
+		# $proxy_add_x_forwarded_for is X-Forwarded-For header from client
+		# with $remote_addr (upstream IP from nginx) appended,
+                proxy_set_header X-Scheme $scheme;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+		# Timeout for TCP connection establishment
+                proxy_connect_timeout 10;
+		# Timeout between successive reads from socket
+                proxy_read_timeout 30;
+                proxy_pass http://{{ nginx_reverse_host }}:{{ nginx_reverse_port }}/;
+        }
+
+        # Used for Let's Encrypt certificate (re-)issuance process
+        location /.well-known/acme-challenge {
+            alias /srv/letsencrypt/challenges;
+        }
+}

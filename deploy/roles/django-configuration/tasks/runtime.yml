@@ -1,0 +1,25 @@
+- name: Set up service specific cron jobs
+  cron: name={{ item.name }} job={{ item.command }} user={{ django_user }} minute={{ item.minute }}
+  with_items: "{{ django_cronjobs | default([])}}"
+  tags: cronjobs
+
+- name: Set up service specific cron environment variables
+  cron: name={{ item.name }} env=yes value={{ item.value }}
+  with_items: "{{ django_cronenvs | default([])}}"
+  tags: cronjobs
+
+# State directory (misnomer) contains both state and actions for managing
+# the service (like backup config, scripts and reload touchpoint)
+- name: Ensure service state directory exists
+  file: path=/home/{{django_user}}/service_state state=directory
+  tags: code_update
+
+- name: Write deployed version in service state directory
+  copy: content="{{ git_deploy.after }}\n" dest=/home/{{ django_user }}/service_state/deployed_version
+  tags: code_update
+
+# Touching the file will not magically do something. Application server (like uwsgi) must be configured
+# to act on this.
+- name: Touch the service reload flag file
+  file: path=/home/{{django_user}}/service_state/touch_to_reload state=touch owner={{django_user}} mode=0700
+  tags: code_update

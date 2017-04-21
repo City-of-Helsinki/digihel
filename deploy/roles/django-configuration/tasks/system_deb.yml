@@ -1,0 +1,49 @@
+- name: Install Debian packages for Django
+  apt: pkg={{item}} state=present update-cache=yes cache_valid_time=86400
+  with_items:
+  - git-core
+  - unzip
+  - python-dev
+  - python-virtualenv
+  - libpq-dev
+  - gettext
+  # Only used by Ansible for creating databases
+  - python-psycopg2
+  # Mostly used for Ansible, but also generally useful
+  - acl
+  # At least psycopg2 needs a compiler, we don't currently
+  # distribution packages for the actual projects
+  - build-essential
+  tags: apt
+
+- name: Install Python 3 Debian packages for Django
+  apt: pkg={{item}} state=present update-cache=yes cache_valid_time=86400
+  with_items:
+  - python3
+  - libpython3-dev
+
+- name: Install application specific .deb dependencies
+  apt: pkg={{item}} state=present update-cache=yes cache_valid_time=86400
+  with_items: "{{django_deb_deps|default([])}}"
+
+- name: Install Pillow dependencies
+  apt: pkg={{item}} state=present update-cache=yes cache_valid_time=86400
+  with_items:
+#    - libtiff4-dev
+    - libtiff5-dev
+    - libjpeg8-dev
+    - zlib1g-dev
+    - libfreetype6-dev
+    - liblcms2-dev
+    - libwebp-dev
+    - tcl8.5-dev
+    - tk8.5-dev
+    - python-tk
+  when: django_pillow is defined and django_pillow
+
+- name: Install lxml dependencies
+  apt: pkg={{item}} state=present update-cache=yes cache_valid_time=86400
+  with_items:
+  - libxml2-dev
+  - libxslt1-dev
+  when: django_lxml is defined and django_lxml

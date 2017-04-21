@@ -1,0 +1,4 @@
+---
+# defaults file for nginx
+nginx_listen_port: 80
+nginx_tls_listen_port: 443

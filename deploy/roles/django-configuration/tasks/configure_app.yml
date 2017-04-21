@@ -1,0 +1,105 @@
+- name: Template in Django configuration
+  become_user: "{{django_user}}"
+  template: src=django_local_settings.py.j2
+            dest=/home/{{django_user}}/{{django_name}}/local_settings.py
+            mode=0644
+
+- name: Create django configuration fragment directory
+  file:
+    path: /home/{{django_user}}/{{django_name}}/local_settings.d
+    state: directory
+    mode: 0755
+    owner: "{{ django_user }}"
+
+- name: Copy in configuration fragments
+  become_user: "{{django_user}}"
+  template: src={{ item }}
+            dest=/home/{{django_user}}/{{django_name}}/local_settings.d
+  tags: [ django_config, code_update ]
+  with_items: "{{ django_config_fragments|default([]) }}"
+
+# Source is hardcoded to django-generic sub, maybe it'll be all that is
+- name: Copy in deployment specific files
+  copy:
+    src: files/django-generic/{{ item.source }}
+    dest: /home/{{django_user}}/{{django_name}}/{{ item.target }}
+    mode: 0644
+  with_items: "{{ django_deployment_files|default([]) }}"
+
+- name: Run pre-migration commands
+  become_user: "{{django_user}}"
+  environment:
+    # LC_ALL is the big hammer to get rid of character set problems
+    LC_ALL: C.UTF-8
+    PATH: "{{ node_path.stdout }}:{{ ansible_env.PATH }}"
+  django_manage: command={{ item }} app_path=/home/{{django_user}}/{{django_name}}
+                  virtualenv=/home/{{django_user}}/venv
+  with_items: "{{django_premigration_commands|default([])}}"
+  tags: code_update
+
+- name: Apply database migrations
+  django_manage: command=migrate app_path=/home/{{django_user}}/{{django_name}}
+                 virtualenv=/home/{{django_user}}/venv
+  become_user: "{{django_user}}"
+  tags: [db,code_update]
+
+- name: Check if translations are present
+  find: path=/home/{{django_user}}/{{django_name}}
+        patterns=locale
+        recurse=yes
+        file_type=directory
+  register: locale
+  tags: code_update
+
+- name: Compile translations, if present
+  django_manage: command=compilemessages app_path=/home/{{django_user}}/{{django_name}}
+                 virtualenv=/home/{{django_user}}/venv
+  become_user: "{{django_user}}"
+  when: locale.matched > 0
+  tags: code_update
+
+- name: Create static file directory
+  become_user: "{{django_user}}"
+  file: path=/home/{{django_user}}/static state=directory
+
+- name: Create media directory
+  become_user: "{{django_user}}"
+  file: path=/home/{{django_user}}/media state=directory
+
+- name: Read in Node path if available
+  command: cat /home/{{django_user}}/nvm/path_to_current
+  register: node_path
+  ignore_errors: yes
+
+- name: Run post-installation commands
+  become_user: "{{django_user}}"
+  environment:
+    # LC_ALL is the big hammer to get rid of character set problems
+    LC_ALL: C.UTF-8
+    # This works just fine even with empty node_path.stdout
+
+  django_manage: command={{ item }} app_path=/home/{{django_user}}/{{django_name}}
+                  virtualenv=/home/{{django_user}}/venv
+  with_items: "{{django_setup_commands|default([])}}"
+
+- name: Run commands to build the project
+  become_user: "{{django_user}}"
+  environment:
+    PATH: "{{ node_path.stdout }}:{{ ansible_env.PATH }}"
+  # chdir and command in this order to avoid quoting the whole thing
+  command: chdir=/home/{{django_user}}/{{django_name}} {{ item }}
+  with_items: "{{ django_shell_commands | default([]) }}"
+  tags: code_update
+
+- name: Collect static files
+  become_user: "{{django_user}}"
+  django_manage: command=collectstatic app_path=/home/{{django_user}}/{{django_name}}
+                 virtualenv=/home/{{django_user}}/venv
+  tags: code_update
+
+# Maybe remove this from the template and use post-installation command instead?
+- name: Regenerate Haystack index
+  become_user: "{{django_user}}"
+  django_manage: command="rebuild_index --noinput" app_path=/home/{{django_user}}/{{django_name}}
+                  virtualenv=/home/{{django_user}}/venv
+  when: django_full_reinit is defined and django_full_reinit

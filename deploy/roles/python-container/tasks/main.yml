@@ -1,0 +1,42 @@
+- name: Install packages for uwsgi
+  apt: pkg={{item}} state=present update-cache=yes cache_valid_time=120
+  with_items:
+  - uwsgi
+  - uwsgi-plugin-python
+  - uwsgi-plugin-python3
+  # Mostly used for Ansible, but also generally useful
+  - acl
+  tags: apt
+
+- name: Copy in uWSGI Python application configuration
+  template: src=uwsgi_python_appconfig.j2
+            dest=/etc/uwsgi/apps-available/{{pycont_name}}.yml
+  tags: uwsgi
+
+- name: Enable uWSGI application configuration
+  file: force=yes 
+        state=link
+        path=/etc/uwsgi/apps-enabled/{{pycont_name}}.yml 
+        src=/etc/uwsgi/apps-available/{{pycont_name}}.yml
+
+# Container is the shell towards OS, thus it creates the user
+- name: Create system user for the Django project
+  user: name={{pycont_user}} comment="{{pycont_name}} system user" system=yes
+
+# State directory (misnomer) contains both state and actions for managing
+# the service (like backup config, scripts and reload touchpoint)
+# For container the reload touchpoint is the important thing
+- name: Ensure service state directory exists
+  file: path=/home/{{pycont_user}}/service_state state=directory
+  tags: code_update
+
+# This will not cause the file to magically do something. Container
+# must support this and must be configured thusly
+- name: Touch the service reload flag file
+  file: path=/home/{{pycont_user}}/service_state/touch_to_reload state=touch owner={{pycont_user}} mode=0700
+  tags: code_update
+
+# We must restart here (or maybe in handler) as the container might
+# not be looking at the reload flag yet
+- name: Restart uWSGI
+  service: name=uwsgi state=restarted

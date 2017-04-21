@@ -1,0 +1,88 @@
+---
+- name: Install nginx
+  package: name={{item}} state=present
+  with_items:
+  - nginx
+
+# All TLS-enabled templates need this file
+- name: Create DHE parameter file
+  command: openssl dhparam -out /etc/ssl/dhparam.pem 2048
+  args:
+    creates: /etc/ssl/dhparam.pem
+
+- name: Copy in site configuration if no TLS
+  template: src=nginx_site_config_notls.j2
+            dest=/etc/nginx/sites-available/{{nginx_sitename}}
+  when: nginx_certchain is not defined and nginx_contract_socket is defined
+
+- name: Ensure certificate archive exists
+  become: yes
+  file:
+    path: /etc/letsencrypt/archive/{{ nginx_canonical_name }}
+    state: directory
+    mode: 0700
+  when: nginx_certchain is defined
+
+- name: Ensure certificate liveliness exists
+  become: yes
+  file:
+    path: /etc/letsencrypt/live/{{ nginx_canonical_name }}
+    state: directory
+    mode: 0700
+  when: nginx_certchain is defined
+
+
+- name: Copying certificates to server
+  become: yes
+  copy: src=private/tls/{{ nginx_canonical_name }}/{{ nginx_canonical_name }}-fullchain.pem
+        dest=/etc/letsencrypt/archive/{{ nginx_canonical_name }}/fullchain.pem
+        owner=root
+        group=root
+        directory_mode=0755
+        mode=0444
+        backup=yes
+  when: nginx_certchain is defined
+
+- name: Copying new keys to servers
+  become: yes
+  copy: src=private/tls/{{ nginx_canonical_name }}/{{ nginx_canonical_name }}.key
+        dest=/etc/letsencrypt/archive/{{ nginx_canonical_name }}/privkey.pem
+        owner=root
+        group=root
+        directory_mode=0750
+        mode=0440
+        backup=yes
+  when: nginx_certchain is defined
+
+- name: Ensure the link to newest certificate exists
+  become: yes
+  file: src={{ item.source }} path={{ item.dest }} state=link
+  with_items:
+    - source: /etc/letsencrypt/archive/{{ nginx_canonical_name }}/fullchain.pem
+      dest: /etc/letsencrypt/live/{{ nginx_canonical_name }}/fullchain.pem
+    - source: /etc/letsencrypt/archive/{{ nginx_canonical_name }}/privkey.pem
+      dest: /etc/letsencrypt/live/{{ nginx_canonical_name }}/privkey.pem
+  when: nginx_certchain is defined
+
+- name: Copy in site configuration if TLS
+  template: src=nginx_site_config_tls.j2
+            dest=/etc/nginx/sites-available/{{nginx_sitename}}
+  when: nginx_certchain is defined and nginx_contract_socket is defined
+
+- name: Copy in reverse proxy configuration with TLS
+  template: src=nginx_reverse_proxy_tls.j2
+            dest=/etc/nginx/sites-available/{{nginx_sitename}}
+  when: nginx_certchain is defined and nginx_reverse_host is defined
+
+- name: Copy in reverse proxy configuration without TLS
+  template: src=nginx_reverse_proxy_notls.j2
+            dest=/etc/nginx/sites-available/{{nginx_sitename}}
+  when: not nginx_certchain is defined and nginx_reverse_host is defined
+
+- name: Enable (symlink) nginx configuration
+  file: force=yes state=link
+        path=/etc/nginx/sites-enabled/{{nginx_sitename}}
+        src=/etc/nginx/sites-available/{{nginx_sitename}}
+
+- name: Restart nginx
+  service: name=nginx state=reloaded

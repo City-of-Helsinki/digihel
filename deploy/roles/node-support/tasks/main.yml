@@ -1,0 +1,46 @@
+---
+- name: Create system user the application that will be using node
+  user: name={{node_support_user}} comment="{{node_support_user}} system user" system=yes
+
+- name: Creative directory for NVM
+  become_user: "{{node_support_user}}"
+  file: path=/home/{{node_support_user}}/nvm state=directory mode=0755
+
+- name: Copy in frozen NVM version from deployment directory
+  become_user: "{{node_support_user}}"
+  copy: src=nvm.sh dest=/home/{{node_support_user}}/nvm/nvm.sh
+
+# This and the following stanzas use NVM to install specific node version
+# They attempt to determine the location of said installation from NVM output
+# User only needs to specify the version they want to install
+# Currently this only halfway done, as installation of node blocks
+# any further installs
+
+# Makes use of NVM alias definition to prevent re-installation
+- name: Install node and set version
+  become_user: "{{node_support_user}}"
+  shell: >
+    /bin/bash -c 'source ~/nvm/nvm.sh && nvm install {{node_support_nodeversion}} && nvm alias default {{node_support_nodeversion}}'
+    creates=/home/{{ node_support_user }}/nvm/alias/default
+
+# The stored can be be used eg. from Django application run through Uwsgi
+- name: Get and store path ($HOME/nvm/path_to_current) for current Node version
+  become_user: "{{node_support_user}}"
+  shell: >
+    /bin/bash -c 'source ~/nvm/nvm.sh && dirname $(nvm which default) | tee ~/nvm/path_to_current'
+  register: node_path
+  tags: code_update
+
+- name: Install latest version of NPM
+  become_user: "{{node_support_user}}"
+  environment:
+    PATH: "{{node_path.stdout_lines[0]}}:{{ ansible_env.PATH }}"
+  npm: name=npm executable={{node_path.stdout_lines[0]}}/npm global=yes state=latest production=yes
+  when: node_support_upgrade_npm is defined
+
+- name: Install node packages specified in npm_modules
+  become_user: "{{node_support_user}}"
+  environment:
+    PATH: "{{node_path.stdout_lines[0]}}:{{ ansible_env.PATH }}"
+  npm: name={{item}} executable={{node_path.stdout_lines[0]}}/npm global=yes
+  with_items: "{{node_support_npm_modules }}"
