@@ -11,5 +11,5 @@ def whitelister_element_rules():
     # Tables
     rules.update(dict.fromkeys(['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td'], allow_blindly))
     # Divs, spans, code and anchors
-    rules.update(dict.fromkeys(['div', 'span', 'a', 'code', 'pre'], allow_blindly))
+    rules.update(dict.fromkeys(['div', 'span', 'a', 'code', 'pre', 'blockquote', 'section'], allow_blindly))
     return rules
