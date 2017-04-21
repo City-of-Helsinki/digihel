@@ -548,6 +548,14 @@ $labelheight:     22px;
   margin: 26px 0;
 }
 
+.rich-text {
+
+  .more-info {
+    background-color: $gray-lighter;
+    padding: $line-height-computed / 2;
+  }
+}
+
 //** Front page **/
 
 .container .jumbotron,
