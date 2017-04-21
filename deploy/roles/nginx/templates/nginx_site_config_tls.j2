@@ -63,20 +63,20 @@ server {
 
 	# public files that do not directly belong to the application
 	# like accessibility statements or robots.txt
-        location {{ "/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/public/ {
+        location {{ ( "/" + nginx_url_prefix ) if nginx_url_prefix is defined else "" }}/public/ {
                 alias /home/{{ nginx_site_user }}/public/;
         }
 
-        location {{ "/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/static/ {
+        location {{ ( "/" + nginx_url_prefix ) if nginx_url_prefix is defined else "" }}/static/ {
                 alias /home/{{ nginx_site_user }}/static/;
         }
 
         # Media files uploaded by users
-        location {{ "/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/media/ {
+        location {{ ( "/" + nginx_url_prefix ) if nginx_url_prefix is defined else "" }}/media/ {
                 alias /home/{{ nginx_site_user }}/media/;
         }
 
-        location {{ "/" + nginx_url_prefix if nginx_url_prefix is defined else "" }}/ {
+        location {{ ( "/" + nginx_url_prefix ) if nginx_url_prefix is defined else "" }}/ {
             include uwsgi_params;
             {% if nginx_contract_port is defined %}
             uwsgi_pass 127.0.0.1:{{ nginx_contract_port }};
