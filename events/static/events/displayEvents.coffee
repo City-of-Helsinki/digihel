@@ -42,6 +42,7 @@ window.displayEvents = (eventData, grid = false) ->
       """
       $li.append $($.trim template)
       $list.append $li
+      $('.event-preview').matchHeight();
     else
       $li = $("<div class='event-list__item' />")
       template = """
