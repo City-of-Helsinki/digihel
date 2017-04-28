@@ -1489,6 +1489,9 @@ $labelheight:     22px;
     width: 5.5em;
     padding: $line-height-computed/2;
     vertical-align: middle;
+    img {
+      height: 100%;
+    }
   }
 }
 
