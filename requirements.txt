@@ -30,7 +30,7 @@ django-npm==1.0.0
 django-social-widgets==0.4.0
 django-taggit==0.18.3     # via wagtail
 django-treebeard==4.0.1   # via wagtail
-Django==1.9.12            # via django-allauth, django-debug-toolbar, django-social-widgets, django-treebeard, wagtail
+Django==1.9.13            # via django-allauth, django-debug-toolbar, django-social-widgets, django-treebeard, wagtail
 djangorestframework==3.4.7  # via wagtail
 elasticsearch==2.4.0
 enum34==1.1.6             # via django-enumfields
