@@ -88,7 +88,8 @@ def list_children(page, target_page):
         klass = ' class="{}"'.format(klass)
 
     html = '<ul><li{klass}><a href="{url}">{title}</a></li>'\
-        .format(url=page.url, title=page.title, klass=klass)
+        .format(url=page.relative_url(page.get_site()),
+                title=page.title, klass=klass)
     html += children_html
     html += '</ul>'
     return html
