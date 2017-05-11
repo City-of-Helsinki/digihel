@@ -1,0 +1,29 @@
+.section--comments {
+  margin-top: $line-height-computed * 3;
+  padding-top: $line-height-computed * 3;
+  background-color: $hel-fog;
+  position: relative;
+
+  .comment {
+    background-color: #FFFFFF;
+    padding: $line-height-computed / 2;
+  }
+
+  .comments-koro {
+    @include koro("pulse", $hel-fog, 500);
+    background-color: $white;
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.section--comment-form {
+  background-color: $hel-fog;
+  padding-bottom: $line-height-computed * 3;
+}
+
+.comment-form {
+
+}

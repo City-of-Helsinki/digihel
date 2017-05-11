@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^blogi/', include('blog.urls', namespace="blog")),
     url(r'^sivukartta/$', sitemap_view),
     url(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
+    url(r'^comments/', include('django_comments_xtd.urls')),
 
     # client endpoints for external API data
     url(r'^event_data/', event_data),

@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'wagtailtinymce',
     'django_celery_results',
     'social_widgets',
+    'django_comments_xtd',
+    'django_comments',
 
     'allauth',
     'allauth.account',
@@ -76,7 +78,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -191,6 +193,22 @@ COMPRESS_ENABLED = True
 COMPRESS_AUTOPREFIXER_BINARY = os.path.join(BASE_DIR, 'node_modules/.bin/postcss')
 
 NPM_ROOT_PATH = BASE_DIR
+
+# Comments settings
+
+COMMENTS_APP = 'django_comments_xtd'
+
+# 0: No nested comments:
+#  Comment (level 0)
+# 1: Nested up to level one:
+#  Comment (level 0)
+#   |-- Comment (level 1)
+# 2: Nested up to level two:
+#  Comment (level 0)
+#   |-- Comment (level 1)
+#        |-- Comment (level 2)
+COMMENTS_XTD_MAX_THREAD_LEVEL = 0
+COMMENTS_XTD_CONFIRM_EMAIL = False
 
 # Wagtail settings
 
