@@ -10,7 +10,7 @@
     "bootstrap-validator": "^0.11.9",
     "bourbon": "^4.3.4",
     "coffee-script": "^1.11.1",
-    "hel-bootstrap-3": "git+https://github.com/terotic/hel-bootstrap-3.git",
+    "hel-bootstrap-3": "^1.0.0-beta.0",
     "jquery": "^2.2.4",
     "jquery-match-height": "^0.7.2",
     "moment": "^2.18.1",

@@ -1,5 +1,3 @@
-@import url('https://dev.hel.fi/~terotik/cdn/fonts/HelsinkiGrotesk.css');
-
 @import 'hel-bootstrap-3/src/sass/helsinki-variables';
 @import 'hel-bootstrap-3/src/sass/application-variables';
 
@@ -18,8 +16,6 @@ $theme-highlight-light: $hel-suomenlinna;
 @import 'bourbon/app/assets/stylesheets/bourbon';
 @import 'digihel/static/css/digihel-icons';
 @import 'digihel/static/css/common-styles';
-
-@import 'hel-bootstrap-3/src/sass/documentation-styles';
 
 .navbar {
   background-color: $hel-copper;
