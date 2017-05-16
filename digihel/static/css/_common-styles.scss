@@ -509,16 +509,14 @@ $labelheight:     22px;
 
 //** Front page **/
 
-.container .jumbotron,
-.container-fluid .jumbotron {
+.container--hero {
   background-color: $theme-primary-light;
   background-size: auto 100%;;
   background-repeat: repeat-x;
   background-position: bottom;
   border-radius: 0;
   color: $white;
-  margin-bottom: 4em;
-  min-height: 200px;
+  min-height: $line-height-computed * 24;
   padding: 0;
   position: relative;
 
@@ -545,9 +543,9 @@ $labelheight:     22px;
   .rich-text {
     color: $white;
     font-size: 16px;
-    margin: 0 auto;
+    margin: 0;
     padding: 48px;
-    text-align: center;
+    text-align: left;
     width: 100%;
 
     p {
@@ -580,6 +578,12 @@ $labelheight:     22px;
 
 //* Theme page */
 
+.container--themes {
+  .themes {
+    padding: $line-height-computed 0;
+  }
+}
+
 .project-section-header {
   border-bottom: 4px solid $theme-secondary-dark;
   float: left;
@@ -592,6 +596,10 @@ $labelheight:     22px;
   a {
     color: $text-color;
   }
+}
+
+.container--themes {
+  background: $gray-lighter;
 }
 
 .theme-info {
@@ -719,11 +727,14 @@ $labelheight:     22px;
   }
 }
 
-.front-page {
+.container--indicators {
+
+  background-color: $theme-secondary-light;
+
   .indicators {
     text-align: center;
     background-color: $theme-secondary-light;
-    padding: 12px;
+    padding: $line-height-computed 0;
   }
 
   .indicator {
@@ -731,7 +742,7 @@ $labelheight:     22px;
     background-repeat: no-repeat;
     background-position: center;
     height: 12em;
-    margin-bottom: 1em;
+    margin-bottom: $line-height-computed;
     display: flex;
     align-items: center;
   }
@@ -739,13 +750,18 @@ $labelheight:     22px;
   .indicator-icon svg {
     width: 100%;
   }
+
   .indicator-content {
-      width: 100%;
+    width: 100%;
+  }
+
+  .indicator-source {
+    font-size: $font-size-small;
   }
 
   .indicator-value {
     color: $theme-primary-dark;
-    font-size: 36px;
+    font-size: 4rem;
     font-weight: 900;
     width: 100%;
   }
@@ -755,6 +771,12 @@ $labelheight:     22px;
     text-transform: uppercase;
     font-weight: 900;
     width: 100%;
+  }
+}
+
+.container--banners {
+  .banners {
+    padding: $line-height-computed 0;
   }
 }
 

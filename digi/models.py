@@ -123,6 +123,7 @@ class ThemePage(RelativeURLMixin, Page):
     blog_category = models.ForeignKey(BlogCategory, help_text='Corresponding blog category',
                                       null=True, blank=True, on_delete=models.SET_NULL)
     twitter_hashtag = models.CharField(max_length=255, default="", null=True, blank=True)
+    promote_on_front_page = models.BooleanField(default=False, help_text='Show summary on front page')
 
     parent_page_types = ['ThemeIndexPage']
     content_panels = Page.content_panels + [
@@ -134,6 +135,9 @@ class ThemePage(RelativeURLMixin, Page):
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
+    ]
+    promote_panels = Page.promote_panels + [
+        FieldPanel('promote_on_front_page'),
     ]
     search_fields = Page.search_fields + [
         index.SearchField('short_description'),
@@ -205,11 +209,14 @@ class ProjectLink(Orderable, RelatedLink):
 
 
 class FrontPage(RelativeURLMixin, Page):
+    hero_background = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
+                              on_delete=models.SET_NULL, related_name='+')
     hero = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ])
 
     content_panels = Page.content_panels + [
+        ImageChooserPanel('hero_background'),
         StreamFieldPanel('hero'),
     ]
 

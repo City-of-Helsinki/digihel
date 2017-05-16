@@ -1,41 +1,49 @@
 {% extends "base.html" %}
-{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static compress twitter_tags%}
+{% load humanize wagtailimages_tags digi_tags wagtailcore_tags static compress twitter_tags %}
 
 {% block body_class %}template-front-page{% endblock %}
 
 {% block content %}
-<div class="container-fluid header-container" role="main">
-  <section class="jumbotron fullscreen-hero js-fullscreen" style="background-image: url('{% static "images/front-bg.png" %}')">
+
+{# Hero #}
+{% image page.hero_background original as bg_image %}
+<div class="container-fluid header-container container--hero" style="background-image: url('{{ bg_image.url }}')">
+    <section class="container">
       {% for block in page.hero %}
       {{ block }}
       {% endfor %}
+    </section>
+</div>
+
+{# Indicators #}
+<div class="container-fluid section-container container--indicators">
+  <section class="container">
+      <div class="indicators clearfix">
+        {% for ind in page.indicators %}
+          <div class="col-sm-4">
+            <div class="indicator" id="{{ind.id}}" style="background-image: url('{% static ind.illustration_filename %}');">
+              <div class="indicator-content">
+                <div class="indicator-value">
+                  {{ ind.value }}
+                </div>
+                <div class="indicator-description">
+                  {{ ind.description }}
+                </div>
+              </div>
+            </div>
+            <a href="{{ind.source_url}}" class="indicator-source">{{ ind.source_description }}</a>
+          </div>
+        {% endfor %}
+      </div>
   </section>
 </div>
-<div class="container main-container" role="main">
-  <article class="front-page">
-      <section class="row">
-        <div class="col-xs-12">
-          <div class="indicators clearfix">
-            {% for ind in page.indicators %}
-              <div class="col-sm-4">
-                <div class="indicator" id="{{ind.id}}" style="background-image: url('{% static ind.illustration_filename %}');">
-                  <div class="indicator-content">
-                    <div class="indicator-value">
-                      {{ ind.value }}
-                    </div>
-                    <div class="indicator-description">
-                      {{ ind.description }}
-                    </div>
-                  </div>
-                </div>
-                <a href="{{ind.source_url}}">{{ ind.source_description }}</a>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-      <section class="themes row">
-          {% for theme in page.themes|slice:":3" %}
+
+{# Highlights (themes) #}
+<div class="container-fluid section-container container--themes">
+  <section class="container">
+      <div class="themes row">
+          {% for theme in page.themes %}
+          {% if theme.promote_on_front_page %}
           <div class="col-md-4">
             <div class="theme-preview match-height clearfix">
               <div class="col-xs-12 col-sm-6 col-md-12">
@@ -49,8 +57,26 @@
               </div>
             </div>
           </div>
+          {% endif %}
           {% endfor %}
-      </section>
+      </div>
+  </section>
+</div>
+
+{# Banners #}
+<div class="container-fluid section-container container--banners">
+  <section class="container">
+    <div class="banners">
+      <div class="jumbotron">
+          <h1>Digipalveluopas</h1>
+      </div>
+    </div>
+  </section>
+</div>
+
+{# Blog / Events / Media #}
+<div class="container-fluid section-container container--news">
+  <article class="container front-page">
       <section class="misc row">
           <div class="col-md-8">
             <div class="blogs-preview">
@@ -78,6 +104,8 @@
             </div>
           </div>
           <div class="col-md-4">
+              <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-12">
               <div class="events-highlights">
                 {% if self.event_index %}
                   <a class="link-unstyled" href="{% pageurl self.event_index %}"><img src="{% static "images/osallistu.svg" %}" class="event-illustration">
@@ -91,6 +119,8 @@
                   Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
                 {% endif %}
               </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-12">
               <div class="twitter-feed">
                   <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
                   <h2><a href="https://twitter.com/hashtag/digihelsinki?f=tweets&vertical=default">#digiHelsinki</a></h2>
@@ -112,6 +142,8 @@
                     </div>
                   {% endfor %}
               </div>
+              </div>
+            </div>
           </div>
       </section>
   </article>
