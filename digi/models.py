@@ -173,10 +173,13 @@ class ProjectPage(RelativeURLMixin, Page):
         ('paragraph', blocks.RichTextBlock()),
     ], null=True, blank=True)
 
+    twitter_hashtag = models.CharField(max_length=255, default="", null=True, blank=True)
+
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         FieldPanel('short_description'),
         FieldPanel('phase'),
+        FieldPanel('twitter_hashtag'),
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
