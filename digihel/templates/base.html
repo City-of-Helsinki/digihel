@@ -4,7 +4,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fi"> <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -106,13 +106,30 @@
         </footer>
 
         {# Global javascript #}
+        {% compress js %}
+            <script type="text/javascript">
+              var Hyphenopoly = {
+                  require: {
+                      "fi": "hiirenkorvapäivät"
+                  },
+                  paths: {
+                      patterndir: "{% static 'js/Hyphenopoly/patterns/' %}",
+                      maindir: "{% static 'js/Hyphenopoly/' %}"
+                  },
+                  setup: {
+                      classnames: {
+                          "hyphenate": {}
+                      }
+                  }
+              };
+            </script>
             <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
             <script src="{% static 'bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
             <script src="{% static 'matchHeight/jquery.matchHeight-min.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/digihel.js' %}"></script>
             <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'moment/locale/fi.js' %}"></script>
-        {% compress js %}
+            <script type="text/javascript" src="{% static 'js/Hyphenopoly/Hyphenopoly_Loader.js' %}"></script>
             <script type="text/coffeescript" src="{% static 'events/displayEvents.coffee' %}"></script>
         {% endcompress %}
         <!-- Piwik -->

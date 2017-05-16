@@ -84,6 +84,12 @@ img {
   @extend .img-responsive;
 }
 
+.hyphenate {
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+        hyphens: auto;
+}
+
 // Use responsive media embed trick on tinymce embedded objects
 .responsive-object {
   height: 0;
