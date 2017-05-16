@@ -1,7 +1,3 @@
-
-$modular-scale-ratio: $major-third;
-$modular-scale-base: 1em;
-
 //* Global */
 
 // Bootstrap overrides
@@ -626,26 +622,35 @@ $labelheight:     22px;
 }
 
 .theme-projects {
-  border-top: 1px dotted $gray-base;
+  @extend .row;
+	display: flex;
+	flex-wrap: wrap;
+}
+.theme-projects > [class*='col-'] {
+	display: flex;
+	flex-direction: column;
 }
 
-.theme-projects-list {
-  margin-top: $line-height-computed;
-  padding-left: 0;
+.theme-projects .project-card {
+  background: $white;
+  padding: $line-height-computed / 2;
+  margin-bottom: $line-height-computed;
+}
 
-  .project-thumbnail {
-    margin-bottom: $line-height-computed;
-  }
-
-  li {
-    padding-bottom: $line-height-computed;;
-    padding-top: $line-height-computed;;
-    border-bottom: 1px dotted $gray-base;
-  }
-
-  h4 {
-    margin-top: 0;
-  }
+.theme-projects .project-card,
+.theme-projects .caption {
+	flex-direction: column;
+	display: flex;
+	flex: 1 0 auto;
+	height: auto;
+	position: relative;
+}
+.flex-text {
+	flex-grow: 1;
+}
+.theme-projects img {
+	min-width: 0;
+	width: 100%;
 }
 
 .contacts-list {
@@ -654,7 +659,7 @@ $labelheight:     22px;
   margin-bottom: 2em;
 
   .media {
-    border-top: 1px dotted $gray-base;
+    border-top: 2px solid $theme-primary-dark;
     padding-top: $line-height-computed;
   }
   .user-thumbnail {
@@ -682,35 +687,35 @@ $labelheight:     22px;
     #graph-2,
     #graph-3,
     #graph-4 {
-      @include animation(scaling 1s ease-in);
-      @include transform-origin(center bottom);
+      animation: scaling 1s ease-in;
+      transform-origin: center bottom;
     }
 
     #graph-1 {
-      @include animation-delay (.1s);
+      animation-delay: .1s;
     }
 
     #graph-2 {
-      @include animation-delay (.2s);
+      animation-delay: .2s;
     }
 
     #graph-3 {
-      @include animation-delay (.3s);
+      animation-delay: .3s;
     }
 
     #graph-4 {
-      @include animation-delay (.4s);
+     animation-delay: .4s;
     }
   }
 }
 
 @keyframes scaling {
   0% {
-    @include transform (scaleY(0));
+    transform: scaleY(0);
   }
 
   100% {
-    @include transform (scaleY(1));
+    transform: scaleY(1);
   }
 }
 
