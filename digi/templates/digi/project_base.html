@@ -21,31 +21,33 @@
                     {% endfor %}
                 </div>
             </div>
-            {% if page.projects.exists %}
-            <div class="theme-projects">
-                <h3>Teeman projektit</h3>
-                <ul class="theme-projects-list">
-                    {% for project in page.projects %}
-                    <li class="list-unstyled row">
-                        <div class="col-sm-4">
-                            <a href="{% pageurl project %}">
-                                {% image project.image fill-400x400 as project_image %}
-                                <img src="{{ project_image.url }}" class="project-thumbnail"/>
-                            </a>
-                        </div>
-                        <div class="col-sm-8">
-                            <a href="{% pageurl project %}"><h4>{{ project.title }}</h4></a>
-                            <p>{{ project.short_description }}</p>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
         </div>
         <div class="col-md-4">
             {% include "includes/sidebar_links_and_roles.html" %}
             {% include "includes/sidebar_twitter_feed.html" %}
         </div>
+  </div>
 </div>
+{% if page.projects.exists %}
+<div class="container-fluid bg-info">
+    <div class="container">
+        <h3>Teeman projektit</h3>
+        <div class="flex-row row">
+          {% for project in page.projects %}
+          <div class="col-xs-6 col-sm-4">
+            <div class="thumbnail">
+              {% image project.image fill-400x300 as project_image %}
+              <img src="{{ project_image.url }}" class="project-thumbnail"/>
+              <div class="caption">
+                <h3>{{ project.title }}</h2>
+                <p class="flex-text text-muted">{{ project.short_description }}</p>
+                <p><a class="btn btn-primary" href="{% pageurl project %}">Lue lisää</a></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
