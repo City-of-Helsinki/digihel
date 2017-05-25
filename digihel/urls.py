@@ -11,6 +11,7 @@ from digi.views import sitemap_view
 from events.views import event_data
 from feedback.views import FeedbackView
 from search import views as search_views
+from naistenhelsinki.views import places
 
 admin.autodiscover()
 
@@ -29,6 +30,7 @@ urlpatterns = [
     url(r'^docs/$', TemplateView.as_view(template_name="digi/docs.html")),
     url(r'^docs/doc/$', TemplateView.as_view(template_name="digi/doc.html")),
     # client endpoints for external API data
+    url(r'^place_data/', places),
     url(r'^event_data/', event_data),
 
     url(r'', include(wagtail_urls)),
