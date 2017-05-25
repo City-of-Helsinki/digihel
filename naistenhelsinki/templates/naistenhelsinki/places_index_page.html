@@ -14,8 +14,8 @@
           <div class="col-sm-6 col-md-4">
             <div class="place-preview match-height">
               {% image place.image fill-560x420 as place_image %}
-              <a class="link-unstyled" href="{% pageurl place %}"><h3>{{ place.title }}</h3>
-              <p>{{ place.description|safe }}</p></a>
+              <h3>{{ place.title }}</h3>
+              <p>{{ place.description|richtext }}</p>
             </div>
           </div>
           {% endfor %}
