@@ -1,37 +1,35 @@
-@import url('https://dev.hel.fi/~terotik/cdn/fonts/HelsinkiGrotesk.css');
-
 @import 'hel-bootstrap-3/src/sass/helsinki-variables';
 @import 'hel-bootstrap-3/src/sass/application-variables';
 
 $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
-$theme-primary-dark: $bus;
-$theme-primary-light: $engel;
+$theme-primary-dark: $hel-bus;
+$theme-primary-light: $hel-engel;
 
-$theme-highlight-dark: $brick;
-$theme-highlight-light: $suomenlinna;
+$theme-highlight-dark: $hel-brick;
+$theme-highlight-light: $hel-suomenlinna;
 
+@import 'hel-bootstrap-3/src/sass/theme-bootstrap-variables';
 @import 'digihel/static/css/bootstrap-custom';
+@import 'hel-bootstrap-3/src/sass/theme-custom-styles';
 
 @import 'bourbon/app/assets/stylesheets/bourbon';
 @import 'digihel/static/css/digihel-icons';
 @import 'digihel/static/css/common-styles';
 
-@import 'hel-bootstrap-3/src/sass/documentation-styles';
-
 .navbar {
-  background-color: $copper;
+  background-color: $hel-copper;
 
   a {
-    color: $black;
+    color: $hel-black;
 
     &:hover {
-      color: $bus;
+      color: $hel-bus;
     }
   }
 
   .navbar-toggle .icon-bar {
-    background-color: $bus;
+    background-color: $hel-bus;
   }
 
   .site-title {
@@ -42,12 +40,12 @@ $theme-highlight-light: $suomenlinna;
 .digiedu-frontpage-header {
   padding-bottom: $line-height-computed * 3;
   padding-top: $line-height-computed * 3;
-  color: $bus;
+  color: $hel-bus;
 }
 
 .file-list__item {
   padding: $line-height-computed / 2;
-  background: $engel;
+  background: $hel-engel;
   margin-bottom: $line-height-computed;
 
   h4 {
@@ -60,5 +58,5 @@ $theme-highlight-light: $suomenlinna;
 
 .file-view__details {
   padding: $line-height-computed / 2;
-  background: $engel;
+  background: $hel-engel;
 }
