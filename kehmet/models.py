@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
@@ -90,12 +90,18 @@ class KehmetContentPageTag(TaggedItemBase):
 class KehmetContentPage(RelativeURLMixin, Page):
     body = StreamField(content_blocks)
     tags = ClusterTaggableManager(through=KehmetContentPageTag, blank=True)
+    show_in_submenus = models.BooleanField(verbose_name=_('Show in sub menus'), help_text=_('Page is visible on the submenu'), default=True)
 
     content_panels = [
         FieldPanel('title', classname='full title'),
         FieldPanel('tags'),
         StreamFieldPanel('body'),
     ]
+
+    promote_panels = Page.promote_panels + [
+        MultiFieldPanel([FieldPanel('show_in_submenus'),], _('Custom page configuration')),
+    ]
+
     search_fields = Page.search_fields + [
         index.SearchField('body'),
         tag_search_field,
