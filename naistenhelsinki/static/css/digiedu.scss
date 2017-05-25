@@ -17,26 +17,6 @@ $theme-highlight-light: $hel-suomenlinna;
 @import 'digihel/static/css/digihel-icons';
 @import 'digihel/static/css/common-styles';
 
-.navbar {
-  background-color: $hel-copper;
-
-  a {
-    color: $hel-black;
-
-    &:hover {
-      color: $hel-bus;
-    }
-  }
-
-  .navbar-toggle .icon-bar {
-    background-color: $hel-bus;
-  }
-
-  .site-title {
-    font-weight: 600;
-  }
-}
-
 .digiedu-frontpage-header {
   padding-bottom: $line-height-computed * 3;
   padding-top: $line-height-computed * 3;
