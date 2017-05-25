@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'search',
     'events',
 
+    'django.contrib.gis',
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
     'wagtail.wagtailembeds',
