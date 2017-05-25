@@ -1,0 +1,64 @@
+@import url('https://dev.hel.fi/~terotik/cdn/fonts/HelsinkiGrotesk.css');
+
+@import 'hel-bootstrap-3/src/sass/helsinki-variables';
+@import 'hel-bootstrap-3/src/sass/application-variables';
+
+$icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
+
+$theme-primary-dark: $bus;
+$theme-primary-light: $engel;
+
+$theme-highlight-dark: $brick;
+$theme-highlight-light: $suomenlinna;
+
+@import 'digihel/static/css/bootstrap-custom';
+
+@import 'bourbon/app/assets/stylesheets/bourbon';
+@import 'digihel/static/css/digihel-icons';
+@import 'digihel/static/css/common-styles';
+
+@import 'hel-bootstrap-3/src/sass/documentation-styles';
+
+.navbar {
+  background-color: $copper;
+
+  a {
+    color: $black;
+
+    &:hover {
+      color: $bus;
+    }
+  }
+
+  .navbar-toggle .icon-bar {
+    background-color: $bus;
+  }
+
+  .site-title {
+    font-weight: 600;
+  }
+}
+
+.digiedu-frontpage-header {
+  padding-bottom: $line-height-computed * 3;
+  padding-top: $line-height-computed * 3;
+  color: $bus;
+}
+
+.file-list__item {
+  padding: $line-height-computed / 2;
+  background: $engel;
+  margin-bottom: $line-height-computed;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  .file-list__link {
+  }
+}
+
+.file-view__details {
+  padding: $line-height-computed / 2;
+  background: $engel;
+}
