@@ -1,5 +1,29 @@
 {% extends "base.html" %}
+{% load static %}
 {% load humanize wagtailimages_tags digi_tags wagtailcore_tags static compress twitter_tags%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+<style>
+    .leaflet-container {
+        height: 600px;
+        width: 60%;
+        margin: 0 auto;
+      }
+   .number-icon
+   {
+     text-align:center;
+     color: white;
+     height: 1em;
+     background: red;
+     -moz-border-radius: 50px;
+     -webkit-border-radius: 50px;
+     border-radius: 50px;
+   }
+</style>
+{% endblock %}
 
 {% block body_class %}template-front-page{% endblock %}
 
@@ -7,6 +31,7 @@
 <div class="container main-container" role="main">
   <article class="front-page">
       <p>{{ page.hero }}</p>
+      <div id="root"></div>
   </article>
 </div>
 {% endblock %}
@@ -17,4 +42,5 @@
 
 </script>
 {% endcompress %}
+<script src="{% static 'js/main.173b6cf5.js' %}"></script>
 {% endblock %}
