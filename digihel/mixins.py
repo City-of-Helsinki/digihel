@@ -21,7 +21,7 @@ class RelativeURLMixin(object):
         root_paths = set(Site.get_site_root_paths())
         test_site_paths = set([x for x in root_paths if 'test' in Site.objects.get(id=x[0]).site_name.lower()])
         prod_site_paths = root_paths - test_site_paths
-        if self.content_type.app_label == 'kehmet':
+        if False and self.content_type.app_label == 'kehmet':
             root_paths = test_site_paths
         else:
             root_paths = prod_site_paths
