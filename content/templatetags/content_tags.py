@@ -38,8 +38,8 @@ def top_menu(context, parent, calling_page=None):
                            if calling_page else False)
 
     site = context['request'].site
-    if 'test' not in site.site_name.lower():
-        menuitems = [x for x in menuitems if x.content_type.app_label != 'kehmet']
+    # if 'test' not in site.site_name.lower():
+    #    menuitems = [x for x in menuitems if x.content_type.app_label != 'kehmet']
 
     return {
         'calling_page': calling_page,
