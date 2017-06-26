@@ -9,145 +9,190 @@
 {% image page.hero_background original as bg_image %}
 <div class="container-fluid header-container container--hero" style="background-image: url('{{ bg_image.url }}')">
     <section class="container">
-      {% for block in page.hero %}
-      {{ block }}
-      {% endfor %}
+        <div class="col-sm-10 col-md-8 col-lg-7 hero-content">
+            <img src="{% static "images/helsinki-logo-white.svg" %}" class="hero-logo">
+            {% for block in page.hero %}
+            {{ block }}
+            {% endfor %}
+        </div>
     </section>
+    {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
+      <div class="hero-koro"></div>
+    {% endwith %}
 </div>
 
 {# Indicators #}
-<div class="container-fluid section-container container--indicators">
-  <section class="container">
+<section class="container-fluid section-container container--indicators">
+  <div class="container">
       <div class="indicators clearfix">
         {% for ind in page.indicators %}
-          <div class="col-sm-4">
+          <div class="col-sm-4 indicator-column">
             <div class="indicator" id="{{ind.id}}" style="background-image: url('{% static ind.illustration_filename %}');">
               <div class="indicator-content">
                 <div class="indicator-value">
-                  {{ ind.value }}
+                  {{ ind.value|intcomma }}
                 </div>
                 <div class="indicator-description">
                   {{ ind.description }}
                 </div>
               </div>
             </div>
-            <a href="{{ind.source_url}}" class="indicator-source">{{ ind.source_description }}</a>
+            <a href="{{ind.source_url}}" class="indicator-source">Lähde: {{ ind.source_description }}</a>
           </div>
         {% endfor %}
       </div>
-  </section>
-</div>
+  </div>
+  <div class="row">
+    <div class="indicators-koro"></div>
+  </div>
+</section>
 
 {# Highlights (themes) #}
-<div class="container-fluid section-container container--themes">
-  <section class="container">
-      <div class="themes row">
-          {% for theme in page.themes %}
-          {% if theme.promote_on_front_page %}
-          <div class="col-md-4">
-            <div class="theme-preview match-height clearfix">
-              <div class="col-xs-12 col-sm-6 col-md-12">
-                {% image theme.image fill-560x420 as theme_image %}
-                <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-12">
-                <small class="card-type">{{ theme.type }}</small>
-                <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
-                <p>{{ theme.short_description }}</p></a>
+
+<section class="front-section section--themes">
+  <div class="container">
+    <h1 class="text-center">Teemat ja projektit</h1>
+  </div>
+  <div class="section-content">
+    <div class="container">
+        <div class="themes row">
+            {% for theme in page.themes %}
+            {% if theme.promote_on_front_page %}
+            <div class="col-md-4 col-sm-6">
+              <div class="theme-preview match-height clearfix">
+                <div class="preview-image">
+                  {% image theme.image fill-700x500 as theme_image %}
+                  <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+                </div>
+                <div class="preview-content match-height">
+                  <small class="card-type">{{ theme.type }}</small>
+                  <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+                  <p>{{ theme.short_description }}</p></a>
+                  <a class="" href="{% pageurl theme %}">Lue lisää <span class="caret-right"></span></a>
+                </div>
               </div>
             </div>
-          </div>
-          {% endif %}
-          {% endfor %}
-      </div>
-  </section>
-</div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="text-center"><a class="btn btn-default" href="/projektit">Kaikki projektit</a></div>
+    </div>
+  </div>
+</section>
 
 {# Banners #}
-<div class="container-fluid section-container container--banners">
-  <section class="container">
-    <div class="banners">
-      <div class="jumbotron">
-          <h1>Digipalveluopas</h1>
+<section class="front-section section--banners">
+  <div class="container">
+    <h1 class="text-center">Oppaat ja periaatteet</h1>
+  </div>
+  <div class="section-content">
+    <div class="container">
+      <div class="row">
+      <div class="col-sm-6">
+        <div class="banner--guide">
+          <img src="{% static "images/twitter.svg" %}" class="guide-illustration">
+          <h3>Kehitysmenetelmät (KEHMET)</h3>
+          <p>avaa käsitteitä ja menetelmiä kaupungin kehityshankkeiden tueksi</p>
+          <p><a class="btn btn-default">Lue lisää</a></p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="banner--guide">
+            <img src="{% static "images/twitter.svg" %}" class="guide-illustration">
+            <h3>Digipalveluopas</h3>
+            <p>opastaa millaisista aineksista syntyy hyvä helsinkiläinen palvelu</p>
+            <p><a class="btn btn-default">Lue lisää</a></p>
+        </div>
+      </div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
 {# Blog / Events / Media #}
-<div class="container-fluid section-container container--news">
-  <article class="container front-page">
-      <section class="misc row">
-          <div class="col-md-8">
-            <div class="blogs-preview">
-              <div class="card-type">Blogin uusimmat</div>
-              {% for blog in page.blog_posts|slice:":3" %}
-              <div class="blog-post">
-                <div class="row">
-                <div class="col-sm-5">
-                  <div class="match-height clearfix">
-                    {% image blog.header_image max-1920x1080 as blog_image %}
-                    <a class="link-unstyled" href="{% pageurl blog %}"><div class="blog-post-main-image" style="background-image: url('{{ blog_image.url }}')"></div></a>
-                  </div>
-                </div>
-                <div class="col-sm-7">
-                  <div class="match-height clearfix">
-                  <h3><a class="link-unstyled hyphenate" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
-                  <span class="blog-section-tag">{{ blog.parent_title }}</span> <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
-                  {{ blog.body|first_p|safe }}
-                  </div>
-                </div>
-                </div>
-              </div>
-              {% endfor %}
-              <a href="blogikirjoitukset/" class="blogs-preview-read-all">Kaikki blogitekstit</a>
-            </div>
-          </div>
-          <div class="col-md-4">
-              <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-12">
-              <div class="events-highlights">
-                {% if self.event_index %}
-                  <a class="link-unstyled" href="{% pageurl self.event_index %}"><img src="{% static "images/osallistu.svg" %}" class="event-illustration">
-                  <h2>Tapahtumia</h2></a>
-                  <ul></ul>
-                  <div class="events-source">
-                      <a class="link-unstyled" href="{% pageurl self.event_index %}">Tapahtumatiedot</a>
-                      <a class="link-unstyled" href="https://dev.hel.fi/projects/linked-events/">Linked Events -rajapinnasta</a>
-                  </div>
-                {% else %}
-                  Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
-                {% endif %}
-              </div>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-12">
-              <div class="twitter-feed">
-                  <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
-                  <h2><a href="https://twitter.com/hashtag/digihelsinki?f=tweets&vertical=default">#digiHelsinki</a></h2>
-
-                  {% twitter_search "#digihelsinki exclude:retweets" as tweets %}
-                  {% for t in tweets|slice:":3" %}
-                    <div class="tweet">
-                      <a href ="https://twitter.com/{{t.user.screen_name}}">
-                        <div class="tweet__author">
-                          <div class="tweet__avatar"><img src="{{ t.user.profile_image_url_https }}" class="media-object"></div>
-                          <div class="media-body">
-                          <span class="tweet__fullname">{{ t.user.name }}</span>
-                          <span class="tweet__username">@{{ t.user.screen_name }}</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="tweet__tweettext">{{ t.html }}</div>
-                      <a href="https://www.twitter.com/{{ t.user.screen_name }}/status/{{ t.id }}"><div class="tweet__timestamp">{{ t.created_at }}</div></a>
+<section class="front-section section--news">
+  <h1 class="text-center">Ajankohtaista</h1>
+    <div class="section-content">
+      <article class="container">
+          <section class="misc row">
+              <div class="col-md-8">
+                <div class="blogs-preview">
+                  <div class="card-type">Blogin uusimmat</div>
+                  {% for blog in page.blog_posts|slice:":3" %}
+                  <div class="blog-post">
+                    <div class="row">
+                    <div class="col-sm-5">
+                      <div class="match-height clearfix">
+                        {% image blog.header_image max-1920x1080 as blog_image %}
+                        <a class="link-unstyled" href="{% pageurl blog %}"><div class="blog-post-main-image" style="background-image: url('{{ blog_image.url }}')"></div></a>
+                      </div>
                     </div>
+                    <div class="col-sm-7">
+                      <div class="match-height clearfix">
+                      <h3><a class="link-unstyled hyphenate" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
+                      <span class="blog-section-tag">{{ blog.parent_title }}</span> <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
+                      {{ blog.body|first_p|safe }}
+                      </div>
+                    </div>
+                    </div>
+                  </div>
                   {% endfor %}
+                  <a href="blogikirjoitukset/" class="blogs-preview-read-all">Kaikki blogitekstit <span class="caret-right"></span></a>
+                </div>
               </div>
+              <div class="col-md-4">
+                  <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-12">
+                  <div class="events-highlights">
+                    {% if self.event_index %}
+                      <a class="link-unstyled" href="{% pageurl self.event_index %}"><img src="{% static "images/osallistu.svg" %}" class="event-illustration">
+                      <h2>Tapahtumia</h2></a>
+                      <ul></ul>
+                      <div class="events-source">
+                          <a class="link-unstyled" href="{% pageurl self.event_index %}">Tapahtumatiedot</a>
+                          <a class="link-unstyled" href="https://dev.hel.fi/projects/linked-events/">Linked Events -rajapinnasta</a>
+                      </div>
+                    {% else %}
+                      Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
+                    {% endif %}
+                  </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-12">
+                  {% with hashtag="digiHelsinki" %}
+                  {% twitter_search hashtag as tweets %}
+                  <div class="twitter-feed">
+                      <img src="{% static "images/twitter.svg" %}" class="twitter-illustration">
+                      <h4>Twitter</h4>
+                      <h2><a href="https://twitter.com/hashtag/{{hashtag}}?f=tweets&vertical=default">#{{ hashtag }}</a></h2>
+                      {% if tweets %}
+                        {% for t in tweets|slice:":3" %}
+                          <div class="tweet">
+                            <a href ="https://twitter.com/{{t.user.screen_name}}">
+                              <div class="tweet__author">
+                                <div class="tweet__avatar"><img src="{{ t.user.profile_image_url_https }}" class="media-object"></div>
+                                <div class="media-body">
+                                <span class="tweet__fullname">{{ t.user.name }}</span>
+                                <span class="tweet__username">@{{ t.user.screen_name }}</span>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="tweet__tweettext">{{ t.html }}</div>
+                            <a href="https://www.twitter.com/{{ t.user.screen_name }}/status/{{ t.id }}"><div class="tweet__timestamp">{{ t.created_at }}</div></a>
+                          </div>
+                        {% endfor %}
+                    {% else %}
+                      <h4>—<br/>Tällä hetkellä ei uusia twiittejä.</h4>
+                    {% endif %}
+                  </div>
+                  {% endwith %}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-      </section>
-  </article>
-</div>
+          </section>
+      </article>
+    </div>
+</section>
+
 {% endblock %}
 
 {% block extra_js %}

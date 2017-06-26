@@ -78,6 +78,18 @@ img {
   float: right;
 }
 
+.caret-right {
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  border-left: 4px solid;
+  display: inline-block;
+  height: 0;
+  vertical-align: top;
+  width: 0;
+  margin-top: .5em;
+  margin-left: .25em;
+}
+
 .link-unstyled {
   color: inherit;
   text-decoration: inherit;
@@ -264,7 +276,6 @@ $labelheight:     22px;
 .site-title {
   display: inline-block;
   font-size: $font-size-base;
-  font-weight: 200;
   margin: 0;
 }
 
@@ -510,66 +521,70 @@ $labelheight:     22px;
 //** Front page **/
 
 .container--hero {
-  background-color: $theme-primary-light;
-  background-size: auto 100%;;
+  background-color: $theme-secondary-dark;
+  background-size: auto 100%;
   background-repeat: repeat-x;
-  background-position: bottom;
+  background-position: bottom center;
   border-radius: 0;
   color: $white;
-  min-height: $line-height-computed * 24;
-  padding: 0;
+  font-size: 16px;
+  min-height: $line-height-computed * 20;
   position: relative;
-
-  h2 {
-    font-size: 24px;
-    line-height: 1.4em;
-    margin-bottom: $line-height-computed;
-
-    @media screen and (min-width: $screen-xs-min) {
-      font-size: 36px;
-    }
-
-    i {
-      font-style: normal;
-    }
-
-  }
+  text-shadow: 1px 1px 4px rgba(#000, 0.2);
 
   a {
     color: $white;
-    text-shadow: 0 0 1px $white;
+  }
+
+  .hero-logo {
+    height: $line-height-computed * 2;
+    margin-bottom: $line-height-computed;
+    -webkit-filter: drop-shadow( 1px 1px 4px rgba(#000, 0.2) );
+            filter: drop-shadow( 1px 1px 4px rgba(#000, 0.2) );
+  }
+
+  .hero-content {
+    margin-top: $line-height-computed *3;
+  }
+
+  .hero-koro {
+    @include koro("../hel-bootstrap-3/src/assets/", "pulse", "fog", 500, 0);
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
+
+  h2 {
+    font-size: $line-height-computed * 2;
+    line-height: 1em;
+    margin: 0 0 $line-height-computed;
   }
 
   .rich-text {
     color: $white;
-    font-size: 16px;
-    margin: 0;
-    padding: 48px;
+    margin-bottom: $line-height-computed * 4;
     text-align: left;
-    width: 100%;
+  }
 
-    p {
-      font-size: 16px;
+  @media screen and (min-width: $screen-sm-min) {
+    font-size: 24px;
+    min-height: $line-height-computed * 32;
+
+    .hero-logo {
+      height: $line-height-computed *2.5;
+      margin-bottom: $line-height-computed;
     }
 
-    @media screen and (min-width: $screen-md-min) {
-      font-size: 18px;
-      width: 600px;
-
-      p {
-        font-size: 18px;
-      }
-    }
-
-    @media screen and (min-width: $screen-lg-min) {
-      font-size: 24px;
-      width: 800px;
-
-      p {
-        font-size: 24px;
-      }
+    h2 {
+      font-size: $line-height-computed *2.5;
     }
   }
+
+  @media screen and (min-width: $screen-lg-min) {
+    font-size: 24px;
+  }
+
 }
 
 .container-fluid.header-container {
@@ -578,9 +593,18 @@ $labelheight:     22px;
 
 //* Theme page */
 
-.container--themes {
+.section--themes {
+  margin-top: $line-height-computed * 3;
+
+  .section-content {
+    margin-top: $line-height-computed * 6;
+    padding-bottom: $line-height-computed * 2;
+    margin-bottom: $line-height-computed * 2;
+    background: $gray-lighter;
+  }
+
   .themes {
-    padding: $line-height-computed 0;
+    margin-top: $line-height-computed * -3;
   }
 }
 
@@ -596,10 +620,6 @@ $labelheight:     22px;
   a {
     color: $text-color;
   }
-}
-
-.container--themes {
-  background: $gray-lighter;
 }
 
 .theme-info {
@@ -728,13 +748,13 @@ $labelheight:     22px;
 }
 
 .container--indicators {
-
   background-color: $theme-secondary-light;
+  position: relative;
+  margin-bottom: $line-height-computed * 6;
 
   .indicators {
     text-align: center;
     background-color: $theme-secondary-light;
-    padding: $line-height-computed 0;
   }
 
   .indicator {
@@ -751,6 +771,10 @@ $labelheight:     22px;
     width: 100%;
   }
 
+  .indicator-column {
+    margin-bottom: $line-height-computed;
+  }
+
   .indicator-content {
     width: 100%;
   }
@@ -761,7 +785,7 @@ $labelheight:     22px;
 
   .indicator-value {
     color: $theme-primary-dark;
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 900;
     width: 100%;
   }
@@ -772,11 +796,51 @@ $labelheight:     22px;
     font-weight: 900;
     width: 100%;
   }
+
+  .indicators-koro {
+    @include koro("../hel-bootstrap-3/src/assets/", "pulse", "fog", 500, 0);
+    transform: rotate(180deg);
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: $line-height-computed * -3;
+  }
 }
 
-.container--banners {
+.section--banners {
+  margin-top: $line-height-computed * 3;
+
+  .section-content {
+    margin-bottom: $line-height-computed * 4;
+    margin-top: $line-height-computed * 3;
+  }
+
   .banners {
     padding: $line-height-computed 0;
+  }
+
+  .banner--guide {
+    padding: $line-height-computed;
+    background-color: $theme-primary-light;
+    margin-bottom: $line-height-computed;
+    text-align: center;
+
+    .guide-illustration {
+      max-height: $line-height-computed * 5;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+  }
+}
+
+.section--news {
+  margin-top: $line-height-computed * 3;
+
+  .section-content {
+    margin-bottom: $line-height-computed * 4;
+    margin-top: $line-height-computed * 3;
   }
 }
 
@@ -921,18 +985,18 @@ $labelheight:     22px;
 }
 
 .card-type {
-  border-bottom: solid 3px $theme-secondary-dark;
+  border-bottom: solid 3px $theme-highlight-dark;
   display: inline-block;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin-bottom: $line-height-computed / 2;
+  padding-bottom: $line-height-computed / 2;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 .theme-preview {
-  background-color: $theme-primary-light;
   color: $black;
   margin-bottom: 1em;
-  padding: 1em;
+  position: relative;
 
   a:hover {
     color: $theme-highlight-dark;
@@ -940,11 +1004,19 @@ $labelheight:     22px;
 
   .theme-thumbnail {
     display: block;
-    margin-bottom: 1em;
   }
 
   h3 {
     margin-top: 0;
+  }
+
+  .preview-content {
+    background: $white;
+    margin: -3em 1em 1em 1em;
+    padding: 1em;
+    position: relative;
+    min-height: 300px;
+    @include box-shadow(rgba($gray-dark, .3) 2px 2px 5px);
   }
 }
 
@@ -959,7 +1031,7 @@ $labelheight:     22px;
   margin-bottom: $line-height-computed * 2;
 
   .card-type {
-    margin-bottom: $line-height-computed;
+    margin-bottom: $line-height-computed * 3;
   }
 
   h3 {
@@ -995,8 +1067,8 @@ $labelheight:     22px;
   }
 
   .blog-post {
-    margin-bottom: $line-height-computed / 2;
-    padding-bottom: $line-height-computed / 2;
+    margin-bottom: $line-height-computed;
+    padding-bottom: $line-height-computed;
   }
 
   .card-type {

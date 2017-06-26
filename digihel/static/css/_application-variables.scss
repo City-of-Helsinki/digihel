@@ -1,0 +1,54 @@
+//
+// Application specific visual customisation
+// --------------------------------------------------
+
+$theme-primary-dark:    $hel-black;
+$theme-primary-light:   $hel-engel;
+
+$theme-secondary-dark:  $hel-brick !default;
+$theme-secondary-light: $hel-fog !default;
+
+$theme-highlight-dark:  $hel-bus !default;
+$theme-highlight-light: $hel-copper !default;
+
+// Non brand colors
+
+$white:         #ffffff;
+$light-gray:    #ebedf1;
+$dark-gray:     #525a65;
+$medium-gray:   #abb2bd;
+$black:         #231f20;
+
+$theme-success: $hel-tram;
+$theme-info:    $hel-fog;
+$theme-warning: $hel-summer;
+$theme-danger:  $hel-metro;
+
+$icon-font-path: "../fonts/bootstrap/";
+
+
+$font-family-sans-serif:  $hel-grotesk;
+$font-family-serif:       'Noto Serif', serif;
+
+@mixin koro($path,$style, $color, $scale, $angle) {
+  $korofile: "koro-" + $style + "-" + $color + "-" + $angle + ".svg";
+  $korourl: $path + $korofile;
+  $korosize: (($scale/100) * 800px);
+  @extend .koro-basic-fog-0;
+  background-size: $korosize $korosize;
+
+  @if $angle == 0 {
+    background-position: top;
+    background-repeat: repeat-x;
+  } @else if $angle == 45 {
+  } @else if $angle == 90 {
+    background-repeat: repeat-y;
+  } @else if $angle == 135 {
+  } @else if $angle == 180 {
+  }
+}
+
+// Use https://codepen.io/jakob-e/pen/doMoML to encode svg
+.koro-basic-fog-0 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 800 800' style='enable-background:new 0 0 800 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%239fc9eb;%7D %3C/style%3E %3Cpath class='kf' d='M800,8.9c-4.2,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3 c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3 c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3h-0.9c-4.2,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.4-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3 c-4.1,0-4.1-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3 s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3l0,0c-4.2,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.4-5.3 c-4.2,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3 s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.1-5.3-8.3-5.3s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3h-0.4 c-4.2,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3s-5.2-5.3-9.4-5.3s-4.2,5.3-8.3,5.3S79,3.6,74.9,3.6c-4.1,0-4.2,5.3-8.3,5.3s-4.1-5.3-8.3-5.3 S54.1,8.9,50,8.9s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.3-5.3-8.5-5.3S4.1,8.9,0,8.9v791l800-0.7 V8.9z'/%3E %3C/svg%3E ");
+}
