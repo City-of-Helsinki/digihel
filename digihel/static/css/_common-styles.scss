@@ -548,7 +548,7 @@ $labelheight:     22px;
   }
 
   .hero-koro {
-    @include koro("../hel-bootstrap-3/src/assets/", "pulse", "fog", 500, 0);
+    @include koro("pulse", $hel-fog, 100);
     width: 100%;
     height: $line-height-computed * 3;
     position: absolute;
@@ -798,8 +798,8 @@ $labelheight:     22px;
   }
 
   .indicators-koro {
-    @include koro("../hel-bootstrap-3/src/assets/", "pulse", "fog", 500, 0);
-    transform: rotate(180deg);
+    @include koro("pulse", #FFFFFF, 500);
+    background-color: $hel-fog;
     width: 100%;
     height: $line-height-computed * 3;
     position: absolute;

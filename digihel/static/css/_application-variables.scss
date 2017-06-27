@@ -30,25 +30,37 @@ $icon-font-path: "../fonts/bootstrap/";
 $font-family-sans-serif:  $hel-grotesk;
 $font-family-serif:       'Noto Serif', serif;
 
-@mixin koro($path,$style, $color, $scale, $angle) {
-  $korofile: "koro-" + $style + "-" + $color + "-" + $angle + ".svg";
-  $korourl: $path + $korofile;
-  $korosize: (($scale/100) * 800px);
-  @extend .koro-basic-fog-0;
-  background-size: $korosize $korosize;
+// Helsinki koro generator mixin for section dividers. This should be added to hel-bootstrap-3
 
-  @if $angle == 0 {
-    background-position: top;
-    background-repeat: repeat-x;
-  } @else if $angle == 45 {
-  } @else if $angle == 90 {
-    background-repeat: repeat-y;
-  } @else if $angle == 135 {
-  } @else if $angle == 180 {
-  }
+@mixin koro($style, $color, $scale) {
+  $korosizex: (($scale/100) * 20px); // repeatable koros are 20px wide
+  $korosizey: (($scale/100) * 800px); // repeatable koros are 800px high
+  background-size: $korosizex $korosizey; // for IE size must be specified
+
+  @include koro-shape($style, $color);
+
+  background-position: top;
+  background-repeat: repeat-x;
 }
 
-// Use https://codepen.io/jakob-e/pen/doMoML to encode svg
-.koro-basic-fog-0 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 800 800' style='enable-background:new 0 0 800 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%239fc9eb;%7D %3C/style%3E %3Cpath class='kf' d='M800,8.9c-4.2,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3 c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3 c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3h-0.9c-4.2,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.4-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3 c-4.1,0-4.1-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3 s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3l0,0c-4.2,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.4-5.3 c-4.2,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3 s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.1-5.3-8.3-5.3s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3h-0.4 c-4.2,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3 s-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3c-4.1,0-4.2,5.3-8.3,5.3c-4.1,0-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3 c-4.1,0-4.2,5.3-8.3,5.3s-5.2-5.3-9.4-5.3s-4.2,5.3-8.3,5.3S79,3.6,74.9,3.6c-4.1,0-4.2,5.3-8.3,5.3s-4.1-5.3-8.3-5.3 S54.1,8.9,50,8.9s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.2-5.3-8.3-5.3s-4.2,5.3-8.3,5.3s-4.3-5.3-8.5-5.3S4.1,8.9,0,8.9v791l800-0.7 V8.9z'/%3E %3C/svg%3E ");
+// Return repeatable koro svg-shape in desired style and color
+// SVG encoded for cross-browser compatibility with https://codepen.io/jakob-e/pen/doMoML
+
+@mixin koro-shape($style, $color) {
+  @if $style == "beat" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-beat-fog-0%3C/title%3E %3Cpath class='kf' d='M800.7,800h0.3H-1'/%3E %3Cpath class='kf' d='M20,800H0V0c2.8,0,3.5,2.3,3.5,2.3l2.8,8.4c0.6,1.5,1.9,2.5,3.6,2.5c2.8,0,3.6-2.5,3.6-2.5s2.8-8.1,2.8-8.2 C17,1,18.3,0,20,0V800z'/%3E %3C/svg%3E");
+  }
+  @else if $style == "pulse" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-pulse-fog-0%3C/title%3E %3Cpath class='kf' d='M0,799.9l800-0.7'/%3E %3Cpath class='kf' d='M0,800h20V0c-5.1,0-5.1,6.4-10,6.4S4.9,0,0,0V800z'/%3E %3C/svg%3E ");
+  }
+  @else if $style == "storm" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-storm-fog-0%3C/title%3E %3Cpath class='kf' d='M20,800V0c-2.3,5.5-8.7,8.1-14.3,5.7C3.1,4.7,1.2,2.6,0,0v800H20z'/%3E %3C/svg%3E ");
+  }
+  @else if $style == "wave" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-wave-fog-0%3C/title%3E %3Cpolygon class='kf' points='0,800 20,800 20,0 9.8,10.1 0,0 '/%3E %3C/svg%3E ");
+  }
+  // Default to "basic" shape
+  @else {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-basic-fog-0%3C/title%3E %3Cpath class='kf' d='M0,800h800'/%3E %3Cpath class='kf' d='M0,800h20V0c-4.9,0-5,2.6-9.9,2.6S5,0,0,0V800z'/%3E %3C/svg%3E ");
+  }
 }
