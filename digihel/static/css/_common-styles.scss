@@ -761,10 +761,10 @@ $labelheight:     22px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 12em;
+    height: 14em;
     margin-bottom: $line-height-computed;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
   }
 
   .indicator-icon svg {
@@ -826,7 +826,11 @@ $labelheight:     22px;
     text-align: center;
 
     .guide-illustration {
-      max-height: $line-height-computed * 5;
+      max-height: $line-height-computed * 8;
+      max-width: 100%;
+      path {
+        fill: $black;
+      }
     }
 
     h3 {
@@ -854,6 +858,10 @@ $labelheight:     22px;
     position: absolute;
     top: -1.5em;
     right: -1.5em;
+
+    path {
+      fill: $theme-highlight-dark;
+    }
   }
 
   .event-title {
@@ -891,6 +899,10 @@ $labelheight:     22px;
     position: absolute;
     top: -1.5em;
     right: -1.5em;
+
+    path {
+      fill: $theme-highlight-dark;
+    }
   }
 
   .tweet {
