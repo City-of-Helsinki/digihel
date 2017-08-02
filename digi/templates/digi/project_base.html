@@ -29,25 +29,29 @@
   </div>
 </div>
 {% if page.projects.exists %}
-<div class="container-fluid bg-info">
+<section class="sub-section section--projects bg-info">
     <div class="container">
-        <h3>Teeman projektit</h3>
-        <div class="theme-projects">
-          {% for project in page.projects %}
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="project-card">
-              {% image project.image fill-400x300 as project_image %}
-              <img src="{{ project_image.url }}" class="project-thumbnail"/>
-              <div class="caption">
-                <h3 class="hyphenate">{{ project.title }}</h2>
-                <p class="flex-text text-muted">{{ project.short_description }}</p>
-                <p class="text-center"><a class="btn btn-default" href="{% pageurl project %}">Lue lisää</a></p>
+      <h2 class="text-center">Teeman projektit</h2>
+    </div>
+    <div class="section-content">
+        <div class="container">
+            <div class="theme-projects">
+              {% for project in page.projects %}
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="project-card">
+                  {% image project.image fill-400x300 as project_image %}
+                  <img src="{{ project_image.url }}" class="project-thumbnail"/>
+                  <div class="caption">
+                    <h3 class="hyphenate">{{ project.title }}</h2>
+                    <p class="flex-text text-muted">{{ project.short_description }}</p>
+                    <p class="text-center"><a class="btn btn-default" href="{% pageurl project %}">Lue lisää</a></p>
+                  </div>
+                </div>
               </div>
+              {% endfor %}
             </div>
-          </div>
-          {% endfor %}
         </div>
     </div>
-</div>
+</section>
 {% endif %}
 {% endblock %}
