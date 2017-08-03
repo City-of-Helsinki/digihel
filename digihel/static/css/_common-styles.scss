@@ -100,7 +100,8 @@ a, a:link {
     text-decoration: underline;
   }
 
-  &.btn:hover {
+  &.btn-default, &.btn-default:hover, &.btn-default:active, &.btn-default:visited {
+    color: inherit;
     text-decoration: none;
   }
 }
@@ -553,6 +554,10 @@ $labelheight:     22px;
   }
 }
 
+.section--content {
+  margin-bottom: $line-height-computed * 2;
+}
+
 //** Front page **/
 
 .container--hero {
@@ -643,6 +648,11 @@ $labelheight:     22px;
   }
 }
 
+.section--theme-header {
+  margin-top: $line-height-computed * 2;
+  margin-bottom: $line-height-computed;
+}
+
 .project-section-header {
   border-bottom: 4px solid $theme-highlight-dark;
   float: left;
@@ -663,6 +673,17 @@ $labelheight:     22px;
   clear: both;
 }
 
+.section--projects {
+  background-color: $hel-fog;
+  padding: ($line-height-computed * 2) 0;
+  position: relative;
+  @extend .clearfix;
+
+  h2 {
+    margin-bottom: $line-height-computed * 3;
+  }
+}
+
 .theme-info {
   .card-type {
     border-bottom: solid 3px $theme-highlight-dark;
@@ -677,7 +698,7 @@ $labelheight:     22px;
   }
 
   .theme-header-image {
-    margin-bottom: 2em;
+    margin-bottom: $line-height-computed;
   }
 
   .phase-process {
@@ -694,32 +715,47 @@ $labelheight:     22px;
   @extend .row;
 	display: flex;
 	flex-wrap: wrap;
-}
-.theme-projects > [class*='col-'] {
-	display: flex;
-	flex-direction: column;
-}
 
-.theme-projects .project-card {
-  background: $white;
-  padding: $line-height-computed / 2;
-  margin-bottom: $line-height-computed;
-}
+  > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
 
-.theme-projects .project-card,
-.theme-projects .caption {
-	flex-direction: column;
-	display: flex;
-	flex: 1 0 auto;
-	height: auto;
-	position: relative;
-}
-.flex-text {
-	flex-grow: 1;
-}
-.theme-projects img {
-	min-width: 0;
-	width: 100%;
+  .project-card {
+    background: $white;
+    margin-bottom: $line-height-computed * 2;
+  }
+
+  h3 {
+    margin-top: 0;
+
+    a, a:hover {
+      color: inherit;
+    }
+  }
+
+  .project-card,
+  .caption {
+    flex-direction: column;
+    display: flex;
+    flex: 1 0 auto;
+    height: auto;
+    position: relative;
+  }
+
+  .caption {
+    padding: $line-height-computed;
+  }
+
+  .flex-text {
+    flex-grow: 1;
+    margin-bottom: $line-height-computed;
+  }
+
+  img {
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 .contacts-list {
