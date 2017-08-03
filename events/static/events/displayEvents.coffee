@@ -30,13 +30,15 @@ window.displayEvents = (eventData, grid = false) ->
       template = """
         <div class='event-preview'>
           <a class='link-unstyled' href="#{eventLink}"><div class='event-thumbnail' style='background-image: url("#{eventImage}")'></div></a>
-          <div class="event-meta">
-            <span class='event-meta__time'><time datetime="#{eventTime}">#{eventTime}</time></span>
-            <span class='event-meta__place'><a href="#{eventLocationLink}">#{eventLocationName}</a></span>
-          </div>
-          <a class='link-unstyled' href="#{eventLink}"><h4 class='event-headline'>#{event.name.fi}</h4></a>
-          <div class='event-description'>
-          #{eventDescription}
+          <div class="event-content">
+            <div class="event-meta">
+              <div class='event-meta__time'><span class='glyphicon glyphicon-time' aria-hidden='true'  title='aika'></span><span class='sr-only'>aika</span> <time datetime="#{eventTime}">#{eventTime}</time></div>
+              <div class='event-meta__place'><span class='glyphicon glyphicon-map-marker' aria-hidden='true' title='paikka'></span><span class='sr-only'>paikka</span> <a class='link-unstyled' href="#{eventLocationLink}">#{eventLocationName}</a></div>
+            </div>
+            <a class='link-unstyled' href="#{eventLink}"><h4 class='event-headline'>#{event.name.fi}</h4></a>
+            <div class='event-description'>
+            #{eventDescription}
+            </div>
           </div>
         </div>
       """

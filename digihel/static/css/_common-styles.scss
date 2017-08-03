@@ -1521,42 +1521,25 @@ $labelheight:     22px;
     background-position: center;
     background-size: cover;
     height: $line-height-computed * 7;
+  }
+
+  .event-content {
+    padding: $line-height-computed;
+  }
+
+  .event-meta {
+    color: $black;
     margin-bottom: $line-height-computed / 2;
-  }
-
-  .event-meta  {
-    color: $theme-primary-light;
-    padding: 0 $padding-large-vertical;
-  }
-
-  .event-meta__time {
-    display: block;
-  }
-
-  .event-meta__place {
-    display: block;
-    margin-bottom: $line-height-computed / 2;
-
-    a {
-      color: $black;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
   }
 
   .event-headline {
-    color: $white;
+    color: $black;
     margin: 0;
     margin-bottom: $line-height-computed / 2;
-    padding: 0 $padding-large-vertical;
   }
 
   .event-description {
-    color: $white;
-    padding: 0 $padding-large-vertical $line-height-computed;
+    //padding: 0 $padding-large-vertical $line-height-computed;
   }
 }
 
