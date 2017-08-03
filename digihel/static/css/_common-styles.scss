@@ -92,6 +92,19 @@ img {
   margin-left: .25em;
 }
 
+a, a:link {
+  color: $hel-coat;
+
+  &:hover {
+    color: $hel-coat;
+    text-decoration: underline;
+  }
+
+  &.btn:hover {
+    text-decoration: none;
+  }
+}
+
 .link-unstyled {
   color: inherit;
   text-decoration: inherit;
@@ -627,7 +640,7 @@ $labelheight:     22px;
 }
 
 .project-section-header {
-  border-bottom: 4px solid $theme-secondary-dark;
+  border-bottom: 4px solid $theme-highlight-dark;
   float: left;
   font-size: 24px;
   margin-bottom: 1em;
@@ -635,14 +648,20 @@ $labelheight:     22px;
   padding-bottom: .5em;
   text-transform: uppercase;
 
-  a {
+  a, a:hover {
     color: $text-color;
+    text-decoration: none;
   }
+}
+
+.theme-title {
+  font-size: floor(($font-size-base * 3));
+  clear: both;
 }
 
 .theme-info {
   .card-type {
-    border-bottom: solid 3px $theme-secondary-dark;
+    border-bottom: solid 3px $theme-highlight-dark;
     display: inline-block;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -799,6 +818,11 @@ $labelheight:     22px;
 
   .indicator-source {
     font-size: $font-size-small;
+    color: $black;
+
+    &:hover {
+      color: inherit;
+    }
   }
 
   .indicator-value {
@@ -882,6 +906,10 @@ $labelheight:     22px;
     }
   }
 
+  a:hover {
+    color: $black;
+  }
+
   .event-title {
     margin-top: 0;
 
@@ -891,15 +919,8 @@ $labelheight:     22px;
     }
   }
 
-  .event-date {
-    color: $theme-primary-dark;
-  }
-
   .event-location {
-    color: $theme-primary-dark;
-  }
-
-  .event-description {
+    margin-bottom: $line-height-computed / 2;
   }
 
   .events-source {
@@ -928,7 +949,7 @@ $labelheight:     22px;
     //border: 1px solid lighten($theme-primary-light,40%);
     //padding: $line-height-computed / 2;
     a {
-      color: $theme-primary-dark;
+      color: $theme-highlight-dark;
     }
   }
 
@@ -943,7 +964,7 @@ $labelheight:     22px;
   }
 
   .tweet__fullname {
-    color: $theme-primary-dark;
+    color: $black;
     display: block;
     font-size: 1.15em;
     font-weight: 700;
@@ -952,13 +973,13 @@ $labelheight:     22px;
 
   .tweet__username {
     display: block;
-    color: #fff;
+    color: $theme-highlight-dark;
     font-size: $font-size-small;
   }
 
   .tweet__timestamp {
     font-size: $font-size-small;
-    color: #fff;
+    color: $theme-highlight-dark;
   }
 
   .tweet__tweettext {
@@ -984,6 +1005,7 @@ $labelheight:     22px;
     color: $black;
 
     &:hover {
+      color: $black;
       text-decoration: underline;
     }
   }
@@ -1029,7 +1051,12 @@ $labelheight:     22px;
   position: relative;
 
   a:hover {
-    color: $theme-highlight-dark;
+    color: inherit;
+    text-decoration: none;
+
+    h3 {
+      text-decoration: underline;
+    }
   }
 
   .theme-thumbnail {
@@ -1065,9 +1092,12 @@ $labelheight:     22px;
   }
 
   h3 {
-    color: $theme-primary-dark;
     margin-bottom: $line-height-computed / 2;
     margin-top: 0;
+
+    a {
+      color: $black;
+    }
   }
 
   .blog-section-tag {
@@ -1102,7 +1132,7 @@ $labelheight:     22px;
   }
 
   .card-type {
-    border-color: $theme-secondary-dark;
+    border-color: $theme-highlight-dark;
   }
 }
 
@@ -1279,6 +1309,14 @@ $labelheight:     22px;
   font-size: $font-size-small;
   margin-bottom: $line-height-computed * 3;
 
+  a {
+    color: $black;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
   h3 {
     font-size: $font-size-h4;
     margin-bottom: $line-height-computed / 2;
@@ -1294,6 +1332,12 @@ $labelheight:     22px;
     h3 {
       font-size: $font-size-h3;
     }
+  }
+}
+
+.person-list--projectlist {
+  a, a:hover {
+    color: $hel-coat;
   }
 }
 
@@ -1360,15 +1404,17 @@ $labelheight:     22px;
 // Blog Index
 
 .blog-section-header {
-  border-bottom: 4px solid $theme-secondary-dark;
+  border-bottom: 4px solid $theme-highlight-dark;
   float: left;
   font-size: 24px;
   margin-bottom: 1em;
   margin-top: 0;
   padding-bottom: .5em;
+  text-transform: uppercase;
 
-  a {
+  a, a:hover {
     color: $text-color;
+    text-decoration: none;
   }
 }
 
@@ -1378,6 +1424,10 @@ $labelheight:     22px;
 
 .blog-index {
   margin-top: 2em;
+
+  .blog-post-link, .blog-post-link:hover {
+    color: $black;
+  }
 
   .blog-post-main-image {
     background-color: $theme-primary-light;
@@ -1399,7 +1449,7 @@ $labelheight:     22px;
     }
 
     .blog-post-link {
-      border-top: 3px solid $theme-secondary-dark;
+      border-top: 3px solid $theme-highlight-dark;
       display: block;
       padding-top: 1em;
     }

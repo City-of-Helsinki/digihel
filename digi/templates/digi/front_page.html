@@ -127,12 +127,12 @@
                     <div class="col-sm-5">
                       <div class="match-height clearfix">
                         {% image blog.header_image max-1920x1080 as blog_image %}
-                        <a class="link-unstyled" href="{% pageurl blog %}"><div class="blog-post-main-image" style="background-image: url('{{ blog_image.url }}')"></div></a>
+                        <a href="{% pageurl blog %}"><div class="blog-post-main-image" style="background-image: url('{{ blog_image.url }}')"></div></a>
                       </div>
                     </div>
                     <div class="col-sm-7">
                       <div class="match-height clearfix">
-                      <h3><a class="link-unstyled hyphenate" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
+                      <h3><a class="hyphenate" href="{% pageurl blog %}">{{ blog.title }}</a></h3>
                       <span class="blog-section-tag">{{ blog.parent_title }}</span> <time itemprop="startDate" datetime="{{ blog.date|date:'Y-m-j' }}">{{ blog.date|date:"j.n.Y" }}</time>
                       {{ blog.body|first_p|safe }}
                       </div>
