@@ -294,6 +294,10 @@ $labelheight:     22px;
   margin: 0;
 }
 
+.navbar-default {
+  border-bottom: 0; //this should be moved to Helsinki-theme. Better.
+}
+
 .navbar {
   .navbar-logo {
     float: left;
