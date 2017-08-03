@@ -1149,12 +1149,12 @@ $labelheight:     22px;
 .page-footer {
   background-color: $gray-dark;
   color: $white;
-  margin-top: 4em;
+  margin-top: $line-height-computed * 2;
   min-height: 20em;
-  padding: 4em 0;
+  padding: $line-height-computed * 4 0;
 
   .page-footer-block {
-    margin-bottom: 2em;
+    margin-bottom: $line-height-computed * 3;
     @media (max-width: $screen-xs-max) {
       text-align: center;
     }
@@ -1209,7 +1209,7 @@ $labelheight:     22px;
 }
 
 .footer-branding {
-  margin-bottom: 2em;
+  margin-bottom: $line-height-computed * 3;
   text-align: center;
 
   .footer-logo {
@@ -1226,6 +1226,7 @@ $labelheight:     22px;
     display: block;
 
     &:hover {
+      color: $white;
       text-decoration: none;
     }
   }
