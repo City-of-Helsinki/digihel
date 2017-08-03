@@ -3,17 +3,20 @@
 {% load humanize %}
 
 {% block content %}
-<div class="container main-container page-content" role="main">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1 class="page-title">{{ page.title }}</h1>
-        </div>
-    </div>
+<section class="main-section section--page-header">
+  <div class="container">
+    <h1 class="page-title">{{ page.title }}</h1>
+  </div>
+  <div class="page-header-koro"></div>
+</section>
+
+<section class="main-section section--content">
+  <div class="container">
     <div class="row events-index">
           <!-- Grid layout needs rework to wrap and align properly -->
     </div>
   </div>
-</div>
+</section>
 {% endblock %}
 
 {% block extra_js %}

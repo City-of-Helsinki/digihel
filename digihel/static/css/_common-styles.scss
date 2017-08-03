@@ -25,6 +25,8 @@ hr {
 }
 
 .page-title {
+  font-size: floor(($font-size-base * 3));
+  text-align: center;
   clear: both;
 }
 
@@ -516,6 +518,22 @@ $labelheight:     22px;
 
 .breadcrumb {
   margin: 26px 0;
+}
+
+.section--page-header {
+  background-color: $theme-secondary-light;
+  margin-bottom: $line-height-computed * 2;
+  position: relative;
+  padding-top: $line-height-computed * 2;
+  padding-bottom: $line-height-computed * 3;
+
+  .page-header-koro {
+    @include koro("pulse", $white, 700);
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 //** Front page **/
