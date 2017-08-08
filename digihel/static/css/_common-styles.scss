@@ -258,9 +258,9 @@ $labelheight:     22px;
 }
 
 .phase-label.is-inactive {
-  background: #dedede;
+  background: $gray-light;
   &::before, &::after {
-    border-color: #dedede;
+    border-color: $gray-light;
   }
 }
 
@@ -435,7 +435,7 @@ $labelheight:     22px;
 
   .nav {
     li {
-      margin-left: $padding-small-horizontal;
+      //margin-left: $padding-small-horizontal;
     }
 
     li a {
@@ -490,6 +490,11 @@ $labelheight:     22px;
   > ul {
     border-left: 2px solid $gray-lighter;
     margin-top: $line-height-computed;
+    padding-left: 0;
+
+    > ul {
+      padding-left: 0;
+    }
   }
 
   ul {
@@ -501,7 +506,7 @@ $labelheight:     22px;
     margin-bottom: $padding-large-vertical;
 
     a {
-      color: $gray-light;
+      color: $black;
 
       &:hover {
         color: $gray;
@@ -511,7 +516,7 @@ $labelheight:     22px;
 
   li.active {
     > a {
-      color: $theme-primary-dark;
+      color: $hel-coat;
       font-weight: 700;
 
       &:hover {
@@ -522,7 +527,7 @@ $labelheight:     22px;
 
   li.open {
     > a {
-      color: $gray;
+      color: $black;
       font-weight: 700;
 
       &:hover {
@@ -536,6 +541,11 @@ $labelheight:     22px;
 
 .breadcrumb {
   margin: 26px 0;
+
+  // TODO: move this to hel-bootstrap-3
+  li.active {
+    color: $black;
+  }
 }
 
 .section--page-header {
@@ -1354,6 +1364,7 @@ $labelheight:     22px;
 .feedback-banner {
   padding: 1em;
   background-color: $gray-lighter;
+  width: 300px;
 
   h5 {
     line-height: 1.666;
