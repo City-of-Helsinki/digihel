@@ -568,6 +568,31 @@ $labelheight:     22px;
   margin-bottom: $line-height-computed * 2;
 }
 
+.collapsible-toggle {
+  background: -webkit-linear-gradient(top, $white, $gray-lighter);
+  cursor: pointer;
+  display: block;
+  height: $line-height-computed * 2;
+  line-height: $line-height-computed * 2;
+  text-align: center;
+
+  &:hover {
+    background: -webkit-linear-gradient(top, $white, $hel-silver);
+    text-decoration: none;
+  }
+}
+
+.collapsible-toggle[aria-expanded=false] .text-expanded {
+  display: none;
+}
+.collapsible-toggle[aria-expanded=true] .text-collapsed {
+  display: none;
+}
+
+.collapsible-paragraph {
+  padding-top: $line-height-computed;
+}
+
 //** Front page **/
 
 .container--hero {
