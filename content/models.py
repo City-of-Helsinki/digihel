@@ -38,6 +38,11 @@ class TwoColumnBlock(blocks.StructBlock):
 
 content_blocks = rich_text_blocks + [
     ('two_columns', TwoColumnBlock()),
+    ('collapsible', blocks.RichTextBlock(
+        icon="collapse-down",
+        label=_('Collapsible paragraph'),
+        template='content/blocks/collapsible.html',
+    )),
 ]
 
 

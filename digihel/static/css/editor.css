@@ -1,0 +1,15 @@
+/* color collapsible block editor differently */
+
+.sequence-member.blockname-collapsible {
+  background-color: #e2e2e2;
+  border-color: #eeeeee;
+}
+
+.sequence-member.blockname-collapsible:hover{
+  background-color: #eaeaea;
+  border-color: #eeeeee;
+}
+
+.sequence-member.blockname-collapsible div.mce-edit-area {
+  background-color: #f2f2f2;
+}

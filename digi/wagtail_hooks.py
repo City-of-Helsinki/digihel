@@ -1,4 +1,5 @@
 from django.utils.html import format_html
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register, ModelAdminGroup
 from wagtail.wagtailcore import hooks
 
@@ -32,3 +33,12 @@ def enable_source_editing():
         </script>
         """
     )
+
+@hooks.register('insert_editor_css')
+def editor_css():
+    return format_html(
+        '<link rel="stylesheet" type="text/css" href="{}">',
+        static('css/editor.css')
+    )
+
+  # <link rel="stylesheet" type="text/x-scss" href="{% static "css/digihel.scss" %}" />
