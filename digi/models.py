@@ -90,7 +90,7 @@ class ThemeIndexPage(RelativeURLMixin, Page):
 
     @property
     def themes(self):
-        return ThemePage.objects.all()
+        return ThemePage.objects.live()
 
 
 class GuideFrontPage(RelativeURLMixin, Page):
