@@ -9,8 +9,10 @@
 {% image page.hero_background original as bg_image %}
 <div class="container-fluid header-container container--hero" style="background-image: url('{{ bg_image.url }}')">
     <section class="container">
+        <div class="row">
+            <img src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}" class="hero-logo">
+        </div>
         <div class="col-sm-10 col-md-8 col-lg-7 hero-content">
-            <img src="{% static "images/helsinki-logo-white.svg" %}" class="hero-logo">
             {% for block in page.hero %}
             {{ block }}
             {% endfor %}

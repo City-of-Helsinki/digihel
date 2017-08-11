@@ -577,14 +577,15 @@ $labelheight:     22px;
   }
 
   .hero-logo {
+    float: right;
     height: $line-height-computed * 2;
-    margin-bottom: $line-height-computed;
+    margin: $line-height-computed * 1 $line-height-computed * 1 0 0;
     -webkit-filter: drop-shadow( 1px 1px 4px rgba(#000, 0.2) );
             filter: drop-shadow( 1px 1px 4px rgba(#000, 0.2) );
   }
 
   .hero-content {
-    margin-top: $line-height-computed *3;
+    margin-top: $line-height-computed * 1;
   }
 
   .hero-koro {
@@ -612,8 +613,12 @@ $labelheight:     22px;
     min-height: $line-height-computed * 32;
 
     .hero-logo {
-      height: $line-height-computed *2.5;
-      margin-bottom: $line-height-computed;
+      height: $line-height-computed * 3;
+      margin: $line-height-computed * 1.5 $line-height-computed * 1.5 0 0;
+    }
+
+    .hero-content {
+      margin-top: 0;
     }
 
     h2 {
@@ -622,7 +627,15 @@ $labelheight:     22px;
   }
 
   @media screen and (min-width: $screen-lg-min) {
-    font-size: 24px;
+
+    .hero-logo {
+      height: $line-height-computed * 4;
+      margin: $line-height-computed * 2 $line-height-computed * 2 0 0;
+    }
+
+    .hero-content {
+      margin-top: $line-height-computed * 2;
+    }
   }
 
 }
