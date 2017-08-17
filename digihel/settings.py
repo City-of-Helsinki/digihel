@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'blog',
     'wagtail_svgmap',
     'wagtailtinymce',
-    'djcelery',
+    'django_celery_results',
     'social_widgets',
 
     'allauth',
@@ -128,7 +128,7 @@ DATABASES = {
 }
 
 # celery
-CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERY_RESULT_BACKEND = 'django-db'
 BROKER_URL = 'redis://localhost:6379/0'
 
 
