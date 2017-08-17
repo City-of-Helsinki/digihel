@@ -4,6 +4,7 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+-e git+https://github.com/City-of-Helsinki/django-social-widgets@master#egg=django_social_widgets
 -e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.1#egg=wagtail_svgmap
 -e git+https://github.com/City-of-Helsinki/wagtailtinymce.git@extensibility#egg=wagtailtinymce==4.4.3.0
 amqp==2.2.1               # via kombu
@@ -26,10 +27,9 @@ django-helusers==0.4.1
 django-libsass==0.7
 django-modelcluster==3.1  # via wagtail
 django-npm==1.0.0
-django-social-widgets==0.4.0
 django-taggit==0.22.1     # via wagtail
 django-treebeard==4.1.2   # via wagtail
-django==1.11.4            # via django-allauth, django-helusers, django-social-widgets, django-treebeard, drf-oidc-auth, wagtail
+django==1.11.4            # via django-allauth, django-helusers, django-treebeard, drf-oidc-auth, wagtail
 djangorestframework==3.6.3  # via drf-oidc-auth, wagtail
 drf-oidc-auth==0.9        # via django-helusers
 elasticsearch==5.4.0
