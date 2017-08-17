@@ -1,0 +1,66 @@
+//
+// Application specific visual customisation
+// --------------------------------------------------
+
+$theme-primary-dark:    $hel-black;
+$theme-primary-light:   $hel-engel;
+
+$theme-secondary-dark:  $hel-brick !default;
+$theme-secondary-light: $hel-fog !default;
+
+$theme-highlight-dark:  $hel-bus !default;
+$theme-highlight-light: $hel-copper !default;
+
+// Non brand colors
+
+$white:         #ffffff;
+$light-gray:    #ebedf1;
+$dark-gray:     #525a65;
+$medium-gray:   #abb2bd;
+$black:         #231f20;
+
+$theme-success: $hel-tram;
+$theme-info:    $hel-fog;
+$theme-warning: $hel-summer;
+$theme-danger:  $hel-metro;
+
+$icon-font-path: "../fonts/bootstrap/";
+
+
+$font-family-sans-serif:  $hel-grotesk;
+$font-family-serif:       'Noto Serif', serif;
+
+// Helsinki koro generator mixin for section dividers. This should be added to hel-bootstrap-3
+
+@mixin koro($style, $color, $scale) {
+  $korosizex: (($scale/100) * 20px); // repeatable koros are 20px wide
+  $korosizey: (($scale/100) * 800px); // repeatable koros are 800px high
+  background-size: $korosizex $korosizey; // for IE size must be specified
+
+  @include koro-shape($style, $color);
+
+  background-position: top;
+  background-repeat: repeat-x;
+}
+
+// Return repeatable koro svg-shape in desired style and color
+// SVG encoded for cross-browser compatibility with https://codepen.io/jakob-e/pen/doMoML
+
+@mixin koro-shape($style, $color) {
+  @if $style == "beat" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-beat-fog-0%3C/title%3E %3Cpath class='kf' d='M800.7,800h0.3H-1'/%3E %3Cpath class='kf' d='M20,800H0V0c2.8,0,3.5,2.3,3.5,2.3l2.8,8.4c0.6,1.5,1.9,2.5,3.6,2.5c2.8,0,3.6-2.5,3.6-2.5s2.8-8.1,2.8-8.2 C17,1,18.3,0,20,0V800z'/%3E %3C/svg%3E");
+  }
+  @else if $style == "pulse" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-pulse-fog-0%3C/title%3E %3Cpath class='kf' d='M0,799.9l800-0.7'/%3E %3Cpath class='kf' d='M0,800h20V0c-5.1,0-5.1,6.4-10,6.4S4.9,0,0,0V800z'/%3E %3C/svg%3E ");
+  }
+  @else if $style == "storm" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-storm-fog-0%3C/title%3E %3Cpath class='kf' d='M20,800V0c-2.3,5.5-8.7,8.1-14.3,5.7C3.1,4.7,1.2,2.6,0,0v800H20z'/%3E %3C/svg%3E ");
+  }
+  @else if $style == "wave" {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-wave-fog-0%3C/title%3E %3Cpolygon class='kf' points='0,800 20,800 20,0 9.8,10.1 0,0 '/%3E %3C/svg%3E ");
+  }
+  // Default to "basic" shape
+  @else {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 20 800' style='enable-background:new 0 0 20 800;' xml:space='preserve'%3E %3Cstyle type='text/css'%3E .kf%7Bfill:%23#{str-slice(inspect($color), 2)};%7D %3C/style%3E %3Ctitle%3Ekoro-basic-fog-0%3C/title%3E %3Cpath class='kf' d='M0,800h800'/%3E %3Cpath class='kf' d='M0,800h20V0c-4.9,0-5,2.6-9.9,2.6S5,0,0,0V800z'/%3E %3C/svg%3E ");
+  }
+}

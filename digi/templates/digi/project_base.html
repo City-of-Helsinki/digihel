@@ -2,13 +2,17 @@
 {% load humanize wagtailimages_tags digi_tags wagtailcore_tags people_tags %}
 
 {% block content %}
-<div class="container main-container page-content" role="main">
-    <div class="row">
-        <div class="col-xs-12">
-            <h2 class="project-section-header"><a href="/projektit">{{ page.type }}</a></h2>
-            <h1 class="page-title">{{ page.title }}</h1>
-        </div>
-    </div>
+
+<section class="main-section section--theme-header">
+  <div class="container">
+      <h2 class="project-section-header"><a href="/projektit">{{ page.type }}</a></h2>
+      <h1 class="theme-title">{{ page.title }}</h1>
+  </div>
+  <div class="page-header-koro"></div>
+</section>
+
+<section class="main-section section--content">
+  <div class="container">
     <div class="row">
         <div class="theme-info col-md-8">
             {% phases_indicator page.phase %}
@@ -21,31 +25,39 @@
                     {% endfor %}
                 </div>
             </div>
-            {% if page.projects.exists %}
-            <div class="theme-projects">
-                <h3>Teeman projektit</h3>
-                <ul class="theme-projects-list">
-                    {% for project in page.projects %}
-                    <li class="list-unstyled row">
-                        <div class="col-sm-4">
-                            <a href="{% pageurl project %}">
-                                {% image project.image fill-400x400 as project_image %}
-                                <img src="{{ project_image.url }}" class="project-thumbnail"/>
-                            </a>
-                        </div>
-                        <div class="col-sm-8">
-                            <a href="{% pageurl project %}"><h4>{{ project.title }}</h4></a>
-                            <p>{{ project.short_description }}</p>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
         </div>
         <div class="col-md-4">
             {% include "includes/sidebar_links_and_roles.html" %}
             {% include "includes/sidebar_twitter_feed.html" %}
         </div>
-</div>
+    </div>
+  </div>
+</section>
+
+{% if page.projects.exists %}
+<section class="sub-section section--projects">
+    <div class="container">
+      <h2 class="text-center">Teeman projektit</h2>
+    </div>
+    <div class="section-content">
+        <div class="container">
+            <div class="theme-projects">
+              {% for project in page.projects %}
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="project-card">
+                  {% image project.image fill-400x300 as project_image %}
+                  <a href="{% pageurl project %}"><img src="{{ project_image.url }}" class="project-thumbnail"/></a>
+                  <div class="caption">
+                    <h3 class="hyphenate"><a href="{% pageurl project %}">{{ project.title }}</a></h3>
+                    <p class="flex-text">{{ project.short_description }}</p>
+                    <p class="text-center"><a class="btn btn-default" href="{% pageurl project %}">Lue lisää</a></p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 {% endblock %}

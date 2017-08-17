@@ -2,12 +2,17 @@
 {% load wagtailcore_tags people_tags %}
 
 {% block content %}
-<div class="container main-container page-content" role="main">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1 class="page-title">{{ page.title }}</h1>
-        </div>
-    </div>
+
+<section class="main-section section--page-header">
+  <div class="container">
+    <h1 class="page-title">{{ page.title }}</h1>
+  </div>
+  <div class="page-header-koro"></div>
+</section>
+
+
+<section class="main-section section--content">
+  <div class="container">
     <div class="row">
         {% for person in page.get_people %}
         <div class="col-lg-3 col-md-4 col-xs-6">
@@ -49,10 +54,16 @@
         </div>
         {% endfor %}
     </div>
+  </div>
+</section>
+
+<section class="main-section section--content">
+  <div class="container">
     <div class="row">
         <div class="col-xs-12">
             {{ self.body|safe }}
         </div>
     </div>
-</div>
+  </div>
+</section>
 {% endblock %}

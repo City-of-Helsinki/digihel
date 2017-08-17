@@ -9,7 +9,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - Digitaalinen Helsinki</title>
-        <link rel="shortcut icon" href="{% static "images/helfi-favicon.ico" %}" />
+        <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
 
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -62,8 +62,7 @@
                     <div class="col-md-3 col-md-pull-3 col-sm-4 col-sm-pull-4">
                         <div class="footer-branding footer-branding-helsinki">
                             <a href="http://www.hel.fi">
-                                <img alt="Helsingin vaakuna" src="{% static "images/helsinki-vaakuna.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
-                                <div class="footer-branding-text">Helsingin kaupunki</div>
+                                <img alt="Helsingin tunnus" src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
                             </a>
                         </div>
                         <div class="footer-branding footer-branding-heldev">
@@ -125,7 +124,7 @@
             </script>
             <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
             <script src="{% static 'bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
-            <script src="{% static 'matchHeight/jquery.matchHeight-min.js' %}"></script>
+            <script src="{% static 'jquery-match-height/dist/jquery.matchHeight.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/digihel.js' %}"></script>
             <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'moment/locale/fi.js' %}"></script>

@@ -2,25 +2,38 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
 {% block content %}
-<div class="container main-container page-content" role="main">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1 class="page-title">{{ page.title }}</h1>
+<section class="main-section section--page-header">
+  <div class="container">
+    <h1 class="page-title">{{ page.title }}</h1>
+  </div>
+  <div class="page-header-koro"></div>
+</section>
+
+<section class="main-section section--themes" role="main">
+    <div class="section-content">
+        <div class="container">
+            <div class="themes row">
+                  <!-- Grid layout needs rework to wrap and align properly -->
+                  {% for theme in page.themes %}
+                    <div class="col-md-4 col-sm-6">
+                      <div class="theme-preview match-height clearfix">
+                        <div class="preview-image">
+                          {% image theme.image fill-700x500 as theme_image %}
+                          <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+                        </div>
+                        <div class="preview-content match-height">
+                          <small class="card-type">{{ theme.type }}</small>
+                          <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+                          <p>{{ theme.short_description }}</p></a>
+                          <a class="" href="{% pageurl theme %}">Lue lisää <span class="caret-right"></span></a>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+            </div>
         </div>
     </div>
-    <div class="row">
-          <!-- Grid layout needs rework to wrap and align properly -->
-          {% for theme in page.themes %}
-          <div class="col-sm-6 col-md-4">
-            <div class="theme-preview match-height">
-              {% image theme.image fill-560x420 as theme_image %}
-              <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
-              <small class="card-type">{{ theme.type }}</small>
-              <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
-              <p>{{ theme.short_description }}</p></a>
-            </div>
-          </div>
-          {% endfor %}
-    </div>
-</div>
+</section>
 {% endblock %}
+
+
