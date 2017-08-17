@@ -2,7 +2,7 @@
 {% get_site_root as site_root %}
 
 {# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
-<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -14,14 +14,13 @@
             </button>
             {# Link to home page #}
             <a href="{% pageurl site_root %}" class="navbar-brand" title="{{ site_root.title }}" data-placement="bottom">
-                <img alt="Helsingin vaakuna" src="{% static "images/helsinki-vaakuna.svg" %}" class="navbar-logo" aria-hidden="true">
               <h1 class="site-title">Digitaalinen Helsinki</h1>
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
                 <li class="hidden-lg mobile-search">
                     {% include 'includes/navbar-search.html' %}
                 </li>
@@ -35,6 +34,9 @@
                       {% endif %}
                   </li>
                 {% endfor %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="visible-lg"><a href="#" id="js-toggle-search" class="animate" aria-label="Avaa haku"><span class="glyphicon glyphicon-search"></span></a></li>
                 {% if request.user.is_authenticated %}
                 <li class="dropdown menuitem-login">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user.get_full_name}}<span class="caret"></span></a>
@@ -43,9 +45,8 @@
                     </ul>
                 </li>
                 {% elif 'test' in request.site.site_name %}
-                <li class="menuitem-login"><a href="{% url 'helsinki_login' %}?next={{ request.path }}">Kirjaudu</a></li>
+                <li class="menuitem-login"><a href="{% url 'helsinki_login' %}?next={{ request.path }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kirjaudu</a></li>
                 {% endif %}
-                <li class="visible-lg"><a href="#" id="js-toggle-search" class="animate" aria-label="Avaa haku"><span class="glyphicon glyphicon-search"></span></a></li>
             </ul>
         </div>
     </div>

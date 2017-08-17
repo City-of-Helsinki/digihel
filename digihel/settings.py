@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'blog',
-    'djangobower',
     'wagtail_svgmap',
     'wagtailtinymce',
     'djcelery',
@@ -170,7 +169,7 @@ SOCIALACCOUNT_ADAPTER = 'helusers.providers.helsinki.provider.SocialAccountAdapt
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
+    'npm.finders.NpmFinder',
     'compressor.finders.CompressorFinder',
 ]
 
@@ -191,19 +190,7 @@ COMPRESS_CSS_FILTERS = (
 COMPRESS_ENABLED = True
 COMPRESS_AUTOPREFIXER_BINARY = os.path.join(BASE_DIR, 'node_modules/.bin/postcss')
 
-BOWER_PATH = os.path.join(BASE_DIR, 'node_modules/.bin/bower')
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components/')
-
-BOWER_INSTALLED_APPS = [
-    'bourbon#4.2.7',
-    'bootstrap-sass#3.3.7',
-    'jquery#<3.0',
-    'bootstrap-validator#0.11.5',
-    'remarkable-bootstrap-notify#3.1.3',
-    'matchHeight#0.7.0',
-    'moment',
-]
-
+NPM_ROOT_PATH = BASE_DIR
 
 # Wagtail settings
 

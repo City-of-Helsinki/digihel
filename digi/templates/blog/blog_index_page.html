@@ -2,6 +2,13 @@
 {% load wagtailcore_tags digi_tags static wagtailimages_tags %}
 
 {% block content %}
+<section class="main-section section--page-header">
+  <div class="container">
+    <h1 class="page-title">{{ page.title }}</h1>
+  </div>
+  <div class="page-header-koro"></div>
+</section>
+
 <div class="container main-container page-content" role="main">
   <div class="row">
     <div class="col-xs-12">
@@ -12,9 +19,6 @@
       <h2 class="blog-section-header">Blogikirjoitukset tagillä '{{ tag }}'</h2>
       {% else %}
       <div class="row">
-        <div class="col-xs-12">
-          <h2 class="blog-section-header"><a href="{{ self.url }}">{{self.title}}</a></h2>
-        </div>
         {% for blog in blogs|slice:":1" %}
         <div class="col-xs-12">
           {% image blog.header_image max-1920x1080 as blog_image %}
