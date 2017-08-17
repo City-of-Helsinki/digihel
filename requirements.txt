@@ -4,63 +4,71 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
--e git+https://github.com/City-of-Helsinki/django-helusers.git@v0.1#egg=django-helusers
 -e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.1#egg=wagtail_svgmap
 -e git+https://github.com/City-of-Helsinki/wagtailtinymce.git@extensibility#egg=wagtailtinymce==4.4.3.0
-amqp==1.4.9               # via kombu
-anyjson==0.3.3            # via kombu
-autopep8==1.2.4
-beautifulsoup4==4.5.1     # via wagtail
-billiard==3.3.0.23        # via celery
-celery==3.1.23
-click==6.6                # via pip-tools
-contextlib2==0.5.4        # via raven
-defusedxml==0.4.1         # via python3-openid
-django-allauth==0.27.0
+amqp==2.2.1               # via kombu
+autopep8==1.3.2
+beautifulsoup4==4.6.0     # via wagtail
+billiard==3.5.0.3         # via celery
+celery==4.1.0
+certifi==2017.7.27.1      # via requests
+chardet==3.0.4            # via requests
+click==6.7                # via pip-tools
+contextlib2==0.5.5        # via raven
+defusedxml==0.5.0         # via python3-openid
+django-allauth==0.32.0
 django-appconf==1.0.2     # via django-compressor
-django-celery==3.1.17
+django-celery-results==1.0.1
 django-compressor-autoprefixer==0.1.0
-django-compressor==2.1
-django-enumfields==0.8.2
+django-compressor==2.2
+django-enumfields==0.9.0
+django-helusers==0.4.1
 django-libsass==0.7
-django-modelcluster==2.0  # via wagtail
+django-modelcluster==3.1  # via wagtail
 django-npm==1.0.0
 django-social-widgets==0.4.0
-django-taggit==0.18.3     # via wagtail
-django-treebeard==4.0.1   # via wagtail
-Django==1.9.12            # via django-allauth, django-social-widgets, django-treebeard, wagtail
-djangorestframework==3.4.7  # via wagtail
-elasticsearch==2.4.0
-enum34==1.1.6             # via django-enumfields
+django-taggit==0.22.1     # via wagtail
+django-treebeard==4.1.2   # via wagtail
+django==1.11.4            # via django-allauth, django-helusers, django-social-widgets, django-treebeard, drf-oidc-auth, wagtail
+djangorestframework==3.6.3  # via drf-oidc-auth, wagtail
+drf-oidc-auth==0.9        # via django-helusers
+elasticsearch==5.4.0
 first==2.0.1              # via pip-tools
-html5lib==0.999999        # via wagtail
-isort==4.2.5
-jinja2==2.8
-kombu==3.0.35             # via celery
-libsass==0.11.1           # via django-libsass
-markupsafe==0.23          # via jinja2
-oauthlib==2.0.0           # via requests-oauthlib
+future==0.16.0            # via pyjwkest
+html5lib==0.999999999     # via wagtail
+idna==2.6                 # via requests
+isort==4.2.15
+jinja2==2.9.6
+kombu==4.1.0              # via celery
+libsass==0.13.2           # via django-libsass
+lxml==3.8.0               # via wagtail-blog
+markupsafe==1.0           # via jinja2
+oauthlib==2.0.2           # via requests-oauthlib
 olefile==0.44             # via pillow
-pep8==1.7.0               # via autopep8
-pillow==4.0.0             # via wagtail
-pip-tools==1.7.0
-psycopg2==2.6.2
-py==1.4.31                # via pytest
-pytest-django==3.0.0
-pytest==3.0.2
-python3-openid==3.0.10    # via django-allauth
-pytz==2016.6.1            # via celery, django-modelcluster
-raven==5.27.1
+pillow==4.2.1             # via wagtail
+pip-tools==1.9.0
+psycopg2==2.7.3
+py==1.4.34                # via pytest
+pycodestyle==2.3.1        # via autopep8
+pycryptodomex==3.4.6      # via pyjwkest
+pyjwkest==1.3.6           # via drf-oidc-auth
+pytest-django==3.1.2
+pytest==3.2.1
+python3-openid==3.1.0     # via django-allauth
+pytz==2017.2              # via celery, django, django-modelcluster
+raven==6.1.0
 rcssmin==1.0.6            # via django-compressor
-redis==2.10.5
-requests-oauthlib==0.7.0  # via django-allauth, tweepy
-requests==2.11.1          # via django-allauth, requests-oauthlib, tweepy
+redis==2.10.6
+requests-oauthlib==0.8.0  # via django-allauth, tweepy
+requests==2.18.4          # via django-allauth, django-helusers, pyjwkest, requests-oauthlib, tweepy, wagtail, wagtail-blog
 rjsmin==1.0.12            # via django-compressor
-six==1.10.0               # via django-enumfields, html5lib, libsass, pip-tools, tweepy
+six==1.10.0               # via html5lib, libsass, pip-tools, pyjwkest, tweepy
 tweepy==3.5.0
 twitter-text-python==1.1.0
-unidecode==0.4.19         # via wagtail
-urllib3==1.18             # via elasticsearch
-wagtail-blog==1.6.7
-wagtail==1.6.2
-willow==0.3.1             # via wagtail
+unidecode==0.4.21         # via wagtail
+urllib3==1.22             # via elasticsearch, requests
+vine==1.1.4               # via amqp
+wagtail-blog==1.6.9
+wagtail==1.11.1
+webencodings==0.5.1       # via html5lib
+willow==0.4               # via wagtail
