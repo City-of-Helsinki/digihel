@@ -1,8 +1,8 @@
 Digital Helsinki CMS
 ====================
 
-[![Build status](https://travis-ci.org/City-of-Helsinki/degihel.svg)](https://travis-ci.org/City-of-Helsinki/degihel)
-[![codecov](https://codecov.io/gh/City-of-Helsinki/degihel/branch/master/graph/badge.svg)](https://codecov.io/gh/City-of-Helsinki/degihel)
+[![Build status](https://travis-ci.org/City-of-Helsinki/digihel.svg?branch=master)](https://travis-ci.org/City-of-Helsinki/digihel)
+[![codecov](https://codecov.io/gh/City-of-Helsinki/digihel/branch/master/graph/badge.svg)](https://codecov.io/gh/City-of-Helsinki/digihel)
 [![Requirements](https://requires.io/github/City-of-Helsinki/digihel/requirements.svg?branch=master)](https://requires.io/github/City-of-Helsinki/digihel/requirements/?branch=master)
 [![Stories in Ready](https://badge.waffle.io/City-of-Helsinki/digihel.svg?label=ready&title=Ready)](http://waffle.io/City-of-Helsinki/digihel)
 
