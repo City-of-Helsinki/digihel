@@ -1,0 +1,42 @@
+{% extends "comments/base.html" %}
+{% load i18n %}
+{% load comments_xtd %}
+
+{% block content %}
+<h3 class="text-center">{% trans "Preview your comment:" %}</h3>
+<section class="section--comments">
+  <div class="comments-koro"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+      <div class="comment media">
+        {% if not comment %}
+        <em>{% trans "Empty comment." %}</em>
+        {% else %}
+        <div class="media-left">
+          <a href="{{ form.cleaned_data.url }}">
+            {{ form.cleaned_data.email|xtd_comment_gravatar }}
+          </a>
+        </div>
+        <div class="media-body">
+          <h6 class="media-heading">
+            {% now "N j, Y, P" %}&nbsp;-&nbsp;
+            {% if form.cleaned_data.url %}
+            <a href="{{ form.cleaned_data.url }}" target="_new">{% endif %}
+              {{ form.cleaned_data.name }}
+              {% if form.cleaned_data.url %}</a>{% endif %}
+          </h6>
+          <span>{{ form.cleaned_data.title }}</span><br/>
+          <div class="well well-sm">{{ comment }}</div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+  <br/><br/>
+</section>
+
+{% include "comments/form.html" %}
+
+{% endblock %}
