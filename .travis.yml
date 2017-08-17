@@ -1,18 +1,10 @@
 language: python
-python: '3.4'
-env: DATABASE_USER=postgres
-install:
-  - nvm install 4.5.0
-  - node -v
-  - pip install -U pip
-  - pip install -r requirements.txt
-  - npm install
-  - python manage.py bower install
+python:
+  - '3.4'
+  - '3.6'
+  - 'nightly'
 
-before_script:
-  - psql -c 'create database digihel;' -U postgres
-
-script: py.test --reuse-db
+cache: pip
 
 services:
   - elasticsearch
@@ -20,10 +12,22 @@ services:
 addons:
   postgresql: "9.3"
 
+env: DATABASE_USER=postgres
+install:
+  - nvm install 4.5.0
+  - node -v
+  - pip install -U pip
+  - pip install pytest-cov -r requirements.txt
+  - npm install
+  - python manage.py bower install
+
+before_script:
+  - psql -c 'create database digihel;' -U postgres
+
+script: pytest --reuse-db --cov=.
+
+after_success: codecov
+
 notifications:
   slack:
     secure: kMesjqV9NNTDk7OMevIm3X2K3zCBPIo95+qrU5tGNLHuWUfNFFVXGyYylXTZTsa67zikmU/XOqAfgIhRd+emyKIUY+zQMzhbDAKO0RrFoVrrBSMXu3tX7p3w44vgUZggQi5M94sJkMrcLstGvfy1bTRmIDzFBh9xyOtAqBx0EmMJdvsFE34jZrBXG9Ib3flRofD/dl0AEyVgTDT6NZTax3B2X+7h7pZUotGsTm8TauAY464zxYirqLJwbpz/YYLTbdXCH6crHZ/ou9iZp9DfTjnMMugeY4OJ3teWHGuARd5SnYYKKQOgn8Y9awWj3Q4A+2Ojxk/NXljlY8L1y/gWkAuaOX0t3SwkfUFU8zRONKsRFTXkL3svpyHpLS2Ekp6GuqNh9iorFPwFNeHjOsV/ZprFG7T37fkJF7DE0bluHq90b67zFrkrqn/vIr4i6YHT3O5bkT7n5uzJJkHyalGIIVnoW1AK8HBSULQ0wi3fk0ukh8wQOvbCaZAT9lqOWKn50OuslLhf/jLxh6iFCmumcfaRpAAgdxj8FoA7z3b3gAfRZkb3pCs1GGMFZIag8ncQIuhaGr6eft/et1VVbWh3YN0n41cr7vjDGEm4zjit7SPRScuFmd28bkDDekAt6ixkYa8z4RQ0ATLma0+doPzmI7m1PU8U0R2fA8E6C3fr//o=
-
-cache:
-  directories:
-    - /home/travis/.cache/pip
