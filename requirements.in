@@ -1,4 +1,4 @@
--e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.1#egg=wagtail_svgmap
+-e git+https://github.com/City-of-Helsinki/wagtail-svgmap.git@v0.1.2#egg=wagtail_svgmap
 -e git+https://github.com/City-of-Helsinki/wagtailtinymce.git@extensibility#egg=wagtailtinymce==4.4.3.0
 -e git+https://github.com/City-of-Helsinki/django-social-widgets@master#egg=django_social_widgets
 autopep8
@@ -13,7 +13,7 @@ django-libsass
 django-social-widgets
 Django
 django_compressor
-elasticsearch
+elasticsearch<2.0.0
 isort
 Jinja2
 pip-tools
