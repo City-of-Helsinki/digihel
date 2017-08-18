@@ -32,7 +32,7 @@ django-treebeard==4.1.2   # via wagtail
 django==1.11.4            # via django-allauth, django-helusers, django-treebeard, drf-oidc-auth, wagtail
 djangorestframework==3.6.3  # via drf-oidc-auth, wagtail
 drf-oidc-auth==0.9        # via django-helusers
-elasticsearch==5.4.0
+elasticsearch==1.9.0
 first==2.0.1              # via pip-tools
 future==0.16.0            # via pyjwkest
 html5lib==0.999999999     # via wagtail
