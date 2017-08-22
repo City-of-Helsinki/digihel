@@ -161,7 +161,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET = True
-SOCIALACCOUNT_ADAPTER = 'helusers.providers.helsinki.provider.SocialAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'helusers.adapter.SocialAccountAdapter'
 
 
 # Static files (CSS, JavaScript, Images)
