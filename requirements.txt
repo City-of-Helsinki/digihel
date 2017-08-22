@@ -23,7 +23,7 @@ django-celery-results==1.0.1
 django-compressor-autoprefixer==0.1.0
 django-compressor==2.2
 django-enumfields==0.9.0
-django-helusers==0.4.1
+django-helusers==0.4.2
 django-libsass==0.7
 django-modelcluster==3.1  # via wagtail
 django-npm==1.0.0
