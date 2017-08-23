@@ -19,8 +19,7 @@
     {% endblock breadcrumb %}
     <div class="row">
         <div class="col-md-8 content">
-            
-            <h1 class="page-title">{{ page.title }}</h1>
+            <h1>{{ page.title }}</h1>
             {% include "content/blocks.html" with blocks=page.body only %}
         </div>
         <div class="col-md-4">
