@@ -10,6 +10,7 @@ from .models import Feedback
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
+        fields = '__all__'
 
 
 @method_decorator(csrf_exempt, name='dispatch')
