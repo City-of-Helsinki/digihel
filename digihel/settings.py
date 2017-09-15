@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'feedback',
     'search',
     'events',
+    'naistenhelsinki',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -73,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.sites',
     'django.contrib.contenttypes',
+    'django.contrib.gis',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -121,7 +123,7 @@ WSGI_APPLICATION = 'digihel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'digihel',
         'USER': os.environ.get('DATABASE_USER', 'digihel'),
     }

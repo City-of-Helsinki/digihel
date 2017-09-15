@@ -4,6 +4,7 @@ from helusers import admin
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
+from naistenhelsinki.views import places
 
 from digi.views import sitemap_view
 from events.views import event_data
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
 
     # client endpoints for external API data
+    url(r'^place_data/', places),
     url(r'^event_data/', event_data),
 
     url(r'', include(wagtail_urls)),
