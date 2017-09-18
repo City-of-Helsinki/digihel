@@ -9,3 +9,6 @@ db.sqlite3
 /components
 node_modules/
 .idea/
+
+# Staticfiles bundled with Webpack
+naistenhelsinki/static/js/naistenhelsinki.js

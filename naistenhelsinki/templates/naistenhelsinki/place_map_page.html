@@ -2,10 +2,12 @@
 {% load static compress %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
-        integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+        integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
         crossorigin=""
-    />
+    >
     <style>
         .leaflet-container {
             height: 600px;
@@ -56,5 +58,5 @@
 
         </script>
     {% endcompress %}
-    <script src="{% static 'js/main.173b6cf5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/naistenhelsinki.js' %}"></script>
 {% endblock %}
