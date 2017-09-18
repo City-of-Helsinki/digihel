@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static compress %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+        integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+        crossorigin=""
+    />
+    <style>
+        .leaflet-container {
+            height: 600px;
+            width: 100%;
+        }
+        .number-icon
+        {
+            margin-top: 0 !important;
+            text-align: center;
+            vertical-align: middle;
+            color: white;
+            line-height: 1.7em;
+            background: red;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+    </style>
+{% endblock %}
+
+{% block body_class %}place-map-page{% endblock %}
+
+{% block content %}
+    <section class="main-section">
+        <div class="container">
+            <h1 class="page-title">{{ page.title }}</h1>
+        </div>
+    </section>
+    <div class="container main-container" role="main">
+        <article>
+            {% for block in page.body %}
+                {% if block.block_type == 'heading' %}
+                    <h1 class="hyphenate">{{ block.value }}</h1>
+                {% else %}
+                    <section class="block-{{ block.block_type }}">
+                        {{ block.value }}
+                    </section>
+                {% endif %}
+            {% endfor %}
+            <div id="root"></div>
+        </article>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    {% compress js inline %}
+        <script type="text/javascript">
+
+        </script>
+    {% endcompress %}
+    <script src="{% static 'js/main.173b6cf5.js' %}"></script>
+{% endblock %}
