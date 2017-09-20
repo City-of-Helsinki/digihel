@@ -102,6 +102,12 @@ img {
   }
 }
 
+.form-control {
+  &::placeholder {
+    color: rgba(#000000, .33);
+  }
+}
+
 // make space for navbar
 .page-content {
   padding-top: $navbar-height;
