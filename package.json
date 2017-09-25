@@ -14,6 +14,7 @@
     "leaflet": "^1.2.0",
     "moment": "^2.18.1",
     "postcss-cli": "^2.6.0",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-leaflet": "^1.6.6"
@@ -28,7 +29,7 @@
   },
   "scripts": {
     "build-nh": "webpack --config naistenhelsinki/webpack.config.js --optimize-minimize --target='web'",
-    "watch-nh": "webpack --config naistenhelsinki/webpack.config.js --optimize-minimize --target='web' --watch"
+    "watch-nh": "webpack --config naistenhelsinki/webpack.config.js --optimize-minimize --target='web' --watch --display-error-details"
   },
   "author": "Juha Yrjölä <juha.yrjola@iki.fi>",
   "license": "MIT"
