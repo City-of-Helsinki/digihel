@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static compress %}
+{% load compress static %}
 
 {% block extra_css %}
     <link
@@ -8,26 +8,16 @@
         integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
         crossorigin=""
     >
-    <style>
-        .leaflet-container {
-            height: 600px;
-            width: 100%;
-        }
-        .number-icon
-        {
-            text-align: center;
-            vertical-align: middle;
-            color: white;
-            line-height: 1.7em;
-            background: red;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-        }
-    </style>
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "css/naistenhelsinki.scss" %}" />
+    {% endcompress %}
 {% endblock %}
 
 {% block body_class %}place-map-page{% endblock %}
+
+{% block menu %}
+    {% include "naistenhelsinki/includes/top_menu.html" %}
+{% endblock %}
 
 {% block content %}
     <section class="main-section">
@@ -52,10 +42,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    {% compress js inline %}
-        <script type="text/javascript">
-
-        </script>
-    {% endcompress %}
     <script type="text/javascript" src="{% static 'js/naistenhelsinki.js' %}"></script>
 {% endblock %}

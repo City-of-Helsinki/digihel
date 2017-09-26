@@ -3,6 +3,19 @@ import Modal from 'react-modal';
 
 
 export default class PlaceModal extends Component {
+  constructor(props) {
+    super(props);
+    this.customStyles = {
+      content: {
+        top: '30px',
+        left: '30px',
+        bottom: '30px',
+        right: '30px',
+        padding: '30px',
+      },
+    };
+  }
+
   getImage() {
     const imageUrl = this.props.placeFeature.properties.image_url;
     if (!imageUrl) return null;

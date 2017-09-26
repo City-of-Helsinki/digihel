@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags wagtailcore_tags %}
 
+{% block menu %}
+    {% include "naistenhelsinki/includes/top_menu.html" %}
+{% endblock %}
+
 {% block content %}
     <div class="container main-container page-content" role="main">
         <div class="row">
@@ -13,8 +17,8 @@
             {% for place in page.places %}
                 <div class="col-sm-6 col-md-4">
                     <div class="place-preview match-height">
-                        {% image place.image fill-560x420 as place_image %}
                         <h3>{{ place.title }}</h3>
+                        {% image place.image fill-560x420 %}
                         <p>{{ place.description|richtext }}</p>
                     </div>
                 </div>

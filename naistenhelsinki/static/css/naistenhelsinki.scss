@@ -1,0 +1,56 @@
+$modal-gray: #e5e5e5;
+
+.leaflet-container {
+  height: 600px;
+  width: 100%;
+
+  .number-icon {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    line-height: 22px;
+    background: red;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+  }
+}
+
+.ReactModal__Overlay {
+  z-index: 9999;
+}
+
+.ReactModal__Content {
+  @media (max-width: 500px) {
+    top: 15px !important;
+    left: 15px !important;
+    bottom: 15px !important;
+    right: 15px !important;
+  }
+}
+
+.nh-modal-header {
+  position: relative;
+  padding: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid $modal-gray;
+
+  h1 {
+    margin-bottom: 15px;
+  }
+
+  .btn.close-modal {
+    float: right;
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+.nh-modal-image {
+  background: $modal-gray;
+  margin-bottom: 15px;
+
+  img {
+    margin: 0 auto;
+  }
+}
