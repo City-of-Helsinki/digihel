@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.contrib.gis.forms.widgets import OSMWidget
 from django.contrib.gis.geos.point import Point
 from django.db import models
@@ -53,6 +54,20 @@ class Place(Orderable, Page):
         FieldPanel('description', classname="full"),
         FieldPanel('location', classname="full", widget=OSMWidget())
     ]
+
+    @property
+    def modal_title(self):
+        return self.title
+
+    @property
+    def image_url(self):
+        if not self.image:
+            return None
+        file_path = self.image.get_rendition('fill-900x500').file
+        return '{url_prefix}{file_path}'.format(
+            url_prefix=settings.MEDIA_URL,
+            file_path=file_path,
+        )
 
 
 class PlaceListPage(Page):

@@ -1,11 +1,15 @@
-from django.core.serializers import serialize
 from django.http.response import HttpResponse
 
+from .serializers import PlaceSerializer
 from .models import Place
 
 
 def places(request):
     return HttpResponse(
-        serialize('geojson', Place.objects.all(), geometry_field='location'),
+        PlaceSerializer().serialize(
+            queryset=Place.objects.live(),
+            geometry_field='location',
+            fields=('pk', 'modal_title', 'description', 'image_url'),
+        ),
         content_type="application/json"
     )

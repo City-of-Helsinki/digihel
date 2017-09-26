@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Marker, Popup } from 'react-leaflet';
+import { Marker } from 'react-leaflet';
 import L from 'leaflet';
 
 
@@ -16,23 +16,23 @@ function getIcon(content) {
 
 
 export default function LocationMarker(props) {
-  const { name, description, coordinates, iconNumber } = props;
+  const { placeFeature, iconNumber, onClick } = props;
 
   const icon = getIcon(iconNumber);
+  const position = placeFeature.geometry.coordinates.reverse();
 
   return (
-    <Marker key={name} position={coordinates.reverse()} icon={icon}>
-      <Popup>
-        <div dangerouslySetInnerHTML={{ __html: description }}/>
-      </Popup>
-    </Marker>
+    <Marker
+      position={position}
+      icon={icon}
+      onClick={onClick}
+    />
   );
 }
 
 
 LocationMarker.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string,
-  coordinates: PropTypes.array,
+  placeFeature: PropTypes.object,
   iconNumber: PropTypes.number,
+  onClick: PropTypes.func,
 };
