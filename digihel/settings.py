@@ -208,7 +208,15 @@ COMMENTS_APP = 'django_comments_xtd'
 #   |-- Comment (level 1)
 #        |-- Comment (level 2)
 COMMENTS_XTD_MAX_THREAD_LEVEL = 0
-COMMENTS_XTD_CONFIRM_EMAIL = False
+COMMENTS_XTD_CONFIRM_EMAIL = True
+
+COMMENTS_XTD_APP_MODEL_OPTIONS = {
+    'default': {
+        'allow_flagging': True,
+        'allow_feedback': False,
+        'show_feedback': False,
+    }
+}
 
 # Wagtail settings
 

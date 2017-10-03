@@ -1,0 +1,20 @@
+<p>{{ comment.user_name }},</p>
+
+<p>Sinä tai joku sinun puolestasi on kommentoinut tätä sivua:<br/>
+<a href="{{ comment.content_object.get_absolute_url }}">{{ comment.content_object.get_absolute_url }}</a>
+</p>
+
+<p>Kommentti:<br/>
+<i>{{ comment.comment }}</i>
+<hr/>
+
+<p>Jos et halua julkaista tätä kommenttia, jätä tämä viesti huomiotta. Julkaistaksesi kommentin klikkaa alla olevaa linkkiä.</p>
+
+<p><a href="http://{{ site.domain }}{{ confirmation_url }}">http://{{ site.domain }}{{ confirmation_url|slice:":40" }}...</a></p>
+
+<p>Jos linkin klikkaaminen ei onnistu, voit myös kopioida osoitteen selaimesi osoitekenttään.</p>
+
+<p>Kiitos osallistumisestasi!<br/>
+--<br/>
+Parhain terveisin,<br/>
+Digitaalinen Helsinki</p>
