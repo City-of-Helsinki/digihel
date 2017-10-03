@@ -1,4 +1,4 @@
-{% load wagtailcore_tags digi_tags static wagtailimages_tags social_widgets %}
+{% load wagtailcore_tags digi_tags static wagtailimages_tags social_widgets comments %}
 
 {% if include_context == "index_page" %}
 <div class="blog-post-preview">
@@ -39,9 +39,11 @@
       </div>
   {% endif %}
       <ul class="social-widgets">
-        <li>{% social_widget_render "facebook/share_button.html" href="{{ pageurl blog }}" layout="button" %}</li>
-        <li>{% social_widget_render "twitter/share_button.html" href="{{ pageurl blog }}" hashtag="digihelsinki" %}</li>
+        <li>{% social_widget_render "facebook/share_button.html" href=blog.url layout="button" %}</li>
+        <li>{% social_widget_render "twitter/share_button.html" href=blog.url hashtag="digihelsinki" %}</li>
       </ul>
+      {% get_comment_count for blog as comment_count %}
+      <div class="blog-comment-count"><a href="#kommentit" class="link-unstyled">{{ comment_count }} kommentti{{ comment_count|pluralize:"a" }}</a></div>
       <div class="blog-post-tags">
           {% if blog.tags.all %}
                   {% for tag in blog.tags.all %}
