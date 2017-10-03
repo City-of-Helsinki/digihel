@@ -1,6 +1,7 @@
 .section--comments {
   margin-top: $line-height-computed * 3;
-  padding-top: $line-height-computed * 3;
+  padding-top: $line-height-computed * 4;
+  padding-bottom: $line-height-computed * 3;
   background-color: $hel-fog;
   position: relative;
 
@@ -17,6 +18,10 @@
     position: absolute;
     top: 0;
   }
+
+  .avatar img {
+    @extend .img-circle;
+  }
 }
 
 .section--comment-form {
@@ -26,4 +31,10 @@
 
 .comment-form {
 
+}
+
+.form-control {
+  &::placeholder {
+    color: rgba(#000000, .33);
+  }
 }

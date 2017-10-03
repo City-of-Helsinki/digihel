@@ -3,6 +3,7 @@
 {% load comments_xtd %}
 
 <section class="section--comments">
+  <a name="kommentit"></a> 
   <div class="comments-koro"></div>
   <div class="container">
     <div class="row">
@@ -12,11 +13,14 @@
           {% for comment in comment_list %}
           <li class="media comment">
             <a name="c{{ comment.id }}"></a>
-            <div class="media-left">{{ comment.user_email|xtd_comment_gravatar }}</div>
+            <div class="media-left avatar">{{ comment.user_email|xtd_comment_gravatar }}</div>
             <div class="media-body">
-              <div class="comment">
+              <div class="comment-content">
                 <h6 class="media-heading">
-                  {{ comment.submit_date }}&nbsp;-&nbsp;{% if comment.url and not comment.is_removed %}<a href="{{ comment.url }}" target="_new">{% endif %}{{ comment.name }}{% if comment.url %}</a>{% endif %}&nbsp;&nbsp;<a class="permalink" title="comment permalink" href="{% get_comment_permalink comment %}">¶</a>
+                  {{ comment.submit_date }}&nbsp;-&nbsp;{% if comment.url and not comment.is_removed %}<a href="{{ comment.url }}" target="_new">{% endif %}{{ comment.name }}{% if comment.url %}</a>{% endif %}&nbsp;|&nbsp;<a class="permalink mutedlink" title="comment permalink" href="{% get_comment_permalink comment %}"><span class="glyphicon glyphicon-link" title="{% trans 'link' %}"></a>
+                  {% if perms.comments.can_moderate %}
+                   &nbsp;|&nbsp;<a class="mutedlink" href="{% url 'comments-delete' comment.pk %}"><span class="glyphicon glyphicon-trash" title="{% trans 'remove comment' %}"></span></a>
+                  {% endif %}
                 </h6>
                 {% if comment.is_removed %}
                 <p>{% trans "This comment has been removed." %}</p>

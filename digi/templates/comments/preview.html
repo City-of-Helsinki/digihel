@@ -13,30 +13,33 @@
         {% if not comment %}
         <em>{% trans "Empty comment." %}</em>
         {% else %}
-        <div class="media-left">
+        <div class="media-left avatar">
           <a href="{{ form.cleaned_data.url }}">
             {{ form.cleaned_data.email|xtd_comment_gravatar }}
           </a>
         </div>
         <div class="media-body">
-          <h6 class="media-heading">
-            {% now "N j, Y, P" %}&nbsp;-&nbsp;
-            {% if form.cleaned_data.url %}
-            <a href="{{ form.cleaned_data.url }}" target="_new">{% endif %}
-              {{ form.cleaned_data.name }}
-              {% if form.cleaned_data.url %}</a>{% endif %}
-          </h6>
-          <span>{{ form.cleaned_data.title }}</span><br/>
-          <div class="well well-sm">{{ comment }}</div>
+          <div class="comment-content">
+            <h6 class="media-heading">
+              {% now "SHORT_DATETIME_FORMAT" %}&nbsp;-&nbsp;
+              {% if form.cleaned_data.url %}
+              <a href="{{ form.cleaned_data.url }}" target="_new">{% endif %}
+                {{ form.cleaned_data.name }}
+                {% if form.cleaned_data.url %}</a>{% endif %}
+            </h6>
+            <span>{{ form.cleaned_data.title }}</span><br/>
+            <p>{{ comment }}</p>
+          </div>
         </div>
         {% endif %}
       </div>
     </div>
   </div>
 </div>
-  <br/><br/>
+  <br/>
 </section>
 
 {% include "comments/form.html" %}
+
 
 {% endblock %}
