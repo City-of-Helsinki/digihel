@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'feedback',
     'search',
     'events',
+    'helsinkioppii',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
