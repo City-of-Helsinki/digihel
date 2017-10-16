@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load i18n url_tags %}
+
+{% block body_class %}helsinkioppii-case-list-page{% endblock %}
+
+{% block content %}
+    <section class="filters">
+        <div class="container">
+            <form action="{{ page.url }}" method="get">
+                <div class="row">
+                    {% for field in form.visible_fields %}
+                        <div class="col-md-3 col-sm-6">
+                            {{ field.errors }}
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <div>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="cases">
+        <div class="container">
+            {% for case in cases %}
+                <div class="case">
+                    <h3><a href="{{ case.url }}">{{ case.title }}</a></h3>
+                    <p class="abstract">{{ case.abstract }}</p>
+                </div>
+                {% if not forloop.last %}
+                    <hr>{% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="case-pagination">
+        <div class="container">
+            {% if cases.has_other_pages %}
+                <ul class="pagination">
+                    {% if cases.has_previous %}
+                        <li>
+                            <a href="?{% update_get_parameters request "page" cases.previous_page_number %}">
+                                &laquo;
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for page_num in cases.paginator.page_range %}
+                        {% if cases.number == page_num %}
+                            <li class="active"><span>{{ page_num }}</span></li>
+                        {% else %}
+                            <li><a href="?{% update_get_parameters request "page" page_num %}">{{ page_num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if cases.has_next %}
+                        <li>
+                            <a href="?{% update_get_parameters request "page" cases.next_page_number %}">
+                                &raquo;
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
