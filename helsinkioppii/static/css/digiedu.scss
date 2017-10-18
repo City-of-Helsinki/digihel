@@ -19,3 +19,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   padding-top: $line-height-computed * 3;
   background-color: $hel-silver;
 }
+
+.section--case-header {
+  padding: $line-height-computed * 2 0;
+}

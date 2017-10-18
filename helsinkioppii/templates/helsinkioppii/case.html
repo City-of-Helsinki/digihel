@@ -11,26 +11,43 @@
                     <div class="image" style="min-height: 400px; background-image: url('{{ content_image.url }}')"></div>
                 </div>
         {% endif %}
+    </section>
 
+    <section class="main-section section--case-header">
         <div class="container">
-            <div class="content">
-                <h1 class="title">{{ page.title }}</h1>
-                <p class="abstract"><b>{{ page.abstract }}</b></p>
-                {{ page.content|safe }}
-            </div>
+          <h1 class="title">{{ page.title }}</h1>
+          <p class="abstract"><b>{{ page.abstract }}</b></p>
+        </div>
+    </section>
 
-            <div class="sidebar">
-                <p>{{ page.school }}</p>
-                <p>{{ page.student_count }}</p>
-                <p>{{ page.case_type }}</p>
-                <p>{{ page.grade }}</p>
-                <p>{{ page.subject }}</p>
-                <ul>
-                    {% for keyword in page.keywords.all %}
-                        <li>{{ keyword }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+    <section class="main-section section--content">
+        <div class="container">
+            <div class="row">
+                <div class="sidebar col-md-3">
+                  <dl>
+                    <dt>Koulu</dt>
+                    <dd>{{ page.school }}</dd>
+                    <dt>Oppilaiden määrä</dt>
+                    <dd>{{ page.student_count }}</dd>
+                    <dt>Tyyppi</dt>
+                    <dd>{{ page.case_type }}</dd>
+                    <dt>Luokka-aste</dt>
+                    <dd>{{ page.grade }}</dd>
+                    <dt>Oppiaine</dt>
+                    <dd>{{ page.subject }}</dd>
+                    <dt>Asiasanat</dt>
+                    <dd>
+                        {% for keyword in page.keywords.all %}
+                            <span class="label label-primary">{{ keyword }}</span>
+                        {% endfor %}
+                    </dd>
+                  </dl>
+
+                </div>
+                <div class="content col-md-8">
+                  {{ page.content|safe }}
+                </div>
+          </div>
         </div>
     </section>
 {% endblock %}
