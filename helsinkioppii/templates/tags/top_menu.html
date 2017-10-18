@@ -1,0 +1,58 @@
+{% load static content_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+{# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
+<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Valikko</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {# Link to home page #}
+            <a href="{% pageurl site_root %}" class="navbar-brand" title="{{ site_root.title }}" data-placement="bottom">
+              <h1 class="site-title">Helsinki oppii</h1>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="hidden-lg mobile-search">
+                    {% include 'includes/navbar-search.html' %}
+                </li>
+                {% for menuitem in menuitems %}
+                  <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
+                      {% if menuitem.show_dropdown %}
+                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ menuitem.title }} <b class="caret"></b></a>
+                          {% top_menu_children parent=menuitem %}
+                      {% else %}
+                          <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                      {% endif %}
+                  </li>
+                {% endfor %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="visible-lg"><a href="#" id="js-toggle-search" class="animate" aria-label="Avaa haku"><span class="glyphicon glyphicon-search"></span></a></li>
+                {% if request.user.is_authenticated %}
+                <li class="dropdown menuitem-login">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user.get_full_name}}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'account_logout' %}?next={{request.path }}">Kirjaudu ulos</a></li>
+                    </ul>
+                </li>
+                {% elif 'test' in request.site.site_name %}
+                <li class="menuitem-login"><a href="{% url 'helsinki_login' %}?next={{ request.path }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kirjaudu</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="drop-search">
+        <div class="container">
+            {% include 'includes/navbar-search.html' %}
+        </div>
+    </div>
+</nav>
