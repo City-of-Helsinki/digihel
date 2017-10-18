@@ -107,3 +107,13 @@ class Case(Page):
         FieldPanel('case_type', classname='col6'),
         FieldPanel('keywords'),
     ]
+
+    @classmethod
+    def allowed_parent_page_models(cls):
+        from helsinkioppii.models.pages import CaseListPage
+        return [CaseListPage]
+
+    @classmethod
+    def can_exist_under(cls, parent):
+        from helsinkioppii.models.pages import CaseListPage
+        return isinstance(parent, CaseListPage)

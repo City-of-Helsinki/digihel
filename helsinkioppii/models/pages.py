@@ -42,6 +42,10 @@ class HelsinkiOppiiIndexPage(Page):
 class CaseListPage(Page):
     template = 'helsinkioppii/case_list_page.html'
 
+    @classmethod
+    def allowed_subpage_models(cls):
+        return [Case]
+
     def get_context(self, request, *args, **kwargs):
         """
         Returns template context data.
