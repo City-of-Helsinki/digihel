@@ -25,10 +25,11 @@
         <meta name="twitter:card" content="summary_large_image">
 
         {# Global stylesheets #}
-
-        {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "css/digihel.scss" %}" />
-        {% endcompress %}
+        {% block main_css %}
+          {% compress css %}
+          <link rel="stylesheet" type="text/x-scss" href="{% static "css/digihel.scss" %}" />
+          {% endcompress %}
+        {% endblock main_css %}
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -60,6 +61,7 @@
                     {% endfor %}
                     </div>
                     <div class="col-md-3 col-md-pull-3 col-sm-4 col-sm-pull-4">
+                      {% block footer_branding %}
                         <div class="footer-branding footer-branding-helsinki">
                             <a href="http://www.hel.fi">
                                 <img alt="Helsingin tunnus" src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
@@ -71,8 +73,10 @@
                                 <div class="footer-branding-text">Helsingin kaupungin avoin ohjelmistokehitys</div>
                             </a>
                         </div>
+                      {% endblock footer_branding %}
                     </div>
                     <div class="col-md-3 col-md-push-3 col-sm-4">
+                      {% block footer_links %}
                         <div class="page-footer-block">
                             <div class="footer-header">Katso myös</div>
                             <ul class="footer-links">
@@ -82,10 +86,12 @@
                                 <li><a href="https://twitter.com/search?q=%23digihelsinki"><span class="icon icon-twitter-bird"></span> #digihelsinki</a></li>
                             </ul>
                         </div>
+                      {% endblock footer_links %}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
+                      {% block footer_smallprint %}
                         <div class="page-footer-small-print">
                             <div class="footer-header">Yhteistyössä</div>
                             <ul class="footer-partners">
@@ -99,6 +105,7 @@
                                 <li>2017 Helsingin kaupunki</li>
                             </ul>
                         </div>
+                      {% endblock footer_smallprint %}
                     </div>
                 </div>
             </div>
