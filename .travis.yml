@@ -17,6 +17,7 @@ install:
   - node -v
   - pip install -U pip
   - pip install pytest-cov -r requirements.txt
+  - npm install -g coffee-script
   - npm install
   - python manage.py collectstatic <<<yes
 
