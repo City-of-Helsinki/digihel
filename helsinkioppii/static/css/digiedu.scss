@@ -12,4 +12,10 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 .section--case-filters {
   background-color: $hel-engel;
+  padding: $line-height-computed * 2 0;
+}
+
+.section--cases-list {
+  padding-top: $line-height-computed * 3;
+  background-color: $hel-silver;
 }
