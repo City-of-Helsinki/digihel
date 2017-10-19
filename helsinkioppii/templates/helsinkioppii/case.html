@@ -4,13 +4,14 @@
 {% block body_class %}helsinkioppii-case-page{% endblock %}
 
 {% block content %}
-    <section class="hero">
-        {% image page.image original as content_image %}
+    <section class="main-section section--case-hero">
+        {% image page.image fill-1920x1080-c100  as content_image %}
             {% if content_image %}
-                <div class="image-container">
-                    <div class="image" style="min-height: 400px; background-image: url('{{ content_image.url }}')"></div>
-                </div>
+                <figure class="image-container container--case-hero" style="background-image: url('{{ content_image.url }}')">
+                  <figcaption class="hero-caption"><span class="caption-content">{{ content_image.alt }}</span></divfigcaption>
+                </figure>
         {% endif %}
+        <div class="hero-koro"></div>
     </section>
 
     <section class="main-section section--case-header">

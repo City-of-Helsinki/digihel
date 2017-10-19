@@ -23,3 +23,32 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 .section--case-header {
   padding: $line-height-computed * 2 0;
 }
+
+.section--case-hero {
+  height: $line-height-computed * 16;
+}
+
+.container--case-hero {
+  height: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .hero-caption {
+    @include koro("pulse", $white, 500);
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .caption-content {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: $line-height-computed;
+    font-size: $font-size-small;
+    color: $hel-silver;
+  }
+}
