@@ -4,25 +4,81 @@
 {% block body_class %}helsinkioppii-index-page{% endblock %}
 
 {% block content %}
-    <section class="hero">
-        {% image page.hero_image original as hero_image %}
+
+
+    <section class="main-section section--front-hero">
+        {% image page.hero_image fill-1920x1080-c100  as hero_image %}
             {% if hero_image %}
-                <div class="image-container">
-                    <div class="image" style="min-height: 400px; background-image: url('{{ hero_image.url }}')"></div>
-                </div>
+                <figure class="image-container container--case-hero" style="background-image: url('{{ hero_image.url }}')">
+                  <div class="container">
+                      <h1 class="title">{{ page.hero_title }}</h1>
+                  </div>
+                  <figcaption class="hero-caption"><span class="caption-content">{{ hero_image.alt }}</span></divfigcaption>
+                </figure>
         {% endif %}
-        <div class="container">
-            <h1 class="title">{{ page.hero_title }}</h1>
-        </div>
+        <div class="hero-koro"></div>
     </section>
 
-    <section class="case-lifts">
+    {# Banners #}
+    <section class="front-section section--edu-banners">>
+      <div class="section-content">
         <div class="container">
-            <div class="row">
+          <div class="row">
+          <div class="col-sm-4">
+            <div class="banner--edu match-height">
+              <h3><a href="/kehmet">Case-esimerkkejä</a></h3>
+              <p>Tutustu uuden opetusuunnitelman soveltamiseen kouluissa</p>
+              <p><a class="btn btn-default" href="#">Lue lisää</a></p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="banner--edu match-height">
+              <h3><a href="/digipalveluopas">Koulutus ja tuki</a></h3>
+                <p>Opettajien pedagoginen ja tekninen tuki. Katso miten voit kehittää osaamistasi ja edistää digitalisaatiota kouluissa.</p>
+                <p><a class="btn btn-default" href="#">Lue lisää</a></p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="banner--edu match-height">
+              <h3><a href="/digipalveluopas">Tietoa digitalisaatiosta</a></h3>
+                <p>Mitä on opetuksen digitalisaatio?</p>
+                <p><a class="btn btn-default" href="#">Lue lisää</a></p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section section--case-lifts">
+      <div class="container">
+        <h1 class="text-center">Ajankohtaista</h1>
+      </div>
+        <div class="container">
+            <div class="themes row">
                 {% for block in page.case_lifts %}
                     {% include_block block %}
                 {% endfor %}
             </div>
         </div>
     </section>
+
+    <section class="main-section section--social-feed">
+      <div class="container">
+        <h1 class="text-center">#helsinkioppii</h1>
+      </div>
+      <div class="container">
+        <!-- Demo feed from curator.io. The final social aggregator to be decided.-->
+        <div id="curator-feed"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+    // curator-feed
+    (function(){
+        var i, e, d = document, s = "script";i = d.createElement("script");i.async = 1;
+        i.src = "https://cdn.curator.io/published/1d18f414-8dde-4aa4-ae82-7aae5def.js";
+        e = d.getElementsByTagName(s)[0];e.parentNode.insertBefore(i, e);
+    })();
+    </script>
 {% endblock %}

@@ -1,8 +1,16 @@
-<div class="case col-sm-4">
-    <i class="icon {{ block.icon }}">{{ block.icon }}</i>
-    <h3 class="h4">{{ block.case.title }}</h3>
-    <p>{{ block.case.abstract|truncatechars:225 }}</p>
-    <a href="{{ block.case.url }}">
-        <h4>Lue lisää <i class="arrow">&rarr;</i></h4>
-    </a>
+{% load wagtailimages_tags %}
+
+<div class="col-md-4 col-sm-6">
+  <div class="theme-preview match-height clearfix">
+    <div class="preview-image">
+      {% image block.case.image fill-700x500-c100 as case_image %}
+      <a class="theme-thumbnail link-unstyled" href="{{ block.case.url }}"><img src="{{ case_image.url }}" /></a>
+    </div>
+    <div class="preview-content match-height">
+      <small class="card-type">Case</small>
+      <a class="link-unstyled" href="{{ block.case.url }}"><h3>{{ block.case.title }}</h3>
+      <p>{{ block.case.abstract|truncatechars:225 }}</p></a>
+      <a class="" href="{{ block.case.url }}">Lue lisää <span class="caret-right"></span></a>
+    </div>
+  </div>
 </div>

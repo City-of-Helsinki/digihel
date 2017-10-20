@@ -8,7 +8,7 @@
         {% image page.image fill-1920x1080-c100  as content_image %}
             {% if content_image %}
                 <figure class="image-container container--case-hero" style="background-image: url('{{ content_image.url }}')">
-                  <figcaption class="hero-caption"><span class="caption-content">{{ content_image.alt }}</span></divfigcaption>
+                  <figcaption class="hero-caption"><span class="caption-content">{{ content_image.alt }}</span></figcaption>
                 </figure>
         {% endif %}
         <div class="hero-koro"></div>
@@ -16,36 +16,53 @@
 
     <section class="main-section section--case-header">
         <div class="container">
-          <h1 class="title">{{ page.title }}</h1>
-          <p class="abstract"><b>{{ page.abstract }}</b></p>
+          <div class="row">
+            <div class=" col-md-8 col-lg-7 col-lg-offset-3">
+              <h2 class="case-section-header"><a href="#">Case</a></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class=" col-md-8 col-lg-7 col-lg-offset-3">
+              <h1 class="title">{{ page.title }}</h1>
+            </div>
+          </div>
         </div>
     </section>
 
     <section class="main-section section--content">
         <div class="container">
             <div class="row">
-                <div class="sidebar col-md-3">
-                  <dl>
-                    <dt>Koulu</dt>
-                    <dd>{{ page.school }}</dd>
-                    <dt>Oppilaiden määrä</dt>
-                    <dd>{{ page.student_count }}</dd>
-                    <dt>Tyyppi</dt>
-                    <dd>{{ page.case_type }}</dd>
-                    <dt>Luokka-aste</dt>
-                    <dd>{{ page.grade }}</dd>
-                    <dt>Oppiaine</dt>
-                    <dd>{{ page.subject }}</dd>
-                    <dt>Asiasanat</dt>
-                    <dd>
-                        {% for keyword in page.keywords.all %}
-                            <span class="label label-primary">{{ keyword }}</span>
-                        {% endfor %}
-                    </dd>
-                  </dl>
-
+                <div class="sidebar col-md-3 col-lg-3">
+                  <div class="case-meta">
+                    <div class="row">
+                    <div class="col-md-12 col-xs-6">
+                      <dl class="case-meta--basics">
+                        <dt>Koulu</dt>
+                        <dd>{{ page.school }}</dd>
+                        <dt>Oppilaiden määrä</dt>
+                        <dd>{{ page.student_count }}</dd>
+                        <dt>Tyyppi</dt>
+                        <dd>{{ page.case_type }}</dd>
+                        <dt>Luokka-aste</dt>
+                        <dd>{{ page.grade }}</dd>
+                        <dt>Oppiaine</dt>
+                        <dd>{{ page.subject }}</dd>
+                      </dl>
+                    </div>
+                    <div class="col-md-12 col-xs-6">
+                    <dl class="case-meta--tags">
+                      <dt>Asiasanat</dt>
+                      <dd>
+                          {% for keyword in page.keywords.all %}
+                              <span class="label label-primary">{{ keyword }}</span>
+                          {% endfor %}
+                      </dd>
+                    </dl>
+                    </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="content col-md-8">
+                <div class="content col-md-8 col-lg-7">
                   {{ page.content|safe }}
                 </div>
           </div>

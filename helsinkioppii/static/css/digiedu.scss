@@ -10,6 +10,33 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 @import 'digihel/static/css/common-styles';
 
 
+.page-footer {
+  margin-top: 0;
+}
+
+.section--front-hero {
+  height: $line-height-computed * 24;
+}
+
+.section--edu-banners {
+  padding: $line-height-computed * 2 0;
+}
+
+.banner--edu {
+  background-color: $hel-suomenlinna;
+  padding: $line-height-computed;
+}
+
+.section--case-lifts {
+  background-color: $hel-coat;
+  padding: $line-height-computed * 2 0;
+}
+
+.section--social-feed {
+  background-color: $hel-suomenlinna;
+  padding: $line-height-computed * 2 0;
+}
+
 .section--case-filters {
   background-color: $hel-engel;
   padding: $line-height-computed * 2 0;
@@ -21,11 +48,36 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 .section--case-header {
-  padding: $line-height-computed * 2 0;
+  padding: 0 0 $line-height-computed 0;
+  .title {
+    font-size: 60px;
+  }
 }
 
 .section--case-hero {
   height: $line-height-computed * 16;
+}
+
+.case-meta {
+  padding: $line-height-computed / 2;
+  margin-bottom: $line-height-computed;
+  border: 1px solid $hel-silver;
+
+  dl dt {
+    margin-bottom: 0;
+  }
+
+  .case-meta--basics, .case-meta--tags {
+
+    &:before {
+      content: "";
+      display: block;
+      border-top: 3px solid $hel-copper;
+      width: 24px;
+      margin-bottom: 12px;
+    }
+  }
+
 }
 
 .container--case-hero {
@@ -36,7 +88,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   background-position: center;
 
   .hero-caption {
-    @include koro("pulse", $white, 500);
+    @include koro("storm", $white, 400);
     width: 100%;
     height: $line-height-computed * 3;
     position: absolute;
@@ -50,5 +102,20 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     right: $line-height-computed;
     font-size: $font-size-small;
     color: $hel-silver;
+  }
+}
+
+.case-section-header {
+  border-bottom: 4px solid $hel-copper;
+  float: left;
+  font-size: 24px;
+  margin-bottom: 1em;
+  margin-top: 0;
+  padding-bottom: .5em;
+  text-transform: uppercase;
+
+  a, a:hover {
+    color: $text-color;
+    text-decoration: none;
   }
 }
