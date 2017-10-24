@@ -32,10 +32,10 @@
     <section class="main-section section--cases-list">
       <div class="section-content">
         <div class="container">
-          <div class="theme-projects">
+          <div class="cases-list">
             {% for case in cases %}
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="project-card match-height">
+                <div class="case-card match-height">
                   {% if case.image %}
                     {% image case.image fill-400x300-c100 as case_image %}
                     <a href="{{ case.url }}"><img src="{{ case_image.url }}" class="project-thumbnail"/></a>
@@ -44,7 +44,7 @@
                   {% endif %}
                   <div class="caption">
                     <h3 class="hyphenate"><a href="{{ case.url }}">{{ case.title }}</a></h3>
-                    <p class="flex-text">{{ case.abstract }}</p>
+                    <p class="case-abstract">{{ case.abstract }}</p>
                   </div>
                 </div>
                 </div>
