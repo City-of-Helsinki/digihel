@@ -6,7 +6,7 @@
       {% image block.case.image fill-700x500-c100 as case_image %}
       <a class="theme-thumbnail link-unstyled" href="{{ block.case.url }}"><img src="{{ case_image.url }}" /></a>
     </div>
-    <div class="preview-content match-height">
+    <div class="preview-content">
       <small class="card-type">Case</small>
       <a class="link-unstyled" href="{{ block.case.url }}"><h3>{{ block.case.title }}</h3>
       <p>{{ block.case.abstract|truncatechars:225 }}</p></a>

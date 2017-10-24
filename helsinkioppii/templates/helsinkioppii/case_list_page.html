@@ -35,9 +35,13 @@
           <div class="theme-projects">
             {% for case in cases %}
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="project-card">
-                  {% image case.image fill-400x300 as case_image %}
-                  <a href="{{ case.url }}"><img src="{{ case_image.url }}" class="project-thumbnail"/></a>
+                <div class="project-card match-height">
+                  {% if case.image %}
+                    {% image case.image fill-400x300-c100 as case_image %}
+                    <a href="{{ case.url }}"><img src="{{ case_image.url }}" class="project-thumbnail"/></a>
+                  {% else %}
+                    <a href="{{ case.url }}"><img src="default.jpg" class="project-thumbnail"/></a>
+                  {% endif %}
                   <div class="caption">
                     <h3 class="hyphenate"><a href="{{ case.url }}">{{ case.title }}</a></h3>
                     <p class="flex-text">{{ case.abstract }}</p>
