@@ -14,8 +14,18 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   margin-top: 0;
 }
 
-.section--front-hero {
-  height: $line-height-computed * 24;
+.main-section {
+  position: relative;
+}
+
+.container--hero {
+  .edu-hero-koro {
+    @include koro("storm", $white, 400);
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 .section--edu-banners {
@@ -25,16 +35,49 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 .banner--edu {
   background-color: $hel-suomenlinna;
   padding: $line-height-computed;
+  text-align: center;
+  margin-bottom: $line-height-computed;
+
+  a {
+    text-decoration: none;
+  }
+
+  .banner-illustration {
+    height: $line-height-computed * 8;
+    text-align: center;
+
+    svg {
+      height: 100%;
+    }
+  }
 }
 
-.section--case-lifts {
+.section--highlights {
   background-color: $hel-coat;
-  padding: $line-height-computed * 2 0;
+  padding: $line-height-computed * 5 0;
+}
+
+.highlights-koro__top {
+  @include koro("pulse", $hel-coat, 600);
+  background-color: $white;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  top: 0;
 }
 
 .section--social-feed {
   background-color: $hel-suomenlinna;
-  padding: $line-height-computed * 2 0;
+  padding: $line-height-computed * 5 0;
+}
+
+.social-koro__top {
+  @include koro("pulse", $hel-suomenlinna, 600);
+  background-color: $hel-coat;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  top: 0;
 }
 
 .section--case-filters {
