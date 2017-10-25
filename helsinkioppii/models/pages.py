@@ -39,6 +39,8 @@ class HelsinkiOppiiIndexPage(Page):
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('hero_image'),
+        StreamFieldPanel('banner_lifts'),
+        StreamFieldPanel('case_lifts'),
         FieldPanel('hero_title'),
         StreamFieldPanel('banner_lifts'),
         StreamFieldPanel('case_lifts'),

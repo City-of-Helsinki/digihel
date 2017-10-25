@@ -38,7 +38,13 @@
       <div class="highlights-koro__top"></div>
       <div class="container">
         <h1 class="text-center">Ajankohtaista</h1>
-      </div>
+            <div class="row">
+                {% for block in page.banner_lifts %}
+                    {% include_block block %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
     <section class="case-lifts">
         <div class="container">

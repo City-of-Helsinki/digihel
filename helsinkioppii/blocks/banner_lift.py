@@ -1,16 +1,10 @@
 from wagtail.wagtailcore import blocks
-
-ICONS = (
-    ('icon-signpost', 'signpost'),
-    ('icon-lifering', 'lifering'),
-    ('icon-info', 'info'),
-)
-
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 class BannerLiftBlock(blocks.StructBlock):
     TEMPLATE_VAR = 'block'
-
-    icon = blocks.ChoiceBlock(choices=ICONS)
+    icon = ImageChooserBlock(required=False)
+    title = blocks.CharBlock(max_length=120)
     abstract = blocks.TextBlock(max_length=225)
     page = blocks.PageChooserBlock()
 
