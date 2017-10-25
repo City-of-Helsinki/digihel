@@ -16,6 +16,16 @@
         </div>
     </section>
 
+    <section class="banner-lifts">
+        <div class="container">
+            <div class="row">
+                {% for block in page.banner_lifts %}
+                    {% include_block block %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
     <section class="case-lifts">
         <div class="container">
             <div class="row">
