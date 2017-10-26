@@ -1,10 +1,11 @@
 <div class="col-sm-4">
   <div class="banner--edu match-height">
     <figure class="banner-illustration">
-      <div class="illustration {{ block.icon }}"></div>
+      <a href="{{ block.page.url }}"><div class="illustration {{ block.icon }}"></div></a>
     </figure>
-    <h3><a href="{{ block.page.url }}">{{ block.title }}</a></h3>
+    <!-- TODO: add banner header to models -->
+    <h3><a href="{{ block.page.url }}">Header</a></h3>
     <p>{{ block.abstract|truncatechars:225 }}</p>
-    <p><a class="btn btn-default" href="#">Lue lisää</a></p>
+    <p><a class="btn btn-default" href="{{ block.page.url }}">Lue lisää</a></p>
   </div>
 </div>
