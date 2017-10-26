@@ -7,6 +7,7 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
+from helsinkioppii.blocks.banner_lift import BannerLiftBlock
 from helsinkioppii.blocks.case_lift import CaseLiftBlock
 from helsinkioppii.models.cases import Case
 
@@ -28,14 +29,19 @@ class HelsinkiOppiiIndexPage(Page):
         related_name='+',
     )
 
+    banner_lifts = StreamField([
+        ('banner', BannerLiftBlock()),
+    ], blank=True)
+
     case_lifts = StreamField([
         ('case', CaseLiftBlock()),
     ], blank=True)
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('hero_image'),
-        StreamFieldPanel('case_lifts'),
         FieldPanel('hero_title'),
+        StreamFieldPanel('banner_lifts'),
+        StreamFieldPanel('case_lifts'),
     ]
 
 
