@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-25 11:34+0300\n"
+"POT-Creation-Date: 2017-10-17 10:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,12 +30,16 @@ msgstr "Oikean sarakkeen sisältö"
 msgid "Two columns"
 msgstr "Kaksi saraketta"
 
-#: content/models.py:100 digi/models.py:134 digi/models.py:180
+#: content/models.py:43
+msgid "Collapsible paragraph"
+msgstr "Suljettava tekstikappale"
+
+#: content/models.py:105 digi/models.py:135 digi/models.py:187
 msgid "Roles"
 msgstr "Roolit"
 
-#: content/models.py:101 digi/models.py:75 digi/models.py:135
-#: digi/models.py:181
+#: content/models.py:106 digi/models.py:75 digi/models.py:136
+#: digi/models.py:188
 msgid "Links"
 msgstr ""
 
@@ -47,7 +51,7 @@ msgstr "Indikaattori"
 msgid "Indicators"
 msgstr "Indikaattorit"
 
-#: digi/models.py:167
+#: digi/models.py:171
 msgid "Project"
 msgstr "Projekti"
 
@@ -114,6 +118,66 @@ msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
 #: feedback/models.py:125
 msgid "User agent"
 msgstr "Selain"
+
+#: helsinkioppii/forms.py:21
+msgid "Free text"
+msgstr "Vapaa teksti"
+
+#: helsinkioppii/forms.py:24
+msgid "Keywords"
+msgstr "Avainsanat"
+
+#: helsinkioppii/forms.py:30
+msgid "School grades"
+msgstr "Kouluasteet"
+
+#: helsinkioppii/forms.py:36
+msgid "School subjects"
+msgstr "Kouluaineet"
+
+#: helsinkioppii/models/cases.py:20 helsinkioppii/models/cases.py:93
+msgid "school subject"
+msgstr "kouluaine"
+
+#: helsinkioppii/models/cases.py:38 helsinkioppii/models/cases.py:86
+msgid "school grade"
+msgstr "kouluaste"
+
+#: helsinkioppii/models/cases.py:58
+msgid "image"
+msgstr "kuva"
+
+#: helsinkioppii/models/cases.py:64
+msgid "abstract"
+msgstr "lyhennelmä"
+
+#: helsinkioppii/models/cases.py:65
+msgid "content"
+msgstr "sisältö"
+
+#: helsinkioppii/models/cases.py:69
+msgid "school"
+msgstr "koulu"
+
+#: helsinkioppii/models/cases.py:74
+msgid "student count"
+msgstr "oppilaiden lukumäärä"
+
+#: helsinkioppii/models/cases.py:79
+msgid "type"
+msgstr "tyyppi"
+
+#: helsinkioppii/models/pages.py:18
+msgid "lift title"
+msgstr "nosto-otsikko"
+
+#: helsinkioppii/models/pages.py:24
+msgid "hero image"
+msgstr "kansikuva"
+
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:26
+msgid "Search"
+msgstr "Etsi"
 
 #: kehmet/models.py:19
 msgid "Short description"

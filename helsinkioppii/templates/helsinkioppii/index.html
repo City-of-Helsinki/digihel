@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}helsinkioppii-index-page{% endblock %}
+
+{% block content %}
+
+
+    {% image page.hero_image fill-1920x1080-c100  as hero_image %}
+    {% if hero_image %}
+    <div class="container-fluid header-container container--hero" style="background-image: url('{{ hero_image.url }}')">
+        <section class="container">
+            <div class="row">
+                <img src="{% static 'hel-bootstrap-3/src/assets/helsinki-logo-white.svg' %}" class="hero-logo">
+            </div>
+            <div class="col-sm-10 col-md-8 col-lg-7 hero-content">
+                <h2 class="title">{{ page.hero_title }}</h2>
+            </div>
+        </section>
+        <div class="edu-hero-koro"></div>
+    </div>
+    {% endif %}
+
+    {# Banners #}
+    <section class="front-section section--edu-banners">
+      <div class="section-content">
+        <div class="container">
+          <div class="row">
+            {% for block in page.banner_lifts %}
+                {% include_block block %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section section--highlights">
+      <div class="highlights-koro__top"></div>
+      <div class="container">
+        <h1 class="text-center">Ajankohtaista</h1>
+      </div>
+
+    <section class="case-lifts">
+        <div class="container">
+            <div class="themes row">
+                {% for block in page.case_lifts %}
+                    {% include_block block %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="main-section section--social-feed">
+      <div class="social-koro__top"></div>
+      <div class="container">
+        <h1 class="text-center">#helsinkioppii</h1>
+      </div>
+      <div class="container">
+        <!-- Demo feed from curator.io. The final social aggregator to be decided.-->
+        <div id="curator-feed"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+    // curator-feed
+    (function(){
+        var i, e, d = document, s = "script";i = d.createElement("script");i.async = 1;
+        i.src = "https://cdn.curator.io/published/1d18f414-8dde-4aa4-ae82-7aae5def.js";
+        e = d.getElementsByTagName(s)[0];e.parentNode.insertBefore(i, e);
+    })();
+    </script>
+{% endblock %}

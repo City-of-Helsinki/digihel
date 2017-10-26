@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static compress %}
+
+{% block main_css %}
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "css/digiedu.scss" %}" />
+        {% endcompress %}
+{% endblock main_css %}
+
+{% block footer_branding %}
+        <div class="footer-branding footer-branding-helsinki">
+            <a href="http://www.hel.fi">
+                <img alt="Helsingin tunnus" src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
+            </a>
+        </div>
+{% endblock footer_branding %}
+
+{% block footer_links %}
+        <div class="page-footer-block">
+            <ul class="footer-links">
+                <li></li>
+            </ul>
+        </div>
+{% endblock footer_links %}
+
+{% block footer_smallprint %}
+        <div class="page-footer-small-print">
+            <ul class="small-print-nav">
+                <li><a href="/yhteystiedot/">Ota yhteyttä</a></li>
+                <li>2017 Helsingin kaupunki</li>
+            </ul>
+        </div>
+{% endblock footer_smallprint %}

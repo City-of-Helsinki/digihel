@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n url_tags wagtailimages_tags %}
+
+{% block body_class %}helsinkioppii-case-list-page{% endblock %}
+
+{% block content %}
+    <section class="main-section section--case-filters">
+        <div class="container">
+            <h1 class="page-title">{{ page.title }}</h1>
+            <form action="{{ page.url }}" method="get">
+                <div class="row">
+                    {% for field in form.visible_fields %}
+                        <div class="col-md-3 col-sm-6">
+                            {{ field.errors }}
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <div>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="main-section section--cases-list">
+      <div class="section-content">
+        <div class="container">
+          <div class="cases-list">
+            {% for case in cases %}
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="case-card match-height">
+                  {% if case.image %}
+                    {% image case.image fill-400x300-c100 as case_image %}
+                    <a href="{{ case.url }}"><img src="{{ case_image.url }}" class="project-thumbnail"/></a>
+                  {% else %}
+                    <a href="{{ case.url }}"><img src="default.jpg" class="project-thumbnail"/></a>
+                  {% endif %}
+                  <div class="caption">
+                    <h3 class="hyphenate"><a href="{{ case.url }}">{{ case.title }}</a></h3>
+                    <p class="case-abstract">{{ case.abstract }}</p>
+                  </div>
+                </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-pagination">
+        <div class="section-content">
+        <div class="container">
+            {% if cases.has_other_pages %}
+                <ul class="pagination">
+                    {% if cases.has_previous %}
+                        <li>
+                            <a href="?{% update_get_parameters request "page" cases.previous_page_number %}">
+                                &laquo;
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for page_num in cases.paginator.page_range %}
+                        {% if cases.number == page_num %}
+                            <li class="active"><span>{{ page_num }}</span></li>
+                        {% else %}
+                            <li><a href="?{% update_get_parameters request "page" page_num %}">{{ page_num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if cases.has_next %}
+                        <li>
+                            <a href="?{% update_get_parameters request "page" cases.next_page_number %}">
+                                &raquo;
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+      </div>
+    </section>
+
+
+
+{% endblock %}
