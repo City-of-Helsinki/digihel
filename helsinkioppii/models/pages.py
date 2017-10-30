@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
+from django.http.response import HttpResponseBadRequest
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.query_utils import Q
 from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel, FieldPanel
@@ -11,6 +12,10 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from helsinkioppii.blocks.banner_lift import BannerLiftBlock
 from helsinkioppii.blocks.case_lift import CaseLiftBlock
 from helsinkioppii.models.cases import Case
+
+
+class PageOutOfRangeException(Exception):
+    pass
 
 
 class HelsinkiOppiiIndexPage(Page):
@@ -124,5 +129,11 @@ class CaseListPage(Page):
             # Page number not integer. Show first page.
             return paginator.page(1)
         except EmptyPage:
-            # Page number out of range. Show last page.
-            return paginator.page(paginator.num_pages)
+            # Page number out of range.
+            raise PageOutOfRangeException
+
+    def serve(self, request, *args, **kwargs):
+        try:
+            return super(CaseListPage, self).serve(request, *args, **kwargs)
+        except PageOutOfRangeException:
+            return HttpResponseBadRequest()
