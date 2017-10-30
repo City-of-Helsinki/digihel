@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -114,7 +115,7 @@ class CaseListPage(Page):
         :return: Case pagination page.
         :rtype: django.core.paginator.Page
         """
-        paginator = Paginator(queryset, 15)  # 15 cases for single page
+        paginator = Paginator(queryset, settings.HELSINKI_OPPII_CASES_PER_PAGE)
         page = request.GET.get('page')
 
         try:
