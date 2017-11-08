@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load i18n wagtailimages_tags %}
 
 <div class="col-sm-4">
   <div class="banner--edu match-height">
@@ -8,6 +8,6 @@
     <!-- TODO: add banner header to models -->
     <h3><a href="{{ block.page.url }}">{{ block.title }}</a></h3>
     <p>{{ block.abstract|truncatechars:225 }}</p>
-    <p><a class="btn btn-default" href="{{ block.page.url }}">Lue lisää</a></p>
+    <p><a class="btn btn-default" href="{{ block.page.url }}">{% trans "Read more" %}</a></p>
   </div>
 </div>

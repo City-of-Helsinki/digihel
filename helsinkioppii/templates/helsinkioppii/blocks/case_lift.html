@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags i18n %}
 
 <div class="col-md-4 col-sm-6">
   <div class="theme-preview match-height clearfix">
@@ -10,7 +10,7 @@
       <small class="card-type">Case</small>
       <a class="link-unstyled" href="{{ block.case.url }}"><h3>{{ block.case.title }}</h3>
       <p>{{ block.case.abstract|truncatechars:225 }}</p></a>
-      <a class="" href="{{ block.case.url }}">Lue lisää <span class="caret-right"></span></a>
+      <a class="" href="{{ block.case.url }}">{% trans "Read more" %} <span class="caret-right"></span></a>
     </div>
   </div>
 </div>
