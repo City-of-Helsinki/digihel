@@ -114,6 +114,10 @@ class Case(Page):
         return [CaseListPage]
 
     @classmethod
+    def allowed_subpage_models(cls):
+        return []
+
+    @classmethod
     def can_exist_under(cls, parent):
         from helsinkioppii.models.pages import CaseListPage
         return isinstance(parent, CaseListPage)
