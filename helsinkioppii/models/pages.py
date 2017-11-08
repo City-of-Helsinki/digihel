@@ -11,6 +11,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from helsinkioppii.blocks.banner_lift import BannerLiftBlock
 from helsinkioppii.blocks.case_lift import CaseLiftBlock
+from helsinkioppii.blocks.training_lift import TrainingLiftBlock
 from helsinkioppii.models.cases import Case
 
 
@@ -171,3 +172,59 @@ class CaseListPage(Page):
             return super(CaseListPage, self).serve(request, *args, **kwargs)
         except PageOutOfRangeException:
             return HttpResponseBadRequest()
+
+
+class TrainingIndexPage(Page):
+    template = 'helsinkioppii/training_index.html'
+
+    hero_content = RichTextField(
+        verbose_name=_('hero content'),
+        blank=True,
+    )
+    hero_image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('hero image'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    # Training section
+    training_section_title = models.CharField(
+        verbose_name=_('training section title'),
+        max_length=255,
+        blank=True,
+    )
+    training_section_description = RichTextField(
+        verbose_name=_('training section description'),
+        blank=True,
+    )
+    training_lifts = StreamField([
+        ('training', TrainingLiftBlock()),
+    ], blank=True)
+
+    # Banner section
+    banner_section_title = models.CharField(
+        verbose_name=_('banner section title'),
+        max_length=255,
+        blank=True,
+    )
+    banner_section_description = RichTextField(
+        verbose_name=_('banner section description'),
+        blank=True,
+    )
+    banner_lifts = StreamField([
+        ('banner', BannerLiftBlock()),
+    ], blank=True)
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('hero_image'),
+        FieldPanel('hero_content'),
+        FieldPanel('banner_section_title'),
+        FieldPanel('banner_section_description'),
+        StreamFieldPanel('banner_lifts'),
+        FieldPanel('training_section_title'),
+        FieldPanel('training_section_description'),
+        StreamFieldPanel('training_lifts'),
+    ]

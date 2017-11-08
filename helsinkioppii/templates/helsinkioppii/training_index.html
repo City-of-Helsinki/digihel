@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}helsinkioppii-training-index-page{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        {% image page.hero_image original as hero_image %}
+        {% if hero_image %}
+            <div class="image-container">
+                <div class="image" style="min-height: 400px; background-image: url('{{ hero_image.url }}')"></div>
+            </div>
+        {% endif %}
+        <div class="container">
+            {{ page.hero_content|safe }}
+        </div>
+    </section>
+
+    <section class="banner-lifts">
+        <div class="container">
+            <h2>{{ page.banner_section_title }}</h2>
+            {{ page.banner_section_description|safe }}
+            <div class="row">
+                {% for block in page.banner_lifts %}
+                    {% include_block block %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="training-lifts">
+        <div class="container">
+            <h2>{{ page.training_section_title }}</h2>
+            {{ page.training_section_description|safe }}
+            <div class="row">
+                {% for block in page.training_lifts %}
+                    {% include_block block %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
