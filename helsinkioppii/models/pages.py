@@ -5,7 +5,7 @@ from django.http.response import HttpResponseBadRequest
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.query_utils import Q
 from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel, FieldPanel
-from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.fields import StreamField, RichTextField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
@@ -21,9 +21,8 @@ class PageOutOfRangeException(Exception):
 class HelsinkiOppiiIndexPage(Page):
     template = 'helsinkioppii/index.html'
 
-    hero_title = models.CharField(
-        verbose_name=_('lift title'),
-        max_length=256,
+    hero_content = RichTextField(
+        verbose_name=_('hero content'),
         blank=True,
     )
     hero_image = models.ForeignKey(
@@ -35,21 +34,56 @@ class HelsinkiOppiiIndexPage(Page):
         related_name='+',
     )
 
+    # Banner section
+    banner_section_title = models.CharField(
+        verbose_name=_('banner section title'),
+        max_length=255,
+        blank=True,
+    )
+    banner_section_description = RichTextField(
+        verbose_name=_('banner section description'),
+        blank=True,
+    )
     banner_lifts = StreamField([
         ('banner', BannerLiftBlock()),
     ], blank=True)
 
+    # Case section
+    case_section_title = models.CharField(
+        verbose_name=_('case section title'),
+        max_length=255,
+        blank=True,
+    )
+    case_section_description = RichTextField(
+        verbose_name=_('case section description'),
+        blank=True,
+    )
     case_lifts = StreamField([
         ('case', CaseLiftBlock()),
     ], blank=True)
 
+    # Social section
+    social_section_title = models.CharField(
+        verbose_name=_('social section title'),
+        max_length=255,
+        blank=True,
+    )
+    social_section_description = RichTextField(
+        verbose_name=_('social section description'),
+        blank=True,
+    )
+
     content_panels = Page.content_panels + [
         ImageChooserPanel('hero_image'),
+        FieldPanel('hero_content'),
+        FieldPanel('banner_section_title'),
+        FieldPanel('banner_section_description'),
         StreamFieldPanel('banner_lifts'),
+        FieldPanel('case_section_title'),
+        FieldPanel('case_section_description'),
         StreamFieldPanel('case_lifts'),
-        FieldPanel('hero_title'),
-        StreamFieldPanel('banner_lifts'),
-        StreamFieldPanel('case_lifts'),
+        FieldPanel('social_section_title'),
+        FieldPanel('social_section_description'),
     ]
 
 
