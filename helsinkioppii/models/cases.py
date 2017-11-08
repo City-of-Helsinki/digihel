@@ -3,9 +3,9 @@ from django.utils.translation import ugettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-from wagtail.wagtailadmin.edit_handlers import RichTextFieldPanel, FieldPanel
+from wagtail.wagtailadmin.edit_handlers import RichTextFieldPanel, FieldPanel, InlinePanel
 from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
@@ -48,6 +48,17 @@ class SchoolGrade(models.Model):
         :rtype: str
         """
         return self.grade
+
+
+class CaseContact(Orderable):
+    case = ParentalKey('helsinkioppii.Case', related_name='contacts')
+    person = models.ForeignKey('people.Person', related_name='cases')
+
+    def __str__(self):
+        return '{person} as the contact of case {case}'.format(
+            person=self.person,
+            case=self.case
+        )
 
 
 class Case(Page):
@@ -106,6 +117,7 @@ class Case(Page):
         FieldPanel('student_count', classname='col6'),
         FieldPanel('case_type', classname='col6'),
         FieldPanel('keywords'),
+        InlinePanel('contacts', label=_('contacts')),
     ]
 
     @classmethod

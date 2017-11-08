@@ -1,2 +1,5 @@
-from .cases import Case, CaseKeyword, SchoolGrade, SchoolSubject  # NOQA
+from .cases import (
+    Case, CaseContact, CaseKeyword, SchoolGrade,
+    SchoolSubject
+) # NOQA
 from .pages import CaseListPage, HelsinkiOppiiIndexPage, TrainingIndexPage  # NOQA

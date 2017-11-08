@@ -4,6 +4,7 @@
 {% block body_class %}helsinkioppii-case-page{% endblock %}
 
 {% block content %}
+
     <section class="main-section section--case-hero">
         {% image page.image fill-1920x1080-c100  as content_image %}
             {% if content_image %}
@@ -58,6 +59,16 @@
                           {% endfor %}
                       </dd>
                     </dl>
+                    <dl class="case-meta--contact">
+                      <dt>Lisätietoja</dt>
+                      <dd>
+                        <ul>
+                            {% for contact in page.contacts.all %}
+                                <li>{{ contact.person }}</li>
+                            {% endfor %}
+                        </ul>
+                      </dd>
+                      </dl>
                     </div>
                     </div>
                   </div>
