@@ -50,6 +50,24 @@ class SchoolGrade(models.Model):
         return self.grade
 
 
+@register_snippet
+class CaseTheme(models.Model):
+    theme = models.CharField(
+        verbose_name=_('theme'),
+        max_length=128,
+        blank=True
+    )
+
+    def __str__(self):
+        """
+        Returns textual representation of the theme.
+
+        :return: Name of the theme.
+        :rtype: str
+        """
+        return self.theme
+
+
 class CaseContact(Orderable):
     case = ParentalKey('helsinkioppii.Case', related_name='contacts')
     person = models.ForeignKey('people.Person', related_name='cases')
@@ -86,10 +104,12 @@ class Case(Page):
         blank=True,
         null=True,
     )
-    case_type = models.CharField(
-        verbose_name=_('type'),
-        max_length=256,
-        blank=True
+    theme = models.ForeignKey(
+        'helsinkioppii.CaseTheme',
+        verbose_name=_('theme'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
     )
     keywords = ClusterTaggableManager(through=CaseKeyword, blank=True)
     grade = models.ForeignKey(
@@ -115,7 +135,7 @@ class Case(Page):
         FieldPanel('subject', classname='col6'),
         FieldPanel('grade', classname='col6'),
         FieldPanel('student_count', classname='col6'),
-        FieldPanel('case_type', classname='col6'),
+        FieldPanel('theme', classname='col6'),
         FieldPanel('keywords'),
         InlinePanel('contacts', label=_('contacts')),
     ]
