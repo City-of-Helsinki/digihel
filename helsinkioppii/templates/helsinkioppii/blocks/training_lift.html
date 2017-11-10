@@ -1,10 +1,10 @@
 {% load i18n humanize wagtailimages_tags %}
 
-<div class="case col-sm-4">
-    <h3 class="h4">{{ block.title }}</h3>
+<div class="col-sm-4">
+  <div class="training--lift match-height">
+    <h3><a href="{{ block.page }}">{{ block.title }}</a></h3>
     <p>{{ block.time|date:"l j.n.Y"|capfirst }} {% trans "klo" %} {{ block.time|date:"H.i" }}</p>
     <p>{{ block.description }}</p>
-    <a href="{{ block.url }}">
-        <h4>{% trans "Read more" %} <i class="arrow">&rarr;</i></h4>
-    </a>
+    <p><a class="btn btn-default" href="{{ block.url }}">{% trans "Read more" %}</a></p>
+  </div>
 </div>

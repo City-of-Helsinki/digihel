@@ -38,8 +38,10 @@
     <section class="main-section section--highlights">
       <div class="highlights-koro__top"></div>
       <div class="container">
-            <h2>{{ page.case_section_title }}</h2>
-            {{ page.case_section_description|safe }}
+            <div class="section-header">
+                <h2>{{ page.case_section_title }}</h2>
+                <div class="section-description">{{ page.case_section_description|safe }}</div>
+            </div>
             <div class="themes row">
                 {% for block in page.case_lifts %}
                     {% include_block block %}
@@ -51,10 +53,10 @@
     <section class="main-section section--social-feed">
       <div class="social-koro__top"></div>
       <div class="container">
-        <h2>{{ page.social_section_title }}</h2>
-            {{ page.social_section_description|safe }}
-      </div>
-      <div class="container">
+        <div class="section-header">
+            <h2>{{ page.social_section_title }}</h2>
+            <div class="section-description">{{ page.social_section_description|safe }}</div>
+        </div>
         <!-- Demo feed from curator.io. The final social aggregator to be decided.-->
         <div id="curator-feed"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
       </div>

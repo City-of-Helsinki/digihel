@@ -4,39 +4,50 @@
 {% block body_class %}helsinkioppii-training-index-page{% endblock %}
 
 {% block content %}
-    <section class="hero">
-        {% image page.hero_image original as hero_image %}
-        {% if hero_image %}
-            <div class="image-container">
-                <div class="image" style="min-height: 400px; background-image: url('{{ hero_image.url }}')"></div>
-            </div>
-        {% endif %}
-        <div class="container">
-            {{ page.hero_content|safe }}
-        </div>
+    <section class="main-section section--training-hero">
+        {% image page.hero_image fill-1920x680-c100  as hero_image %}
+            {% if hero_image %}
+                <figure class="image-container container--training-hero" style="background-image: url('{{ hero_image.url }}')">
+            {% else %}
+                <figure class="image-container container--case-hero">
+            {% endif %}
+                  <div class="container">
+                      <div class="hero-content">
+                          {{ page.hero_content|safe }}
+                      </div>
+                  </div>
+                  <figcaption class="hero-caption"><span class="caption-content">{{ hero_image.alt }}</span></figcaption>
+                </figure>
     </section>
 
-    <section class="banner-lifts">
+    <section class="main-section section--training">
         <div class="container">
-            <h2>{{ page.banner_section_title }}</h2>
-            {{ page.banner_section_description|safe }}
-            <div class="row">
-                {% for block in page.banner_lifts %}
-                    {% include_block block %}
-                {% endfor %}
+            <div class="section-header">
+                <h2>{{ page.training_section_title }}</h2>
+                <div class="section-description">{{ page.training_section_description|safe }}</div>
             </div>
-        </div>
-    </section>
-
-    <section class="training-lifts">
-        <div class="container">
-            <h2>{{ page.training_section_title }}</h2>
-            {{ page.training_section_description|safe }}
             <div class="row">
                 {% for block in page.training_lifts %}
                     {% include_block block %}
                 {% endfor %}
             </div>
         </div>
+    </section>
+
+    <section class="front-section section--training-banners">
+        <div class="training-banners-koro__top"></div>
+        <div class="section-content">
+            <div class="container">
+                <div class="section-header">
+                    <h2>{{ page.banner_section_title }}</h2>
+                    <div class="section-description">{{ page.banner_section_description|safe }}</div>
+                </div>
+                <div class="row">
+                    {% for block in page.banner_lifts %}
+                        {% include_block block %}
+                    {% endfor %}
+                </div>
+            </div>
+      </div>
     </section>
 {% endblock %}
