@@ -2,6 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
+
 class BannerLiftBlock(blocks.StructBlock):
     TEMPLATE_VAR = 'block'
     icon = ImageChooserBlock(required=False)

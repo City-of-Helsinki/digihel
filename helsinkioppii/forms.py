@@ -18,22 +18,35 @@ def get_live_case_keywords():
 
 
 class CaseFilterForm(forms.Form):
-    free_text = forms.CharField(label=_('Free text'), required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'etsi'}))
+    free_text = forms.CharField(
+        label=_('Free text'),
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('Search'),
+        }),
+    )
     keywords = forms.ModelMultipleChoiceField(
         get_live_case_keywords(),
         label=_('Keywords'),
-        widget=forms.CheckboxSelectMultiple(attrs={'class':'list-unstyled checkbox'}),
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'list-unstyled checkbox'
+        }),
         required=False,
     )
     grades = forms.ModelMultipleChoiceField(
         SchoolGrade.objects.all(),
         label=_('School grades'),
-        widget=forms.CheckboxSelectMultiple(attrs={'class':'list-unstyled checkbox'}),
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'list-unstyled checkbox'
+        }),
         required=False,
     )
     subjects = forms.ModelMultipleChoiceField(
         SchoolSubject.objects.all(),
         label=_('School subjects'),
-        widget=forms.CheckboxSelectMultiple(attrs={'class':'list-unstyled checkbox'}),
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'list-unstyled checkbox'
+        }),
         required=False,
     )

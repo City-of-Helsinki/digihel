@@ -1,10 +1,12 @@
 {% load i18n humanize wagtailimages_tags %}
 
 <div class="col-sm-4">
-  <div class="training--lift match-height">
-    <h3><a href="{{ block.link }}">{{ block.title }}</a></h3>
-    <p>{{ block.time|date:"l j.n.Y"|capfirst }} {% trans "at" %} {{ block.time|date:"H.i" }}</p>
-    <p>{{ block.description }}</p>
-    <p><a class="btn btn-default" href="{{ block.link }}">{% trans "Read more" %}</a></p>
-  </div>
+    <div class="training--lift match-height">
+        <h3><a href="{{ block.link }}">{{ block.title }}</a></h3>
+        <p>{{ block.time|date:"l j.n.Y"|capfirst }} {% trans "at" %} {{ block.time|date:"H.i" }}</p>
+        <p>{{ block.description }}</p>
+        <p>
+            <a class="btn btn-default" href="{{ block.link }}">{% trans "Read more" %}</a>
+        </p>
+    </div>
 </div>
