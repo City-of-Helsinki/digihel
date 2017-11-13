@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-17 10:59+0300\n"
+"POT-Creation-Date: 2017-11-13 09:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,65 +119,116 @@ msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
 msgid "User agent"
 msgstr "Selain"
 
-#: helsinkioppii/forms.py:21
+#: helsinkioppii/blocks/banner_lift.py:12
+msgid "Overrides page link if set."
+msgstr ""
+
+#: helsinkioppii/forms.py:22
 msgid "Free text"
 msgstr "Vapaa teksti"
 
-#: helsinkioppii/forms.py:24
+#: helsinkioppii/forms.py:26
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:27
+msgid "Search"
+msgstr "Etsi"
+
+#: helsinkioppii/forms.py:31
 msgid "Keywords"
 msgstr "Avainsanat"
 
-#: helsinkioppii/forms.py:30
+#: helsinkioppii/forms.py:39
 msgid "School grades"
 msgstr "Kouluasteet"
 
-#: helsinkioppii/forms.py:36
+#: helsinkioppii/forms.py:47
 msgid "School subjects"
 msgstr "Kouluaineet"
 
-#: helsinkioppii/models/cases.py:20 helsinkioppii/models/cases.py:93
+#: helsinkioppii/models/cases.py:20 helsinkioppii/models/cases.py:133
 msgid "school subject"
 msgstr "kouluaine"
 
-#: helsinkioppii/models/cases.py:38 helsinkioppii/models/cases.py:86
+#: helsinkioppii/models/cases.py:41 helsinkioppii/models/cases.py:126
 msgid "school grade"
 msgstr "kouluaste"
 
-#: helsinkioppii/models/cases.py:58
+#: helsinkioppii/models/cases.py:62 helsinkioppii/models/cases.py:118
+msgid "theme"
+msgstr "teema"
+
+#: helsinkioppii/models/cases.py:96
 msgid "image"
 msgstr "kuva"
 
-#: helsinkioppii/models/cases.py:64
+#: helsinkioppii/models/cases.py:102
 msgid "abstract"
 msgstr "lyhennelmä"
 
-#: helsinkioppii/models/cases.py:65
+#: helsinkioppii/models/cases.py:103
 msgid "content"
 msgstr "sisältö"
 
-#: helsinkioppii/models/cases.py:69
+#: helsinkioppii/models/cases.py:107
 msgid "school"
 msgstr "koulu"
 
-#: helsinkioppii/models/cases.py:74
+#: helsinkioppii/models/cases.py:112
 msgid "student count"
 msgstr "oppilaiden lukumäärä"
 
-#: helsinkioppii/models/cases.py:79
-msgid "type"
-msgstr "tyyppi"
+#: helsinkioppii/models/cases.py:149
+msgid "contacts"
+msgstr "yhteyshenkilöt"
 
-#: helsinkioppii/models/pages.py:18
-msgid "lift title"
-msgstr "nosto-otsikko"
+#: helsinkioppii/models/pages.py:26 helsinkioppii/models/pages.py:181
+msgid "hero content"
+msgstr "hero-osion sisältö"
 
-#: helsinkioppii/models/pages.py:24
+#: helsinkioppii/models/pages.py:31 helsinkioppii/models/pages.py:186
 msgid "hero image"
-msgstr "kansikuva"
+msgstr "hero-osion kuva (kansikuva)"
 
-#: helsinkioppii/templates/helsinkioppii/case_list_page.html:26
-msgid "Search"
-msgstr "Etsi"
+#: helsinkioppii/models/pages.py:40 helsinkioppii/models/pages.py:209
+msgid "banner section title"
+msgstr "banneri-osion otsikko"
+
+#: helsinkioppii/models/pages.py:45 helsinkioppii/models/pages.py:214
+msgid "banner section description"
+msgstr "banneri-osion kuvaus"
+
+#: helsinkioppii/models/pages.py:54
+msgid "case section title"
+msgstr "case-osion otsikko"
+
+#: helsinkioppii/models/pages.py:59
+msgid "case section description"
+msgstr "case-osion kuvaus"
+
+#: helsinkioppii/models/pages.py:68
+msgid "social section title"
+msgstr "social-osion otsikko"
+
+#: helsinkioppii/models/pages.py:73
+msgid "social section description"
+msgstr "social-osion kuvaus"
+
+#: helsinkioppii/models/pages.py:195
+msgid "training section title"
+msgstr "training-osion otsikko"
+
+#: helsinkioppii/models/pages.py:200
+msgid "training section description"
+msgstr "training-osion kuvais"
+
+#: helsinkioppii/templates/helsinkioppii/blocks/banner_lift.html:11
+#: helsinkioppii/templates/helsinkioppii/blocks/case_lift.html:13
+#: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:8
+msgid "Read more"
+msgstr "Lue lisää"
+
+#: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:6
+msgid "at"
+msgstr "klo"
 
 #: kehmet/models.py:19
 msgid "Short description"

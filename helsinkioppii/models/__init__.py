@@ -1,5 +1,5 @@
 from .cases import (
     Case, CaseContact, CaseKeyword, SchoolGrade,
     SchoolSubject
-) # NOQA
+)  # NOQA
 from .pages import CaseListPage, HelsinkiOppiiIndexPage, TrainingIndexPage  # NOQA

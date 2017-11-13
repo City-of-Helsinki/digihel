@@ -5,19 +5,20 @@
 
 {% block content %}
     <section class="main-section section--training-hero">
-        {% image page.hero_image fill-1920x680-c100  as hero_image %}
-            {% if hero_image %}
-                <figure class="image-container container--training-hero" style="background-image: url('{{ hero_image.url }}')">
-            {% else %}
-                <figure class="image-container container--case-hero">
-            {% endif %}
-                  <div class="container">
-                      <div class="hero-content">
-                          {{ page.hero_content|safe }}
-                      </div>
-                  </div>
-                  <figcaption class="hero-caption"><span class="caption-content">{{ hero_image.alt }}</span></figcaption>
-                </figure>
+        {% image page.hero_image fill-1920x680-c100 as hero_image %}
+        <figure
+            class="image-container container--{% if hero_image %}training-hero{% else %}case-hero{% endif %}"
+            {% if hero_image %}style="background-image: url('{{ hero_image.url }}')"{% endif %}
+        >
+            <div class="container">
+                <div class="hero-content">
+                    {{ page.hero_content|safe }}
+                </div>
+            </div>
+            <figcaption class="hero-caption">
+                <span class="caption-content">{{ hero_image.alt }}</span>
+            </figcaption>
+        </figure>
     </section>
 
     <section class="main-section section--training">
@@ -48,6 +49,6 @@
                     {% endfor %}
                 </div>
             </div>
-      </div>
+        </div>
     </section>
 {% endblock %}
