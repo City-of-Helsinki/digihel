@@ -22,6 +22,9 @@ class SchoolSubject(models.Model):
         blank=True
     )
 
+    class Meta:
+        ordering = ['pk']
+
     def __str__(self):
         """
         Returns textual representation of the subject.
@@ -40,6 +43,9 @@ class SchoolGrade(models.Model):
         blank=True
     )
 
+    class Meta:
+        ordering = ['pk']
+
     def __str__(self):
         """
         Returns textual representation of the grade.
@@ -57,6 +63,9 @@ class CaseTheme(models.Model):
         max_length=128,
         blank=True
     )
+
+    class Meta:
+        ordering = ['pk']
 
     def __str__(self):
         """
