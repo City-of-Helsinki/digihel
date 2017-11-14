@@ -27,7 +27,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 
   .section-description {
-    font-size: 24px;
+    font-size: $font-size-h6;
   }
 }
 
@@ -226,6 +226,10 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     min-height: $line-height-computed * 20;
     position: relative;
     text-shadow: 1px 1px 4px rgba(#000, 0.2);
+
+    h1 {
+      font-size: 48px;
+    }
   }
 }
 
@@ -292,7 +296,12 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   padding: $line-height-computed;
 
   h3 {
-    //text-align: center;
+    margin-top: 0;
+  }
+
+  .training-date {
+    font-weight: 600;
+    color: $gray-light;
   }
 
   a, a:hover {

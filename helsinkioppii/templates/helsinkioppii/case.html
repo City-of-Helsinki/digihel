@@ -39,19 +39,30 @@
                         <div class="row">
                             <div class="col-md-12 col-xs-6">
                                 <dl class="case-meta--basics">
-                                    <dt>Koulu</dt>
-                                    <dd>{{ page.school }}</dd>
-                                    <dt>Oppilaiden määrä</dt>
-                                    <dd>{{ page.student_count }}</dd>
-                                    <dt>Tyyppi</dt>
-                                    <dd>{{ page.theme }}</dd>
-                                    <dt>Luokka-aste</dt>
-                                    <dd>{{ page.grade }}</dd>
-                                    <dt>Oppiaine</dt>
-                                    <dd>{{ page.subject }}</dd>
+                                    {% if page.school %}
+                                        <dt>Koulu</dt>
+                                        <dd>{{ page.school }}</dd>
+                                    {% endif %}
+                                    {% if page.student_count %}
+                                        <dt>Oppilaiden määrä</dt>
+                                        <dd>{{ page.student_count }}</dd>
+                                    {% endif %}
+                                    {% if page.theme %}
+                                        <dt>Tyyppi</dt>
+                                        <dd>{{ page.theme }}</dd>
+                                    {% endif %}
+                                    {% if page.grade %}
+                                        <dt>Luokka-aste</dt>
+                                        <dd>{{ page.grade }}</dd>
+                                    {% endif %}
+                                    {% if page.subject %}
+                                        <dt>Oppiaine</dt>
+                                        <dd>{{ page.subject }}</dd>
+                                    {% endif %}
                                 </dl>
                             </div>
                             <div class="col-md-12 col-xs-6">
+                                {% if page.keywords.all %}
                                 <dl class="case-meta--tags">
                                     <dt>Asiasanat</dt>
                                     <dd>
@@ -60,6 +71,8 @@
                                         {% endfor %}
                                     </dd>
                                 </dl>
+                                {% endif %}
+                                {% if page.contacts.all %}
                                 <dl class="case-meta--contact">
                                     <dt>Lisätietoja</dt>
                                     <dd>
@@ -70,6 +83,7 @@
                                         </ul>
                                     </dd>
                                 </dl>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
