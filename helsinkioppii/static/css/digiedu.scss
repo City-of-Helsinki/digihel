@@ -60,10 +60,9 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 
   .banner-illustration {
-    height: $line-height-computed * 10;
 
     .illustration {
-      height: 100%;
+      max-height: $line-height-computed * 7;
       max-width: 100%;
       margin: 0 auto;
     }
