@@ -2,14 +2,16 @@
 
 <div class="col-sm-4">
     <div class="banner--edu match-height">
+        {% if block.icon %}
         <figure class="banner-illustration">
-            <a href="{{ block_link_url }}">{% image block.icon original %}</a>
+            {% image block.icon fill-500x500 as banner_image %}
+            <a href="{{ block.page.url }}"><img src="{{ banner_image.url }}" alt="" class="illustration"></a>
         </figure>
-        <!-- TODO: add banner header to models -->
+        {% endif %}
         <h3><a href="{{ block.page.url }}">{{ block.title }}</a></h3>
         <p>{{ block.abstract|truncatechars:225 }}</p>
         <p>
-            <a class="btn btn-default" href="{{ block_link_url }}">{% trans "Read more" %}</a>
+            <a class="btn btn-default" href="{{ block.page.url }}">{% trans "Read more" %}</a>
         </p>
     </div>
 </div>
