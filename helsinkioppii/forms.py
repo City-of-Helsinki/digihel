@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from taggit.models import Tag
 
-from helsinkioppii.models.cases import Case, SchoolGrade, SchoolSubject
+from helsinkioppii.models.cases import Case, SchoolGrade, SchoolSubject, CaseTheme
 
 
 def get_live_case_keywords():
@@ -26,11 +26,11 @@ class CaseFilterForm(forms.Form):
             'placeholder': _('Search'),
         }),
     )
-    keywords = forms.ModelMultipleChoiceField(
-        get_live_case_keywords(),
-        label=_('Keywords'),
+    themes = forms.ModelMultipleChoiceField(
+        CaseTheme.objects.all(),
+        label=_('Themes'),
         widget=forms.CheckboxSelectMultiple(attrs={
-            'class': 'list-unstyled checkbox'
+            'class': 'filter-keywordlist list-unstyled checkbox'
         }),
         required=False,
     )
@@ -38,7 +38,7 @@ class CaseFilterForm(forms.Form):
         SchoolGrade.objects.all(),
         label=_('School grades'),
         widget=forms.CheckboxSelectMultiple(attrs={
-            'class': 'list-unstyled checkbox'
+            'class': 'filter-keywordlist list-unstyled checkbox'
         }),
         required=False,
     )
@@ -46,7 +46,7 @@ class CaseFilterForm(forms.Form):
         SchoolSubject.objects.all(),
         label=_('School subjects'),
         widget=forms.CheckboxSelectMultiple(attrs={
-            'class': 'list-unstyled checkbox'
+            'class': 'filter-keywordlist list-unstyled checkbox'
         }),
         required=False,
     )

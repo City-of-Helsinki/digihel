@@ -128,7 +128,7 @@ class CaseListPage(Page):
 
         if form.is_valid():
             free_text = form.cleaned_data.get('free_text')
-            keywords = form.cleaned_data.get('keywords')
+            themes = form.cleaned_data.get('themes')
             grades = form.cleaned_data.get('grades')
             subjects = form.cleaned_data.get('subjects')
 
@@ -137,8 +137,8 @@ class CaseListPage(Page):
                 q_abstract = Q(abstract__icontains=free_text)
                 q_content = Q(content__icontains=free_text)
                 cases = cases.filter(q_title | q_abstract | q_content)
-            if keywords:
-                cases = cases.filter(keywords__in=keywords)
+            if themes:
+                cases = cases.filter(theme__in=themes)
             if grades:
                 cases = cases.filter(grade__in=grades)
             if subjects:

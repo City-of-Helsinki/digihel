@@ -10,7 +10,7 @@
             <form action="{{ page.url }}" method="get">
                 <div class="row">
                     {% for field in form.visible_fields %}
-                        <div class="col-md-3 col-sm-6">
+                        <div class="filter-field col-md-3 col-sm-6">
                             {{ field.errors }}
                             <label for="{{ field.id_for_label }}">
                                 {{ field.label }}
@@ -24,7 +24,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+                <div class="text-center"><button type="submit" class="btn btn-primary">{% trans "Search" %}</button></div>
             </form>
         </div>
     </section>
