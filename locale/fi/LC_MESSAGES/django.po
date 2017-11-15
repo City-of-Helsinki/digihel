@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-13 09:46+0200\n"
+"POT-Creation-Date: 2017-11-15 10:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,8 +133,8 @@ msgid "Search"
 msgstr "Etsi"
 
 #: helsinkioppii/forms.py:31
-msgid "Keywords"
-msgstr "Avainsanat"
+msgid "Themes"
+msgstr "Teemat"
 
 #: helsinkioppii/forms.py:39
 msgid "School grades"
@@ -220,9 +220,9 @@ msgstr "training-osion otsikko"
 msgid "training section description"
 msgstr "training-osion kuvais"
 
-#: helsinkioppii/templates/helsinkioppii/blocks/banner_lift.html:11
-#: helsinkioppii/templates/helsinkioppii/blocks/case_lift.html:13
-#: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:8
+#: helsinkioppii/templates/helsinkioppii/blocks/banner_lift.html:14
+#: helsinkioppii/templates/helsinkioppii/blocks/case_lift.html:16
+#: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:9
 msgid "Read more"
 msgstr "Lue lisää"
 
@@ -273,3 +273,6 @@ msgstr "Sivun lisäasetukset"
 #: people/wagtail_hooks.py:9
 msgid "People"
 msgstr "Henkilöt"
+
+#~ msgid "Keywords"
+#~ msgstr "Avainsanat"

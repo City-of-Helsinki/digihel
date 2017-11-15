@@ -105,6 +105,23 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   padding: $line-height-computed * 2 0;
 }
 
+.filter-field {
+  margin-bottom: $line-height-computed;
+  .form-control {
+    &::placeholder {
+      color: rgba(#000000, .33);
+    }
+  }
+}
+
+.filter-keywordlist {
+  display: block;
+  overflow-y: scroll;
+  max-height: $line-height-computed * 6;
+  padding: $line-height-computed / 2;
+  border: 2px solid $black;
+}
+
 .section--cases-list {
   padding-top: $line-height-computed * 3;
   background-color: $hel-silver;
