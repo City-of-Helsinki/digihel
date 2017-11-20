@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% load static compress %}
 
+{% block meta %}
+    <meta property="og:title" content="{% block sometitle %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - {{ request.site.site_name }}">
+    {% if self.search_description %}
+    <meta property="og:description" content="{{ self.search_description }}"/>
+    {% else %}
+    <meta property="og:description" content="Kasvatuksen ja koulutuksen digitalisaatio Helsingissä">
+    {% endif %}
+    <meta property="og:image" content="https://helsinkioppii.fi{% static "images/digiedu-share-default.jpg" %}">
+    <meta property="og:url" content="https://helsinkioppii.fi{{ request.get_full_path }}">
+    <meta name="twitter:card" content="https://helsinkioppii.fi{% static "images/digiedu-share-default.jpg" %}">
+{% endblock %}
+
+
 {% block main_css %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "css/digiedu.scss" %}"/>
