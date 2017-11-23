@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-15 10:25+0200\n"
+"POT-Creation-Date: 2017-11-23 11:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,15 +144,15 @@ msgstr "Kouluasteet"
 msgid "School subjects"
 msgstr "Kouluaineet"
 
-#: helsinkioppii/models/cases.py:20 helsinkioppii/models/cases.py:133
+#: helsinkioppii/models/cases.py:20 helsinkioppii/models/cases.py:146
 msgid "school subject"
 msgstr "kouluaine"
 
-#: helsinkioppii/models/cases.py:41 helsinkioppii/models/cases.py:126
+#: helsinkioppii/models/cases.py:41 helsinkioppii/models/cases.py:139
 msgid "school grade"
 msgstr "kouluaste"
 
-#: helsinkioppii/models/cases.py:62 helsinkioppii/models/cases.py:118
+#: helsinkioppii/models/cases.py:62 helsinkioppii/models/cases.py:131
 msgid "theme"
 msgstr "teema"
 
@@ -160,25 +160,65 @@ msgstr "teema"
 msgid "image"
 msgstr "kuva"
 
-#: helsinkioppii/models/cases.py:102
+#: helsinkioppii/models/cases.py:103
 msgid "abstract"
 msgstr "lyhennelmä"
 
-#: helsinkioppii/models/cases.py:103
+#: helsinkioppii/models/cases.py:106
 msgid "content"
-msgstr "sisältö"
+msgstr "Sisältö"
 
-#: helsinkioppii/models/cases.py:107
+#: helsinkioppii/models/cases.py:109
+msgid "Objectives"
+msgstr "Tavoitteet"
+
+#: helsinkioppii/models/cases.py:110
+msgid "What was done"
+msgstr "Mitä tehtiin"
+
+#: helsinkioppii/models/cases.py:111
+msgid "How it was done"
+msgstr "Miten tehtiin"
+
+#: helsinkioppii/models/cases.py:112
+msgid "Who participated"
+msgstr "Ketkä osallistuivat"
+
+#: helsinkioppii/models/cases.py:113
+msgid "How the learning was evaluated"
+msgstr "Miten oppiminen arvioitiin"
+
+#: helsinkioppii/models/cases.py:114
+msgid "What materials were useed"
+msgstr "Materiaalit"
+
+#: helsinkioppii/models/cases.py:115
+msgid "Pros"
+msgstr "Plussaa"
+
+#: helsinkioppii/models/cases.py:116
+msgid "Cons"
+msgstr "Kehitettävää"
+
+#: helsinkioppii/models/cases.py:120
 msgid "school"
 msgstr "koulu"
 
-#: helsinkioppii/models/cases.py:112
+#: helsinkioppii/models/cases.py:125
 msgid "student count"
 msgstr "oppilaiden lukumäärä"
 
-#: helsinkioppii/models/cases.py:149
+#: helsinkioppii/models/cases.py:164
+msgid "Case description"
+msgstr "Tekemisen kuvaus"
+
+#: helsinkioppii/models/cases.py:177
 msgid "contacts"
 msgstr "yhteyshenkilöt"
+
+#: helsinkioppii/models/cases.py:179
+msgid "Case meta"
+msgstr "Tekemisen metatiedot"
 
 #: helsinkioppii/models/pages.py:26 helsinkioppii/models/pages.py:181
 msgid "hero content"

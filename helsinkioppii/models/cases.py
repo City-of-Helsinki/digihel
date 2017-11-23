@@ -162,7 +162,7 @@ class Case(Page):
                 RichTextFieldPanel('content_cons'),
             ],
             heading=_('Case description'),
-            classname="collapsible collapsed"
+            classname="collapsible"
         )
 
     # Group meta fields in admin ui
