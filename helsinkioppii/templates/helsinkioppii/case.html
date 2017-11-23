@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags people_tags %}
 
 {% block body_class %}helsinkioppii-case-page{% endblock %}
 
@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class=" col-md-8 col-lg-7 col-lg-offset-3">
-                    <h1 class="title">{{ page.title }}</h1>
+                    <h1 class="title hyphenate">{{ page.title }}</h1>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 <div class="sidebar col-md-3 col-lg-3">
                     <div class="case-meta">
                         <div class="row">
-                            <div class="col-md-12 col-xs-6">
+                            <div class="col-md-12 col-sm-6">
                                 <dl class="case-meta--basics">
                                     {% if page.school %}
                                         <dt>Koulu</dt>
@@ -61,7 +61,7 @@
                                     {% endif %}
                                 </dl>
                             </div>
-                            <div class="col-md-12 col-xs-6">
+                            <div class="col-md-12 col-sm-6">
                                 {% if page.keywords.all %}
                                 <dl class="case-meta--tags">
                                     <dt>Asiasanat</dt>
@@ -76,10 +76,18 @@
                                 <dl class="case-meta--contact">
                                     <dt>Lisätietoja</dt>
                                     <dd>
-                                        <ul>
-                                            {% for contact in page.contacts.all %}
-                                                <li>{{ contact.person }}</li>
-                                            {% endfor %}
+                                        <ul class="list-unstyled">
+                                        {% for contact in page.contacts.all %}
+                                        <li>
+                                                <strong>{{contact.person.get_display_name}}</strong><br/>
+                                                {% if contact.person.email %}
+                                                <div class="email"><a href="mailto:{{ person.email }}">{{ contact.person.email }}</a></div>
+                                                {% endif %}
+                                                {% if contact.person.telephone %}
+                                                <div class="telephone">{{ contact.person.telephone }}</div>
+                                                {% endif %}
+                                        </li>
+                                        {% endfor %}
                                         </ul>
                                     </dd>
                                 </dl>
@@ -89,7 +97,32 @@
                     </div>
                 </div>
                 <div class="content col-md-8 col-lg-7">
-                    {{ page.content|safe }}
+                    <h2 class="case-content-section-header">Tavoitteet</h2>
+                    {{ page.content_objectives |safe }}
+                    <h2 class="case-content-section-header">Mitä tehtiin</h2>
+                    {{ page.content_what |safe }}
+                    <h2 class="case-content-section-header">Miten tehtiin</h2>
+                    {{ page.content_how |safe }}
+                    <h2 class="case-content-section-header">Ketkä osallistuivat</h2>
+                    {{ page.content_who |safe }}
+                    <h2 class="case-content-section-header">Miten oppiminen arvioitiin</h2>
+                    {{ page.content_evaluation |safe }}
+                    <h2 class="case-content-section-header">Materiaalit</h2>
+                    {{ page.content_materials |safe }}
+                    <div class="row case-pros-cons">
+                      <div class="col-sm-6">
+                          <div class="case-pros">
+                              <h2 class="case-content-section-header">Plussat</h2>
+                              {{ page.content_pros |safe }}
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="case-cons">
+                              <h2 class="case-content-section-header">Kehitettävää</h2>
+                              {{ page.content_cons |safe }}
+                          </div>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
