@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-from wagtail.wagtailadmin.edit_handlers import RichTextFieldPanel, FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import RichTextFieldPanel, FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
@@ -99,8 +99,21 @@ class Case(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
     abstract = models.TextField(verbose_name=_('abstract'))
-    content = RichTextField(verbose_name=_('content'))
+
+    # Leave this now for legacy. Not shown or used in admin ui
+    content = RichTextField(verbose_name=_('content'), blank=True)
+
+    # Content field split in sections to guide consistent formatting
+    content_objectives = RichTextField(verbose_name=_('Objectives'), blank=True)
+    content_what = RichTextField(verbose_name=_('What was done'), blank=True)
+    content_how = RichTextField(verbose_name=_('How it was done'), blank=True)
+    content_who = RichTextField(verbose_name=_('Who participated'), blank=True)
+    content_evaluation = RichTextField(verbose_name=_('How the learning was evaluated'), blank=True)
+    content_materials = RichTextField(verbose_name=_('What materials were useed'), blank=True)
+    content_pros = RichTextField(verbose_name=_('Pros'), blank=True)
+    content_cons = RichTextField(verbose_name=_('Cons'), blank=True)
 
     # Sidebar content
     school = models.CharField(
@@ -136,17 +149,42 @@ class Case(Page):
         on_delete=models.SET_NULL,
     )
 
+    # Group separated content fields in admin ui
+    case_content_panel = MultiFieldPanel(
+            [
+                RichTextFieldPanel('content_objectives'),
+                RichTextFieldPanel('content_what'),
+                RichTextFieldPanel('content_how'),
+                RichTextFieldPanel('content_who'),
+                RichTextFieldPanel('content_evaluation'),
+                RichTextFieldPanel('content_materials'),
+                RichTextFieldPanel('content_pros'),
+                RichTextFieldPanel('content_cons'),
+            ],
+            heading=_('Case description'),
+            classname="collapsible collapsed"
+        )
+
+    # Group meta fields in admin ui
+    case_meta_panel = MultiFieldPanel(
+            [
+                FieldPanel('school'),
+                FieldPanel('subject', classname='col6'),
+                FieldPanel('grade', classname='col6'),
+                FieldPanel('student_count', classname='col6'),
+                FieldPanel('theme', classname='col6'),
+                FieldPanel('keywords'),
+                InlinePanel('contacts', label=_('contacts')),
+            ],
+            heading=_('Case meta'),
+            classname="collapsible collapsed"
+        )
+
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         FieldPanel('abstract', classname='full'),
-        RichTextFieldPanel('content'),
-        FieldPanel('school'),
-        FieldPanel('subject', classname='col6'),
-        FieldPanel('grade', classname='col6'),
-        FieldPanel('student_count', classname='col6'),
-        FieldPanel('theme', classname='col6'),
-        FieldPanel('keywords'),
-        InlinePanel('contacts', label=_('contacts')),
+        case_meta_panel,
+        case_content_panel,
     ]
 
     @classmethod
