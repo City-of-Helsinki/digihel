@@ -75,6 +75,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 .section--highlights {
   background-color: $hel-coat;
   padding: $line-height-computed * 5 0;
+  color: $white;
 }
 
 .highlights-koro__top {
@@ -171,6 +172,28 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   height: $line-height-computed * 16;
 }
 
+.case-content-section-header {
+  font-size: $font-size-h3;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.case-pros-cons {
+  margin-top: $line-height-computed * 2;
+  .case-pros {
+    margin-top: $line-height-computed;
+    padding-top: $line-height-computed;
+    border-top: 3px solid $hel-copper;
+  }
+
+  .case-cons {
+    margin-top: $line-height-computed;
+    padding-top: $line-height-computed;
+    border-top: 3px solid $hel-suomenlinna;
+  }
+}
 .case-meta {
   padding: $line-height-computed / 2;
   margin-bottom: $line-height-computed;
@@ -180,7 +203,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     margin-bottom: 0;
   }
 
-  .case-meta--basics, .case-meta--tags {
+  .case-meta--basics, .case-meta--tags, .case-meta--contact {
 
     &:before {
       content: "";
