@@ -97,30 +97,46 @@
                     </div>
                 </div>
                 <div class="content col-md-8 col-lg-7">
-                    <h2 class="case-content-section-header">Tavoitteet</h2>
-                    {{ page.content_objectives |safe }}
-                    <h2 class="case-content-section-header">Mitä tehtiin</h2>
-                    {{ page.content_what |safe }}
-                    <h2 class="case-content-section-header">Miten tehtiin</h2>
-                    {{ page.content_how |safe }}
-                    <h2 class="case-content-section-header">Ketkä osallistuivat</h2>
-                    {{ page.content_who |safe }}
-                    <h2 class="case-content-section-header">Miten oppiminen arvioitiin</h2>
-                    {{ page.content_evaluation |safe }}
-                    <h2 class="case-content-section-header">Materiaalit</h2>
-                    {{ page.content_materials |safe }}
+                    {% if page.content_objectives %}
+                        <h2 class="case-content-section-header">Tavoitteet</h2>
+                        {{ page.content_objectives |safe }}
+                    {% endif %}
+                    {% if page.content_what %}
+                        <h2 class="case-content-section-header">Mitä tehtiin</h2>
+                        {{ page.content_what |safe }}
+                    {% endif %}
+                    {% if page.content_how %}
+                        <h2 class="case-content-section-header">Miten tehtiin</h2>
+                        {{ page.content_how |safe }}
+                    {% endif %}
+                    {% if page.content_who %}
+                        <h2 class="case-content-section-header">Ketkä osallistuivat</h2>
+                        {{ page.content_who |safe }}
+                    {% endif %}
+                    {% if page.content_evaluation %}
+                        <h2 class="case-content-section-header">Miten oppiminen arvioitiin</h2>
+                        {{ page.content_evaluation |safe }}
+                    {% endif %}
+                    {% if page.content_materials %}
+                        <h2 class="case-content-section-header">Materiaalit</h2>
+                        {{ page.content_materials |safe }}
+                    {% endif %}
                     <div class="row case-pros-cons">
                       <div class="col-sm-6">
-                          <div class="case-pros">
-                              <h2 class="case-content-section-header">Plussat</h2>
-                              {{ page.content_pros |safe }}
-                          </div>
+                          {% if page.content_pros %}
+                              <div class="case-pros">
+                                  <h2 class="case-content-section-header">Plussat</h2>
+                                  {{ page.content_pros |safe }}
+                              </div>
+                          {% endif %}
                       </div>
                       <div class="col-sm-6">
-                          <div class="case-cons">
-                              <h2 class="case-content-section-header">Kehitettävää</h2>
-                              {{ page.content_cons |safe }}
-                          </div>
+                          {% if page.content_cons %}
+                              <div class="case-cons">
+                                  <h2 class="case-content-section-header">Kehitettävää</h2>
+                                  {{ page.content_cons |safe }}
+                              </div>
+                          {% endif %}
                       </div>
                     </div>
                 </div>
