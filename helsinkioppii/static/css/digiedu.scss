@@ -281,7 +281,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   background-position: center;
 
   .hero-caption {
-    @include koro("beat", $hel-suomenlinna, 400);
+    @include koro("beat", $white, 400);
     width: 100%;
     height: $line-height-computed * 4;
     position: absolute;
@@ -294,17 +294,17 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     bottom: 0;
     right: $line-height-computed;
     font-size: $font-size-small;
-    color: $white;
+    color: $gray-light;
   }
 }
 
 .section--training {
   background-color: $hel-suomenlinna;
-  padding: $line-height-computed * 2 0;
+  padding: $line-height-computed * 4 0;
 }
 
 .section--training-banners {
-  padding: $line-height-computed * 4 0;
+  padding: $line-height-computed * 2 0 $line-height-computed * 3;
   position: relative;
 
   .banner--edu {
@@ -322,9 +322,9 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
-.training-banners-koro__top {
-  @include koro("pulse", $white, 800);
-  background-color: $hel-suomenlinna;
+.training-koro__top {
+  @include koro("pulse", $hel-suomenlinna, 800);
+  background-color: $white;
   width: 100%;
   height: $line-height-computed * 3;
   position: absolute;

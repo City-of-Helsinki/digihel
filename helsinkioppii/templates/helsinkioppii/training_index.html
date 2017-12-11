@@ -21,22 +21,7 @@
         </figure>
     </section>
 
-    <section class="main-section section--training">
-        <div class="container">
-            <div class="section-header">
-                <h2>{{ page.training_section_title }}</h2>
-                <div class="section-description">{{ page.training_section_description|safe }}</div>
-            </div>
-            <div class="row">
-                {% for block in page.training_lifts %}
-                    {% include_block block %}
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
     <section class="front-section section--training-banners">
-        <div class="training-banners-koro__top"></div>
         <div class="section-content">
             <div class="container">
                 <div class="section-header">
@@ -51,4 +36,22 @@
             </div>
         </div>
     </section>
+
+    {% if page.training_section_title %}
+        <section class="main-section section--training">
+            <div class="training-koro__top"></div>
+            <div class="container">
+                <div class="section-header">
+                    <h2>{{ page.training_section_title }}</h2>
+                    <div class="section-description">{{ page.training_section_description|safe }}</div>
+                </div>
+                <div class="row">
+                    {% for block in page.training_lifts %}
+                        {% include_block block %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
 {% endblock %}
