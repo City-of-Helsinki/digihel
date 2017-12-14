@@ -6,53 +6,60 @@
 {% block title %}Search{% endblock %}
 
 {% block content %}
-<div class="container main-container page-content" role="main">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1 class="page-title">Haku</h1>
-        </div>
+
+<section class="main-section section--page-header">
+  <div class="container">
+    <h1 class="page-title">Haku</h1>
+
+    <div class="search-page-form">
+      <form class="" action="{% url 'search' %}" method="get">
+          <div class="input-group">
+              <input type="text" class="form-control" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+                 <span class = "input-group-btn">
+                    <input type="submit"  class="btn btn-default" value="Hae">
+                 </span>
+          </div>
+      </form>
     </div>
+  </div>
+  <div class="page-header-koro"></div>
+</section>
 
+
+<section class="main-section section--content">
+  <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <div class="search-page-form well">
-                <form class="" action="{% url 'search' %}" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-                           <span class = "input-group-btn">
-                              <input type="submit"  class="btn btn-default" value="Hae">
-                           </span>
-                    </div>
-                </form>
-            </div>
+      <div class="col-xs-12">
 
-            {% if search_results %}
-                <ul class="search-results">
-                    {% for result in search_results %}
-                        <li class="search-results-item">
-                            <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                            {% if result.search_description %}
-                                {{ result.search_description|safe }}
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-                <nav aria-label="Sivuselaus">
-                  <ul class="pager">
-                    {% if search_results.has_previous %}
-                        <li class="previous"><a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}"><span aria-hidden="true">&larr;</span> Edellinen</a></li>
-                    {% endif %}
+          {% if search_results %}
+              <ul class="search-results">
+                  {% for result in search_results %}
+                      <li class="search-results-item">
+                          <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+                          {% if result.search_description %}
+                              {{ result.search_description|safe }}
+                          {% endif %}
+                      </li>
+                  {% endfor %}
+              </ul>
+              <nav aria-label="Sivuselaus">
+                <ul class="pager">
+                  {% if search_results.has_previous %}
+                      <li class="previous"><a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}"><span aria-hidden="true">&larr;</span> Edellinen</a></li>
+                  {% endif %}
 
-                    {% if search_results.has_next %}
-                        <li class="next"><a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Seuraava <span aria-hidden="true">&rarr;</span></a></li>
-                    {% endif %}
-                    </ul>
-                </nav>
-            {% elif search_query %}
-                No results found
-            {% endif %}
-        </div>
+                  {% if search_results.has_next %}
+                      <li class="next"><a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Seuraava <span aria-hidden="true">&rarr;</span></a></li>
+                  {% endif %}
+                  </ul>
+              </nav>
+          {% elif search_query %}
+              No results found
+          {% endif %}
+      </div>
     </div>
-</div>
+  </div>
+</section>
+
 
 {% endblock %}
