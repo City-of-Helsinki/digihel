@@ -748,18 +748,6 @@ $labelheight:     22px;
 
 .theme-projects {
   @extend .row;
-	display: flex;
-	flex-wrap: wrap;
-
-  > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .project-card {
-    background: $white;
-    margin-bottom: $line-height-computed * 2;
-  }
 
   h3 {
     margin-top: 0;
@@ -770,13 +758,13 @@ $labelheight:     22px;
     }
   }
 
-  .project-card,
-  .caption {
+  .project-card {
     flex-direction: column;
     display: flex;
-    flex: 1 0 auto;
     height: auto;
     position: relative;
+    background: $white;
+    margin-bottom: $line-height-computed * 2;
   }
 
   .caption {
