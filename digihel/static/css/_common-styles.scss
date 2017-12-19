@@ -583,7 +583,7 @@ $labelheight:     22px;
 //** Front page **/
 
 .container--hero {
-  background-color: $theme-secondary-dark;
+  background-color: $gray;
   background-size: auto 100%;
   background-repeat: repeat-x;
   background-position: bottom center;
@@ -611,7 +611,7 @@ $labelheight:     22px;
   }
 
   .hero-koro {
-    @include koro("pulse", $hel-fog, 100);
+    @include koro("pulse", $hel-fog, 300);
     width: 100%;
     height: $line-height-computed * 3;
     position: absolute;
