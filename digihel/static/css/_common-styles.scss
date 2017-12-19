@@ -342,7 +342,7 @@ $labelheight:     22px;
 @media screen and (min-width: $screen-lg-min) {
   .navbar .drop-search {
     @include transition(all .5s ease);
-    background-color: $theme-primary-dark;
+    background-color: $white;
     display: block;
     max-height: 0;
     overflow-y: hidden;
@@ -1651,6 +1651,11 @@ $labelheight:     22px;
 
 .search-results-item {
   border-bottom: 1px solid $theme-primary-dark;
+}
+
+.search-page-form {
+  margin: 0 auto $line-height-computed * 2 auto;
+  max-width: 480px;
 }
 
 //* Events page */
