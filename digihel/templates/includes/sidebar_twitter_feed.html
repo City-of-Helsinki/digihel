@@ -1,7 +1,7 @@
 {% load static twitter_tags %}
 {% if page.twitter_hashtag %}
 <div class="twitter-feed">
-    <img src="{% static "images/twitter.svg " %}" class="twitter-illustration">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" class="twitter-illustration"><title>twitter</title><path d="M480.63,127.06a175,175,0,0,1-50.33,13.8,88,88,0,0,0,38.53-48.46,176.7,176.7,0,0,1-55.69,21.28A87.72,87.72,0,0,0,263.78,193.6,248.84,248.84,0,0,1,83.14,102a87.75,87.75,0,0,0,27.13,117,87.66,87.66,0,0,1-39.7-11v1.09a87.74,87.74,0,0,0,70.3,85.94,88.78,88.78,0,0,1-23.09,3.07,84.13,84.13,0,0,1-16.5-1.63,87.69,87.69,0,0,0,81.86,60.87A175.85,175.85,0,0,1,74.27,394.83a186.27,186.27,0,0,1-20.91-1.2,247.75,247.75,0,0,0,134.35,39.43c161.23,0,249.37-133.55,249.37-249.37l-.29-11.35a175,175,0,0,0,43.84-45.28Z"/></svg>
     <h2>#{{ page.twitter_hashtag }}</h2>
     {% twitter_search "#"|add:page.twitter_hashtag|add:" exclude:retweets" as tweets %} {% for t in tweets|slice:":3" %}
     <div class="tweet">
