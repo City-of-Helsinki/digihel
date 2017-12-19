@@ -44,7 +44,7 @@
             <div class="theme-projects">
               {% for project in page.projects %}
               <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="project-card">
+                <div class="project-card match-height">
                   {% image project.image fill-400x300 as project_image %}
                   <a href="{% pageurl project %}"><img src="{{ project_image.url }}" class="project-thumbnail"/></a>
                   <div class="caption">
