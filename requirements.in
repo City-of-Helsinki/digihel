@@ -7,6 +7,7 @@ django-allauth
 django-helusers
 django-npm
 django-compressor-autoprefixer
+django-comments-xtd
 django-celery-results
 django-enumfields
 django-libsass

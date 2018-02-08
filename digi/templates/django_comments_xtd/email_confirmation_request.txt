@@ -1,0 +1,20 @@
+{{ comment.user_name }},
+
+Sinä tai joku sinun puolestasi on kommentoinut alla olevaa sivua.
+
+Osoite:  {{ comment.content_object.get_absolute_url }}
+
+--- Kommentti: ---
+{{ comment.comment }}
+----------------
+
+Jos et halua julkaista tätä kommenttia, jätä tämä viesti huomiotta. Julkaistaksesi kommentin klikkaa alla olevaa linkkiä.
+
+http://{{ site.domain }}{{ confirmation_url }}
+
+Jos linkin klikkaaminen ei onnistu, voit myös kopioida osoitteen selaimesi osoitekenttään.
+
+Kiitos osallistumisestasi!
+--
+Parhain terveisin,
+Digitaalinen Helsinki

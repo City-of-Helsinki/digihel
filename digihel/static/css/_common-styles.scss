@@ -102,6 +102,12 @@ img {
   }
 }
 
+.form-control {
+  &::placeholder {
+    color: rgba(#000000, .33);
+  }
+}
+
 // make space for navbar
 .page-content {
   padding-top: $navbar-height;
@@ -1219,7 +1225,6 @@ $labelheight:     22px;
 .page-footer {
   background-color: $gray-dark;
   color: $white;
-  margin-top: $line-height-computed * 2;
   min-height: 20em;
   padding: $line-height-computed * 4 0;
 

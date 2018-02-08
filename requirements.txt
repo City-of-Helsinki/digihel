@@ -20,8 +20,10 @@ defusedxml==0.5.0         # via python3-openid
 django-allauth==0.32.0
 django-appconf==1.0.2     # via django-compressor
 django-celery-results==1.0.1
+django-comments-xtd==2.0.8
 django-compressor-autoprefixer==0.1.0
 django-compressor==2.2
+django-contrib-comments==1.8.0  # via django-comments-xtd
 django-enumfields==0.9.0
 django-helusers==0.4.2
 django-libsass==0.7
@@ -30,7 +32,8 @@ django-npm==1.0.0
 django-taggit==0.22.1     # via wagtail
 django-treebeard==4.1.2   # via wagtail
 django==1.11.5
-djangorestframework==3.6.3  # via drf-oidc-auth, wagtail
+djangorestframework==3.6.3  # via django-comments-xtd, drf-oidc-auth, wagtail
+docutils==0.14            # via django-comments-xtd
 drf-oidc-auth==0.9        # via django-helusers
 elasticsearch==1.9.0
 first==2.0.1              # via pip-tools
@@ -62,7 +65,7 @@ redis==2.10.6
 requests-oauthlib==0.8.0  # via django-allauth, tweepy
 requests==2.18.4          # via django-allauth, django-helusers, pyjwkest, requests-oauthlib, tweepy, wagtail, wagtail-blog
 rjsmin==1.0.12            # via django-compressor
-six==1.10.0               # via html5lib, libsass, pip-tools, pyjwkest, tweepy
+six==1.10.0               # via django-comments-xtd, html5lib, libsass, pip-tools, pyjwkest, tweepy
 tweepy==3.5.0
 twitter-text-python==1.1.0
 unidecode==0.4.21         # via wagtail
