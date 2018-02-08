@@ -151,34 +151,34 @@ class Case(Page):
 
     # Group separated content fields in admin ui
     case_content_panel = MultiFieldPanel(
-            [
-                RichTextFieldPanel('content_objectives'),
-                RichTextFieldPanel('content_what'),
-                RichTextFieldPanel('content_how'),
-                RichTextFieldPanel('content_who'),
-                RichTextFieldPanel('content_evaluation'),
-                RichTextFieldPanel('content_materials'),
-                RichTextFieldPanel('content_pros'),
-                RichTextFieldPanel('content_cons'),
-            ],
-            heading=_('Case description'),
-            classname="collapsible"
-        )
+        [
+            RichTextFieldPanel('content_objectives'),
+            RichTextFieldPanel('content_what'),
+            RichTextFieldPanel('content_how'),
+            RichTextFieldPanel('content_who'),
+            RichTextFieldPanel('content_evaluation'),
+            RichTextFieldPanel('content_materials'),
+            RichTextFieldPanel('content_pros'),
+            RichTextFieldPanel('content_cons'),
+        ],
+        heading=_('Case description'),
+        classname="collapsible"
+    )
 
     # Group meta fields in admin ui
     case_meta_panel = MultiFieldPanel(
-            [
-                FieldPanel('school'),
-                FieldPanel('subject', classname='col6'),
-                FieldPanel('grade', classname='col6'),
-                FieldPanel('student_count', classname='col6'),
-                FieldPanel('theme', classname='col6'),
-                FieldPanel('keywords'),
-                InlinePanel('contacts', label=_('contacts')),
-            ],
-            heading=_('Case meta'),
-            classname="collapsible collapsed"
-        )
+        [
+            FieldPanel('school'),
+            FieldPanel('subject', classname='col6'),
+            FieldPanel('grade', classname='col6'),
+            FieldPanel('student_count', classname='col6'),
+            FieldPanel('theme', classname='col6'),
+            FieldPanel('keywords'),
+            InlinePanel('contacts', label=_('contacts')),
+        ],
+        heading=_('Case meta'),
+        classname="collapsible collapsed"
+    )
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
