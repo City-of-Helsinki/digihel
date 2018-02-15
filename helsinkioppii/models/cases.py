@@ -1,13 +1,20 @@
 from django.db import models
+from django.forms import model_to_dict
+from django.http import HttpResponseBadRequest, HttpResponseForbidden
+from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
+from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailadmin.edit_handlers import RichTextFieldPanel, FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
+
+from helsinkioppii.utils import get_substrings
 
 
 class CaseKeyword(TaggedItemBase):
@@ -88,7 +95,7 @@ class CaseContact(Orderable):
         )
 
 
-class Case(Page):
+class Case(RoutablePageMixin, Page):
     template = 'helsinkioppii/case.html'
 
     image = models.ForeignKey(
@@ -237,3 +244,113 @@ class Case(Page):
     def can_exist_under(cls, parent):
         from helsinkioppii.models.pages import CaseListPage
         return isinstance(parent, CaseListPage)
+
+    def _is_user_action_allowed(self, user):
+        """
+        Check that current user has permission to access frontend management
+        views for Case instance. Original creator (owner) of the Case and staff
+        users have permissions.
+        """
+        return user == self.owner or user.is_staff
+
+    def _get_relative_route_path(self, route):
+        """
+        Get a relative path of the Case instance and concatenate given route
+        to the end of it.
+
+        :param route: Route string.
+        :return: Relative path for given route.
+        """
+        return '{page_url}{route}'.format(
+            page_url=self.get_url(),
+            route=route
+        )
+
+    @property
+    def update_view_path(self):
+        """
+        Return relative path for referring the edit view of this page.
+        """
+        return self._get_relative_route_path('edit/')
+
+    def assign_values_from_form_data(self, form):
+        """
+        Updates the relevant field values from form data.
+
+        :param form: Validated CaseForm instance.
+        """
+        # Fields that require special handling before value is assigned to object.
+        special_fields = [
+            'image', 'image_title', 'new_themes', 'new_grades', 'new_subjects', 'keywords',
+        ]
+
+        for field, value in form.cleaned_data.items():
+            if field not in special_fields:
+                setattr(self, field, value)
+
+        self.keywords.clear()  # Clear old keywords.
+
+        if form.cleaned_data['image']:
+            image = Image.objects.create(
+                file=form.cleaned_data['image'],
+                title=form.cleaned_data['image_title']
+            )
+            self.image = image
+
+        new_themes = form.cleaned_data.get('new_themes')
+        if new_themes:
+            for theme in get_substrings(new_themes):
+                theme_instance, created = CaseTheme.objects.get_or_create(theme=theme)
+                self.themes.add(theme_instance)
+
+        new_grades = form.cleaned_data.get('new_grades')
+        if new_grades:
+            for grade in get_substrings(new_grades):
+                grade_instance, created = SchoolGrade.objects.get_or_create(grade=grade)
+                self.grades.add(grade_instance)
+
+        new_subjects = form.cleaned_data.get('new_subjects')
+        if new_subjects:
+            for subject in get_substrings(new_subjects):
+                subject_instance, created = SchoolSubject.objects.get_or_create(subject=subject)
+                self.subjects.add(subject_instance)
+
+        keywords = form.cleaned_data.get('keywords')
+        if keywords:
+            tag_model = CaseKeyword.tag_model()
+            for keyword in get_substrings(keywords):
+                keyword_instance, created = tag_model.objects.get_or_create(name=keyword)
+                self.keywords.add(keyword_instance)
+
+    @route(r'^edit/$')
+    def update_view(self, request):
+        if not self._is_user_action_allowed(request.user):
+            return HttpResponseForbidden()
+
+        from helsinkioppii.forms import CaseForm
+
+        if request.method == 'GET':
+            initial_values = model_to_dict(self)
+            initial_values['keywords'] = str.join('; ', [kw.name for kw in self.keywords.all()])
+            return render(request, 'helsinkioppii/edit_case.html', {
+                'page': self,
+                'draft': self.draft,
+                'form_action_url': self.update_view_path,
+                'form': CaseForm(initial=initial_values),
+            })
+
+        if request.method == 'POST':
+            form = CaseForm(request.POST, request.FILES)
+            if form.is_valid():
+                self.assign_values_from_form_data(form)
+                self.save()
+                return redirect(self.get_url())
+
+            return render(request, 'helsinkioppii/edit_case.html', {
+                'page': self,
+                'draft': self.draft,
+                'form_action_url': self.update_view_path,
+                'form': form,
+            })
+
+        return HttpResponseBadRequest()
