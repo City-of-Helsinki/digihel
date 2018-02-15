@@ -28,7 +28,7 @@
             </form>
         </div>
     </section>
-
+    
     <section class="main-section section--cases-list">
         <div class="section-content">
             <div class="container">
@@ -43,7 +43,11 @@
                                     <a href="{{ case.url }}"><img src="default.jpg" class="project-thumbnail"></a>
                                 {% endif %}
                                 <div class="caption">
-                                    <h3 class="hyphenate"><a href="{{ case.url }}">{{ case.title }}</a></h3>
+                                    <h3 class="hyphenate">
+                                        <a href="{{ case.url }}">
+                                            {{ case.title }}{% if case.draft %} <span>({% trans "draft" %})</span>{% endif %}
+                                        </a>
+                                    </h3>
                                     <p class="case-abstract">{{ case.abstract }}</p>
                                 </div>
                             </div>

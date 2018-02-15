@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags people_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags people_tags %}
 
 {% block body_class %}helsinkioppii-case-page{% endblock %}
 
@@ -18,13 +18,53 @@
 
     <section class="main-section section--case-header">
         <div class="container">
+            {% if request.user == page.owner %}
+                <div class="row">
+                    <div class="col-md-8 col-lg-7 col-md-offset-3">
+                        <div class="case-toolbox">
+                            <h4>
+                                {% if page.draft %}
+                                    {% trans "Draft" %}
+                                {% else %}
+                                    {% trans "Public" %}
+                                {% endif %}
+                            </h4>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a href="{{ page.delete_view_path }}" class="btn btn-block btn-danger">
+                                        {% trans "Delete" %}
+                                    </a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a href="{{ page.update_view_path }}" class="btn btn-block btn-default">
+                                        {% trans "Edit" %}
+                                    </a>
+                                </div>
+                                {% if page.draft %}
+                                    <div class="col-sm-4">
+                                        <a href="{{ page.publish_view_path }}" class="btn btn-block btn-info">
+                                            {% trans "Publish" %}
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="col-sm-4">
+                                        <a href="{{ page.unpublish_view_path }}" class="btn btn-block btn-info">
+                                            {% trans "Unpublish" %}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             <div class="row">
-                <div class=" col-md-8 col-lg-7 col-lg-offset-3">
+                <div class=" col-md-8 col-lg-7 col-md-offset-3">
                     <h2 class="case-section-header"><a href="#">Case</a></h2>
                 </div>
             </div>
             <div class="row">
-                <div class=" col-md-8 col-lg-7 col-lg-offset-3">
+                <div class=" col-md-8 col-lg-7 col-md-offset-3">
                     <h1 class="title hyphenate">{{ page.title }}</h1>
                 </div>
             </div>

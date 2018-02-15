@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block body_class %}helsinkioppii-case-edit-page{% endblock %}
+
+{% block content %}
+    <section class="main-section section--case-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-7 col-lg-offset-3">
+                    <h2 class="case-section-header"><a href="#">{% trans "Edit case" %}</a></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-7 col-lg-offset-3">
+                    <h1 class="title hyphenate">{{ page.title }}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-section section--content">
+        <div class="container">
+            {% include "helsinkioppii/includes/case_form.html" %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'trumbowyg/trumbowyg.min.css' %}" type="text/css" />
+{% endblock %}
+
+{% block extra_js %}
+    {% include "helsinkioppii/includes/case_form_js.html" %}
+{% endblock %}

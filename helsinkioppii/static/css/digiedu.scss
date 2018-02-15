@@ -349,3 +349,33 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     color: $black;
   }
 }
+
+.case-toolbox {
+  padding: 15px;
+  margin-bottom: 30px;
+  background: $gray-lighter;
+
+  h4 {
+    margin-top: 0;
+  }
+}
+
+.trumbowyg-box {
+  border: 2px solid $black !important;
+  margin: 0 !important;
+}
+
+.trumbowyg-editor {
+  padding: $padding-base-vertical $padding-base-horizontal !important;
+}
+
+.aside-help {
+  @media(min-width: $screen-lg-min) {
+    margin-top: 35px;
+  }
+
+  @media(max-width: $screen-md-max) {
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+}
