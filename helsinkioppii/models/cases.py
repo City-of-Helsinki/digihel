@@ -167,6 +167,25 @@ class Case(Page):
         on_delete=models.SET_NULL,
     )
 
+    # Legal
+    cc_license = models.BooleanField(
+        verbose_name=_('Creative Commons license'),
+        default=False,
+        help_text=_('I am licensing this content under Creative Commons license.')
+    )
+    photo_permission = models.BooleanField(
+        verbose_name=_('Photo permission'),
+        default=False,
+        help_text=_(
+            'I have the permission to publish the images associated to this case. I have the permission to use the '
+            'images or I have the copyright to the images. People have given permission to publish the images they '
+            'appear in.'
+        )
+    )
+
+    # Meta
+    draft = models.BooleanField(verbose_name=_('draft'), default=False)
+
     # Group separated content fields in admin ui
     case_content_panel = MultiFieldPanel(
         [
