@@ -35,7 +35,7 @@
                 <div class="cases-list">
                     {% for case in cases %}
                         <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="case-card match-height">
+                            <div class="case-card match-height {% if case.owner == request.user %}highlight{% endif %}">
                                 {% if case.image %}
                                     {% image case.image fill-400x300-c100 as case_image %}
                                     <a href="{{ case.url }}"><img src="{{ case_image.url }}" class="project-thumbnail"></a>
