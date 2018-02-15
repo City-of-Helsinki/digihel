@@ -134,6 +134,10 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   .case-card {
     background: $white;
     margin-bottom: $line-height-computed * 2;
+
+    &.highlight {
+      border: 2px solid $hel-copper;
+    }
   }
 
   h3 {
