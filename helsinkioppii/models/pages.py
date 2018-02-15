@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
-from django.http.response import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponseForbidden
+from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.query_utils import Q
+from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.wagtailcore.fields import StreamField, RichTextField
 from wagtail.wagtailcore.models import Page
@@ -88,7 +90,7 @@ class HelsinkiOppiiIndexPage(Page):
     ]
 
 
-class CaseListPage(Page):
+class CaseListPage(RoutablePageMixin, Page):
     template = 'helsinkioppii/case_list_page.html'
 
     @classmethod
@@ -172,6 +174,54 @@ class CaseListPage(Page):
             return super(CaseListPage, self).serve(request, *args, **kwargs)
         except PageOutOfRangeException:
             return HttpResponseBadRequest()
+
+    @property
+    def create_view_path(self):
+        """
+        Return relative path for referring the create view of this page.
+        """
+        return '{page_url}new/'.format(
+            page_url=self.get_url()
+        )
+
+    @route(r'^new/$')
+    def create_view(self, request):
+        if not request.user.pk:
+            # Unauthenticated users are not allowed to create new Cases.
+            return HttpResponseForbidden()
+
+        from helsinkioppii.forms import CaseForm
+
+        if request.method == 'GET':
+            return render(request, 'helsinkioppii/create_case.html', {
+                'page': self,
+                'draft': True,
+                'form_action_url': self.create_view_path,
+                'form': CaseForm()
+            })
+
+        if request.method == 'POST':
+            form = CaseForm(request.POST, request.FILES)
+            if form.is_valid():
+                case = Case()
+
+                case.assign_values_from_form_data(form)
+                case.owner = request.user
+                case.draft = True  # New cases initially created as drafts.
+
+                self.add_child(instance=case)
+
+                return redirect(case.get_url())
+
+            return render(request, 'helsinkioppii/create_case.html', {
+                'page': self,
+                'draft': True,  # New cases initially created as drafts.
+                'form_action_url': self.create_view_path,
+                'form': form,
+            })
+
+        # Only GET and POST are allowed
+        return HttpResponseBadRequest()
 
 
 class TrainingIndexPage(Page):
