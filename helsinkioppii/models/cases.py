@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
 from wagtail.wagtailadmin.edit_handlers import RichTextFieldPanel, FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtailcore.fields import RichTextField
@@ -126,6 +126,12 @@ class Case(Page):
         blank=True,
         null=True,
     )
+    themes = ParentalManyToManyField(
+        'helsinkioppii.CaseTheme',
+        verbose_name=_('themes'),
+        blank=True,
+        related_name="+"
+    )
     theme = models.ForeignKey(
         'helsinkioppii.CaseTheme',
         verbose_name=_('theme'),
@@ -134,12 +140,24 @@ class Case(Page):
         on_delete=models.SET_NULL,
     )
     keywords = ClusterTaggableManager(through=CaseKeyword, blank=True)
+    grades = ParentalManyToManyField(
+        'helsinkioppii.SchoolGrade',
+        verbose_name=_('school grades'),
+        blank=True,
+        related_name="+"
+    )
     grade = models.ForeignKey(
         'helsinkioppii.SchoolGrade',
         verbose_name=_('school grade'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
+    )
+    subjects = ParentalManyToManyField(
+        'helsinkioppii.SchoolSubject',
+        verbose_name=_('school subjects'),
+        blank=True,
+        related_name="+"
     )
     subject = models.ForeignKey(
         'helsinkioppii.SchoolSubject',

@@ -47,17 +47,23 @@
                                         <dt>Oppilaiden määrä</dt>
                                         <dd>{{ page.student_count }}</dd>
                                     {% endif %}
-                                    {% if page.theme %}
+                                    {% if page.themes %}
                                         <dt>Tyyppi</dt>
-                                        <dd>{{ page.theme }}</dd>
+                                        {% for theme in page.themes.all %}
+                                            <dd>{{ theme }}</dd>
+                                        {% endfor %}
                                     {% endif %}
-                                    {% if page.grade %}
+                                    {% if page.grades %}
                                         <dt>Luokka-aste</dt>
-                                        <dd>{{ page.grade }}</dd>
+                                        {% for grade in page.grades.all %}
+                                            <dd>{{ grade }}</dd>
+                                        {% endfor %}
                                     {% endif %}
-                                    {% if page.subject %}
+                                    {% if page.subjects %}
                                         <dt>Oppiaine</dt>
-                                        <dd>{{ page.subject }}</dd>
+                                        {% for subject in page.subjects.all %}
+                                            <dd>{{ subject }}</dd>
+                                        {% endfor %}
                                     {% endif %}
                                 </dl>
                             </div>
