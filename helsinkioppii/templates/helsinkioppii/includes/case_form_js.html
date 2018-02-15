@@ -1,0 +1,19 @@
+{% load staticfiles %}
+
+<script type="text/javascript" src="{% static 'trumbowyg/trumbowyg.min.js' %}"></script>
+<script type="text/javascript">
+    var buttons = [
+        ['viewHTML'],
+        ['strong', 'em', 'del'],
+        ['unorderedList', 'orderedList'],
+        ['removeformat']
+    ];
+
+    {% for field in form.visible_fields %}
+        {% if "content_" in field.name %}
+            $('#id_{{ field.name }}').trumbowyg({
+                btns: buttons
+            });
+        {% endif %}
+    {% endfor %}
+</script>
