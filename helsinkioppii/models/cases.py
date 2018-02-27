@@ -196,7 +196,11 @@ class Case(RoutablePageMixin, Page):
     )
 
     # Meta
-    draft = models.BooleanField(verbose_name=_('draft'), default=False)
+    draft = models.BooleanField(
+        verbose_name=_('draft'),
+        default=False,
+        help_text=_('Hidden draft flag used with frontend editing.')
+    )
 
     # Group separated content fields in admin ui
     case_content_panel = MultiFieldPanel(
@@ -215,25 +219,37 @@ class Case(RoutablePageMixin, Page):
     )
 
     # Group meta fields in admin ui
-    case_meta_panel = MultiFieldPanel(
+    sidebar_content_panel = MultiFieldPanel(
         [
             FieldPanel('school'),
-            FieldPanel('subject', classname='col6'),
-            FieldPanel('grade', classname='col6'),
+            FieldPanel('subjects', classname='col6'),
+            FieldPanel('grades', classname='col6'),
             FieldPanel('student_count', classname='col6'),
-            FieldPanel('theme', classname='col6'),
+            FieldPanel('themes', classname='col6'),
             FieldPanel('keywords'),
             InlinePanel('contacts', label=_('contacts')),
         ],
         heading=_('Case meta'),
-        classname="collapsible collapsed"
+        classname='collapsible collapsed'
+    )
+
+    deprecated_relations_panel = MultiFieldPanel(
+        [
+            FieldPanel('subject', classname='col4'),
+            FieldPanel('grade', classname='col4'),
+            FieldPanel('theme', classname='col4'),
+        ],
+        heading=_('Deprecated relationships'),
+        classname='collapsible collapsed'
     )
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         FieldPanel('abstract', classname='full'),
-        case_meta_panel,
+        sidebar_content_panel,
+        deprecated_relations_panel,
         case_content_panel,
+        FieldPanel('draft')
     ]
 
     @classmethod
