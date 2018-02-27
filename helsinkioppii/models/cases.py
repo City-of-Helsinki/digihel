@@ -139,19 +139,30 @@ class Case(RoutablePageMixin, Page):
         blank=True,
         related_name="+"
     )
-    theme = models.ForeignKey(
-        'helsinkioppii.CaseTheme',
-        verbose_name=_('theme'),
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-    )
     keywords = ClusterTaggableManager(through=CaseKeyword, blank=True)
     grades = ParentalManyToManyField(
         'helsinkioppii.SchoolGrade',
         verbose_name=_('school grades'),
         blank=True,
         related_name="+"
+    )
+    subjects = ParentalManyToManyField(
+        'helsinkioppii.SchoolSubject',
+        verbose_name=_('school subjects'),
+        blank=True,
+        related_name="+"
+    )
+
+    # Deprecated foreign key relationships
+    # TODO: Remove after a month or two (around April/May 2018). Check
+    #       that `./ manage.py update_case_m2m_with_fk_values` has been
+    #       ran in production before removing these fields.
+    subject = models.ForeignKey(
+        'helsinkioppii.SchoolSubject',
+        verbose_name=_('school subject'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
     )
     grade = models.ForeignKey(
         'helsinkioppii.SchoolGrade',
@@ -160,15 +171,9 @@ class Case(RoutablePageMixin, Page):
         null=True,
         on_delete=models.SET_NULL,
     )
-    subjects = ParentalManyToManyField(
-        'helsinkioppii.SchoolSubject',
-        verbose_name=_('school subjects'),
-        blank=True,
-        related_name="+"
-    )
-    subject = models.ForeignKey(
-        'helsinkioppii.SchoolSubject',
-        verbose_name=_('school subject'),
+    theme = models.ForeignKey(
+        'helsinkioppii.CaseTheme',
+        verbose_name=_('theme'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
