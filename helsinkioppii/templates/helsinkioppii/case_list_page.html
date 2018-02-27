@@ -28,7 +28,17 @@
             </form>
         </div>
     </section>
-    
+
+    {% if request.user.pk %}
+        <section class="main-section section--tools">
+            <div class="section-content">
+                <div class="container">
+                    <a href="{{ page.create_view_path }}" class="btn btn-block btn-default">{% trans "Create new case" %}</a>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
     <section class="main-section section--cases-list">
         <div class="section-content">
             <div class="container">
