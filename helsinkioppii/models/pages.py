@@ -108,7 +108,7 @@ class CaseListPage(RoutablePageMixin, Page):
         from helsinkioppii.forms import CaseFilterForm
 
         form = CaseFilterForm(request.GET)
-        queryset = self.get_case_queryset(form)
+        queryset = self.get_case_queryset(form, request.user.pk)
         paginated_cases = self.get_paginated_cases(request, queryset)
 
         context = super(CaseListPage, self).get_context(request, *args, **kwargs)
@@ -118,15 +118,23 @@ class CaseListPage(RoutablePageMixin, Page):
         })
         return context
 
-    def get_case_queryset(self, form):
+    def get_case_queryset(self, form, user_pk=None):
         """
         Returns Case queryset filtered by given form data.
 
         :param form: CaseFilterForm instance.
+        :param user_pk: Primary key of authenticated user.
         :return: Case queryset.
         :rtype: django.db.models.query.Queryset
         """
-        cases = Case.objects.live()
+        cases = Case.objects.live().filter(draft=False)
+
+        if user_pk:
+            # Include drafts made by current user to the case list.
+            visible_drafts = Case.objects.live().filter(draft=True, owner__pk=user_pk)
+            cases = cases.union(visible_drafts)
+
+        cases = cases.order_by('-first_published_at')
 
         if form.is_valid():
             free_text = form.cleaned_data.get('free_text')
