@@ -273,6 +273,27 @@ class Case(RoutablePageMixin, Page):
         """
         return self._get_relative_route_path('edit/')
 
+    @property
+    def publish_view_path(self):
+        """
+        Return relative path for referring the publish view of this page.
+        """
+        return self._get_relative_route_path('publish/')
+
+    @property
+    def unpublish_view_path(self):
+        """
+        Return relative path for referring the unpublish view of this page.
+        """
+        return self._get_relative_route_path('unpublish/')
+
+    @property
+    def delete_view_path(self):
+        """
+        Return relative path for referring the unpublish view of this page.
+        """
+        return self._get_relative_route_path('delete/')
+
     def assign_values_from_form_data(self, form):
         """
         Updates the relevant field values from form data.
@@ -354,3 +375,35 @@ class Case(RoutablePageMixin, Page):
             })
 
         return HttpResponseBadRequest()
+
+    @route(r'^publish/$')
+    def publish_view(self, request):
+        if not self._is_user_action_allowed(request.user):
+            return HttpResponseForbidden()
+
+        self.draft = False
+        self.save()
+
+        return redirect(self.get_url())
+
+    @route(r'^unpublish/$')
+    def unpublish_view(self, request):
+        if not self._is_user_action_allowed(request.user):
+            return HttpResponseForbidden()
+
+        self.draft = True
+        self.save()
+
+        return redirect(self.get_url())
+
+    @route(r'^delete/$')
+    def delete_view(self, request):
+        if not self._is_user_action_allowed(request.user):
+            return HttpResponseForbidden()
+
+        case_list_page = self.get_parent()
+
+        self.draft = True  # Flag the Case as draft so it's not published immediately if recovered by admin.
+        self.unpublish(commit=True)
+
+        return redirect(case_list_page.get_url())
