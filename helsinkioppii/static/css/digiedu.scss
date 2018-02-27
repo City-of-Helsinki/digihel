@@ -123,6 +123,11 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   border: 2px solid $black;
 }
 
+.section--tools {
+  padding-top: $line-height-computed;
+  background-color: $hel-silver;
+}
+
 .section--cases-list {
   padding-top: $line-height-computed * 3;
   background-color: $hel-silver;
