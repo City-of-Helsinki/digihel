@@ -129,6 +129,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="case-social-fb">
+                        {# Facebook "share" button #}
+                        <div class="fb-share-button"
+                             data-href="https://developers.facebook.com/docs/plugins/"
+                             data-layout="button"
+                             data-size="small"
+                             data-mobile-iframe="true"
+                        >
+                            <a target="_blank"
+                               href="https://www.facebook.com/sharer/sharer.php?u={{ page.full_url }}&src=sdkpreparse"
+                               class="fb-xfbml-parse-ignore"
+                            >
+                                {% trans "Share" %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="case-social-twitter">
+                        {# Twitter "tweet" button #}
+                        <a class="twitter-share-button"
+                           href="https://twitter.com/intent/tweet"
+                        >
+                            Tweet
+                        </a>
+                    </div>
                 </div>
                 <div class="content col-md-8 col-lg-7">
                     {% image page.image fill-800x600-c100 as content_image %}
@@ -160,25 +184,58 @@
                         {{ page.content_materials |safe }}
                     {% endif %}
                     <div class="row case-pros-cons">
-                      <div class="col-sm-6">
-                          {% if page.content_pros %}
-                              <div class="case-pros">
-                                  <h2 class="case-content-section-header">Plussat</h2>
-                                  {{ page.content_pros |safe }}
-                              </div>
-                          {% endif %}
-                      </div>
-                      <div class="col-sm-6">
-                          {% if page.content_cons %}
-                              <div class="case-cons">
-                                  <h2 class="case-content-section-header">Kehitettävää</h2>
-                                  {{ page.content_cons |safe }}
-                              </div>
-                          {% endif %}
-                      </div>
+                        <div class="col-sm-6">
+                            {% if page.content_pros %}
+                                <div class="case-pros">
+                                    <h2 class="case-content-section-header">Plussat</h2>
+                                    {{ page.content_pros |safe }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-6">
+                            {% if page.content_cons %}
+                                <div class="case-cons">
+                                    <h2 class="case-content-section-header">Kehitettävää</h2>
+                                    {{ page.content_cons |safe }}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_js %}
+    {# FB "share" JS snippet #}
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    {# Twitter "tweet" JS snippet #}
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
 {% endblock %}
