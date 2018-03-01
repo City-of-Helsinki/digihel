@@ -66,13 +66,13 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 
   .banner-illustration {
-
     .illustration {
       max-height: $line-height-computed * 7;
       max-width: 100%;
       margin: 0 auto;
     }
   }
+
   h3 {
     margin-top: $line-height-computed / 2;
   }
@@ -120,6 +120,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 .filter-field {
   margin-bottom: $line-height-computed;
+
   .form-control {
     &::placeholder {
       color: rgba(#000000, .33);
@@ -200,6 +201,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 .case-pros-cons {
   margin-top: $line-height-computed * 2;
+
   .case-pros {
     margin-top: $line-height-computed;
     padding-top: $line-height-computed;
@@ -212,18 +214,25 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     border-top: 3px solid $hel-suomenlinna;
   }
 }
-.case-meta {
+
+.case-meta,
+.case-links,
+.case-attachments {
   padding: $line-height-computed / 2;
   margin-top: $line-height-computed / 2;
   margin-bottom: $line-height-computed;
   border: 1px solid $hel-silver;
+
+  .sidebar-title {
+    margin-top: 0;
+    color: $hel-metro;
+  }
 
   dl dt {
     margin-bottom: 0;
   }
 
   .case-meta--basics, .case-meta--tags, .case-meta--contact {
-
     &:before {
       content: "";
       display: block;
