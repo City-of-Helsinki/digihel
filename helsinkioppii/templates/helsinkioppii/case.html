@@ -4,18 +4,6 @@
 {% block body_class %}helsinkioppii-case-page{% endblock %}
 
 {% block content %}
-    <section class="main-section section--case-hero">
-        {% image page.image fill-1920x1080-c100 as content_image %}
-        {% if content_image %}
-            <figure class="image-container container--case-hero" style="background-image: url('{{ content_image.url }}')">
-                <figcaption class="hero-caption">
-                    <span class="caption-content">{{ content_image.alt }}</span>
-                </figcaption>
-            </figure>
-        {% endif %}
-        <div class="hero-koro"></div>
-    </section>
-
     <section class="main-section section--case-header">
         <div class="container">
             {% if request.user == page.owner %}
@@ -143,6 +131,10 @@
                     </div>
                 </div>
                 <div class="content col-md-8 col-lg-7">
+                    {% image page.image fill-800x600-c100 as content_image %}
+                    {% if content_image %}
+                        <img src="{{ content_image.url }}" class="case-image" alt="{{ content_image.alt }}">
+                    {% endif %}
                     {% if page.content_objectives %}
                         <h2 class="case-content-section-header">Tavoitteet</h2>
                         {{ page.content_objectives |safe }}
