@@ -98,6 +98,12 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   padding: $line-height-computed * 5 0;
 }
 
+.section--content {
+  .title {
+    font-size: 60px;
+  }
+}
+
 .social-koro__top {
   @include koro("pulse", $white, 600);
   background-color: $theme-primary-dark;
@@ -178,9 +184,6 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 .section--case-header {
   padding: 0 0 $line-height-computed 0;
-  .title {
-    font-size: 60px;
-  }
 }
 
 .section--case-hero {
@@ -211,6 +214,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 }
 .case-meta {
   padding: $line-height-computed / 2;
+  margin-top: $line-height-computed / 2;
   margin-bottom: $line-height-computed;
   border: 1px solid $hel-silver;
 
