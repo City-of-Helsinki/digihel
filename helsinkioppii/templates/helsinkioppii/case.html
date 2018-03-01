@@ -97,34 +97,34 @@
                             </div>
                             <div class="col-md-12 col-sm-6">
                                 {% if page.keywords.all %}
-                                <dl class="case-meta--tags">
-                                    <dt>Asiasanat</dt>
-                                    <dd>
-                                        {% for keyword in page.keywords.all %}
-                                            <span class="label label-primary">{{ keyword }}</span>
-                                        {% endfor %}
-                                    </dd>
-                                </dl>
+                                    <dl class="case-meta--tags">
+                                        <dt>Asiasanat</dt>
+                                        <dd>
+                                            {% for keyword in page.keywords.all %}
+                                                <span class="label label-primary">{{ keyword }}</span>
+                                            {% endfor %}
+                                        </dd>
+                                    </dl>
                                 {% endif %}
                                 {% if page.contacts.all %}
-                                <dl class="case-meta--contact">
-                                    <dt>Lisätietoja</dt>
-                                    <dd>
-                                        <ul class="list-unstyled">
-                                        {% for contact in page.contacts.all %}
-                                        <li>
-                                            <strong>{{contact.person.get_display_name}}</strong><br/>
-                                            {% if contact.person.email %}
-                                            <div class="email"><a href="mailto:{{ person.email }}">{{ contact.person.email }}</a></div>
-                                            {% endif %}
-                                            {% if contact.person.telephone %}
-                                            <div class="telephone">{{ contact.person.telephone }}</div>
-                                            {% endif %}
-                                        </li>
-                                        {% endfor %}
-                                        </ul>
-                                    </dd>
-                                </dl>
+                                    <dl class="case-meta--contact">
+                                        <dt>Lisätietoja</dt>
+                                        <dd>
+                                            <ul class="list-unstyled">
+                                            {% for contact in page.contacts.all %}
+                                            <li>
+                                                <strong>{{contact.person.get_display_name}}</strong><br/>
+                                                {% if contact.person.email %}
+                                                <div class="email"><a href="mailto:{{ person.email }}">{{ contact.person.email }}</a></div>
+                                                {% endif %}
+                                                {% if contact.person.telephone %}
+                                                <div class="telephone">{{ contact.person.telephone }}</div>
+                                                {% endif %}
+                                            </li>
+                                            {% endfor %}
+                                            </ul>
+                                        </dd>
+                                    </dl>
                                 {% endif %}
                             </div>
                         </div>
