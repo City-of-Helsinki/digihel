@@ -15,7 +15,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 
-from helsinkioppii.utils import get_substrings
+from helsinkioppii.utils import get_substrings, humanized_range
 
 
 class CaseKeyword(TaggedItemBase):
@@ -474,6 +474,88 @@ class Case(RoutablePageMixin, Page):
                 keyword_instance, created = tag_model.objects.get_or_create(name=keyword)
                 self.keywords.add(keyword_instance)
 
+    def update_gallery_images_from_form_data(self, form):
+        """
+        Update gallery images from the data on the form.
+
+        :param form:
+        :return:
+        """
+        for image_slot in humanized_range(1, form.GALLERY_IMAGE_COUNT):
+            image_field = 'gallery_image_%s' % image_slot
+            title_field = 'gallery_image_title_%s' % image_slot
+            image = form.cleaned_data.get(image_field)
+            previous_image = CaseGalleryImage.objects.filter(slot=image_slot, case=self).first()
+            if image == False:  # Delete checkbox is checked
+                previous_image.delete()
+            elif image:
+                if previous_image:
+                    previous_image.delete()
+                image_object = Image.objects.create(
+                    file=image,
+                    title=form.cleaned_data[title_field]
+                )
+                CaseGalleryImage.objects.create(
+                    image=image_object,
+                    slot=image_slot,
+                    case=self,
+                )
+
+    def update_attachments_from_form_data(self, form):
+        """
+        Update attachments from the data on the form.
+
+        :param form:
+        :return:
+        """
+        for document_slot in humanized_range(1, form.ATTACHMENT_COUNT):
+            file_field = 'attachment_file_%s' % document_slot
+            title_field = 'attachment_title_%s' % document_slot
+            file = form.cleaned_data.get(file_field, None)
+            previous_attachment = CaseAttachment.objects.filter(slot=document_slot, case=self).first()
+            if file == False:  # Delete checkbox is checked
+                previous_attachment.delete()
+            elif file:
+                if previous_attachment:
+                    previous_attachment.delete()
+                document_object = Document.objects.create(
+                    file=file,
+                    title=form.cleaned_data[title_field]
+                )
+                CaseAttachment.objects.create(
+                    file=document_object,
+                    slot=document_slot,
+                    case=self,
+                )
+
+    def update_sidebar_links_from_form_data(self, form):
+        """
+        Update sidebar links from the data on the form.
+
+        :param form:
+        :return:
+        """
+        for link_slot in humanized_range(1, form.LINK_COUNT):
+            url_field = 'link_url_%s' % link_slot
+            text_field = 'link_text_%s' % link_slot
+            delete_field = 'delete_link_%s' % link_slot
+            url = form.cleaned_data.get(url_field, None)
+            delete = form.cleaned_data.get(delete_field, False)
+            previous_link = CaseSidebarLink.objects.filter(slot=link_slot, case=self).first()
+            if delete:
+                previous_link.delete()
+            elif url:
+                if previous_link:
+                    link = previous_link
+                else:
+                    link = CaseSidebarLink(
+                        slot=link_slot,
+                        case=self
+                    )
+                link.url = url
+                link.text = form.cleaned_data[text_field]
+                link.save()
+
     @route(r'^edit/$')
     def update_view(self, request):
         if not self._is_user_action_allowed(request.user):
@@ -496,6 +578,9 @@ class Case(RoutablePageMixin, Page):
             if form.is_valid():
                 self.assign_values_from_form_data(form)
                 self.save()
+                self.update_gallery_images_from_form_data(form)
+                self.update_attachments_from_form_data(form)
+                self.update_sidebar_links_from_form_data(form)
                 return redirect(self.get_url())
 
             return render(request, 'helsinkioppii/edit_case.html', {

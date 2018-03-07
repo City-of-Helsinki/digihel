@@ -217,7 +217,13 @@ class CaseListPage(RoutablePageMixin, Page):
                 case.owner = request.user
                 case.draft = True  # New cases initially created as drafts.
 
+                # Save case and make it a child for current CaseListPage instance.
                 self.add_child(instance=case)
+
+                # Create related objects from form data.
+                self.update_gallery_images_from_form_data(form)
+                self.update_attachments_from_form_data(form)
+                self.update_sidebar_links_from_form_data(form)
 
                 return redirect(case.get_url())
 
