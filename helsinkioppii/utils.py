@@ -34,3 +34,20 @@ def get_substrings(string, delimiter=';', strip=True):
             substring = substring.strip()
         substrings.append(substring)
     return substrings
+
+
+def humanized_range(start, stop, step=1):
+    """
+    Return range from start to stop where stop is the last value of the range.
+
+    >>> [i for i in range(1, 5)] == [1, 2, 3, 4]
+    True
+    >>> [i for i in humanized_range(1, 5)] == [1, 2, 3, 4, 5]
+    True
+
+    :param start: Starting value of the range
+    :param stop: Last value of the range
+    :param step: Increment between values
+    :return: range
+    """
+    return range(start, stop + 1, step)
