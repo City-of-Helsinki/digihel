@@ -58,6 +58,10 @@ class CaseFilterForm(forms.Form):
 
 
 class CaseForm(forms.Form):
+    GALLERY_IMAGE_COUNT = 8
+    ATTACHMENT_COUNT = 5
+    LINK_COUNT = 5
+
     title = forms.CharField(
         label=_('Title:'),
         widget=forms.TextInput(attrs={
