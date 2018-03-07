@@ -2,12 +2,12 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from taggit.models import Tag
 
-from helsinkioppii.utils import strip_dangerous_html
 from helsinkioppii.fields import (
     get_case_form_gallery_image_fields, get_case_form_attachment_fields,
     get_case_form_link_fields, get_case_form_html_content_field
 )
 from helsinkioppii.models.cases import Case, SchoolGrade, SchoolSubject, CaseTheme
+from helsinkioppii.utils import humanized_range, strip_dangerous_html
 
 
 def get_live_case_keywords():
@@ -228,12 +228,48 @@ class CaseForm(forms.Form):
     def clean(self):
         cleaned_data = super().clean()
 
-        if cleaned_data['image'] and not cleaned_data['image_title']:
-            # image and image_title are not required. If image does
-            # exist image_title will be required.
-            self.add_error('image_title', _('Image title is required if image exists.'))
+        file_index = url_index = 0
+        title_index = text_index = 1
+        image_fields = [('image', 'image_title')]
+        attachment_fields = []
+        link_fields = []
 
-        for field in self.cleaned_data:
+        # Populate `image_fields` with all gallery image fields
+        for i in humanized_range(1, self.GALLERY_IMAGE_COUNT):
+            image_fields.append(
+                ('gallery_image_{i}'.format(i=i), 'gallery_image_title_{i}'.format(i=i))
+            )
+
+        # Populate `attachment_fields` with all attachment fields on the form
+        for i in humanized_range(1, self.ATTACHMENT_COUNT):
+            attachment_fields.append(
+                ('attachment_file_{i}'.format(i=i), 'attachment_title_{i}'.format(i=i))
+            )
+
+        for i in humanized_range(1, self.LINK_COUNT):
+            link_fields.append(
+                ('link_url_{i}'.format(i=i), 'link_text_{i}'.format(i=i))
+            )
+
+        for fields in image_fields:
+            if cleaned_data[fields[file_index]] and not cleaned_data[fields[title_index]]:
+                # image and image_title are not required. If image does
+                # exist image_title will be required.
+                self.add_error(fields[title_index], _('Title is required if image exists.'))
+
+        for fields in attachment_fields:
+            if cleaned_data[fields[file_index]] and not cleaned_data[fields[title_index]]:
+                # attachments and attachment titles are not required. If
+                # attachment does exist attachment_title will be required.
+                self.add_error(fields[title_index], _('Title is required if attachment exists.'))
+
+        for fields in link_fields:
+            if cleaned_data[fields[url_index]] and not cleaned_data[fields[text_index]]:
+                # link_url and link_text are not required. If link url does
+                # exist link_text will be required.
+                self.add_error(fields[text_index], _('Link text is required if link exists.'))
+
+        for field in cleaned_data:
             if 'content_' in field:
                 cleaned_data[field] = strip_dangerous_html(cleaned_data[field])
 
