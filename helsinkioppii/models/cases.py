@@ -431,14 +431,15 @@ class Case(RoutablePageMixin, Page):
 
         :param form: Validated CaseForm instance.
         """
-        # Fields that require special handling before value is assigned to object.
-        special_fields = [
-            'image', 'image_title', 'new_themes', 'new_grades', 'new_subjects', 'keywords',
+        # Fields that can be assigned to object without special handling.
+        simple_fields = [
+            'title', 'school', 'student_count', 'themes', 'grades', 'subjects', 'abstract',
+            'content_objectives', 'content_what', 'content_how', 'content_who', 'content_evaluation',
+            'content_materials', 'content_pros', 'content_cons', 'cc_license', 'photo_permission',
         ]
 
-        for field, value in form.cleaned_data.items():
-            if field not in special_fields:
-                setattr(self, field, value)
+        for field in simple_fields:
+            setattr(self, field, form.cleaned_data[field])
 
         self.keywords.clear()  # Clear old keywords.
 
