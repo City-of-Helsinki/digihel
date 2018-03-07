@@ -556,6 +556,28 @@ class Case(RoutablePageMixin, Page):
                 link.text = form.cleaned_data[text_field]
                 link.save()
 
+    def update_form_initial_values_with_related_model_data(self, initial_values):
+        initial_values['image'] = self.image.file
+        initial_values['image_title'] = self.image.title
+
+        for attachment in self.attachments.all():
+            file_field = 'attachment_file_%s' % attachment.slot
+            title_field = 'attachment_title_%s' % attachment.slot
+            initial_values[file_field] = attachment.file.file
+            initial_values[title_field] = attachment.file.title
+
+        for gallery_image in self.gallery_images.all():
+            image_field = 'gallery_image_%s' % gallery_image.slot
+            title_field = 'gallery_image_title_%s' % gallery_image.slot
+            initial_values[image_field] = gallery_image.image.file
+            initial_values[title_field] = gallery_image.image.title
+
+        for sidebar_link in self.sidebar_links.all():
+            url_field = 'link_url_%s' % sidebar_link.slot
+            text_field = 'link_text_%s' % sidebar_link.slot
+            initial_values[url_field] = sidebar_link.url
+            initial_values[text_field] = sidebar_link.text
+
     @route(r'^edit/$')
     def update_view(self, request):
         if not self._is_user_action_allowed(request.user):
@@ -566,6 +588,7 @@ class Case(RoutablePageMixin, Page):
         if request.method == 'GET':
             initial_values = model_to_dict(self)
             initial_values['keywords'] = str.join('; ', [kw.name for kw in self.keywords.all()])
+            self.update_form_initial_values_with_related_model_data(initial_values)
             return render(request, 'helsinkioppii/edit_case.html', {
                 'page': self,
                 'draft': self.draft,
