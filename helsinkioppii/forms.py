@@ -3,6 +3,10 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.models import Tag
 
 from helsinkioppii.utils import strip_dangerous_html
+from helsinkioppii.fields import (
+    get_case_form_gallery_image_fields, get_case_form_attachment_fields,
+    get_case_form_link_fields, get_case_form_html_content_field
+)
 from helsinkioppii.models.cases import Case, SchoolGrade, SchoolSubject, CaseTheme
 
 
@@ -50,17 +54,6 @@ class CaseFilterForm(forms.Form):
             'class': 'filter-keywordlist list-unstyled checkbox'
         }),
         required=False,
-    )
-
-
-def html_content_field(label):
-    return forms.CharField(
-        label=label,
-        widget=forms.Textarea(attrs={
-            'rows': '8'
-        }),
-        required=False,
-        strip=True,
     )
 
 
@@ -181,14 +174,38 @@ class CaseForm(forms.Form):
     )
 
     # HTML fields
-    content_objectives = html_content_field(_('Objectives:'))
-    content_what = html_content_field(_('What was done:'))
-    content_how = html_content_field(_('How it was done:'))
-    content_who = html_content_field(_('Who participated:'))
-    content_evaluation = html_content_field(_('How the learning was evaluated:'))
-    content_materials = html_content_field(_('What materials were used:'))
-    content_pros = html_content_field(_('Pros:'))
-    content_cons = html_content_field(_('Cons:'))
+    content_objectives = get_case_form_html_content_field(_('Objectives:'))
+    content_what = get_case_form_html_content_field(_('What was done:'))
+    content_how = get_case_form_html_content_field(_('How it was done:'))
+    content_who = get_case_form_html_content_field(_('Who participated:'))
+    content_evaluation = get_case_form_html_content_field(_('How the learning was evaluated:'))
+    content_materials = get_case_form_html_content_field(_('What materials were used:'))
+    content_pros = get_case_form_html_content_field(_('Pros:'))
+    content_cons = get_case_form_html_content_field(_('Cons:'))
+
+    # Image gallery fields
+    gallery_image_1, gallery_image_title_1 = get_case_form_gallery_image_fields(_('1.'))
+    gallery_image_2, gallery_image_title_2 = get_case_form_gallery_image_fields(_('2.'))
+    gallery_image_3, gallery_image_title_3 = get_case_form_gallery_image_fields(_('3.'))
+    gallery_image_4, gallery_image_title_4 = get_case_form_gallery_image_fields(_('4.'))
+    gallery_image_5, gallery_image_title_5 = get_case_form_gallery_image_fields(_('5.'))
+    gallery_image_6, gallery_image_title_6 = get_case_form_gallery_image_fields(_('6.'))
+    gallery_image_7, gallery_image_title_7 = get_case_form_gallery_image_fields(_('7.'))
+    gallery_image_8, gallery_image_title_8 = get_case_form_gallery_image_fields(_('8.'))
+
+    # Attachment fields
+    attachment_file_1, attachment_title_1 = get_case_form_attachment_fields(_('1.'))
+    attachment_file_2, attachment_title_2 = get_case_form_attachment_fields(_('2.'))
+    attachment_file_3, attachment_title_3 = get_case_form_attachment_fields(_('3.'))
+    attachment_file_4, attachment_title_4 = get_case_form_attachment_fields(_('4.'))
+    attachment_file_5, attachment_title_5 = get_case_form_attachment_fields(_('5.'))
+
+    # Sidebar link fields
+    link_url_1, link_text_1, delete_link_1 = get_case_form_link_fields(_('1.'))
+    link_url_2, link_text_2, delete_link_2 = get_case_form_link_fields(_('2.'))
+    link_url_3, link_text_3, delete_link_3 = get_case_form_link_fields(_('3.'))
+    link_url_4, link_text_4, delete_link_4 = get_case_form_link_fields(_('4.'))
+    link_url_5, link_text_5, delete_link_5 = get_case_form_link_fields(_('5.'))
 
     # Legal
     cc_license = forms.BooleanField(
