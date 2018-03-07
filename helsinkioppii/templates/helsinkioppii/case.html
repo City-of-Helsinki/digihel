@@ -148,14 +148,30 @@
                             Tweet
                         </a>
                     </div>
-                    <div class="case-links">
-                        <h4 class="sidebar-title">{% trans "Links" %}</h4>
-                        TODO
-                    </div>
-                    <div class="case-attachments">
-                        <h4 class="sidebar-title">{% trans "Attachments" %}</h4>
-                        TODO
-                    </div>
+                    {% if page.sidebar_links.exists %}
+                        <div class="case-links">
+                            <h4 class="sidebar-title">{% trans "Links" %}</h4>
+                            <ul class="reference-list">
+                                {% for link in page.sidebar_links.all %}
+                                    <li>
+                                        <a href="{{ link.url }}">{{ link.text }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if page.attachments.exists %}
+                        <div class="case-attachments">
+                            <h4 class="sidebar-title">{% trans "Attachments" %}</h4>
+                            <ul class="reference-list">
+                                {% for attachment in page.attachments.all %}
+                                    <li>
+                                        <a href="{{ attachment.file.url }}">{{ attachment.file.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="content col-md-8 col-lg-7">
                     <h1 class="title hyphenate">{{ page.title }}</h1>

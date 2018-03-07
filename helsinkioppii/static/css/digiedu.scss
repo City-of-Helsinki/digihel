@@ -241,12 +241,26 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
       margin-bottom: 12px;
     }
   }
+
+  ul.reference-list {
+    list-style-type: "\25B6"; // Right-pointing triangle
+    padding: 0;
+
+    li {
+      margin-left: 10px;
+      padding-left: 5px;
+    }
+  }
 }
 
 .case-social-fb,
 .case-social-twitter {
-  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 10px;
+}
+
+.case-social-twitter {
+  margin-bottom: 19px; // 24px offset by the "natural" padding of the button
 }
 
 .container--case-hero {
