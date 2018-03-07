@@ -10,6 +10,7 @@ from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailadmin.edit_handlers import RichTextFieldPanel, FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtaildocs.models import Document
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
@@ -91,6 +92,115 @@ class CaseContact(Orderable):
     def __str__(self):
         return '{person} as the contact of case {case}'.format(
             person=self.person,
+            case=self.case
+        )
+
+
+@register_snippet
+class CaseGalleryImage(models.Model):
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Image'),
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+    slot = models.PositiveSmallIntegerField(
+        verbose_name=_('Gallery image ordinal'),
+        null=False,
+        blank=False,
+        help_text=_('One of the eight gallery image slots the images takes up from a Case.')
+    )
+    case = models.ForeignKey(
+        'helsinkioppii.Case',
+        verbose_name=_('Case'),
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name='gallery_images',
+    )
+
+    class Meta:
+        ordering = ['slot']
+
+    def __str__(self):
+        return 'Gallery image in slot {slot} for case {case}'.format(
+            slot=self.slot,
+            case=self.case
+        )
+
+
+@register_snippet
+class CaseAttachment(models.Model):
+    file = models.ForeignKey(
+        'wagtaildocs.Document',
+        verbose_name=_('file'),
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+    slot = models.PositiveSmallIntegerField(
+        verbose_name=_('Attachment ordinal'),
+        null=False,
+        blank=False,
+        help_text=_('One of the five document slots the attachment takes up from a Case.')
+    )
+    case = models.ForeignKey(
+        'helsinkioppii.Case',
+        verbose_name=_('Case'),
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name='attachments',
+    )
+
+    class Meta:
+        ordering = ['slot']
+
+    def __str__(self):
+        return 'Attachment in slot {slot} for case {case}'.format(
+            slot=self.slot,
+            case=self.case
+        )
+
+
+@register_snippet
+class CaseSidebarLink(models.Model):
+    url = models.URLField(
+        verbose_name=_('Link URL'),
+        blank=False,
+        null=False,
+        max_length=512,
+    )
+    text = models.CharField(
+        verbose_name=_('Link text'),
+        blank=False,
+        null=False,
+        max_length=256,
+    )
+    slot = models.PositiveSmallIntegerField(
+        verbose_name=_('Link ordinal'),
+        null=False,
+        blank=False,
+        help_text=_('One of the five link slots the link takes up from a Case.')
+    )
+    case = models.ForeignKey(
+        'helsinkioppii.Case',
+        verbose_name=_('Case'),
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name='sidebar_links',
+    )
+
+    class Meta:
+        ordering = ['slot']
+
+    def __str__(self):
+        return 'Sidebar link in slot {slot} for case {case}'.format(
+            slot=self.slot,
             case=self.case
         )
 
