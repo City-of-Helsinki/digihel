@@ -1,6 +1,8 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from helsinkioppii.widgets import HelClearableFileInput, HelClearableImageInput
+
 
 def get_case_form_html_content_field(label):
     """
@@ -22,6 +24,7 @@ def get_case_form_gallery_image_fields(label_ordinal):
     """
     image_field = forms.ImageField(
         label=_('%s gallery image:') % label_ordinal,
+        widget=HelClearableImageInput(),
         required=False,
     )
     title_field = forms.CharField(
@@ -41,6 +44,7 @@ def get_case_form_attachment_fields(label_ordinal):
     """
     file_field = forms.FileField(
         label=_('%s attachment:') % label_ordinal,
+        widget=HelClearableFileInput(),
         required=False,
     )
     title_field = forms.CharField(
