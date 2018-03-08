@@ -221,6 +221,16 @@
                             {% endif %}
                         </div>
                     </div>
+                    {% if page.gallery_images.exists %}
+                        <div class="row case-image-gallery">
+                            {% for gallery_image in page.gallery_images.all %}
+                                <div class="col-sm-3 col-xs-6">
+                                    {% image gallery_image.image fill-200x200-c100 as thumbnail %}
+                                    <img src="{{ thumbnail.url }}" class="img-responsive" alt="{{ gallery_image.image.title }}">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

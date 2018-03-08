@@ -550,3 +550,14 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 .navbar .drop-search > .container {
   padding: 48px;
 }
+
+.form-well {
+  background-color: $hel-silver;
+}
+
+.form-panel {
+  border-color: $hel-silver;
+  padding: $line-height-computed / 2;
+  padding-bottom: 0;
+  margin-bottom: $line-height-computed;
+}

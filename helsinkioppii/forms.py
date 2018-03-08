@@ -8,6 +8,7 @@ from helsinkioppii.fields import (
 )
 from helsinkioppii.models.cases import Case, SchoolGrade, SchoolSubject, CaseTheme
 from helsinkioppii.utils import humanized_range, strip_dangerous_html
+from helsinkioppii.widgets import HelClearableImageInput
 
 
 def get_live_case_keywords():
@@ -74,6 +75,7 @@ class CaseForm(forms.Form):
     # Image
     image = forms.ImageField(
         label=_('Image:'),
+        widget=HelClearableImageInput(),
         required=False
     )
     image_title = forms.CharField(
