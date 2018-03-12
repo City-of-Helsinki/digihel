@@ -93,6 +93,24 @@ class HelsinkiOppiiIndexPage(Page):
 class CaseListPage(RoutablePageMixin, Page):
     template = 'helsinkioppii/case_list_page.html'
 
+    hero_image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('hero image'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+    lead_text = RichTextField(
+        verbose_name=_('lead text'),
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('hero_image'),
+        FieldPanel('lead_text'),
+    ]
+
     @classmethod
     def allowed_subpage_models(cls):
         return [Case]
