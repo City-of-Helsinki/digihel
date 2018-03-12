@@ -211,7 +211,7 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 }
 
 # The amount of Cases that the Case list is paginated by.
-HELSINKI_OPPII_CASES_PER_PAGE = 15
+HELSINKI_OPPII_CASES_PER_PAGE = 12
 
 if CI:
     # Use Elasticsearch in CI environments.

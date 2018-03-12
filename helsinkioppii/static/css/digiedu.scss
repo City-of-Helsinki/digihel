@@ -113,9 +113,8 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   top: 0;
 }
 
-.section--case-filters {
-  background-color: $hel-engel;
-  padding: $line-height-computed * 2 0;
+.sidebar-case-filters form {
+  margin: $line-height-computed * 3 0;
 }
 
 .filter-field {
@@ -128,33 +127,54 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
-.filter-keywordlist {
-  display: block;
-  overflow-y: scroll;
-  max-height: $line-height-computed * 6;
-  padding: $line-height-computed / 2;
-  border: 2px solid $black;
+.filter-label {
+  text-transform: uppercase;
+  color: $hel-metro;
+
+  &.collapsible:after {
+    content: "\25B6"
+  }
+
+  &.collapsible.open:after {
+    content: "\25BC"
+  }
+
+  &.collapsible+div {
+    display: none
+  }
 }
 
-.section--tools {
-  padding-top: $line-height-computed;
-  background-color: $hel-silver;
+.case-list-hero-koro__bottom {
+  @include koro("pulse", #f5f5f5, 600);
+  background-color: transparent;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  bottom: 0;
 }
 
-.section--cases-list {
-  padding-top: $line-height-computed * 3;
-  background-color: $hel-silver;
+.case-list-lead {
+  margin-bottom: $line-height-computed;
+}
+
+.case-list-main-section {
+  background-color: #f5f5f5;
+}
+
+.pagination .active span {
+  background: $hel-metro;
 }
 
 .cases-list {
   @extend .row;
+  margin-top: $line-height-computed;
 
   .case-card {
     background: $white;
-    margin-bottom: $line-height-computed * 2;
+    margin-bottom: $line-height-computed;
 
     &.highlight {
-      border: 2px solid $hel-copper;
+      border: 2px solid $hel-metro;
     }
   }
 
@@ -177,6 +197,13 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     padding: $line-height-computed;
   }
 
+  .case-keywords {
+    .keyword {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
   img {
     min-width: 0;
     width: 100%;
