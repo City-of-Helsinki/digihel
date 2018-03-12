@@ -146,13 +146,11 @@ class CaseListPage(RoutablePageMixin, Page):
         :rtype: django.db.models.query.Queryset
         """
         cases = Case.objects.live().filter(draft=False)
+        visible_drafts = Case.objects.none()
 
         if user_pk:
             # Include drafts made by current user to the case list.
             visible_drafts = Case.objects.live().filter(draft=True, owner__pk=user_pk)
-            cases = cases.union(visible_drafts)
-
-        cases = cases.order_by('-first_published_at')
 
         if form.is_valid():
             free_text = form.cleaned_data.get('free_text')
@@ -163,14 +161,29 @@ class CaseListPage(RoutablePageMixin, Page):
             if free_text:
                 q_title = Q(title__icontains=free_text)
                 q_abstract = Q(abstract__icontains=free_text)
-                q_content = Q(content__icontains=free_text)
-                cases = cases.filter(q_title | q_abstract | q_content)
+                cases = cases.filter(q_title | q_abstract)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(q_title | q_abstract)
+
             if themes:
-                cases = cases.filter(theme__in=themes)
+                cases = cases.filter(themes__in=themes)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(themes__in=themes)
+
             if grades:
-                cases = cases.filter(grade__in=grades)
+                cases = cases.filter(grades__in=grades)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(grades__in=grades)
+
             if subjects:
-                cases = cases.filter(subject__in=subjects)
+                cases = cases.filter(subjects__in=subjects)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(subjects__in=subjects)
+
+        if visible_drafts:
+            cases = cases.union(visible_drafts)
+
+        cases = cases.order_by('-first_published_at')
 
         return cases.distinct()
 
