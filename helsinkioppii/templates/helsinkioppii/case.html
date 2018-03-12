@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n wagtailcore_tags wagtailimages_tags people_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags people_tags staticfiles %}
 
 {% block body_class %}helsinkioppii-case-page{% endblock %}
 
@@ -226,7 +226,9 @@
                             {% for gallery_image in page.gallery_images.all %}
                                 <div class="col-sm-3 col-xs-6">
                                     {% image gallery_image.image fill-200x200-c100 as thumbnail %}
-                                    <img src="{{ thumbnail.url }}" class="img-responsive" alt="{{ gallery_image.image.title }}">
+                                    <a href="{{ gallery_image.image.file.url }}" class="gallery-item">
+                                        <img src="{{ thumbnail.url }}" class="img-responsive" alt="{{ gallery_image.image.title }}">
+                                    </a>
                                 </div>
                             {% endfor %}
                         </div>
@@ -237,7 +239,22 @@
     </section>
 {% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'magnific-popup/magnific-popup.css' %}">
+{% endblock %}
+
 {% block extra_js %}
+    {# Magnific-popup #}
+    <script type="text/javascript" src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <script>
+        $('.gallery-item').magnificPopup({
+            type: 'image',
+            gallery: {
+                enabled: true,
+            },
+        });
+    </script>
+
     {# FB "share" JS snippet #}
     <div id="fb-root"></div>
     <script>
