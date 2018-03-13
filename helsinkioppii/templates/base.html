@@ -17,6 +17,7 @@
 {% block main_css %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "css/digiedu.scss" %}"/>
+        <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
     {% endcompress %}
 {% endblock main_css %}
 
@@ -29,19 +30,32 @@
                  aria-hidden="true"
             >
         </a>
+
+        <address>
+            Helsingin kaupunki<br/>
+            Kasvatus ja koulutus<br/>
+            Töysänkatu 2D (PL 3000)<br/>
+            00099 Helsingin kaupunki<br/>
+        </address>
     </div>
 {% endblock footer_branding %}
 
 {% block footer_links %}
     <div class="page-footer-block">
-        <ul class="footer-links">
-            <li></li>
+        <p>Tältä sivulta löydät tietoa kasvatuksen ja koulutuksen digitalisaatiosta Helsingissä. Tutustu, kuinka digitalisaatio näkyy päiväkotien, koulujen ja oppilaitosten arjessa.</p>
+        <div class="footer-header">Helsinki oppii</div>
+        <ul class="footer-links list-inline">
+            <li><a href="#"><span class="fa fa-facebook-square social-icon" aria-label="Facebook"></span></a></li>
+            <li><a href="#"><span class="fa fa-instagram social-icon" aria-label="Instagram"></span> </a></li>
+            <li><a href="#"><span class="fa fa-twitter social-icon" aria-label="Twitter"></span></a></li>
+            <li><a href="#"><span class="fa fa-youtube social-icon" aria-label="Youtube"></span></a></li>
         </ul>
     </div>
 {% endblock footer_links %}
 
 {% block footer_smallprint %}
     <div class="page-footer-small-print">
+        <div class="footer-header"><a href="#">Kasvatus ja koulutus <span class="fa fa-caret-right"></span></a></div>
         <ul class="small-print-nav">
             <li>2017 Helsingin kaupunki</li>
         </ul>

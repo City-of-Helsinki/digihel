@@ -50,19 +50,7 @@
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-md-push-6 col-sm-4 col-sm-push-4">
-                    {% for section in request.site.root_page.specific.footer_link_sections %}
-                        <div class="page-footer-block">
-                            {% if section.title %}<div class="footer-header">{{ section.title }}</div>{% endif %}
-                            <ul class="footer-links">
-                            {% for link in section.links.all %}
-                                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                            {% endfor %}
-                            </ul>
-                        </div>
-                    {% endfor %}
-                    </div>
-                    <div class="col-md-3 col-md-pull-3 col-sm-4 col-sm-pull-4">
+                    <div class="col-sm-3">
                       {% block footer_branding %}
                         <div class="footer-branding footer-branding-helsinki">
                             <a href="http://www.hel.fi">
@@ -77,22 +65,18 @@
                         </div>
                       {% endblock footer_branding %}
                     </div>
-                    <div class="col-md-3 col-md-push-3 col-sm-4">
+                    <div class="col-sm-9">
                       {% block footer_links %}
                         <div class="page-footer-block">
                             <div class="footer-header">Katso myös</div>
-                            <ul class="footer-links">
-                                <li></li>
-                                <li><a href="http://www.slideshare.net/DigitalHelsinki"><span class="icon icon-linkedin-rect"></span> Slideshare</a></li>
-                                <li><a href="https://github.com/City-of-Helsinki"><span class="icon icon-github"></span> GitHub</a></li>
-                                <li><a href="https://twitter.com/search?q=%23digihelsinki"><span class="icon icon-twitter-bird"></span> #digihelsinki</a></li>
+                            <ul class="footer-links list-inline">
+                                <li><a href="http://www.slideshare.net/DigitalHelsinki"><span class="icon icon-linkedin-rect social-icon" aria-label="Slideshare"></span></a></li>
+                                <li><a href="https://github.com/City-of-Helsinki" aria-label="GitHub"><span class="icon icon-github social-icon"></span> </a></li>
+                                <li><a href="https://twitter.com/search?q=%23digihelsinki"><span class="icon icon-twitter-bird social-icon" aria-label="#digihelsinki"></span></a></li>
                             </ul>
                         </div>
                       {% endblock footer_links %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
+
                       {% block footer_smallprint %}
                         <div class="page-footer-small-print">
                             <div class="footer-header">Yhteistyössä</div>
