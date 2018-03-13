@@ -16,6 +16,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 .page-footer {
   margin-top: 0;
+  background-color: $theme-primary-dark;
 }
 
 .main-section {
@@ -38,6 +39,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 .container--hero {
   background-size: cover;
   background-position: center;
+  background-color: $gray-lighter;
 
   .edu-hero-koro {
     @include koro("storm", $white, 500);
@@ -77,13 +79,13 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 .section--highlights {
-  background-color: $hel-coat;
+  background-color: $theme-primary-dark;
   padding: $line-height-computed * 5 0;
   color: $white;
 }
 
 .highlights-koro__top {
-  @include koro("pulse", $hel-coat, 600);
+  @include koro("pulse", $theme-primary-dark, 600);
   background-color: $white;
   width: 100%;
   height: $line-height-computed * 3;
@@ -92,13 +94,13 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 .section--social-feed {
-  background-color: $hel-suomenlinna;
+  background-color: $white;
   padding: $line-height-computed * 5 0;
 }
 
 .social-koro__top {
-  @include koro("pulse", $hel-suomenlinna, 600);
-  background-color: $hel-coat;
+  @include koro("pulse", $white, 600);
+  background-color: $theme-primary-dark;
   width: 100%;
   height: $line-height-computed * 3;
   position: absolute;
