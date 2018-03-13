@@ -2,7 +2,53 @@
 {% get_site_root as site_root %}
 
 {# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
-<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+
+<div class="navbar-helsinki navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-logo navbar-brand text-hide" href="/?lang=fi">Helsinki</a>
+    </div>
+    <div class="navbar-right">
+      <button class="btn btn-default search-trigger" id="js-toggle-search" aria-label="Avaa haku" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-search hel-nav-icon"></span>
+        <span class="hidden-sm hidden-xs">Haku</span>
+      </button>
+      <!-- TODO: This is a dummy language switcher. Add functionality when languages are active -->
+      <div class="dropdown btn-group">
+        <button class="language-switcher dropdown-toggle btn btn-default" type="button" id="language-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span>
+            <span class="glyphicon glyphicon-globe hel-nav-icon"></span>
+            fi
+            <span class="caret"></span>
+          </span>
+        </button>
+        <ul role="menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="language-menu">
+          <li role="presentation" class="dropdown-item language-switcher__language active"><a href="#" role="menuitem" tabindex="-1">Suomi</a></li>
+          <li role="presentation" class="dropdown-item language-switcher__language"><a href="#" role="menuitem" tabindex="-1">Svenska</a></li>
+          <li role="presentation" class="dropdown-item language-switcher__language"><a href="#" role="menuitem" tabindex="-1">English</a></li>
+        </ul>
+      </div>
+      {% if request.user.is_authenticated %}
+        <div class="dropdown btn-group">
+          <button class="user-menu-trigger dropdown-toggle btn btn-default" type="button" id="user-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-user hel-nav-icon" aria-hidden="true"></span>
+              <span class="user-name"><span>{{ request.user.get_full_name }}</span></span><span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="user-menu">
+              <li><a href="{% url 'account_logout' %}?next={{ request.path }}">Kirjaudu ulos</a></li>
+          </ul>
+        </div>
+      {% elif 'test' in request.site.site_name %}
+         <a aria-label="Kirjaudu sisään" type="button" class="btn btn-default" href="{% url 'helsinki_login' %}?next={{ request.path }}">
+              <span class="glyphicon glyphicon-user user-nav-icon" aria-hidden="true"></span>
+              <span class="user-name hidden-sm hidden-xs"><span>Kirjaudu</span></span>
+          </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<nav class="navbar-primary navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -21,9 +67,6 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="hidden-lg mobile-search">
-                    {% include 'includes/navbar-search.html' %}
-                </li>
                 {% for menuitem in menuitems %}
                     <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
                         {% if menuitem.show_dropdown %}
@@ -36,29 +79,6 @@
                         {% endif %}
                     </li>
                 {% endfor %}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="visible-lg">
-                    <a href="#" id="js-toggle-search" class="animate" aria-label="Avaa haku">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </li>
-                {% if request.user.is_authenticated %}
-                    <li class="dropdown menuitem-login">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            {{ request.user.get_full_name }}<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{% url 'account_logout' %}?next={{ request.path }}">Kirjaudu ulos</a></li>
-                        </ul>
-                    </li>
-                {% elif 'test' in request.site.site_name %}
-                    <li class="menuitem-login">
-                        <a href="{% url 'helsinki_login' %}?next={{ request.path }}">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kirjaudu
-                        </a>
-                    </li>
-                {% endif %}
             </ul>
         </div>
     </div>

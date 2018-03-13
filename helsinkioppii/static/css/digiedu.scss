@@ -1,5 +1,5 @@
 @import 'hel-bootstrap-3/src/sass/helsinki-variables';
-@import 'digihel/static/css/application-variables';
+@import 'application-variables';
 
 $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
@@ -9,6 +9,10 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 @import 'digihel/static/css/digihel-icons';
 @import 'digihel/static/css/common-styles';
 
+
+.page-content {
+  padding-top: 0;
+}
 
 .page-footer {
   margin-top: 0;
@@ -387,4 +391,123 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     margin-top: -10px;
     margin-bottom: 20px;
   }
+}
+
+//* Helsinki Navigation  Bar */
+
+.navbar-helsinki {
+  background-color: $theme-primary-dark;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  margin-bottom: 0;
+
+  .navbar-logo.navbar-brand {
+    @include helsinki-logo($white);
+    background-position: 15px;
+    margin-top: 12px;
+    height: 36px;
+    width: 125px;
+  }
+
+  .navbar-right {
+    float: right !important;
+  }
+
+  .navbar-header {
+    float: left !important;
+  }
+
+  .btn-group.open .dropdown-toggle {
+    box-shadow: none;
+    color: rgba($white, .75);
+  }
+
+  .btn-default {
+    border: 0;
+    color: $white;
+
+    &:active {
+      box-shadow: none;
+      background-color: $hel-metro;
+      color: $white;
+    }
+  }
+
+  .navbar-brand.text-hide {
+    color: transparent;
+
+    &:hover, &:active {
+      color: transparent;
+    }
+  }
+
+  .navbar-right {
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+
+    @media (min-width: $screen-sm-min) {
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+
+    .hel-nav-icon {
+      //font-size: 1.2em;
+      margin-right: .5em;
+    }
+
+    li > a {
+      padding: 6px;
+
+      &:hover:after {
+        border: 0;
+      }
+    }
+  }
+}
+
+.language-switcher {
+  text-transform: uppercase;
+
+  &.active > a:after{
+    display: none;
+  }
+}
+
+//* App Navigation Bar */
+
+.navbar-primary {
+  margin-bottom: 0;
+  border: 0;
+}
+
+.navbar-default .navbar-collapse {
+  border-top-color: rgba($dark-gray, .2);
+
+  .nav {
+    border-bottom-color: rgba($dark-gray, .2);
+  }
+}
+
+/* Override digi.hel early collapse */
+
+.navbar .drop-search {
+  @include transition(all .5s ease);
+  background-color: $white;
+  z-index: 20;
+  display: block;
+  max-height: 0;
+  overflow-y: hidden;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.navbar .drop-search.is-open {
+  max-height: 500px;
+  visibility: visible;
+}
+
+.navbar .drop-search > .container {
+  padding: 48px;
 }
