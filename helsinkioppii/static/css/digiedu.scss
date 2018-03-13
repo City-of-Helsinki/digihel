@@ -428,7 +428,7 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
     &:active {
       box-shadow: none;
-      background-color: $hel-metro;
+      background-color: $theme-primary-dark;
       color: $white;
     }
   }
@@ -479,6 +479,11 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 .navbar-primary {
   margin-bottom: 0;
   border: 0;
+
+  .site-title {
+    color: $theme-primary-dark;
+    font-size: 120%;
+  }
 }
 
 .navbar-default .navbar-collapse {
