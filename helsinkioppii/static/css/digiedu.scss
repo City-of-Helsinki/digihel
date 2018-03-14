@@ -268,14 +268,18 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
       margin-bottom: 12px;
     }
   }
+}
 
-  ul.reference-list {
-    list-style-type: "\25B6"; // Right-pointing triangle
-    padding: 0;
+ul.reference-list {
+  list-style-type: "\25B6"; // Right-pointing triangle
+  padding: 0;
 
-    li {
-      margin-left: 10px;
-      padding-left: 5px;
+  li {
+    margin-left: 10px;
+    padding-left: 5px;
+
+    a {
+      text-decoration: none;
     }
   }
 }
@@ -595,4 +599,20 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 section.title-section {
   margin-top: $line-height-computed * 2;
+
+  h1.page-title.text-left {
+    text-align: left;
+  }
+}
+
+.page-links,
+.attached-documents {
+  border: 3px solid $hel-silver;
+  padding: $line-height-computed / 2;
+  margin-bottom: $line-height-computed;
+
+  h3 {
+    margin-top: 0;
+    color: $hel-metro;
+  }
 }

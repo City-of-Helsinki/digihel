@@ -4,11 +4,10 @@
 {% block body_class %}template-contentpage{% endblock %}
 
 {% block content %}
-    <section class="main-section section--page-header">
+    <section class="title-section">
         <div class="container">
-            <h1 class="page-title">{{ page.title }}</h1>
+            <h1 class="page-title text-left">{{ page.title }}</h1>
         </div>
-        <div class="page-header-koro"></div>
     </section>
 
     <section class="main-section section--content">
@@ -18,7 +17,7 @@
                     {% include "content/blocks.html" with blocks=page.body only %}
                 </article>
                 <aside class="col-md-4">
-                    {% include "includes/sidebar_links_and_roles.html" %}
+                    {% include "content/includes/sidebar_links_and_roles.html" %}
                 </aside>
             </div>
         </div>
