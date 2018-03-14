@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.contrib.table_block.blocks import TableBlock
@@ -109,6 +110,24 @@ class LinkedContentPage(RelativeURLMixin, Page):
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
+
+    def page_links(self):
+        """
+        Return related internal and external page links.
+        """
+        q_page_link = Q(link_page__isnull=False)
+        q_external_link = Q(
+            link_page__isnull=True,
+            link_external__isnull=False,
+            link_document__isnull=True
+        )
+        return self.links.filter(q_page_link | q_external_link)
+
+    def documents(self):
+        """
+        Return related document links.
+        """
+        return self.links.filter(link_page__isnull=True, link_document__isnull=False)
 
 
 class LinkedContentPageRole(Orderable):
