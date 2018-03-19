@@ -66,6 +66,22 @@ section.youtube {
   }
 }
 
+section.blog-lifts {
+  padding: $line-height-computed * 5 0;
+
+  h2.blog-lift-section-title {
+    color: $hel-metro;
+    text-align: center;
+    margin-bottom: $line-height-computed * 2;
+  }
+
+  .blog-lift {
+    h4 > a {
+      text-decoration: none;
+    }
+  }
+}
+
 .section--edu-banners {
   padding: $line-height-computed * 2 0;
   position: relative;

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags static %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags helsinkioppii_tags static i18n %}
 
 {% block body_class %}helsinkioppii-index-page{% endblock %}
 
@@ -36,20 +36,30 @@
         {% endif %}
     {% endif %}
 
-    {# Banners #}
-    <section class="front-section section--edu-banners">
-        <div class="section-content">
+    {% get_index_blog_lifts as blog_lifts %}
+    {% if blog_lifts %}
+        <section class="main-section blog-lifts">
             <div class="container">
-                <h2>{{ page.banner_section_title }}</h2>
-                {{ page.banner_section_description|safe }}
+                <h2 class="blog-lift-section-title">{% trans "Recent news" %}</h2>
                 <div class="row">
-                    {% for block in page.banner_lifts %}
-                        {% include_block block %}
+                    {% for blog_post in blog_lifts %}
+                        <div class="col-sm-6 blog-lift">
+                            {% image blog_post.header_image max-768x430 as blog_image %}
+                            {% if blog_image %}
+                                <img src="{{ blog_image.url }}" class="img-responsive">
+                            {% endif %}
+                            <div>
+                                <h4><a href="{% pageurl blog_post %}">{{ blog_post.title }}</a></h4>
+                                <div class="published-at">{{ blog_post.date|date:"j.n.Y" }}</div>
+                                {{ blog_post.body|richtext|first_rich_text_paragraph|safe }}
+                                <a href="{% pageurl blog_post %}">Lue koko kirjoitus &raquo;</a>
+                            </div>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
     <section class="main-section section--highlights">
         <div class="highlights-koro__top"></div>

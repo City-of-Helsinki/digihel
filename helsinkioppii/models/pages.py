@@ -86,9 +86,9 @@ class HelsinkiOppiiIndexPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('hero_image'),
         FieldPanel('hero_content'),
-        FieldPanel('banner_section_title'),
-        FieldPanel('banner_section_description'),
-        StreamFieldPanel('banner_lifts'),
+        # FieldPanel('banner_section_title'),
+        # FieldPanel('banner_section_description'),
+        # StreamFieldPanel('banner_lifts'),
         FieldPanel('youtube_embed'),
         FieldPanel('case_section_title'),
         FieldPanel('case_section_description'),
