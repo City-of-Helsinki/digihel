@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags static %}
 
 {% block body_class %}helsinkioppii-index-page{% endblock %}
 
@@ -17,6 +17,23 @@
             </section>
             <div class="edu-hero-koro"></div>
         </div>
+    {% endif %}
+
+    {% if page.youtube_embed %}
+        {% embed page.youtube_embed as youtube_embed %}
+        {% if youtube_embed %}
+            <section class="main-section youtube">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="youtube-embed embed-responsive-16by9">
+                                {{ youtube_embed }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
     {% endif %}
 
     {# Banners #}

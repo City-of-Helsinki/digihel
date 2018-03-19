@@ -50,6 +50,22 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
+section.youtube {
+  padding-top: $line-height-computed * 5;
+}
+
+.youtube-embed {
+  position: relative;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .section--edu-banners {
   padding: $line-height-computed * 2 0;
   position: relative;

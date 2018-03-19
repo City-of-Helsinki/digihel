@@ -37,6 +37,13 @@ class HelsinkiOppiiIndexPage(Page):
         related_name='+',
     )
 
+    youtube_embed = models.URLField(
+        verbose_name=_('Youtube video embed'),
+        blank=True,
+        null=False,
+        max_length=255,
+    )
+
     # Banner section
     banner_section_title = models.CharField(
         verbose_name=_('banner section title'),
@@ -82,6 +89,7 @@ class HelsinkiOppiiIndexPage(Page):
         FieldPanel('banner_section_title'),
         FieldPanel('banner_section_description'),
         StreamFieldPanel('banner_lifts'),
+        FieldPanel('youtube_embed'),
         FieldPanel('case_section_title'),
         FieldPanel('case_section_description'),
         StreamFieldPanel('case_lifts'),
