@@ -82,7 +82,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize'
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
+    'multilang.middleware.PageLanguageMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
