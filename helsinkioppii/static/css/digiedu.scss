@@ -110,10 +110,33 @@ section.blog-lifts {
   }
 }
 
-.section--highlights {
+.section--case-lifts {
   background-color: $theme-primary-dark;
-  padding: $line-height-computed * 5 0;
+  padding-top: $line-height-computed * 5;
+  padding-bottom: $line-height-computed * 10;
   color: $white;
+
+  .case-lift {
+    background: #ffffff;
+    color: #000000;
+
+    .caption {
+      padding: $line-height-computed;
+
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.case-lift-koro__bottom {
+  @include koro("pulse", #ffffff, 600);
+  background-color: $hel-metro;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  bottom: 0;
 }
 
 .highlights-koro__top {
