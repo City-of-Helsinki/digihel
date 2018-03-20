@@ -37,6 +37,13 @@ class HelsinkiOppiiIndexPage(Page):
         related_name='+',
     )
 
+    youtube_embed = models.URLField(
+        verbose_name=_('Youtube video embed'),
+        blank=True,
+        null=False,
+        max_length=255,
+    )
+
     # Banner section
     banner_section_title = models.CharField(
         verbose_name=_('banner section title'),
@@ -79,9 +86,10 @@ class HelsinkiOppiiIndexPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('hero_image'),
         FieldPanel('hero_content'),
-        FieldPanel('banner_section_title'),
-        FieldPanel('banner_section_description'),
-        StreamFieldPanel('banner_lifts'),
+        # FieldPanel('banner_section_title'),
+        # FieldPanel('banner_section_description'),
+        # StreamFieldPanel('banner_lifts'),
+        FieldPanel('youtube_embed'),
         FieldPanel('case_section_title'),
         FieldPanel('case_section_description'),
         StreamFieldPanel('case_lifts'),
@@ -92,6 +100,24 @@ class HelsinkiOppiiIndexPage(Page):
 
 class CaseListPage(RoutablePageMixin, Page):
     template = 'helsinkioppii/case_list_page.html'
+
+    hero_image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('hero image'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+    lead_text = RichTextField(
+        verbose_name=_('lead text'),
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('hero_image'),
+        FieldPanel('lead_text'),
+    ]
 
     @classmethod
     def allowed_subpage_models(cls):
@@ -128,13 +154,11 @@ class CaseListPage(RoutablePageMixin, Page):
         :rtype: django.db.models.query.Queryset
         """
         cases = Case.objects.live().filter(draft=False)
+        visible_drafts = Case.objects.none()
 
         if user_pk:
             # Include drafts made by current user to the case list.
             visible_drafts = Case.objects.live().filter(draft=True, owner__pk=user_pk)
-            cases = cases.union(visible_drafts)
-
-        cases = cases.order_by('-first_published_at')
 
         if form.is_valid():
             free_text = form.cleaned_data.get('free_text')
@@ -145,14 +169,29 @@ class CaseListPage(RoutablePageMixin, Page):
             if free_text:
                 q_title = Q(title__icontains=free_text)
                 q_abstract = Q(abstract__icontains=free_text)
-                q_content = Q(content__icontains=free_text)
-                cases = cases.filter(q_title | q_abstract | q_content)
+                cases = cases.filter(q_title | q_abstract)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(q_title | q_abstract)
+
             if themes:
-                cases = cases.filter(theme__in=themes)
+                cases = cases.filter(themes__in=themes)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(themes__in=themes)
+
             if grades:
-                cases = cases.filter(grade__in=grades)
+                cases = cases.filter(grades__in=grades)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(grades__in=grades)
+
             if subjects:
-                cases = cases.filter(subject__in=subjects)
+                cases = cases.filter(subjects__in=subjects)
+                if visible_drafts:
+                    visible_drafts = visible_drafts.filter(subjects__in=subjects)
+
+        if visible_drafts:
+            cases = cases.union(visible_drafts)
+
+        cases = cases.order_by('-first_published_at')
 
         return cases.distinct()
 

@@ -41,12 +41,90 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   background-position: center;
   background-color: $gray-lighter;
 
+  &.index {
+    min-height: 1050px;
+
+    .hero-content {
+      padding-top: 320px;
+      color: $white;
+      font-size: 44px;
+      font-weight: bold;
+      min-height: $line-height-computed * 20;
+      position: relative;
+      text-shadow: 1px 1px 4px rgba(#000, 0.2);
+    }
+  }
+
+  .index-hero-koro__bottom {
+    @include koro("pulse", #ffffff, 600);
+    background-color: transparent;
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
+
+  &.index {
+    min-height: 1050px;
+
+    .hero-content {
+      padding-top: 320px;
+      color: $white;
+      font-size: 44px;
+      font-weight: bold;
+      min-height: $line-height-computed * 20;
+      position: relative;
+      text-shadow: 1px 1px 4px rgba(#000, 0.2);
+    }
+  }
+
+  .index-hero-koro__bottom {
+    @include koro("pulse", #ffffff, 600);
+    background-color: transparent;
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
+
   .edu-hero-koro {
     @include koro("storm", $white, 500);
     width: 100%;
     height: $line-height-computed * 3;
     position: absolute;
     bottom: 0;
+  }
+}
+
+section.youtube {
+  padding-top: $line-height-computed * 5;
+}
+
+.youtube-embed {
+  position: relative;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+section.blog-lifts {
+  padding: $line-height-computed * 5 0;
+
+  h2.blog-lift-section-title {
+    color: $hel-metro;
+    text-align: center;
+    margin-bottom: $line-height-computed * 2;
+  }
+
+  .blog-lift {
+    h4 > a {
+      text-decoration: none;
+    }
   }
 }
 
@@ -78,10 +156,33 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
-.section--highlights {
+.section--case-lifts {
   background-color: $theme-primary-dark;
-  padding: $line-height-computed * 5 0;
+  padding-top: $line-height-computed * 5;
+  padding-bottom: $line-height-computed * 10;
   color: $white;
+
+  .case-lift {
+    background: #ffffff;
+    color: #000000;
+
+    .caption {
+      padding: $line-height-computed;
+
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.case-lift-koro__bottom {
+  @include koro("pulse", #ffffff, 600);
+  background-color: $hel-metro;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  bottom: 0;
 }
 
 .highlights-koro__top {
@@ -104,18 +205,8 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
-.social-koro__top {
-  @include koro("pulse", $white, 600);
-  background-color: $theme-primary-dark;
-  width: 100%;
-  height: $line-height-computed * 3;
-  position: absolute;
-  top: 0;
-}
-
-.section--case-filters {
-  background-color: $hel-engel;
-  padding: $line-height-computed * 2 0;
+.sidebar-case-filters form {
+  margin: $line-height-computed * 3 0;
 }
 
 .filter-field {
@@ -128,33 +219,54 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
-.filter-keywordlist {
-  display: block;
-  overflow-y: scroll;
-  max-height: $line-height-computed * 6;
-  padding: $line-height-computed / 2;
-  border: 2px solid $black;
+.filter-label {
+  text-transform: uppercase;
+  color: $hel-metro;
+
+  &.collapsible:after {
+    content: "\25B6"
+  }
+
+  &.collapsible.open:after {
+    content: "\25BC"
+  }
+
+  &.collapsible+div {
+    display: none
+  }
 }
 
-.section--tools {
-  padding-top: $line-height-computed;
-  background-color: $hel-silver;
+.case-list-hero-koro__bottom {
+  @include koro("pulse", #f5f5f5, 600);
+  background-color: transparent;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  bottom: 0;
 }
 
-.section--cases-list {
-  padding-top: $line-height-computed * 3;
-  background-color: $hel-silver;
+.case-list-lead {
+  margin-bottom: $line-height-computed;
+}
+
+.case-list-main-section {
+  background-color: #f5f5f5;
+}
+
+.pagination .active span {
+  background: $hel-metro;
 }
 
 .cases-list {
   @extend .row;
+  margin-top: $line-height-computed;
 
   .case-card {
     background: $white;
-    margin-bottom: $line-height-computed * 2;
+    margin-bottom: $line-height-computed;
 
     &.highlight {
-      border: 2px solid $hel-copper;
+      border: 2px solid $hel-metro;
     }
   }
 
@@ -177,6 +289,13 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
     padding: $line-height-computed;
   }
 
+  .case-keywords {
+    .keyword {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
   img {
     min-width: 0;
     width: 100%;
@@ -241,14 +360,18 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
       margin-bottom: 12px;
     }
   }
+}
 
-  ul.reference-list {
-    list-style-type: "\25B6"; // Right-pointing triangle
-    padding: 0;
+ul.reference-list {
+  list-style-type: "\25B6"; // Right-pointing triangle
+  padding: 0;
 
-    li {
-      margin-left: 10px;
-      padding-left: 5px;
+  li {
+    margin-left: 10px;
+    padding-left: 5px;
+
+    a {
+      text-decoration: none;
     }
   }
 }
@@ -564,4 +687,24 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 
 .case-image-gallery {
   margin-top: $line-height-computed;
+}
+
+section.title-section {
+  margin-top: $line-height-computed * 2;
+
+  h1.page-title.text-left {
+    text-align: left;
+  }
+}
+
+.page-links,
+.attached-documents {
+  border: 3px solid $hel-silver;
+  padding: $line-height-computed / 2;
+  margin-bottom: $line-height-computed;
+
+  h3 {
+    margin-top: 0;
+    color: $hel-metro;
+  }
 }
