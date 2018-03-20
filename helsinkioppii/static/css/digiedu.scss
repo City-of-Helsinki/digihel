@@ -182,15 +182,6 @@ section.blog-lifts {
   }
 }
 
-.social-koro__top {
-  @include koro("pulse", $white, 600);
-  background-color: $theme-primary-dark;
-  width: 100%;
-  height: $line-height-computed * 3;
-  position: absolute;
-  top: 0;
-}
-
 .sidebar-case-filters form {
   margin: $line-height-computed * 3 0;
 }
