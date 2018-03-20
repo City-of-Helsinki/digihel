@@ -15,6 +15,7 @@ from wagtail.wagtailsearch import index
 from wagtail_svgmap.blocks import ImageMapBlock
 
 from digihel.mixins import RelativeURLMixin
+from multilang.models import TranslatablePageMixin
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -88,18 +89,20 @@ class RelatedLink(LinkFields):
         abstract = True
 
 
-class ContentPage(RelativeURLMixin, Page):
+class ContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body')
     ]
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
     search_fields = Page.search_fields + [
         index.SearchField('body')
     ]
 
 
-class LinkedContentPage(RelativeURLMixin, Page):
+class LinkedContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [
@@ -107,6 +110,8 @@ class LinkedContentPage(RelativeURLMixin, Page):
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
     ]
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]

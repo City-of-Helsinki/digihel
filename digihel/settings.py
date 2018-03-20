@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'feedback',
     'search',
     'events',
+    'multilang',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -81,7 +82,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize'
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
+    'multilang.middleware.PageLanguageMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -143,6 +146,12 @@ BROKER_URL = 'redis://localhost:6379/0'
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'fi'
+
+LANGUAGES = (
+    ('fi', 'Suomi'),
+    ('sv', 'Svenska'),
+    ('en', 'English'),
+)
 
 TIME_ZONE = 'Europe/Helsinki'
 
