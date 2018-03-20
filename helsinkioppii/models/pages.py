@@ -135,6 +135,7 @@ class CaseListPage(RoutablePageMixin, TranslatablePageMixin, Page):
         ImageChooserPanel('hero_image'),
         FieldPanel('lead_text'),
     ]
+
     promote_panels = TranslatablePageMixin.panels + Page.promote_panels
 
     @classmethod
