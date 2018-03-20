@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'feedback',
     'search',
     'events',
+    'multilang',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -143,6 +144,12 @@ BROKER_URL = 'redis://localhost:6379/0'
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'fi'
+
+LANGUAGES = (
+    ('fi', 'Suomi'),
+    ('sv', 'Svenska'),
+    ('en', 'English'),
+)
 
 TIME_ZONE = 'Europe/Helsinki'
 
