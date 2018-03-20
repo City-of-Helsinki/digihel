@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static compress %}
+{% load static compress content_tags multilang_tags %}
 
 {% block meta %}
     <meta property="og:title" content="{% block sometitle %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - {{ request.site.site_name }}">
@@ -13,13 +13,17 @@
     <meta name="twitter:card" content="https://helsinkioppii.fi{% static "images/digiedu-share-default.jpg" %}">
 {% endblock %}
 
-
 {% block main_css %}
     {% compress css %}
         <link rel="stylesheet" type="text/x-scss" href="{% static "css/digiedu.scss" %}"/>
         <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
     {% endcompress %}
 {% endblock main_css %}
+
+{% block menu %}
+    {% get_language_index_page as site_root %}
+    {% top_menu parent=site_root calling_page=self %}
+{% endblock %}
 
 {% block footer_branding %}
     <div class="footer-branding footer-branding-helsinki">
