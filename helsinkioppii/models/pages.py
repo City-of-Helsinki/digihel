@@ -15,13 +15,15 @@ from helsinkioppii.blocks.banner_lift import BannerLiftBlock
 from helsinkioppii.blocks.case_lift import CaseLiftBlock
 from helsinkioppii.blocks.training_lift import TrainingLiftBlock
 from helsinkioppii.models.cases import Case
+from multilang.models import TranslatablePageMixin
+from multilang.utils import get_available_languages
 
 
 class PageOutOfRangeException(Exception):
     pass
 
 
-class HelsinkiOppiiIndexPage(Page):
+class HelsinkiOppiiIndexPage(TranslatablePageMixin, Page):
     template = 'helsinkioppii/index.html'
 
     hero_content = RichTextField(
@@ -96,9 +98,24 @@ class HelsinkiOppiiIndexPage(Page):
         FieldPanel('social_section_title'),
         FieldPanel('social_section_description'),
     ]
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
+    def clean(self):
+        available_languages = get_available_languages()
+        if self.slug not in available_languages:
+            language_options = available_languages.join(', ')
+            raise ValueError(
+                _('Slug has to be one of the available site languages. Options: {options}').format(
+                    options=language_options
+                )
+            )
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
 
 
-class CaseListPage(RoutablePageMixin, Page):
+class CaseListPage(RoutablePageMixin, TranslatablePageMixin, Page):
     template = 'helsinkioppii/case_list_page.html'
 
     hero_image = models.ForeignKey(
@@ -118,6 +135,7 @@ class CaseListPage(RoutablePageMixin, Page):
         ImageChooserPanel('hero_image'),
         FieldPanel('lead_text'),
     ]
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
 
     @classmethod
     def allowed_subpage_models(cls):
@@ -277,7 +295,7 @@ class CaseListPage(RoutablePageMixin, Page):
         return HttpResponseBadRequest()
 
 
-class TrainingIndexPage(Page):
+class TrainingIndexPage(TranslatablePageMixin, Page):
     template = 'helsinkioppii/training_index.html'
 
     hero_content = RichTextField(
@@ -331,3 +349,5 @@ class TrainingIndexPage(Page):
         FieldPanel('training_section_description'),
         StreamFieldPanel('training_lifts'),
     ]
+
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
