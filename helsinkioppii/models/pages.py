@@ -100,6 +100,16 @@ class HelsinkiOppiiIndexPage(TranslatablePageMixin, Page):
     ]
     promote_panels = TranslatablePageMixin.panels + Page.promote_panels
 
+    @classmethod
+    def allowed_subpage_models(cls):
+        from content.models import ContentPage, LinkedContentPage
+        from blog.models import BlogIndexPage
+
+        return [
+            ContentPage, LinkedContentPage, CaseListPage,
+            TrainingIndexPage, BlogIndexPage, PageGroupPage,
+        ]
+
     def clean(self):
         available_languages = get_available_languages()
         if self.slug not in available_languages:
@@ -369,6 +379,12 @@ class PageGroupPage(TranslatablePageMixin, Page):
         PageChooserPanel('redirect_to'),
     ]
     promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
+    @classmethod
+    def allowed_subpage_models(cls):
+        from content.models import ContentPage, LinkedContentPage
+
+        return [ContentPage, LinkedContentPage]
 
     def serve(self, request, *args, **kwargs):
         if self.redirect_to:

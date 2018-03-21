@@ -101,6 +101,10 @@ class ContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
         index.SearchField('body')
     ]
 
+    @classmethod
+    def allowed_subpage_models(cls):
+        return [LinkedContentPage, ContentPage]
+
 
 class LinkedContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     body = StreamField(content_blocks)
@@ -115,6 +119,10 @@ class LinkedContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
+
+    @classmethod
+    def allowed_subpage_models(cls):
+        return [LinkedContentPage, ContentPage]
 
     def page_links(self):
         """
