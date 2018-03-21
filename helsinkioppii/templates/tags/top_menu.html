@@ -13,18 +13,17 @@
                 <span class="glyphicon glyphicon-search hel-nav-icon"></span>
                 <span class="hidden-sm hidden-xs">Haku</span>
             </button>
-            <!-- TODO: This is a dummy language switcher. Add functionality when languages are active -->
             <div class="dropdown btn-group">
                 <button class="language-switcher dropdown-toggle btn btn-default" type="button" id="language-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="glyphicon glyphicon-globe hel-nav-icon">
-                        {% get_page_language_code %}
-                        <span class="caret"></span>
-                    </span>
+                    <span class="glyphicon glyphicon-globe hel-nav-icon"></span>
+                    {% get_page_language_code %}
+                    <span class="caret"></span>
                 </button>
                 <ul role="menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="language-menu">
                     {% get_language_options as language_choices %}
                     {% for language in language_choices %}
-                        <li role="presentation" class="dropdown-item language-switcher__language active">
+                        <!-- TODO: add active class to current language in the list -->
+                        <li role="presentation" class="dropdown-item language-switcher__language">
                             <a href="{% get_page_language_link calling_page language.language_code %}" role="menuitem" tabindex="-1">
                                 {{ language.verbose_name }}
                             </a>
