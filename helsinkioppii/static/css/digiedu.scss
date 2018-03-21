@@ -206,6 +206,22 @@ section.blog-lifts {
   }
 }
 
+.page-content.blog-post-container {
+  margin-top: $line-height-computed * 3;
+}
+
+.blog-section-header {
+  border-bottom-color: $theme-primary-dark;
+}
+
+.blog-index .blog-post-item .blog-post-link {
+  border-top-color: $theme-primary-dark;
+}
+
+.blog-body {
+  margin-bottom: $line-height-computed * 3;
+}
+
 .sidebar-case-filters form {
   margin: $line-height-computed * 3 0;
 }
@@ -265,6 +281,7 @@ section.blog-lifts {
   .case-card {
     background: $white;
     margin-bottom: $line-height-computed;
+    border-top: 8px solid $theme-primary-dark;
 
     &.highlight {
       border: 2px solid $theme-primary-dark;
