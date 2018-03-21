@@ -113,7 +113,7 @@ section.blog-lifts {
   padding: $line-height-computed * 5 0;
 
   h2.blog-lift-section-title {
-    color: $hel-metro;
+    color: $theme-primary-dark;
     text-align: center;
     margin-bottom: $line-height-computed * 2;
   }
@@ -179,7 +179,7 @@ section.blog-lifts {
 
 .case-lift-koro__bottom {
   @include koro("pulse", #ffffff, 600);
-  background-color: $hel-metro;
+  background-color: $theme-primary-dark;
   width: 100%;
   height: $line-height-computed * 3;
   position: absolute;
@@ -222,7 +222,7 @@ section.blog-lifts {
 
 .filter-label {
   text-transform: uppercase;
-  color: $hel-metro;
+  color: $theme-primary-dark;
 
   &.collapsible:after {
     content: "\25B6"
@@ -255,7 +255,7 @@ section.blog-lifts {
 }
 
 .pagination .active span {
-  background: $hel-metro;
+  background: $theme-primary-dark;
 }
 
 .cases-list {
@@ -267,7 +267,7 @@ section.blog-lifts {
     margin-bottom: $line-height-computed;
 
     &.highlight {
-      border: 2px solid $hel-metro;
+      border: 2px solid $theme-primary-dark;
     }
   }
 
@@ -304,7 +304,7 @@ section.blog-lifts {
 }
 
 .section--case-header {
-  padding: 0 0 $line-height-computed 0;
+  padding: $line-height-computed * 3 0 $line-height-computed 0;
 }
 
 .section--case-hero {
@@ -345,7 +345,7 @@ section.blog-lifts {
 
   .sidebar-title {
     margin-top: 0;
-    color: $hel-metro;
+    color: $theme-primary-dark;
   }
 
   dl dt {
@@ -356,7 +356,7 @@ section.blog-lifts {
     &:before {
       content: "";
       display: block;
-      border-top: 3px solid $hel-copper;
+      border-top: 3px solid $theme-primary-dark;
       width: 24px;
       margin-bottom: 12px;
     }
@@ -413,7 +413,7 @@ ul.reference-list {
 }
 
 .case-section-header {
-  border-bottom: 4px solid $hel-copper;
+  border-bottom: 4px solid $theme-primary-dark;
   float: left;
   font-size: 24px;
   margin-bottom: 1em;
@@ -707,6 +707,6 @@ section.title-section {
 
   h3 {
     margin-top: 0;
-    color: $hel-metro;
+    color: $theme-primary-dark;
   }
 }
