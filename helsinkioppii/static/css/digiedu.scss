@@ -36,6 +36,20 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
+.label-primary, .blog-post-tags .label-info {
+  background-color: $white;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $hel-silver;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
 .container--hero {
   background-size: cover;
   background-position: center;
@@ -146,6 +160,10 @@ section.blog-lifts {
 
       h3 {
         margin-top: 0;
+      }
+
+      a {
+        text-decoration: none;
       }
     }
   }
