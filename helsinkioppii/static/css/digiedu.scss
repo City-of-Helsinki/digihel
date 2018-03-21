@@ -42,33 +42,8 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   background-color: $gray-lighter;
 
   &.index {
-    min-height: 1050px;
-
     .hero-content {
-      padding-top: 320px;
-      color: $white;
-      font-size: 44px;
-      font-weight: bold;
-      min-height: $line-height-computed * 20;
-      position: relative;
-      text-shadow: 1px 1px 4px rgba(#000, 0.2);
-    }
-  }
-
-  .index-hero-koro__bottom {
-    @include koro("pulse", #ffffff, 600);
-    background-color: transparent;
-    width: 100%;
-    height: $line-height-computed * 3;
-    position: absolute;
-    bottom: 0;
-  }
-
-  &.index {
-    min-height: 1050px;
-
-    .hero-content {
-      padding-top: 320px;
+      padding-top: 160px;
       color: $white;
       font-size: 44px;
       font-weight: bold;
@@ -428,6 +403,7 @@ ul.reference-list {
 
 .section--training-hero {
   height: $line-height-computed * 16;
+
   .hero-content {
     padding: $line-height-computed * 2;
     text-align: center;
