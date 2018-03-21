@@ -10,6 +10,8 @@ from wagtail.wagtailcore.blocks.base import BoundBlock
 from wagtail.wagtailcore.rich_text import RichText
 from wagtail.wagtailcore.models import Site
 
+from helsinkioppii.models.pages import PageGroupPage
+
 register = template.Library()
 
 
@@ -55,8 +57,15 @@ def top_menu(context, parent, calling_page=None):
 def top_menu_children(context, parent):
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.live().in_menu()
+
+    include_parent_link = True
+    if isinstance(parent.specific, PageGroupPage):
+        if parent.specific.redirect_to:
+            include_parent_link = False
+
     return {
         'parent': parent,
+        'include_parent_link': include_parent_link,
         'menuitems_children': menuitems_children,
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
