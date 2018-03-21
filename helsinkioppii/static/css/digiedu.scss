@@ -85,6 +85,14 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   }
 }
 
+.container--hero__sub {
+  min-height: $line-height-computed * 16;
+
+  @media screen and (min-width: $screen-sm-min) {
+    min-height: $line-height-computed * 20;
+  }
+}
+
 section.youtube {
   padding-top: $line-height-computed * 5;
 }
