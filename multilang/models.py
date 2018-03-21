@@ -22,6 +22,12 @@ class LanguageRedirectionPage(Page):
 
         return HttpResponseRedirect(url)
 
+    @classmethod
+    def allowed_subpage_models(cls):
+        from helsinkioppii.models.pages import HelsinkiOppiiIndexPage
+
+        return [HelsinkiOppiiIndexPage]
+
 
 class TranslatablePageMixin(models.Model):
     swedish_link = models.ForeignKey(
