@@ -279,9 +279,9 @@ class CaseListPage(RoutablePageMixin, TranslatablePageMixin, Page):
                 self.add_child(instance=case)
 
                 # Create related objects from form data.
-                self.update_gallery_images_from_form_data(form)
-                self.update_attachments_from_form_data(form)
-                self.update_sidebar_links_from_form_data(form)
+                case.update_gallery_images_from_form_data(form)
+                case.update_attachments_from_form_data(form)
+                case.update_sidebar_links_from_form_data(form)
 
                 return redirect(case.get_url())
 
