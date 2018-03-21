@@ -6,7 +6,7 @@
 {% block content %}
     {% image page.hero_image fill-1920x1080-c100 as hero_image %}
     {% if hero_image %}
-        <div class="container-fluid header-container container--hero" style="background-image: url('{{ hero_image.url }}')">
+        <div class="container-fluid header-container container--hero container--hero__sub" style="background-image: url('{{ hero_image.url }}')">
             <div class="case-list-hero-koro__bottom"></div>
         </div>
     {% endif %}
@@ -45,8 +45,8 @@
                         </div>
 
                         {% if request.user.pk %}
-                            <div>
-                                <a href="{{ page.create_view_path }}" class="btn btn-block btn-default">{% trans "Create new case" %}</a>
+                            <div class="text-center">
+                                <a href="{{ page.create_view_path }}" class="btn btn-default">{% trans "Create new case" %}</a>
                             </div>
                         {% endif %}
 
