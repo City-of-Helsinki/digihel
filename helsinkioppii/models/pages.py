@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
-from django.http import HttpResponseBadRequest, HttpResponseForbidden
+from django.http import HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.query_utils import Q
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
-from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel, FieldPanel, PageChooserPanel
 from wagtail.wagtailcore.fields import StreamField, RichTextField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
@@ -352,3 +352,25 @@ class TrainingIndexPage(TranslatablePageMixin, Page):
     ]
 
     promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
+
+class PageGroupPage(TranslatablePageMixin, Page):
+    template = 'helsinkioppii/page_group_page.html'
+
+    redirect_to = models.ForeignKey(
+        Page,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    content_panels = Page.content_panels + [
+        PageChooserPanel('redirect_to'),
+    ]
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
+    def serve(self, request, *args, **kwargs):
+        if self.redirect_to:
+            return HttpResponseRedirect(self.redirect_to.url)
+        return super().serve(request, *args, **kwargs)
