@@ -43,13 +43,14 @@
                 <div class="row">
                     {% for blog_post in blog_lifts %}
                         <div class="col-sm-6 blog-lift">
-                            {% image blog_post.header_image max-768x430 as blog_image %}
+                            {% image blog_post.header_image fill-768x432 as blog_image %}
                             {% if blog_image %}
                                 <img src="{{ blog_image.url }}" class="img-responsive">
                             {% endif %}
                             <div>
                                 <h4><a href="{% pageurl blog_post %}">{{ blog_post.title }}</a></h4>
                                 <div class="published-at">{{ blog_post.date|date:"j.n.Y" }}</div>
+                                <!-- TODO: strip formatting on first p, safe does not work here: -->
                                 {{ blog_post.body|richtext|first_rich_text_paragraph|safe }}
                                 <a href="{% pageurl blog_post %}">Lue koko kirjoitus &raquo;</a>
                             </div>
