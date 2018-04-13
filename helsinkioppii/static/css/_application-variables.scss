@@ -1,0 +1,35 @@
+//
+// Application specific visual customisation
+// --------------------------------------------------
+
+$theme-primary-dark:    $hel-metro;
+$theme-primary-light:   $hel-engel;
+
+$theme-secondary-dark:  $hel-brick !default;
+$theme-secondary-light: $hel-fog !default;
+
+$theme-highlight-dark:  $hel-bus !default;
+$theme-highlight-light: $hel-copper !default;
+
+// Non brand colors
+
+$white:         #ffffff;
+$light-gray:    #ebedf1;
+$dark-gray:     #525a65;
+$medium-gray:   #abb2bd;
+$black:         #231f20;
+
+$theme-success:       $hel-tram;
+$theme-success-light: $hel-copper;
+$theme-info:          $hel-coat;
+$theme-info-light:    $hel-fog;
+$theme-warning:       $hel-summer;
+$theme-warning-light: $hel-engel;
+$theme-danger:        $hel-metro;
+$theme-danger-light:  $hel-suomenlinna;
+
+$icon-font-path: "../fonts/bootstrap/";
+
+
+$font-family-sans-serif:  $hel-grotesk;
+$font-family-serif:       'Noto Serif', serif;

@@ -1,0 +1,38 @@
+{% load i18n %}
+{% if page.links.all %}
+    <div class="page-links">
+        <h3>{% trans "Links" %}</h3>
+        <ul class="reference-list">
+            {% for link in page.page_links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="attached-documents">
+        <h3>{% trans "Attachments" %}</h3>
+        <ul class="reference-list">
+            {% for attachment in page.documents %}
+                <li><a href="{{ attachment.url }}">{{ attachment.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if page.roles.all %}
+    <div class="contacts-list">
+        <h3>{% trans "Contact information" %}</h3>
+        <ul class="list-unstyled">
+            {% for role in page.roles.all %}
+                <li class="list-unstyled">
+                    <div>{{ role.person.get_display_name }}</div>
+                    <span>{{ role.role }}</span>
+                    {% if role.person.email %}
+                        <div class="email"><a href="mailto:{{ person.email }}">{{ role.person.email }}</a></div>
+                    {% endif %}
+                    {% if role.person.telephone %}
+                        <div class="telephone"><a href="tel:{{ role.person.telephone }}">{{ role.person.telephone }}</a></div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

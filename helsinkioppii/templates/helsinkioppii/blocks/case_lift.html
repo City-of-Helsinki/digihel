@@ -1,0 +1,21 @@
+{% load wagtailimages_tags i18n %}
+
+<div class="col-sm-4">
+    <div class="case-lift match-height">
+        <div class="image">
+            {% image block.case.image fill-700x500-c100 as case_image %}
+            <a class="theme-thumbnail link-unstyled" href="{{ block.case.url }}"><img src="{{ case_image.url }}"></a>
+        </div>
+        <div class="caption">
+            <h3 class="hyphenate">
+                <a href="{{ block.case.url }}">{{ block.case.title }}</a>
+            </h3>
+            <p class="case-abstract">{{ block.case.abstract }}</p>
+            <div class="case-keywords">
+                {% for keyword in block.case.keywords.all %}
+                    <span class="label label-primary keyword">{{ keyword }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

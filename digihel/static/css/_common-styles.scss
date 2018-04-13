@@ -1223,8 +1223,18 @@ $labelheight:     22px;
   min-height: 20em;
   padding: $line-height-computed * 4 0;
 
+  a {
+    color: $white;
+    text-decoration: none;
+
+    &:hover, &:active {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
   .page-footer-block {
-    margin-bottom: $line-height-computed * 3;
+    margin-bottom: $line-height-computed * 2;
     @media (max-width: $screen-xs-max) {
       text-align: center;
     }
@@ -1246,9 +1256,9 @@ $labelheight:     22px;
       margin-right: .25em;;
     }
 
-    a {
-      color: $white;
-      text-decoration: none;
+    .social-icon {
+      font-size: 2em;
+      margin-right: .25em;
     }
   }
 
@@ -1265,70 +1275,60 @@ $labelheight:     22px;
   }
 
   .partner-logo {
-    margin: 1em 0 2em 2em;
+    margin: 1em 2em 2em 0;
     width: 5em;
     @media (max-width: $screen-xs-max) {
       margin-left: auto;
       margin-right: auto;
     }
   }
-
-  .heldev-logo {
-    margin: 0 auto 1em;
-    max-width: 5em;
-  }
 }
 
 .footer-branding {
   margin-bottom: $line-height-computed * 3;
-  text-align: center;
 
   .footer-logo {
-    margin: 0 auto 1em;
-    max-width: 8em;
+    margin: 0 0 3em;
+    max-width: 10em;
   }
 
   .footer-logo-heldev {
-    max-width: 4em;
+    margin-bottom: 1em;
+    max-width: 6em;
   }
 
   a {
-    color: $white;
     display: block;
     text-decoration: none;
-
-    &:hover {
-      color: $white;
-      text-decoration: none;
-    }
   }
 
   .footer-branding-text {
     @extend small;
     margin-bottom: 1.5em;
   }
+
+  @media screen and (max-width: $screen-xs-max) {
+    text-align: center;
+    .footer-logo {
+      margin: 1em auto;
+    }
+  }
 }
 
 .page-footer-small-print {
   margin-top: 2em;
-  text-align: right;
-  //border-top: 1px solid #FFF;
 
   .small-print-nav {
     @extend .list-inline;
-    color: $gray-lighter;
+    color: $white;
     font-size: 14px;
-
-    a {
-      color: $gray-lighter;
-    }
+    margin-left: 0;
 
     li {
       padding: 0;
     }
 
     li::before {
-      color: $gray-light;
       content: ' | ';
     }
 
@@ -1336,7 +1336,7 @@ $labelheight:     22px;
       content: none;
     }
 
-    @media screen and (max-width: $screen-sm-max) {
+    @media screen and (max-width: $screen-xs-max) {
       text-align: center;
     }
   }

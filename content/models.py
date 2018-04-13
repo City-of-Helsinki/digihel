@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.contrib.table_block.blocks import TableBlock
@@ -14,6 +15,7 @@ from wagtail.wagtailsearch import index
 from wagtail_svgmap.blocks import ImageMapBlock
 
 from digihel.mixins import RelativeURLMixin
+from multilang.models import TranslatablePageMixin
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -87,18 +89,24 @@ class RelatedLink(LinkFields):
         abstract = True
 
 
-class ContentPage(RelativeURLMixin, Page):
+class ContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body')
     ]
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
     search_fields = Page.search_fields + [
         index.SearchField('body')
     ]
 
+    @classmethod
+    def allowed_subpage_models(cls):
+        return [LinkedContentPage, ContentPage]
 
-class LinkedContentPage(RelativeURLMixin, Page):
+
+class LinkedContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     body = StreamField(content_blocks)
 
     content_panels = Page.content_panels + [
@@ -106,9 +114,33 @@ class LinkedContentPage(RelativeURLMixin, Page):
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
     ]
+    promote_panels = TranslatablePageMixin.panels + Page.promote_panels
+
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
+
+    @classmethod
+    def allowed_subpage_models(cls):
+        return [LinkedContentPage, ContentPage]
+
+    def page_links(self):
+        """
+        Return related internal and external page links.
+        """
+        q_page_link = Q(link_page__isnull=False)
+        q_external_link = Q(
+            link_page__isnull=True,
+            link_external__isnull=False,
+            link_document__isnull=True
+        )
+        return self.links.filter(q_page_link | q_external_link)
+
+    def documents(self):
+        """
+        Return related document links.
+        """
+        return self.links.filter(link_page__isnull=True, link_document__isnull=False)
 
 
 class LinkedContentPageRole(Orderable):

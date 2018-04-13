@@ -8,27 +8,30 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - Digitaalinen Helsinki</title>
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - {{ request.site.site_name }}</title>
         <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
 
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <meta property="og:title" content="{% block sometitle %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - Digitaalinen Helsinki">
-        {% if self.search_description %}
-        <meta property="og:description" content="{{ self.search_description }}"/>
-        {% else %}
-        <meta property="og:description" content="Helsingin kaupunki digitalisoi palvelujaan. Tulevaisuudessa kaupungin palvelut ovat helppokäyttöisiä ja kätevästi kaupunkilaisten ulottuvilla. Parempia palveluja kehitetään yhdessä asiantuntijoiden, kaupunkilaisten ja yritysten kanssa.">
-        {% endif %}
-        <meta property="og:image" content="https://digi.hel.fi{% static "images/share-default.jpg" %}">
-        <meta property="og:url" content="https://digi.hel.fi{{ request.get_full_path }}">
-        <meta name="twitter:card" content="summary_large_image">
+        {% block meta %}
+            <meta property="og:title" content="{% block sometitle %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - {{ request.site.site_name }}">
+            {% if self.search_description %}
+            <meta property="og:description" content="{{ self.search_description }}"/>
+            {% else %}
+            <meta property="og:description" content="Helsingin kaupunki digitalisoi palvelujaan. Tulevaisuudessa kaupungin palvelut ovat helppokäyttöisiä ja kätevästi kaupunkilaisten ulottuvilla. Parempia palveluja kehitetään yhdessä asiantuntijoiden, kaupunkilaisten ja yritysten kanssa.">
+            {% endif %}
+            <meta property="og:image" content="https://digi.hel.fi{% static "images/share-default.jpg" %}">
+            <meta property="og:url" content="https://digi.hel.fi{{ request.get_full_path }}">
+            <meta name="twitter:card" content="summary_large_image">
+        {% endblock %}
 
         {# Global stylesheets #}
-
-        {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static "css/digihel.scss" %}" />
-        {% endcompress %}
+        {% block main_css %}
+          {% compress css %}
+          <link rel="stylesheet" type="text/x-scss" href="{% static "css/digihel.scss" %}" />
+          {% endcompress %}
+        {% endblock main_css %}
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -47,19 +50,8 @@
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-md-push-6 col-sm-4 col-sm-push-4">
-                    {% for section in request.site.root_page.specific.footer_link_sections %}
-                        <div class="page-footer-block">
-                            {% if section.title %}<div class="footer-header">{{ section.title }}</div>{% endif %}
-                            <ul class="footer-links">
-                            {% for link in section.links.all %}
-                                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                            {% endfor %}
-                            </ul>
-                        </div>
-                    {% endfor %}
-                    </div>
-                    <div class="col-md-3 col-md-pull-3 col-sm-4 col-sm-pull-4">
+                    <div class="col-sm-3">
+                      {% block footer_branding %}
                         <div class="footer-branding footer-branding-helsinki">
                             <a href="http://www.hel.fi">
                                 <img alt="Helsingin tunnus" src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
@@ -71,21 +63,21 @@
                                 <div class="footer-branding-text">Helsingin kaupungin avoin ohjelmistokehitys</div>
                             </a>
                         </div>
+                      {% endblock footer_branding %}
                     </div>
-                    <div class="col-md-3 col-md-push-3 col-sm-4">
+                    <div class="col-sm-9">
+                      {% block footer_links %}
                         <div class="page-footer-block">
                             <div class="footer-header">Katso myös</div>
-                            <ul class="footer-links">
-                                <li></li>
-                                <li><a href="http://www.slideshare.net/DigitalHelsinki"><span class="icon icon-linkedin-rect"></span> Slideshare</a></li>
-                                <li><a href="https://github.com/City-of-Helsinki"><span class="icon icon-github"></span> GitHub</a></li>
-                                <li><a href="https://twitter.com/search?q=%23digihelsinki"><span class="icon icon-twitter-bird"></span> #digihelsinki</a></li>
+                            <ul class="footer-links list-inline">
+                                <li><a href="http://www.slideshare.net/DigitalHelsinki"><span class="icon icon-linkedin-rect social-icon" aria-label="Slideshare"></span></a></li>
+                                <li><a href="https://github.com/City-of-Helsinki" aria-label="GitHub"><span class="icon icon-github social-icon"></span> </a></li>
+                                <li><a href="https://twitter.com/search?q=%23digihelsinki"><span class="icon icon-twitter-bird social-icon" aria-label="#digihelsinki"></span></a></li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
+                      {% endblock footer_links %}
+
+                      {% block footer_smallprint %}
                         <div class="page-footer-small-print">
                             <div class="footer-header">Yhteistyössä</div>
                             <ul class="footer-partners">
@@ -99,6 +91,7 @@
                                 <li>2017 Helsingin kaupunki</li>
                             </ul>
                         </div>
+                      {% endblock footer_smallprint %}
                     </div>
                 </div>
             </div>
@@ -131,22 +124,25 @@
             <script type="text/javascript" src="{% static 'js/Hyphenopoly/Hyphenopoly_Loader.js' %}"></script>
             <script type="text/coffeescript" src="{% static 'events/displayEvents.coffee' %}"></script>
         {% endcompress %}
-        <!-- Piwik -->
-        <script type="text/javascript">
-            var _paq = _paq || [];
-            _paq.push(["setDomains", ["*.digi.hel.fi","*.digi.hel.ninja"]]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-                var u="//analytics.hel.ninja/pwk/";
-                _paq.push(['setTrackerUrl', u+'pw.php']);
-                _paq.push(['setSiteId', '11']);
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'pw.js'; s.parentNode.insertBefore(g,s);
-            })();
-        </script>
-        <noscript><p><img src="//analytics.hel.ninja/pwk/pw.php?idsite=11" style="border:0;" alt="" /></p></noscript>
-        <!-- End Piwik Code -->
+
+        {% block analytics %}
+            <!-- Piwik -->
+            <script type="text/javascript">
+                var _paq = _paq || [];
+                _paq.push(["setDomains", ["*.digi.hel.fi","*.digi.hel.ninja"]]);
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                    var u="//analytics.hel.ninja/pwk/";
+                    _paq.push(['setTrackerUrl', u+'pw.php']);
+                    _paq.push(['setSiteId', '11']);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'pw.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script>
+            <noscript><p><img src="//analytics.hel.ninja/pwk/pw.php?idsite=11" style="border:0;" alt="" /></p></noscript>
+            <!-- End Piwik Code -->
+        {% endblock %}
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

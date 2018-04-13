@@ -30,6 +30,7 @@ LOCALE_PATHS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'helsinkioppii',
     'users',
     'helusers',
     'people',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'feedback',
     'search',
     'events',
+    'multilang',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailcore',
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.table_block',
+    'wagtail.contrib.wagtailroutablepage',
 
     'compressor',
     'modelcluster',
@@ -79,7 +82,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize'
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
+    'multilang.middleware.PageLanguageMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -101,13 +106,18 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(PROJECT_DIR, 'templates'),
         ],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                (
+                    'django.template.loaders.app_directories.Loader',
+                    'django.template.loaders.filesystem.Loader',
+                ),
             ],
         },
     },
@@ -136,6 +146,12 @@ BROKER_URL = 'redis://localhost:6379/0'
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'fi'
+
+LANGUAGES = (
+    ('fi', 'Suomi'),
+    ('sv', 'Svenska'),
+    ('en', 'English'),
+)
 
 TIME_ZONE = 'Europe/Helsinki'
 
@@ -202,6 +218,11 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
         'WIDGET': 'digihel.tinymce.DigiHelTinyMCERichTextArea',
     },
 }
+
+# The amount of Cases that the Case list is paginated by.
+HELSINKI_OPPII_CASES_PER_PAGE = 12
+
+HELSINKI_OPPII_INDEX_BLOG_LIFT_COUNT = 2
 
 if CI:
     # Use Elasticsearch in CI environments.

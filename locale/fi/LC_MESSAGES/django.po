@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-25 11:34+0300\n"
+"POT-Creation-Date: 2017-11-23 11:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,12 +30,16 @@ msgstr "Oikean sarakkeen sisältö"
 msgid "Two columns"
 msgstr "Kaksi saraketta"
 
-#: content/models.py:100 digi/models.py:134 digi/models.py:180
+#: content/models.py:43
+msgid "Collapsible paragraph"
+msgstr "Suljettava tekstikappale"
+
+#: content/models.py:105 digi/models.py:135 digi/models.py:187
 msgid "Roles"
 msgstr "Roolit"
 
-#: content/models.py:101 digi/models.py:75 digi/models.py:135
-#: digi/models.py:181
+#: content/models.py:106 digi/models.py:75 digi/models.py:136
+#: digi/models.py:188
 msgid "Links"
 msgstr ""
 
@@ -47,7 +51,7 @@ msgstr "Indikaattori"
 msgid "Indicators"
 msgstr "Indikaattorit"
 
-#: digi/models.py:167
+#: digi/models.py:171
 msgid "Project"
 msgstr "Projekti"
 
@@ -115,6 +119,157 @@ msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
 msgid "User agent"
 msgstr "Selain"
 
+#: helsinkioppii/blocks/banner_lift.py:12
+msgid "Overrides page link if set."
+msgstr ""
+
+#: helsinkioppii/forms.py:22
+msgid "Free text"
+msgstr "Vapaa teksti"
+
+#: helsinkioppii/forms.py:26
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:27
+msgid "Search"
+msgstr "Etsi"
+
+#: helsinkioppii/forms.py:31
+msgid "Themes"
+msgstr "Teemat"
+
+#: helsinkioppii/forms.py:39
+msgid "School grades"
+msgstr "Kouluasteet"
+
+#: helsinkioppii/forms.py:47
+msgid "School subjects"
+msgstr "Kouluaineet"
+
+#: helsinkioppii/models/cases.py:20 helsinkioppii/models/cases.py:146
+msgid "school subject"
+msgstr "kouluaine"
+
+#: helsinkioppii/models/cases.py:41 helsinkioppii/models/cases.py:139
+msgid "school grade"
+msgstr "kouluaste"
+
+#: helsinkioppii/models/cases.py:62 helsinkioppii/models/cases.py:131
+msgid "theme"
+msgstr "teema"
+
+#: helsinkioppii/models/cases.py:96
+msgid "image"
+msgstr "kuva"
+
+#: helsinkioppii/models/cases.py:103
+msgid "abstract"
+msgstr "lyhennelmä"
+
+#: helsinkioppii/models/cases.py:106
+msgid "content"
+msgstr "Sisältö"
+
+#: helsinkioppii/models/cases.py:109
+msgid "Objectives"
+msgstr "Tavoitteet"
+
+#: helsinkioppii/models/cases.py:110
+msgid "What was done"
+msgstr "Mitä tehtiin"
+
+#: helsinkioppii/models/cases.py:111
+msgid "How it was done"
+msgstr "Miten tehtiin"
+
+#: helsinkioppii/models/cases.py:112
+msgid "Who participated"
+msgstr "Ketkä osallistuivat"
+
+#: helsinkioppii/models/cases.py:113
+msgid "How the learning was evaluated"
+msgstr "Miten oppiminen arvioitiin"
+
+#: helsinkioppii/models/cases.py:114
+msgid "What materials were useed"
+msgstr "Materiaalit"
+
+#: helsinkioppii/models/cases.py:115
+msgid "Pros"
+msgstr "Plussaa"
+
+#: helsinkioppii/models/cases.py:116
+msgid "Cons"
+msgstr "Kehitettävää"
+
+#: helsinkioppii/models/cases.py:120
+msgid "school"
+msgstr "koulu"
+
+#: helsinkioppii/models/cases.py:125
+msgid "student count"
+msgstr "oppilaiden lukumäärä"
+
+#: helsinkioppii/models/cases.py:164
+msgid "Case description"
+msgstr "Tekemisen kuvaus"
+
+#: helsinkioppii/models/cases.py:177
+msgid "contacts"
+msgstr "yhteyshenkilöt"
+
+#: helsinkioppii/models/cases.py:179
+msgid "Case meta"
+msgstr "Tekemisen metatiedot"
+
+#: helsinkioppii/models/pages.py:26 helsinkioppii/models/pages.py:181
+msgid "hero content"
+msgstr "hero-osion sisältö"
+
+#: helsinkioppii/models/pages.py:31 helsinkioppii/models/pages.py:186
+msgid "hero image"
+msgstr "hero-osion kuva (kansikuva)"
+
+#: helsinkioppii/models/pages.py:40 helsinkioppii/models/pages.py:209
+msgid "banner section title"
+msgstr "banneri-osion otsikko"
+
+#: helsinkioppii/models/pages.py:45 helsinkioppii/models/pages.py:214
+msgid "banner section description"
+msgstr "banneri-osion kuvaus"
+
+#: helsinkioppii/models/pages.py:54
+msgid "case section title"
+msgstr "case-osion otsikko"
+
+#: helsinkioppii/models/pages.py:59
+msgid "case section description"
+msgstr "case-osion kuvaus"
+
+#: helsinkioppii/models/pages.py:68
+msgid "social section title"
+msgstr "social-osion otsikko"
+
+#: helsinkioppii/models/pages.py:73
+msgid "social section description"
+msgstr "social-osion kuvaus"
+
+#: helsinkioppii/models/pages.py:195
+msgid "training section title"
+msgstr "training-osion otsikko"
+
+#: helsinkioppii/models/pages.py:200
+msgid "training section description"
+msgstr "training-osion kuvais"
+
+#: helsinkioppii/templates/helsinkioppii/blocks/banner_lift.html:14
+#: helsinkioppii/templates/helsinkioppii/blocks/case_lift.html:16
+#: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:9
+msgid "Read more"
+msgstr "Lue lisää"
+
+#: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:6
+msgid "at"
+msgstr "klo"
+
 #: kehmet/models.py:19
 msgid "Short description"
 msgstr "Lyhyt kuvaus"
@@ -158,3 +313,6 @@ msgstr "Sivun lisäasetukset"
 #: people/wagtail_hooks.py:9
 msgid "People"
 msgstr "Henkilöt"
+
+#~ msgid "Keywords"
+#~ msgstr "Avainsanat"
