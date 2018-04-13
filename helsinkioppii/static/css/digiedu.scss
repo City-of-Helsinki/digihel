@@ -17,6 +17,12 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
 .page-footer {
   margin-top: 0;
   background-color: $theme-primary-dark;
+
+  .container {
+    @media (min-width: $screen-lg-min) {
+      padding: 0 150px;
+    }
+  }
 }
 
 .main-section {
