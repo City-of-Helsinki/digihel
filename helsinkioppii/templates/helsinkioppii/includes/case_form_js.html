@@ -12,7 +12,8 @@
     {% for field in form.visible_fields %}
         {% if "content_" in field.name %}
             $('#id_{{ field.name }}').trumbowyg({
-                btns: buttons
+                btns: buttons,
+                removeformatPasted: true,
             });
         {% endif %}
     {% endfor %}
