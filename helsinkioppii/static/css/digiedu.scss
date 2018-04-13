@@ -470,7 +470,7 @@ ul.reference-list {
   background-position: center;
 
   .hero-caption {
-    @include koro("beat", $white, 400);
+    @include koro("pulse", $white, 600);
     width: 100%;
     height: $line-height-computed * 4;
     position: absolute;
@@ -488,7 +488,7 @@ ul.reference-list {
 }
 
 .section--training {
-  background-color: $hel-suomenlinna;
+  background-color: $gray-lighter;
   padding: $line-height-computed * 4 0;
 }
 
@@ -497,22 +497,13 @@ ul.reference-list {
   position: relative;
 
   .banner--edu {
-    background-color: $hel-coat;
-    color: $white;
-
-    a {
-      color: $white;
-    }
-
-    .btn-default {
-      border-color: $white;
-      color: $white;
-    }
+    border-top: 5px solid $theme-primary-dark;
+    background-color: $gray-lighter;
   }
 }
 
 .training-koro__top {
-  @include koro("pulse", $hel-suomenlinna, 800);
+  @include koro("pulse", $gray-lighter, 600);
   background-color: $white;
   width: 100%;
   height: $line-height-computed * 3;
@@ -521,6 +512,7 @@ ul.reference-list {
 }
 
 .training--lift {
+  border-top: 5px solid $theme-primary-dark;
   background: $white;
   padding: $line-height-computed;
 
