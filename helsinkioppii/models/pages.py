@@ -363,6 +363,13 @@ class TrainingIndexPage(TranslatablePageMixin, Page):
 
     promote_panels = TranslatablePageMixin.panels + Page.promote_panels
 
+    @classmethod
+    def allowed_subpage_models(cls):
+        from content.models import ContentPage, LinkedContentPage
+        from digi.models import ThemePage
+
+        return [ContentPage, LinkedContentPage, ThemePage]
+
 
 class PageGroupPage(TranslatablePageMixin, Page):
     template = 'helsinkioppii/page_group_page.html'
@@ -383,8 +390,9 @@ class PageGroupPage(TranslatablePageMixin, Page):
     @classmethod
     def allowed_subpage_models(cls):
         from content.models import ContentPage, LinkedContentPage
+        from digi.models import ThemePage
 
-        return [ContentPage, LinkedContentPage]
+        return [ContentPage, LinkedContentPage, ThemePage]
 
     def serve(self, request, *args, **kwargs):
         if self.redirect_to:
