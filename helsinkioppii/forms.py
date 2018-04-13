@@ -96,14 +96,6 @@ class CaseForm(forms.Form):
         required=False,
         strip=True,
     )
-    student_count = forms.IntegerField(
-        label=_('Student count:'),
-        widget=forms.NumberInput(attrs={
-            'class': 'form-control',
-        }),
-        required=False,
-        min_value=0
-    )
     themes = forms.ModelMultipleChoiceField(
         CaseTheme.objects.all(),
         label=_('Themes:'),
@@ -111,16 +103,7 @@ class CaseForm(forms.Form):
             'class': 'list-unstyled checkbox'
         }),
         required=False,
-        help_text=_('Select any fitting existing themes.'),
-    )
-    new_themes = forms.CharField(
-        label=_('Other themes:'),
-        widget=forms.TextInput(attrs={
-            'class': 'form-control'
-        }),
-        required=False,
-        strip=True,
-        help_text=_('Add any themes that aren\'t listed above. Separate multiple entries with ";".'),
+        help_text=_('Select any fitting themes.'),
     )
     grades = forms.ModelMultipleChoiceField(
         SchoolGrade.objects.all(),
@@ -129,16 +112,7 @@ class CaseForm(forms.Form):
             'class': 'list-unstyled checkbox'
         }),
         required=False,
-        help_text=_('Select any fitting existing school grades.'),
-    )
-    new_grades = forms.CharField(
-        label=_('Other school grades:'),
-        widget=forms.TextInput(attrs={
-            'class': 'form-control'
-        }),
-        required=False,
-        strip=True,
-        help_text=_('Add any school grades that aren\'t listed above. Separate multiple entries with ";".'),
+        help_text=_('Select any fitting school grades.'),
     )
     subjects = forms.ModelMultipleChoiceField(
         SchoolSubject.objects.all(),
@@ -147,16 +121,7 @@ class CaseForm(forms.Form):
             'class': 'list-unstyled checkbox'
         }),
         required=False,
-        help_text=_('Select any fitting existing school subjects.'),
-    )
-    new_subjects = forms.CharField(
-        label=_('Other school subjects:'),
-        widget=forms.TextInput(attrs={
-            'class': 'form-control'
-        }),
-        required=False,
-        strip=True,
-        help_text=_('Add any school subjects that aren\'t listed above. Separate multiple entries with ";".'),
+        help_text=_('Select any fitting school subjects.'),
     )
     keywords = forms.CharField(
         label=_('Keywords:'),

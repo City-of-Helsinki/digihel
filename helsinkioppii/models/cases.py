@@ -238,11 +238,6 @@ class Case(RoutablePageMixin, Page):
         max_length=128,
         blank=True,
     )
-    student_count = models.PositiveSmallIntegerField(
-        verbose_name=_('student count'),
-        blank=True,
-        null=True,
-    )
     themes = ParentalManyToManyField(
         'helsinkioppii.CaseTheme',
         verbose_name=_('themes'),
@@ -334,7 +329,6 @@ class Case(RoutablePageMixin, Page):
             FieldPanel('school'),
             FieldPanel('subjects', classname='col6'),
             FieldPanel('grades', classname='col6'),
-            FieldPanel('student_count', classname='col6'),
             FieldPanel('themes', classname='col6'),
             FieldPanel('keywords'),
             InlinePanel('contacts', label=_('contacts')),
@@ -433,9 +427,9 @@ class Case(RoutablePageMixin, Page):
         """
         # Fields that can be assigned to object without special handling.
         simple_fields = [
-            'title', 'school', 'student_count', 'themes', 'grades', 'subjects', 'abstract',
-            'content_objectives', 'content_what', 'content_how', 'content_who', 'content_evaluation',
-            'content_materials', 'content_pros', 'content_cons', 'cc_license', 'photo_permission',
+            'title', 'school','themes', 'grades', 'subjects', 'abstract', 'content_objectives',
+            'content_what', 'content_how', 'content_who', 'content_evaluation', 'content_materials',
+            'content_pros', 'content_cons', 'cc_license', 'photo_permission',
         ]
 
         for field in simple_fields:
@@ -451,24 +445,6 @@ class Case(RoutablePageMixin, Page):
                 title=form.cleaned_data['image_title']
             )
             self.image = image
-
-        new_themes = form.cleaned_data.get('new_themes')
-        if new_themes:
-            for theme in get_substrings(new_themes):
-                theme_instance, created = CaseTheme.objects.get_or_create(theme=theme)
-                self.themes.add(theme_instance)
-
-        new_grades = form.cleaned_data.get('new_grades')
-        if new_grades:
-            for grade in get_substrings(new_grades):
-                grade_instance, created = SchoolGrade.objects.get_or_create(grade=grade)
-                self.grades.add(grade_instance)
-
-        new_subjects = form.cleaned_data.get('new_subjects')
-        if new_subjects:
-            for subject in get_substrings(new_subjects):
-                subject_instance, created = SchoolSubject.objects.get_or_create(subject=subject)
-                self.subjects.add(subject_instance)
 
         keywords = form.cleaned_data.get('keywords')
         if keywords:
