@@ -12,9 +12,9 @@
     </div>
     {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.school %}
     {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.student_count %}
-    {% include "helsinkioppii/includes/fields/meta_field_group.html" with multiselect_field=form.themes text_field=form.new_themes %}
-    {% include "helsinkioppii/includes/fields/meta_field_group.html" with multiselect_field=form.grades text_field=form.new_grades %}
-    {% include "helsinkioppii/includes/fields/meta_field_group.html" with multiselect_field=form.subjects text_field=form.new_subjects %}
+    {% include "helsinkioppii/includes/fields/meta_field_group.html" with field=form.themes %}
+    {% include "helsinkioppii/includes/fields/meta_field_group.html" with field=form.grades %}
+    {% include "helsinkioppii/includes/fields/meta_field_group.html" with field=form.subjects %}
     {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.keywords %}
 
     <div class="row">
