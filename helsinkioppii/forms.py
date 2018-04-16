@@ -153,12 +153,12 @@ class CaseForm(forms.Form):
     )
 
     # HTML fields
-    content_objectives = get_case_form_html_content_field(_('Objectives:'))
+    content_objectives = get_case_form_html_content_field(_('Objectives:'), help_text=_('Use bullet points.'))
     content_what = get_case_form_html_content_field(_('What was done:'))
     content_how = get_case_form_html_content_field(_('How it was done:'))
     content_who = get_case_form_html_content_field(_('Who participated:'))
-    content_evaluation = get_case_form_html_content_field(_('How the learning was evaluated:'))
-    content_materials = get_case_form_html_content_field(_('What materials were used:'))
+    content_evaluation = get_case_form_html_content_field(_('How the learning was evaluated:'), help_text=_('Use bullet points.'))
+    content_materials = get_case_form_html_content_field(_('What materials were used:'), help_text=_('Use bullet points.'))
     content_pros = get_case_form_html_content_field(_('Pros:'), help_text=_('Use bullet points.'))
     content_cons = get_case_form_html_content_field(_('Cons:'), help_text=_('Use bullet points.'))
 
