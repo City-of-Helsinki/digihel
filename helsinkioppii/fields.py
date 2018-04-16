@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from helsinkioppii.widgets import HelClearableFileInput, HelClearableImageInput
 
 
-def get_case_form_html_content_field(label):
+def get_case_form_html_content_field(label, help_text=''):
     """
     Return field for html content.
     """
@@ -15,6 +15,7 @@ def get_case_form_html_content_field(label):
         }),
         required=False,
         strip=True,
+        help_text=help_text,
     )
 
 
