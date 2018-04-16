@@ -16,7 +16,7 @@ from helsinkioppii.blocks.case_lift import CaseLiftBlock
 from helsinkioppii.blocks.training_lift import TrainingLiftBlock
 from helsinkioppii.models.cases import Case
 from multilang.models import TranslatablePageMixin
-from multilang.utils import get_available_languages
+from multilang.utils import get_available_languages, get_requested_page_language_code
 
 
 class PageOutOfRangeException(Exception):
@@ -162,7 +162,8 @@ class CaseListPage(RoutablePageMixin, TranslatablePageMixin, Page):
         """
         from helsinkioppii.forms import CaseFilterForm
 
-        form = CaseFilterForm(request.GET)
+        language_code = get_requested_page_language_code(request)
+        form = CaseFilterForm(request.GET, language_code=language_code)
         queryset = self.get_case_queryset(form, request.user.pk)
         paginated_cases = self.get_paginated_cases(request, queryset)
 
@@ -268,16 +269,18 @@ class CaseListPage(RoutablePageMixin, TranslatablePageMixin, Page):
 
         from helsinkioppii.forms import CaseForm
 
+        language_code = get_requested_page_language_code(request)
+
         if request.method == 'GET':
             return render(request, 'helsinkioppii/create_case.html', {
                 'page': self,
                 'draft': True,
                 'form_action_url': self.create_view_path,
-                'form': CaseForm()
+                'form': CaseForm(language_code=language_code)
             })
 
         if request.method == 'POST':
-            form = CaseForm(request.POST, request.FILES)
+            form = CaseForm(request.POST, request.FILES, language_code=language_code)
             if form.is_valid():
                 case = Case()
 
