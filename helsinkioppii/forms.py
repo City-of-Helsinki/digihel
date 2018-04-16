@@ -151,8 +151,8 @@ class CaseForm(forms.Form):
     content_who = get_case_form_html_content_field(_('Who participated:'))
     content_evaluation = get_case_form_html_content_field(_('How the learning was evaluated:'))
     content_materials = get_case_form_html_content_field(_('What materials were used:'))
-    content_pros = get_case_form_html_content_field(_('Pros:'))
-    content_cons = get_case_form_html_content_field(_('Cons:'))
+    content_pros = get_case_form_html_content_field(_('Pros:'), help_text=_('Use bullet points.'))
+    content_cons = get_case_form_html_content_field(_('Cons:'), help_text=_('Use bullet points.'))
 
     # Image gallery fields
     gallery_image_1, gallery_image_title_1 = get_case_form_gallery_image_fields(_('1.'))
