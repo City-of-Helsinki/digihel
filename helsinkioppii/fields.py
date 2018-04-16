@@ -35,6 +35,7 @@ def get_case_form_gallery_image_fields(label_ordinal):
         }),
         required=False,
         strip=True,
+        help_text=_('Remember to give a title for the gallery image!'),
     )
     return image_field, title_field
 
@@ -55,6 +56,7 @@ def get_case_form_attachment_fields(label_ordinal):
         }),
         required=False,
         strip=True,
+        help_text=_('Remember to give a title for the attachment!'),
     )
     return file_field, title_field
 
