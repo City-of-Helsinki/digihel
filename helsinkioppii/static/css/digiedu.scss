@@ -64,12 +64,18 @@ $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
   &.index {
     .hero-content {
       padding-top: 160px;
+      padding-bottom: 70px;
       color: $white;
       font-size: 44px;
       font-weight: bold;
       min-height: $line-height-computed * 20;
       position: relative;
       text-shadow: 1px 1px 4px rgba(#000, 0.2);
+
+      @media (max-width: $screen-xs-max) {
+        padding-top: 15px;
+        margin-top: 15px;
+      }
     }
   }
 
