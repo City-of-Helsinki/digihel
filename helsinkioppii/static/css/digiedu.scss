@@ -720,13 +720,23 @@ section.title-section {
 }
 
 .page-links,
-.attached-documents {
+.attached-documents,
+.events-highlights {
   border: 3px solid $hel-silver;
   padding: $line-height-computed / 2;
   margin-bottom: $line-height-computed;
+  background: $white;
 
   h3 {
     margin-top: 0;
     color: $theme-primary-dark;
+  }
+
+  .event-list__item > a {
+    color: $theme-primary-dark;
+  }
+
+  .events-source {
+    border: none;
   }
 }

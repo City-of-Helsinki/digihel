@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags content_tags people_tags %}
+{% load wagtailcore_tags compress content_tags people_tags %}
 
 {% block body_class %}template-contentpage{% endblock %}
 
@@ -22,4 +22,14 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_js %}
+    {% if page.show_sidebar_events %}
+        {% compress js inline %}
+            <script type="text/javascript">
+                $.getJSON('/event_data/?future=true', function(json) {return displayEvents(json,false)});
+            </script>
+        {% endcompress %}
+    {% endif %}
 {% endblock %}

@@ -3,6 +3,7 @@ from django import template
 from django.conf import settings
 
 from digi.templatetags.digi_tags import first_p
+from events.models import EventsIndexPage
 
 register = template.Library()
 
@@ -26,3 +27,8 @@ def first_rich_text_paragraph(rich_text):
         rich_text = rich_text[:n]
 
     return first_p(rich_text)
+
+
+@register.simple_tag
+def get_event_index():
+    return EventsIndexPage.objects.live().first()

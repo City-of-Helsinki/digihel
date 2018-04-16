@@ -91,9 +91,11 @@ class RelatedLink(LinkFields):
 
 class ContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     body = StreamField(content_blocks)
+    show_sidebar_events = models.BooleanField(verbose_name=_('show sidebar events'), default=False)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body')
+        StreamFieldPanel('body'),
+        FieldPanel('show_sidebar_events'),
     ]
     promote_panels = TranslatablePageMixin.panels + Page.promote_panels
 
@@ -108,11 +110,13 @@ class ContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
 
 class LinkedContentPage(RelativeURLMixin, TranslatablePageMixin, Page):
     body = StreamField(content_blocks)
+    show_sidebar_events = models.BooleanField(verbose_name=_('show sidebar events'), default=False)
 
     content_panels = Page.content_panels + [
         InlinePanel('roles', label=_("Roles")),
         InlinePanel('links', label=_("Links")),
         StreamFieldPanel('body'),
+        FieldPanel('show_sidebar_events'),
     ]
     promote_panels = TranslatablePageMixin.panels + Page.promote_panels
 
