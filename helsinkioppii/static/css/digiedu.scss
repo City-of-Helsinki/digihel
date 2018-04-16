@@ -586,6 +586,10 @@ ul.reference-list {
   z-index: 2;
   margin-bottom: 0;
 
+  .navbar-logo.navbar-brand-sv {
+    margin: 12px 15px 0 15px;
+  }
+
   .navbar-logo.navbar-brand {
     @include helsinki-logo($white);
     background-position: 15px;
