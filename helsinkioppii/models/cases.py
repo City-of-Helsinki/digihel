@@ -556,8 +556,9 @@ class Case(RoutablePageMixin, Page):
                 link.save()
 
     def update_form_initial_values_with_related_model_data(self, initial_values):
-        initial_values['image'] = self.image.file
-        initial_values['image_title'] = self.image.title
+        if self.image:
+            initial_values['image'] = self.image.file
+            initial_values['image_title'] = self.image.title
 
         for attachment in self.attachments.all():
             file_field = 'attachment_file_%s' % attachment.slot
