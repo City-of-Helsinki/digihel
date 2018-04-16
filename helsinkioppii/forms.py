@@ -24,6 +24,8 @@ def get_live_case_keywords():
 
 
 class CaseFilterForm(forms.Form):
+    language_code = 'fi'
+
     free_text = forms.CharField(
         label=_('Free text'),
         required=False,
@@ -33,7 +35,7 @@ class CaseFilterForm(forms.Form):
         }),
     )
     themes = forms.ModelMultipleChoiceField(
-        CaseTheme.objects.all(),
+        CaseTheme.objects.filter(language_code=language_code),
         label=_('Themes'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'filter-keywordlist list-unstyled checkbox'
@@ -41,7 +43,7 @@ class CaseFilterForm(forms.Form):
         required=False,
     )
     grades = forms.ModelMultipleChoiceField(
-        SchoolGrade.objects.all(),
+        SchoolGrade.objects.filter(language_code=language_code),
         label=_('School grades'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'filter-keywordlist list-unstyled checkbox'
@@ -49,7 +51,7 @@ class CaseFilterForm(forms.Form):
         required=False,
     )
     subjects = forms.ModelMultipleChoiceField(
-        SchoolSubject.objects.all(),
+        SchoolSubject.objects.filter(language_code=language_code),
         label=_('School subjects'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'filter-keywordlist list-unstyled checkbox'
@@ -57,8 +59,14 @@ class CaseFilterForm(forms.Form):
         required=False,
     )
 
+    def __init__(self, *args, **kwargs):
+        self.language_code = kwargs.pop('language_code', 'fi')
+        super().__init__(*args, **kwargs)
+
 
 class CaseForm(forms.Form):
+    language_code = 'fi'
+
     GALLERY_IMAGE_COUNT = 8
     ATTACHMENT_COUNT = 5
     LINK_COUNT = 5
@@ -97,7 +105,7 @@ class CaseForm(forms.Form):
         strip=True,
     )
     themes = forms.ModelMultipleChoiceField(
-        CaseTheme.objects.all(),
+        CaseTheme.objects.filter(language_code=language_code),
         label=_('Themes:'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
@@ -106,7 +114,7 @@ class CaseForm(forms.Form):
         help_text=_('Select any fitting themes.'),
     )
     grades = forms.ModelMultipleChoiceField(
-        SchoolGrade.objects.all(),
+        SchoolGrade.objects.filter(language_code=language_code),
         label=_('School grades:'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
@@ -115,7 +123,7 @@ class CaseForm(forms.Form):
         help_text=_('Select any fitting school grades.'),
     )
     subjects = forms.ModelMultipleChoiceField(
-        SchoolSubject.objects.all(),
+        SchoolSubject.objects.filter(language_code=language_code),
         label=_('School subjects:'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
@@ -191,6 +199,10 @@ class CaseForm(forms.Form):
         ),
         required=True,
     )
+
+    def __init__(self, *args, **kwargs):
+        self.language_code = kwargs.pop('language_code', 'fi')
+        super().__init__(*args, **kwargs)
 
     def clean(self):
         cleaned_data = super().clean()

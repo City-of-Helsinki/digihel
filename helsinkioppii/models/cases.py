@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.forms import model_to_dict
 from django.http import HttpResponseBadRequest, HttpResponseForbidden
@@ -16,6 +17,7 @@ from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 
 from helsinkioppii.utils import get_substrings, humanized_range
+from multilang.utils import get_requested_page_language_code
 
 
 class CaseKeyword(TaggedItemBase):
@@ -28,6 +30,12 @@ class SchoolSubject(models.Model):
         verbose_name=_('school subject'),
         max_length=128,
         blank=True
+    )
+    language_code = models.CharField(
+        verbose_name=_('language code'),
+        max_length=10,
+        blank=False,
+        choices=settings.LANGUAGES,
     )
 
     class Meta:
@@ -50,6 +58,12 @@ class SchoolGrade(models.Model):
         max_length=128,
         blank=True
     )
+    language_code = models.CharField(
+        verbose_name=_('language code'),
+        max_length=10,
+        blank=False,
+        choices = settings.LANGUAGES,
+    )
 
     class Meta:
         ordering = ['pk']
@@ -70,6 +84,12 @@ class CaseTheme(models.Model):
         verbose_name=_('theme'),
         max_length=128,
         blank=True
+    )
+    language_code = models.CharField(
+        verbose_name=_('language code'),
+        max_length=10,
+        blank=False,
+        choices=settings.LANGUAGES,
     )
 
     class Meta:
@@ -564,6 +584,8 @@ class Case(RoutablePageMixin, Page):
 
         from helsinkioppii.forms import CaseForm
 
+        language_code = get_requested_page_language_code(request)
+
         if request.method == 'GET':
             initial_values = model_to_dict(self)
             initial_values['keywords'] = str.join('; ', [kw.name for kw in self.keywords.all()])
@@ -572,11 +594,11 @@ class Case(RoutablePageMixin, Page):
                 'page': self,
                 'draft': self.draft,
                 'form_action_url': self.update_view_path,
-                'form': CaseForm(initial=initial_values),
+                'form': CaseForm(initial=initial_values, language_code=language_code),
             })
 
         if request.method == 'POST':
-            form = CaseForm(request.POST, request.FILES)
+            form = CaseForm(request.POST, request.FILES, language_code=language_code)
             if form.is_valid():
                 self.assign_values_from_form_data(form)
                 self.save()
