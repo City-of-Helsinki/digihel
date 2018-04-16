@@ -6,7 +6,12 @@
 <div class="navbar-helsinki navbar navbar-default navbar-static-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-logo navbar-brand text-hide" href="{% get_language_root_url %}">Helsinki</a>
+            {% get_page_language_code as lang_code %}
+            {% if lang_code == 'sv' %}
+                <a class="navbar-logo navbar-brand-sv text-hide" href="{% get_language_root_url %}"><img src="{% static 'images/logo_sv.svg' %}" width="104" height="36">Helsingfors</a>
+            {% else %}
+                <a class="navbar-logo navbar-brand text-hide" href="{% get_language_root_url %}">Helsinki</a>
+            {% endif %}
         </div>
         <div class="navbar-right">
             <button class="btn btn-default search-trigger" id="js-toggle-search" aria-label="Avaa haku" type="button" aria-haspopup="true" aria-expanded="false">
