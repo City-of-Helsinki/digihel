@@ -84,14 +84,14 @@ class CaseForm(forms.Form):
     image = forms.ImageField(
         label=_('Image:'),
         widget=HelClearableImageInput(),
-        required=False
+        required=True
     )
     image_title = forms.CharField(
         label=_('Image title:'),
         widget=forms.TextInput(attrs={
             'class': 'form-control'
         }),
-        required=False,
+        required=True,
         strip=True,
     )
 
@@ -101,7 +101,7 @@ class CaseForm(forms.Form):
         widget=forms.TextInput(attrs={
             'class': 'form-control'
         }),
-        required=False,
+        required=True,
         strip=True,
     )
     themes = forms.ModelMultipleChoiceField(
@@ -110,7 +110,7 @@ class CaseForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
         }),
-        required=False,
+        required=True,
         help_text=_('Select any fitting themes.'),
     )
     grades = forms.ModelMultipleChoiceField(
@@ -119,7 +119,7 @@ class CaseForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
         }),
-        required=False,
+        required=True,
         help_text=_('Select any fitting school grades.'),
     )
     subjects = forms.ModelMultipleChoiceField(
@@ -136,7 +136,7 @@ class CaseForm(forms.Form):
         widget=forms.TextInput(attrs={
             'class': 'form-control',
         }),
-        required=False,
+        required=True,
         strip=True,
         help_text=_('Separate multiple keywords with ";".'),
     )
