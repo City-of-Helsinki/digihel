@@ -13,7 +13,7 @@ def get_case_form_html_content_field(label, help_text=''):
         widget=forms.Textarea(attrs={
             'rows': '8'
         }),
-        required=False,
+        required=True,
         strip=True,
         help_text=help_text,
     )
