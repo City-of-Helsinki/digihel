@@ -14,10 +14,12 @@
             {% endif %}
         </div>
         <div class="navbar-right">
+            {% comment %}
             <button class="btn btn-default search-trigger" id="js-toggle-search" aria-label="Avaa haku" type="button" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-search hel-nav-icon"></span>
                 <span class="hidden-sm hidden-xs">Haku</span>
             </button>
+            {% endcomment %}
             <div class="dropdown btn-group">
                 <button class="language-switcher dropdown-toggle btn btn-default" type="button" id="language-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="glyphicon glyphicon-globe hel-nav-icon"></span>
@@ -90,9 +92,11 @@
             </ul>
         </div>
     </div>
+    {% comment %}
     <div class="drop-search">
         <div class="container">
             {% include 'includes/navbar-search.html' %}
         </div>
     </div>
+    {% endcomment %}
 </nav>
