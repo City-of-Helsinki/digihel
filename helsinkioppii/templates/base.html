@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static compress content_tags multilang_tags %}
+{% load static i18n compress content_tags multilang_tags %}
 
 {% block meta %}
     <meta property="og:title" content="{% block sometitle %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - {{ request.site.site_name }}">
@@ -28,40 +28,51 @@
 {% block footer_branding %}
     <div class="footer-branding footer-branding-helsinki">
         <a href="http://www.hel.fi">
-            <img alt="Helsingin tunnus"
-                 src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}"
-                 class="footer-logo footer-logo-helsinki"
-                 aria-hidden="true"
-            >
+            {% get_page_language_code as lang_code %}
+            {% if lang_code == 'sv' %}
+                <img alt="Helsingfors logo"
+                     src="{% static 'images/logo_sv.svg' %}"
+                     class="footer-logo footer-logo-helsinki"
+                     aria-hidden="true"
+                >
+            {% else %}
+                <img alt="Helsingin tunnus"
+                     src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}"
+                     class="footer-logo footer-logo-helsinki"
+                     aria-hidden="true"
+                >
+            {% endif %}
         </a>
 
         <address>
-            Helsingin kaupunki<br/>
-            Kasvatus ja koulutus<br/>
-            Töysänkatu 2D (PL 3000)<br/>
-            00099 Helsingin kaupunki<br/>
+            {% blocktrans %}
+                Helsingin kaupunki<br/>
+                Kasvatus ja koulutus<br/>
+                Töysänkatu 2 D (PL 51300)<br/>
+                00099 Helsingin kaupunki<br/>
+            {% endblocktrans %}
         </address>
     </div>
 {% endblock footer_branding %}
 
 {% block footer_links %}
     <div class="page-footer-block">
-        <p>Tältä sivulta löydät tietoa kasvatuksen ja koulutuksen digitalisaatiosta Helsingissä. Tutustu, kuinka digitalisaatio näkyy päiväkotien, koulujen ja oppilaitosten arjessa.</p>
-        <div class="footer-header">Helsinki oppii</div>
+        <p>{% trans "Tältä sivulta löydät tietoa kasvatuksen ja koulutuksen digitalisaatiosta Helsingissä. Tutustu, kuinka digitalisaatio näkyy päiväkotien, koulujen ja oppilaitosten arjessa." %}</p>
+        <div class="footer-header">{% trans "Helsinki oppii" %}</div>
         <ul class="footer-links list-inline">
-            <li><a href="#"><span class="fa fa-facebook-square social-icon" aria-label="Facebook"></span></a></li>
-            <li><a href="#"><span class="fa fa-instagram social-icon" aria-label="Instagram"></span> </a></li>
-            <li><a href="#"><span class="fa fa-twitter social-icon" aria-label="Twitter"></span></a></li>
-            <li><a href="#"><span class="fa fa-youtube social-icon" aria-label="Youtube"></span></a></li>
+            <li><a href="https://fi-fi.facebook.com/HelsinkiOppii/"><span class="fa fa-facebook-square social-icon" aria-label="Facebook"></span></a></li>
+            <li><a href="https://www.instagram.com/helsinki_oppii/"><span class="fa fa-instagram social-icon" aria-label="Instagram"></span> </a></li>
+            <li><a href="https://twitter.com/helsinkioppii?lang=fi"><span class="fa fa-twitter social-icon" aria-label="Twitter"></span></a></li>
+            <li><a href="https://www.youtube.com/channel/UC1nmr7m4rYGBc4mZZfGFFmQ"><span class="fa fa-youtube social-icon" aria-label="Youtube"></span></a></li>
         </ul>
     </div>
 {% endblock footer_links %}
 
 {% block footer_smallprint %}
     <div class="page-footer-small-print">
-        <div class="footer-header"><a href="#">Kasvatus ja koulutus <span class="fa fa-caret-right"></span></a></div>
+        <div class="footer-header"><a href="https://www.hel.fi/kasvatuksen-ja-koulutuksen-toimiala/fi">{% trans "Kasvatus ja koulutus" %} <span class="fa fa-caret-right"></span></a></div>
         <ul class="small-print-nav">
-            <li>2017 Helsingin kaupunki</li>
+            <li>{% now 'Y' %} {% trans "Helsingin kaupunki" %}</li>
         </ul>
     </div>
 {% endblock footer_smallprint %}
