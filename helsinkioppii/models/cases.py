@@ -27,7 +27,7 @@ class CaseKeyword(TaggedItemBase):
 @register_snippet
 class SchoolSubject(models.Model):
     subject = models.CharField(
-        verbose_name=_('school subject'),
+        verbose_name=_('School subject'),
         max_length=128,
         blank=True
     )
@@ -54,7 +54,7 @@ class SchoolSubject(models.Model):
 @register_snippet
 class SchoolGrade(models.Model):
     grade = models.CharField(
-        verbose_name=_('school grade'),
+        verbose_name=_('Level of education'),
         max_length=128,
         blank=True
     )
@@ -81,7 +81,7 @@ class SchoolGrade(models.Model):
 @register_snippet
 class CaseTheme(models.Model):
     theme = models.CharField(
-        verbose_name=_('theme'),
+        verbose_name=_('Theme'),
         max_length=128,
         blank=True
     )
@@ -155,7 +155,7 @@ class CaseGalleryImage(models.Model):
 class CaseAttachment(models.Model):
     file = models.ForeignKey(
         'wagtaildocs.Document',
-        verbose_name=_('file'),
+        verbose_name=_('File'),
         null=False,
         blank=False,
         on_delete=models.CASCADE,
@@ -246,34 +246,34 @@ class Case(RoutablePageMixin, Page):
     content_objectives = RichTextField(verbose_name=_('Objectives'), blank=True)
     content_what = RichTextField(verbose_name=_('What was done'), blank=True)
     content_how = RichTextField(verbose_name=_('How it was done'), blank=True)
-    content_who = RichTextField(verbose_name=_('Who participated'), blank=True)
-    content_evaluation = RichTextField(verbose_name=_('How the learning was evaluated'), blank=True)
-    content_materials = RichTextField(verbose_name=_('What materials were useed'), blank=True)
+    content_who = RichTextField(verbose_name=_('Participants'), blank=True)
+    content_evaluation = RichTextField(verbose_name=_('Evaluation'), blank=True)
+    content_materials = RichTextField(verbose_name=_('Materials'), blank=True)
     content_pros = RichTextField(verbose_name=_('Pros'), blank=True)
     content_cons = RichTextField(verbose_name=_('Cons'), blank=True)
 
     # Sidebar content
     school = models.CharField(
-        verbose_name=_('school'),
+        verbose_name=_('Educational institution'),
         max_length=128,
         blank=True,
     )
     themes = ParentalManyToManyField(
         'helsinkioppii.CaseTheme',
-        verbose_name=_('themes'),
+        verbose_name=_('Themes'),
         blank=True,
         related_name="+"
     )
     keywords = ClusterTaggableManager(through=CaseKeyword, blank=True)
     grades = ParentalManyToManyField(
         'helsinkioppii.SchoolGrade',
-        verbose_name=_('school grades'),
+        verbose_name=_('Levels of education'),
         blank=True,
         related_name="+"
     )
     subjects = ParentalManyToManyField(
         'helsinkioppii.SchoolSubject',
-        verbose_name=_('school subjects'),
+        verbose_name=_('School subjects'),
         blank=True,
         related_name="+"
     )
@@ -284,21 +284,21 @@ class Case(RoutablePageMixin, Page):
     #       ran in production before removing these fields.
     subject = models.ForeignKey(
         'helsinkioppii.SchoolSubject',
-        verbose_name=_('school subject'),
+        verbose_name=_('School subject'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
     )
     grade = models.ForeignKey(
         'helsinkioppii.SchoolGrade',
-        verbose_name=_('school grade'),
+        verbose_name=_('Level of education'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
     )
     theme = models.ForeignKey(
         'helsinkioppii.CaseTheme',
-        verbose_name=_('theme'),
+        verbose_name=_('Theme'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

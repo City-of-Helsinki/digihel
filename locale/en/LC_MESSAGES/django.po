@@ -20,51 +20,51 @@ msgstr ""
 
 #: content/models.py:31
 msgid "Left column content"
-msgstr "Vasemman sarakkeen sisältö"
+msgstr ""
 
 #: content/models.py:33
 msgid "Right column content"
-msgstr "Oikean sarakkeen sisältö"
+msgstr ""
 
 #: content/models.py:37
 msgid "Two columns"
-msgstr "Kaksi saraketta"
+msgstr ""
 
 #: content/models.py:45
 msgid "Collapsible paragraph"
-msgstr "Suljettava tekstikappale"
+msgstr ""
 
 #: content/models.py:94 content/models.py:113
 msgid "show sidebar events"
-msgstr "näytä sivupalkin tapahtumat"
+msgstr ""
 
 #: content/models.py:116 digi/models.py:135 digi/models.py:187
 msgid "Roles"
-msgstr "Roolit"
+msgstr ""
 
 #: content/models.py:117 digi/models.py:75 digi/models.py:136
 #: digi/models.py:188
 #: helsinkioppii/templates/content/includes/sidebar_links_and_roles.html:5
 #: helsinkioppii/templates/helsinkioppii/case.html:155
 msgid "Links"
-msgstr "Linkit"
+msgstr ""
 
 #: digi/models.py:44
 msgid "Indicator"
-msgstr "Indikaattori"
+msgstr ""
 
 #: digi/models.py:45
 msgid "Indicators"
-msgstr "Indikaattorit"
+msgstr ""
 
 #: digi/models.py:171
 msgid "Project"
-msgstr "Projekti"
+msgstr ""
 
 #: digihel/templates/wagtailadmin/login.html:3
 #: digihel/templates/wagtailadmin/login.html:73
 msgid "Sign in"
-msgstr "Kirjaudu sisään"
+msgstr ""
 
 #: digihel/templates/wagtailadmin/login.html:18
 #, python-format
@@ -73,44 +73,44 @@ msgstr ""
 
 #: digihel/templates/wagtailadmin/login.html:60
 msgid "Forgotten it?"
-msgstr "Unohditko?"
+msgstr ""
 
 #: digihel/templates/wagtailadmin/login.html:73
 msgid "Signing in..."
-msgstr "Kirjaudutaan sisään"
+msgstr ""
 
 #: events/models.py:21
 #: helsinkioppii/templates/content/includes/sidebar_links_and_roles.html:25
 msgid "Events"
-msgstr "Tapahtumat"
+msgstr ""
 
 #: events/models.py:22
 msgid "Event data source"
-msgstr "Tapahtumien tietolähde"
+msgstr ""
 
 #: feedback/models.py:14
 msgid "URL of the page where the user was"
-msgstr "Sivu jolta palaute jätettiin"
+msgstr ""
 
 #: feedback/models.py:15
 msgid "The user agent string of the user's browser"
-msgstr "Käyttäjän selaimen tyyppi"
+msgstr ""
 
 #: feedback/models.py:17
 msgid "Subject"
-msgstr "Otsikko"
+msgstr ""
 
 #: feedback/models.py:18 feedback/models.py:121 kehmet/models.py:18
 msgid "Name"
-msgstr "Nimi"
+msgstr ""
 
 #: feedback/models.py:19 feedback/models.py:123
 msgid "Email"
-msgstr "Sähköposti"
+msgstr ""
 
 #: feedback/models.py:20
 msgid "Body"
-msgstr "Sisältö"
+msgstr ""
 
 #: feedback/models.py:53
 #, python-format
@@ -120,169 +120,169 @@ msgstr ""
 #: feedback/models.py:86
 #, python-brace-format
 msgid "New feedback received for {url}"
-msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
+msgstr ""
 
 #: feedback/models.py:125
 msgid "User agent"
-msgstr "Selain"
+msgstr ""
 
 #: helsinkioppii/blocks/banner_lift.py:12
 msgid "Overrides page link if set."
-msgstr "Yliajaa sivulinkin, jos määritetty"
+msgstr ""
 
 #: helsinkioppii/fields.py:27
 #, python-format
 msgid "%s gallery image:"
-msgstr "%s galleriakuva:"
+msgstr ""
 
 #: helsinkioppii/fields.py:32
 #, python-format
 msgid "%s gallery image title:"
-msgstr "%s galleriakuvan nimi:"
+msgstr ""
 
 #: helsinkioppii/fields.py:38
 msgid "Please remember to name your gallery image."
-msgstr "Muistathan nimetä galleriakuvan."
+msgstr ""
 
 #: helsinkioppii/fields.py:48
 #, python-format
 msgid "%s attachment:"
-msgstr "%s liite:"
+msgstr ""
 
 #: helsinkioppii/fields.py:53
 #, python-format
 msgid "%s attachment title:"
-msgstr "%s liitteen nimi"
+msgstr ""
 
 #: helsinkioppii/fields.py:59
 msgid "Please remember to name your attachment."
-msgstr "Muistathan nimetä liitteen."
+msgstr ""
 
 #: helsinkioppii/fields.py:69
 #, python-format
 msgid "%s sidebar link url:"
-msgstr "%s sivupalkin linkin url:"
+msgstr ""
 
 #: helsinkioppii/fields.py:76
 #, python-format
 msgid "%s sidebar link text:"
-msgstr "%s sivupalkin linkin teksti:"
+msgstr ""
 
 #: helsinkioppii/fields.py:84
 #: helsinkioppii/templates/helsinkioppii/case.html:23
 msgid "Delete"
-msgstr "Poista"
+msgstr ""
 
 #: helsinkioppii/forms.py:30
 msgid "Free search"
-msgstr "Vapaa haku"
+msgstr ""
 
 #: helsinkioppii/forms.py:34
 #: helsinkioppii/templates/helsinkioppii/case_list_page.html:33
 msgid "Search"
-msgstr "Etsi"
+msgstr ""
 
 #: helsinkioppii/forms.py:39 helsinkioppii/models/cases.py:263
 msgid "Themes"
-msgstr "Teemat"
+msgstr ""
 
 #: helsinkioppii/forms.py:47 helsinkioppii/models/cases.py:270
 msgid "Levels of education"
-msgstr "Koulutusasteet"
+msgstr ""
 
 #: helsinkioppii/forms.py:55 helsinkioppii/models/cases.py:276
 msgid "School subjects"
-msgstr "Oppiaineet"
+msgstr ""
 
 #: helsinkioppii/forms.py:75
 msgid "Title:"
-msgstr "Otsikko:"
+msgstr ""
 
 #: helsinkioppii/forms.py:85
 msgid "Image:"
-msgstr "Kuva:"
+msgstr ""
 
 #: helsinkioppii/forms.py:90
 msgid "Image title:"
-msgstr "Kuvateksti:"
+msgstr ""
 
 #: helsinkioppii/forms.py:100
 msgid "Educational institution:"
-msgstr "Oppilaitos:"
+msgstr ""
 
 #: helsinkioppii/forms.py:109
 msgid "Themes:"
-msgstr "Teemat:"
+msgstr ""
 
 #: helsinkioppii/forms.py:114
 msgid "Select any fitting themes."
-msgstr "Valitse toteutustasi kuvaavat teemat."
+msgstr ""
 
 #: helsinkioppii/forms.py:118
 msgid "Levels of education:"
-msgstr "Koulutusasteet:"
+msgstr ""
 
 #: helsinkioppii/forms.py:123
 msgid "Select any fitting levels of education."
-msgstr "Valitse toteutustasi kuvaavat koulutusasteet."
+msgstr ""
 
 #: helsinkioppii/forms.py:127
 msgid "School subjects:"
-msgstr "Oppiaineet:"
+msgstr ""
 
 #: helsinkioppii/forms.py:132
 msgid "Select any fitting school subjects."
-msgstr "Valitse toteutustasi kuvaavat oppiaineet."
+msgstr ""
 
 #: helsinkioppii/forms.py:135
 msgid "Keywords:"
-msgstr "Avainsanat:"
+msgstr ""
 
 #: helsinkioppii/forms.py:141
 msgid "Separate multiple keywords with \";\"."
-msgstr "Erota avainsanat toisistaan käyttämällä ;-merkkiä."
+msgstr ""
 
 #: helsinkioppii/forms.py:146
 msgid "Abstract:"
-msgstr "Tiivistelmä oppimisen toteutuksestasi:"
+msgstr ""
 
 #: helsinkioppii/forms.py:156
 msgid "Objectives:"
-msgstr "Tavoitteet:"
+msgstr ""
 
 #: helsinkioppii/forms.py:156 helsinkioppii/forms.py:160
 #: helsinkioppii/forms.py:161 helsinkioppii/forms.py:162
 #: helsinkioppii/forms.py:163
 msgid "Please format your text using bullet points."
-msgstr "Käytäthän tekstin muotoilussa ranskalaisia viivoja (bullet-point)."
+msgstr ""
 
 #: helsinkioppii/forms.py:157
 msgid "What was done:"
-msgstr "Mitä tehtiin:"
+msgstr ""
 
 #: helsinkioppii/forms.py:158
 msgid "How it was done:"
-msgstr "Miten tehtiin:"
+msgstr ""
 
 #: helsinkioppii/forms.py:159
 msgid "Participants:"
-msgstr "Osallistujat:"
+msgstr ""
 
 #: helsinkioppii/forms.py:160
 msgid "Evaluation:"
-msgstr "Arviointi:"
+msgstr ""
 
 #: helsinkioppii/forms.py:161
 msgid "Materials:"
-msgstr "Materiaalit:"
+msgstr ""
 
 #: helsinkioppii/forms.py:162
 msgid "Pros:"
-msgstr "Plussat:"
+msgstr ""
 
 #: helsinkioppii/forms.py:163
 msgid "Cons:"
-msgstr "Kehitettävää:"
+msgstr ""
 
 #: helsinkioppii/forms.py:166 helsinkioppii/forms.py:176
 #: helsinkioppii/forms.py:183
@@ -324,8 +324,6 @@ msgstr ""
 #: helsinkioppii/forms.py:191 helsinkioppii/models/cases.py:311
 msgid "I am licensing this content under Creative Commons license."
 msgstr ""
-"Tämä teos on lisensoitu Creative Commons 4.0-käyttöluvalla. Tarkastele "
-"käyttölupaa osoitteessa http://creativecommons.org/licenses/by/4.0/."
 
 #: helsinkioppii/forms.py:196 helsinkioppii/models/cases.py:317
 msgid ""
@@ -333,245 +331,237 @@ msgid ""
 "the permission to use the images or I have the copyright to the images. "
 "People have given permission to publish the images they appear in."
 msgstr ""
-"Minulla on oikeus julkaista lataamani kuvat tähän julkaisuun. Minulla on "
-"oikeus käyttää kuvia tai minä omistan käytettyjen kuvien tekijänoikeudet. "
-"Kaikilla kuvissa esiintyviltä henkilöiltä on kysytty kuvauslupa."
 
 #: helsinkioppii/forms.py:237
 msgid "Title is required if image exists."
-msgstr "Otsikko on pakollinen, jos kuva on annettu."
+msgstr ""
 
 #: helsinkioppii/forms.py:243
 msgid "Title is required if attachment exists."
-msgstr "Otsikko on pakollinen, jos liite on annettu."
+msgstr ""
 
 #: helsinkioppii/forms.py:249
 msgid "Link text is required if link exists."
-msgstr "Linkin teksti on pakollinen, jos linkki on annettu."
+msgstr ""
 
 #: helsinkioppii/models/cases.py:30 helsinkioppii/models/cases.py:287
 #: helsinkioppii/templates/helsinkioppii/case.html:87
 msgid "School subject"
 msgid_plural "School subjects"
-msgstr[0] "Oppiaine"
-msgstr[1] "Oppiaineet"
+msgstr[0] ""
+msgstr[1] ""
 
 #: helsinkioppii/models/cases.py:35 helsinkioppii/models/cases.py:62
 #: helsinkioppii/models/cases.py:89
 msgid "language code"
-msgstr "kielikoodi"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:57 helsinkioppii/models/cases.py:294
 #: helsinkioppii/templates/helsinkioppii/case.html:79
 msgid "Level of education"
 msgid_plural "Levels of education"
-msgstr[0] "Koulutusaste"
-msgstr[1] "Koulutusasteet"
+msgstr[0] ""
+msgstr[1] ""
 
 #: helsinkioppii/models/cases.py:84 helsinkioppii/models/cases.py:301
 #: helsinkioppii/templates/helsinkioppii/case.html:71
 msgid "Theme"
 msgid_plural "Themes"
-msgstr[0] "Teema"
-msgstr[1] "Teemat"
+msgstr[0] ""
+msgstr[1] ""
 
 #: helsinkioppii/models/cases.py:123
 msgid "Image"
-msgstr "Kuva"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:130
 msgid "Gallery image ordinal"
-msgstr "Galleriakuvan järjestysnumero"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:133
 msgid "One of the eight gallery image slots the images takes up from a Case."
-msgstr "Yksi kahdeksasta galleriakuvapaikasta, jonka kuva vie toteutukselta."
+msgstr ""
 
 #: helsinkioppii/models/cases.py:137 helsinkioppii/models/cases.py:172
 #: helsinkioppii/models/cases.py:211
 #: helsinkioppii/templates/helsinkioppii/case.html:51
 msgid "Case"
-msgstr "Toteutus"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:158
 msgid "File"
-msgstr "Tiedosto"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:165
 msgid "Attachment ordinal"
-msgstr "Liitteen järjestysnumero"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:168
 msgid "One of the five document slots the attachment takes up from a Case."
-msgstr "Yksi viidestä liitetiedostopaikasta, jonka liite vie toteutukselta."
+msgstr ""
 
 #: helsinkioppii/models/cases.py:192
 msgid "Link URL"
-msgstr "Linkin URL"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:198
 msgid "Link text"
-msgstr "Linkin teksti"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:204
 msgid "Link ordinal"
-msgstr "Linkin järjestysnumero"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:207
 msgid "One of the five link slots the link takes up from a Case."
-msgstr "Yksi viidestä linkkipaikasta, jonka linkki vie toteutukselta."
+msgstr ""
 
 #: helsinkioppii/models/cases.py:233
 msgid "image"
-msgstr "kuva"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:240
 msgid "abstract"
-msgstr "lyhennelmä"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:243
 msgid "content"
-msgstr "sisältö"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:246
 #: helsinkioppii/templates/helsinkioppii/case.html:185
 msgid "Objectives"
-msgstr "Tavoitteet"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:247
 msgid "What was done"
-msgstr "Mitä tehtiin"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:248
 msgid "How it was done"
-msgstr "Miten tehtiin"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:249
 #: helsinkioppii/templates/helsinkioppii/case.html:197
 msgid "Participants"
-msgstr "Osallistujat"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:250
 #: helsinkioppii/templates/helsinkioppii/case.html:201
 msgid "Evaluation"
-msgstr "Arviointi"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:251
 #: helsinkioppii/templates/helsinkioppii/case.html:205
 msgid "Materials"
-msgstr "Materiaalit"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:252
 #: helsinkioppii/templates/helsinkioppii/case.html:212
 msgid "Pros"
-msgstr "Plussat"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:253
 #: helsinkioppii/templates/helsinkioppii/case.html:220
 msgid "Cons"
-msgstr "Kehitettävää"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:257
 msgid "Educational institution"
-msgstr "Oppilaitos"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:309
 msgid "Creative Commons license"
-msgstr "Creative Commons -lisenssi"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:314
 msgid "Photo permission"
-msgstr "Kuvauslupa"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:325
 #: helsinkioppii/templates/helsinkioppii/case_list_page.html:60
 msgid "draft"
-msgstr "luonnos"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:327
 msgid "Hidden draft flag used with frontend editing."
 msgstr ""
-"Piilotettu luonnosvipu, mitä käytetään sivustolla olevan lomakkeen kanssa."
 
 #: helsinkioppii/models/cases.py:342
 msgid "Case description"
-msgstr "Toteutuksen kuvaus"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:354
 msgid "contacts"
-msgstr "yhteyshenkilöt"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:356
 msgid "Case meta"
-msgstr "Toteutuksen metatiedot"
+msgstr ""
 
 #: helsinkioppii/models/cases.py:366
 msgid "Deprecated relationships"
-msgstr "Vanhentuva liittyvä sisältö"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:30 helsinkioppii/models/pages.py:316
 msgid "hero content"
-msgstr "hero-osion sisältö"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:35 helsinkioppii/models/pages.py:133
 #: helsinkioppii/models/pages.py:321
 msgid "hero image"
-msgstr "hero-osion kuva (kansikuva)"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:43
 msgid "Youtube video embed"
-msgstr "Youtube-upotus"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:51 helsinkioppii/models/pages.py:344
 msgid "banner section title"
-msgstr "banneri-osion otsikko"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:56 helsinkioppii/models/pages.py:349
 msgid "banner section description"
-msgstr "banneri-osion kuvaus"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:65
 msgid "case section title"
-msgstr "toteutus-osion otsikko"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:70
 msgid "case section description"
-msgstr "toteutus-osion kuvaus"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:79
 msgid "social section title"
-msgstr "social-osion otsikko"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:84
 msgid "social section description"
-msgstr "social-osion kuvaus"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:118
 #, python-brace-format
 msgid "Slug has to be one of the available site languages. Options: {options}"
 msgstr ""
-"Lyhytnimen täytyy olla yksi käytössä olevien kielien kielikoodeista. "
-"Vaihtoehdot: {options}"
 
 #: helsinkioppii/models/pages.py:140
 msgid "lead text"
-msgstr "ingressi"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:330
 msgid "training section title"
-msgstr "training-osion otsikko"
+msgstr ""
 
 #: helsinkioppii/models/pages.py:335
 msgid "training section description"
-msgstr "training-osion kuvais"
+msgstr ""
 
 #: helsinkioppii/templates/base.html:48
 msgid ""
 "City of Helsinki<br>Education division<br>Töysänkatu 2 D (PL 51300)<br>00099 "
 "Helsinki"
 msgstr ""
-"Helsingin kaupunki<br>Kasvatus ja koulutus<br>Töysänkatu 2 D (PL "
-"51300)<br>00099 Helsingin kaupunki"
 
 #: helsinkioppii/templates/base.html:56
 msgid ""
@@ -579,197 +569,194 @@ msgid ""
 "in Helsinki. Learn how digitalisation is present in the everyday life of day "
 "care centres, schools and educational institutions."
 msgstr ""
-"Tältä sivulta löydät tietoa kasvatuksen ja koulutuksen digitalisaatiosta "
-"Helsingissä. Tutustu, kuinka digitalisaatio näkyy päiväkotien, koulujen ja "
-"oppilaitosten arjessa."
 
 #: helsinkioppii/templates/base.html:57
 msgid "Helsinki learns"
-msgstr "Helsinki oppii"
+msgstr ""
 
 #: helsinkioppii/templates/base.html:69
 msgid "Education division"
-msgstr "Kasvatus ja koulutus"
+msgstr ""
 
 #: helsinkioppii/templates/base.html:71
 msgid "City of Helsinki"
-msgstr "Helsingin kaupunki"
+msgstr ""
 
 #: helsinkioppii/templates/content/includes/sidebar_links_and_roles.html:13
 #: helsinkioppii/templates/helsinkioppii/case.html:167
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:61
 msgid "Attachments"
-msgstr "Liitteet"
+msgstr ""
 
 #: helsinkioppii/templates/content/includes/sidebar_links_and_roles.html:27
 msgid "From Linked Events API"
-msgstr "Linked Events -rajapinnasta"
+msgstr ""
 
 #: helsinkioppii/templates/content/includes/sidebar_links_and_roles.html:36
 msgid "Contact information"
-msgstr "Yhteystiedot"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/blocks/banner_lift.html:14
 #: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:9
 msgid "Read more"
-msgstr "Lue lisää"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/blocks/training_lift.html:6
 msgid "at"
-msgstr "klo"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:15
 msgid "Draft"
-msgstr "Luonnos"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:17
 msgid "Public"
-msgstr "Julkinen"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:28
 msgid "Edit"
-msgstr "Muokkaa"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:34
 msgid "Publish"
-msgstr "Julkaise"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:40
 msgid "Unpublish"
-msgstr "Palauta luonnokseksi"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:66
 msgid "Educational institute"
-msgstr "Oppilaitos"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:98
 msgid "Keywords"
-msgstr "Avainsanat"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:108
 msgid "More information"
-msgstr "Lisätietoa"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:141
 msgid "Share"
-msgstr "Jaa"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:150
 msgid "Tweet"
-msgstr "Twiittaa"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:189
 msgid "What was done?"
-msgstr "Mitä tehtiin?"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case.html:193
 msgid "How it was done?"
-msgstr "Miten tehtiin?"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/case_list_page.html:49
 msgid "Share your own implementation"
-msgstr "Jaa oma toteutus"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/create_case.html:11
 msgid "Share your implementation of learning"
-msgstr "Jaa oma oppimisen toteutus"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/edit_case.html:11
 msgid "Edit case"
-msgstr "Muokkaa toteutusta"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:6
 msgid "Scroll to bottom"
-msgstr "Siirry sivun loppuun"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:18
 msgid "Sidebar information"
-msgstr "Sivupalkin tiedot"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:30
 msgid "Content"
-msgstr "Sisältö"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:47
 msgid "Image gallery"
-msgstr "Kuvagalleria"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:72
 msgid "Sidebar links"
-msgstr "Sivupalkin linkit"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:83
 msgid "Licensing and permissions"
-msgstr "Lisensointi ja luvat"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:95
 msgid "Save draft"
-msgstr "Tallenna luonnos"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/includes/case_form.html:97
 msgid "Save and publish changes"
-msgstr "Tallenna ja julkaise muutokset"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/index.html:42
 msgid "News"
-msgstr "Ajankohtaista"
+msgstr ""
 
 #: helsinkioppii/templates/helsinkioppii/index.html:55
 msgid "Read the full article"
-msgstr "Lue koko kirjoitus"
+msgstr ""
 
 #: helsinkioppii/templates/tags/top_menu.html:49
 msgid "Log out"
-msgstr "Kirjaudu ulos"
+msgstr ""
 
 #: helsinkioppii/templates/tags/top_menu.html:55
 msgid "Log in"
-msgstr "Kirjaudu sisään"
+msgstr ""
 
 #: helsinkioppii/templates/tags/top_menu.html:67
 msgid "Menu"
-msgstr "Valikko"
+msgstr ""
 
 #: kehmet/models.py:19
 msgid "Short description"
-msgstr "Lyhyt kuvaus"
+msgstr ""
 
 #: kehmet/models.py:30
 msgid "User role"
-msgstr "Käyttäjärooli"
+msgstr ""
 
 #: kehmet/models.py:31
 msgid "User roles"
-msgstr "Käyttäjäroolit"
+msgstr ""
 
 #: kehmet/models.py:36
 msgid "Development method"
-msgstr "Kehitysmenetelmä"
+msgstr ""
 
 #: kehmet/models.py:37
 msgid "Development methods"
-msgstr "Kehitysmenetelmät"
+msgstr ""
 
 #: kehmet/models.py:47
 msgid "Development phase"
-msgstr "Kehitysvaihe"
+msgstr ""
 
 #: kehmet/models.py:48
 msgid "Development phases"
-msgstr "Kehitysvaiheet"
+msgstr ""
 
 #: kehmet/models.py:93
 msgid "Show in sub menus"
-msgstr "Näytä alavalikoissa"
+msgstr ""
 
 #: kehmet/models.py:93
 msgid "Page is visible on the submenu"
-msgstr "Näytä linkki tälle sivuille tuotetuissa sivunavigaatioissa"
+msgstr ""
 
 #: kehmet/models.py:102
 msgid "Custom page configuration"
-msgstr "Sivun lisäasetukset"
+msgstr ""
 
 #: people/wagtail_hooks.py:9
 msgid "People"
-msgstr "Henkilöt"
+msgstr ""
