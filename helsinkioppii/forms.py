@@ -27,7 +27,7 @@ class CaseFilterForm(forms.Form):
     language_code = 'fi'
 
     free_text = forms.CharField(
-        label=_('Free text'),
+        label=_('Free search'),
         required=False,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
@@ -44,7 +44,7 @@ class CaseFilterForm(forms.Form):
     )
     grades = forms.ModelMultipleChoiceField(
         SchoolGrade.objects.filter(language_code=language_code),
-        label=_('School grades'),
+        label=_('Levels of education'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'filter-keywordlist list-unstyled checkbox'
         }),
@@ -97,7 +97,7 @@ class CaseForm(forms.Form):
 
     # Meta fields
     school = forms.CharField(
-        label=_('School:'),
+        label=_('Educational institution:'),
         widget=forms.TextInput(attrs={
             'class': 'form-control'
         }),
@@ -115,12 +115,12 @@ class CaseForm(forms.Form):
     )
     grades = forms.ModelMultipleChoiceField(
         SchoolGrade.objects.filter(language_code=language_code),
-        label=_('School grades:'),
+        label=_('Levels of education:'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
         }),
         required=True,
-        help_text=_('Select any fitting school grades.'),
+        help_text=_('Select any fitting levels of education.'),
     )
     subjects = forms.ModelMultipleChoiceField(
         SchoolSubject.objects.filter(language_code=language_code),
@@ -153,14 +153,14 @@ class CaseForm(forms.Form):
     )
 
     # HTML fields
-    content_objectives = get_case_form_html_content_field(_('Objectives:'), help_text=_('Use bullet points.'))
+    content_objectives = get_case_form_html_content_field(_('Objectives:'), help_text=_('Please format your text using bullet points.'))
     content_what = get_case_form_html_content_field(_('What was done:'))
     content_how = get_case_form_html_content_field(_('How it was done:'))
-    content_who = get_case_form_html_content_field(_('Who participated:'))
-    content_evaluation = get_case_form_html_content_field(_('How the learning was evaluated:'), help_text=_('Use bullet points.'))
-    content_materials = get_case_form_html_content_field(_('What materials were used:'), help_text=_('Use bullet points.'))
-    content_pros = get_case_form_html_content_field(_('Pros:'), help_text=_('Use bullet points.'))
-    content_cons = get_case_form_html_content_field(_('Cons:'), help_text=_('Use bullet points.'))
+    content_who = get_case_form_html_content_field(_('Participants:'))
+    content_evaluation = get_case_form_html_content_field(_('Evaluation:'), help_text=_('Please format your text using bullet points.'))
+    content_materials = get_case_form_html_content_field(_('Materials:'), help_text=_('Please format your text using bullet points.'))
+    content_pros = get_case_form_html_content_field(_('Pros:'), help_text=_('Please format your text using bullet points.'))
+    content_cons = get_case_form_html_content_field(_('Cons:'), help_text=_('Please format your text using bullet points.'))
 
     # Image gallery fields
     gallery_image_1, gallery_image_title_1 = get_case_form_gallery_image_fields(_('1.'))

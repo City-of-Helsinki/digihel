@@ -48,7 +48,7 @@
             {% endif %}
             <div class="row">
                 <div class=" col-md-8 col-lg-7 col-md-offset-3">
-                    <h2 class="case-section-header"><a href="{{ page.get_parent.url }}">{% trans "Toteutus" %}</a></h2>
+                    <h2 class="case-section-header"><a href="{{ page.get_parent.url }}">{% trans "Case" %}</a></h2>
                 </div>
             </div>
         </div>
@@ -63,12 +63,12 @@
                             <div class="col-md-12 col-sm-6">
                                 <dl class="case-meta--basics">
                                     {% if page.school %}
-                                        <dt>Koulu</dt>
+                                        <dt>{% trans "Educational institute" %}</dt>
                                         <dd>{{ page.school }}</dd>
                                     {% endif %}
                                     {% if page.themes %}
                                         {% with page.themes.all as themes %}
-                                            <dt>{% blocktrans count themes.count as t %}Teema{% plural %}Teemat{% endblocktrans %}</dt>
+                                            <dt>{% blocktrans count themes.count as t %}Theme{% plural %}Themes{% endblocktrans %}</dt>
                                             {% for theme in themes %}
                                                 <dd>{{ theme }}</dd>
                                             {% endfor %}
@@ -76,7 +76,7 @@
                                     {% endif %}
                                     {% if page.grades %}
                                         {% with page.grades.all as grades %}
-                                            <dt>{% blocktrans count grades.count as g %}Koulutusaste{% plural %}Koulutusasteet{% endblocktrans %}</dt>
+                                            <dt>{% blocktrans count grades.count as g %}Level of education{% plural %}Levels of education{% endblocktrans %}</dt>
                                             {% for grade in grades %}
                                                 <dd>{{ grade }}</dd>
                                             {% endfor %}
@@ -84,7 +84,7 @@
                                     {% endif %}
                                     {% if page.subjects %}
                                         {% with page.subjects.all as subjects %}
-                                            <dt>{% blocktrans count subjects.count as s %}Oppiaine{% plural %}Oppiaineet{% endblocktrans %}</dt>
+                                            <dt>{% blocktrans count subjects.count as s %}School subject{% plural %}School subjects{% endblocktrans %}</dt>
                                             {% for subject in subjects %}
                                                 <dd>{{ subject }}</dd>
                                             {% endfor %}
@@ -95,7 +95,7 @@
                             <div class="col-md-12 col-sm-6">
                                 {% if page.keywords.all %}
                                     <dl class="case-meta--tags">
-                                        <dt>{% trans "Asiasanat" %}</dt>
+                                        <dt>{% trans "Keywords" %}</dt>
                                         <dd>
                                             {% for keyword in page.keywords.all %}
                                                 <span class="label label-primary">{{ keyword }}</span>
@@ -105,7 +105,7 @@
                                 {% endif %}
                                 {% if page.contacts.all %}
                                     <dl class="case-meta--contact">
-                                        <dt>{% trans "Lisätietoja" %}</dt>
+                                        <dt>{% trans "More information" %}</dt>
                                         <dd>
                                             <ul class="list-unstyled">
                                             {% for contact in page.contacts.all %}
@@ -182,34 +182,34 @@
                         <img src="{{ content_image.url }}" class="case-image" alt="{{ content_image.alt }}">
                     {% endif %}
                     {% if page.content_objectives %}
-                        <h2 class="case-content-section-header">{% trans "Tavoitteet" %}</h2>
+                        <h2 class="case-content-section-header">{% trans "Objectives" %}</h2>
                         {{ page.content_objectives |safe }}
                     {% endif %}
                     {% if page.content_what %}
-                        <h2 class="case-content-section-header">{% trans "Mitä tehtiin" %}</h2>
+                        <h2 class="case-content-section-header">{% trans "What was done?" %}</h2>
                         {{ page.content_what |safe }}
                     {% endif %}
                     {% if page.content_how %}
-                        <h2 class="case-content-section-header">{% trans "Miten tehtiin" %}</h2>
+                        <h2 class="case-content-section-header">{% trans "How it was done?" %}</h2>
                         {{ page.content_how |safe }}
                     {% endif %}
                     {% if page.content_who %}
-                        <h2 class="case-content-section-header">{% trans "Ketkä osallistuivat" %}</h2>
+                        <h2 class="case-content-section-header">{% trans "Participants" %}</h2>
                         {{ page.content_who |safe }}
                     {% endif %}
                     {% if page.content_evaluation %}
-                        <h2 class="case-content-section-header">{% trans "Miten oppiminen arvioitiin" %}</h2>
+                        <h2 class="case-content-section-header">{% trans "Evaluation" %}</h2>
                         {{ page.content_evaluation |safe }}
                     {% endif %}
                     {% if page.content_materials %}
-                        <h2 class="case-content-section-header">{% trans "Materiaalit" %}</h2>
+                        <h2 class="case-content-section-header">{% trans "Materials" %}</h2>
                         {{ page.content_materials |safe }}
                     {% endif %}
                     <div class="row case-pros-cons">
                         <div class="col-sm-6">
                             {% if page.content_pros %}
                                 <div class="case-pros">
-                                    <h2 class="case-content-section-header">Plussat</h2>
+                                    <h2 class="case-content-section-header">{% trans "Pros" %}</h2>
                                     {{ page.content_pros |safe }}
                                 </div>
                             {% endif %}
@@ -217,7 +217,7 @@
                         <div class="col-sm-6">
                             {% if page.content_cons %}
                                 <div class="case-cons">
-                                    <h2 class="case-content-section-header">Kehitettävää</h2>
+                                    <h2 class="case-content-section-header">{% trans "Cons" %}</h2>
                                     {{ page.content_cons |safe }}
                                 </div>
                             {% endif %}

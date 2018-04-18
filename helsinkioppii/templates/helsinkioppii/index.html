@@ -39,7 +39,7 @@
     {% if blog_lifts %}
         <section class="main-section blog-lifts">
             <div class="container">
-                <h2 class="blog-lift-section-title">{% trans "Recent news" %}</h2>
+                <h2 class="blog-lift-section-title">{% trans "News" %}</h2>
                 <div class="row">
                     {% for blog_post in blog_lifts %}
                         <div class="col-sm-6 blog-lift">
@@ -52,7 +52,7 @@
                                 <div class="published-at">{{ blog_post.date|date:"j.n.Y" }}</div>
                                 <!-- TODO: strip formatting on first p, safe does not work here: -->
                                 {{ blog_post.body|richtext|first_rich_text_paragraph|safe }}
-                                <a href="{% pageurl blog_post %}">Lue koko kirjoitus &raquo;</a>
+                                <a href="{% pageurl blog_post %}">{% trans "Read the full article" %} &raquo;</a>
                             </div>
                         </div>
                     {% endfor %}
