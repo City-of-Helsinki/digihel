@@ -1,6 +1,6 @@
 {% load i18n helsinkioppii_tags %}
 
-{% if page.links.all %}
+{% if page.page_links %}
     <div class="page-links">
         <h3>{% trans "Links" %}</h3>
         <ul class="reference-list">
@@ -9,6 +9,8 @@
             {% endfor %}
         </ul>
     </div>
+{% endif %}
+{% if page.documents %}
     <div class="attached-documents">
         <h3>{% trans "Attachments" %}</h3>
         <ul class="reference-list">
