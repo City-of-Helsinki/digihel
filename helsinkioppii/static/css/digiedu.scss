@@ -295,6 +295,54 @@ section.blog-lifts {
     margin-bottom: $line-height-computed;
     border-top: 8px solid $theme-primary-dark;
 
+    &.grey {
+      border-top-color: $hel-silver;
+    }
+
+    &.light-green {
+      border-top-color: $hel-copper;
+    }
+
+    &.green {
+      border-top-color: $hel-tram;
+    }
+
+    &.light-blue {
+      border-top-color: $hel-fog;
+    }
+
+    &.blue {
+      border-top-color: $hel-coat;
+    }
+
+    &.dark-blue {
+      border-top-color: $hel-bus;
+    }
+
+    &.light-yellow {
+      border-top-color: $hel-engel;
+    }
+
+    &.yellow {
+      border-top-color: $hel-summer;
+    }
+
+    &.gold {
+      border-top-color: $hel-gold;
+    }
+
+    &.orange {
+      border-top-color: $hel-metro;
+    }
+
+    &.pink {
+      border-top-color: $hel-suomenlinna;
+    }
+
+    &.red {
+      border-top-color: $hel-brick;
+    }
+
     &.highlight {
       border: 2px solid $theme-primary-dark;
     }

@@ -4,6 +4,7 @@ from django.forms import model_to_dict
 from django.http import HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
+from enumfields import Enum, EnumField
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
@@ -18,6 +19,21 @@ from wagtail.wagtailsnippets.models import register_snippet
 
 from helsinkioppii.utils import get_substrings, humanized_range
 from multilang.utils import get_requested_page_language_code
+
+
+class SchoolGradeColors(Enum):
+    GREY = 'grey'
+    LIGHT_GREEN = 'light-green'
+    GREEN = 'green'
+    LIGHT_BLUE = 'light-blue'
+    BLUE = 'blue'
+    DARK_BLUE = 'dark-blue'
+    LIGHT_YELLOW = 'light-yellow'
+    YELLOW = 'yellow'
+    GOLD = 'gold'
+    ORANGE = 'orange'
+    PINK = 'pink'
+    RED = 'red'
 
 
 class CaseKeyword(TaggedItemBase):
@@ -63,6 +79,11 @@ class SchoolGrade(models.Model):
         max_length=10,
         blank=False,
         choices = settings.LANGUAGES,
+    )
+    color = EnumField(
+        SchoolGradeColors,
+        max_length=32,
+        help_text=_('Color associated with the level of education.'),
     )
 
     class Meta:
@@ -389,6 +410,13 @@ class Case(RoutablePageMixin, Page):
     def can_exist_under(cls, parent):
         from helsinkioppii.models.pages import CaseListPage
         return isinstance(parent, CaseListPage)
+
+    @property
+    def school_grade_color_class(self):
+        school_grade = self.grades.first()
+        if school_grade:
+            return school_grade.color.value
+        return ''
 
     def _is_user_action_allowed(self, user):
         """
