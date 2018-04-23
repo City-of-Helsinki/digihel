@@ -85,7 +85,8 @@ class CaseForm(forms.Form):
     image = forms.ImageField(
         label=_('Image:'),
         widget=HelClearableImageInput(),
-        required=False
+        required=False,
+        help_text=_('Please add an image to your implementation of learning.')
     )
     image_title = forms.CharField(
         label=_('Image title:'),
