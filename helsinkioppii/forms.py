@@ -24,8 +24,6 @@ def get_live_case_keywords():
 
 
 class CaseFilterForm(forms.Form):
-    language_code = 'fi'
-
     free_text = forms.CharField(
         label=_('Free search'),
         required=False,
@@ -35,7 +33,7 @@ class CaseFilterForm(forms.Form):
         }),
     )
     themes = forms.ModelMultipleChoiceField(
-        CaseTheme.objects.filter(language_code=language_code),
+        CaseTheme.objects.none(),  # Set in __init__
         label=_('Themes'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'filter-keywordlist list-unstyled checkbox'
@@ -43,7 +41,7 @@ class CaseFilterForm(forms.Form):
         required=False,
     )
     grades = forms.ModelMultipleChoiceField(
-        SchoolGrade.objects.filter(language_code=language_code),
+        SchoolGrade.objects.none(),  # Set in __init__
         label=_('Levels of education'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'filter-keywordlist list-unstyled checkbox'
@@ -51,7 +49,7 @@ class CaseFilterForm(forms.Form):
         required=False,
     )
     subjects = forms.ModelMultipleChoiceField(
-        SchoolSubject.objects.filter(language_code=language_code),
+        SchoolSubject.objects.none(),  # Set in __init__
         label=_('School subjects'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'filter-keywordlist list-unstyled checkbox'
@@ -63,10 +61,13 @@ class CaseFilterForm(forms.Form):
         self.language_code = kwargs.pop('language_code', 'fi')
         super().__init__(*args, **kwargs)
 
+        # Override ModelMultipleChoiceField querysets for current locale
+        self.fields['themes'].queryset = CaseTheme.objects.filter(language_code=self.language_code)
+        self.fields['grades'].queryset = SchoolGrade.objects.filter(language_code=self.language_code)
+        self.fields['subjects'].queryset = SchoolSubject.objects.filter(language_code=self.language_code)
+
 
 class CaseForm(forms.Form):
-    language_code = 'fi'
-
     GALLERY_IMAGE_COUNT = 8
     ATTACHMENT_COUNT = 5
     LINK_COUNT = 5
@@ -105,7 +106,7 @@ class CaseForm(forms.Form):
         strip=True,
     )
     themes = forms.ModelMultipleChoiceField(
-        CaseTheme.objects.filter(language_code=language_code),
+        CaseTheme.objects.none(),  # Set in __init__
         label=_('Themes:'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
@@ -114,7 +115,7 @@ class CaseForm(forms.Form):
         help_text=_('Select any fitting themes.'),
     )
     grades = forms.ModelMultipleChoiceField(
-        SchoolGrade.objects.filter(language_code=language_code),
+        SchoolGrade.objects.none(),  # Set in __init__
         label=_('Levels of education:'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
@@ -123,7 +124,7 @@ class CaseForm(forms.Form):
         help_text=_('Select any fitting levels of education.'),
     )
     subjects = forms.ModelMultipleChoiceField(
-        SchoolSubject.objects.filter(language_code=language_code),
+        SchoolSubject.objects.none(),  # Set in __init__
         label=_('School subjects:'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'list-unstyled checkbox'
@@ -203,6 +204,11 @@ class CaseForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.language_code = kwargs.pop('language_code', 'fi')
         super().__init__(*args, **kwargs)
+
+        # Override ModelMultipleChoiceField querysets for current locale
+        self.fields['themes'].queryset = CaseTheme.objects.filter(language_code=self.language_code)
+        self.fields['grades'].queryset = SchoolGrade.objects.filter(language_code=self.language_code)
+        self.fields['subjects'].queryset = SchoolSubject.objects.filter(language_code=self.language_code)
 
     def clean(self):
         cleaned_data = super().clean()
