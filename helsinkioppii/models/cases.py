@@ -485,9 +485,10 @@ class Case(RoutablePageMixin, Page):
 
         self.keywords.clear()  # Clear old keywords.
 
-        if form.cleaned_data['image'] == False:  # Should be deleted
+        if form.cleaned_data.get('image') == False:  # Should be deleted
             self.image.delete()
-        if form.cleaned_data['image']:
+            self.image = None
+        if form.cleaned_data.get('image'):
             image = Image.objects.create(
                 file=form.cleaned_data['image'],
                 title=form.cleaned_data['image_title']

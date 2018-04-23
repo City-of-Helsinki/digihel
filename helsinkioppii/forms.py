@@ -85,7 +85,7 @@ class CaseForm(forms.Form):
     image = forms.ImageField(
         label=_('Image:'),
         widget=HelClearableImageInput(),
-        required=True
+        required=False
     )
     image_title = forms.CharField(
         label=_('Image title:'),
@@ -237,19 +237,19 @@ class CaseForm(forms.Form):
             )
 
         for fields in image_fields:
-            if cleaned_data[fields[file_index]] and not cleaned_data[fields[title_index]]:
+            if cleaned_data.get(fields[file_index]) and not cleaned_data.get(fields[title_index]):
                 # image and image_title are not required. If image does
                 # exist image_title will be required.
                 self.add_error(fields[title_index], _('Title is required if image exists.'))
 
         for fields in attachment_fields:
-            if cleaned_data[fields[file_index]] and not cleaned_data[fields[title_index]]:
+            if cleaned_data.get(fields[file_index]) and not cleaned_data.get(fields[title_index]):
                 # attachments and attachment titles are not required. If
                 # attachment does exist attachment_title will be required.
                 self.add_error(fields[title_index], _('Title is required if attachment exists.'))
 
         for fields in link_fields:
-            if cleaned_data[fields[url_index]] and not cleaned_data[fields[text_index]]:
+            if cleaned_data.get(fields[url_index]) and not cleaned_data.get(fields[text_index]):
                 # link_url and link_text are not required. If link url does
                 # exist link_text will be required.
                 self.add_error(fields[text_index], _('Link text is required if link exists.'))
