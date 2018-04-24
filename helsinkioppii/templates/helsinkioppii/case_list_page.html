@@ -48,6 +48,15 @@
                             <div class="text-center">
                                 <a href="{{ page.create_view_path }}" class="btn btn-default">{% trans "Share your own implementation" %}</a>
                             </div>
+                        {% else %}
+                            <div class="text-center">
+                                <h1>{% trans "Request magic link" %}</h1>
+                                <form action="{% url "magiclink_request" %}">
+                                    <input type="hidden" name="redirect_adr" value="{{ page.url }}">
+                                    <div><label for="email">{% trans "Email" %}</label> <input type="text" name="email"></div>
+                                    <div><input type="submit" value="{% trans "Submit" %}"></div>
+                                </form>
+                            </div>
                         {% endif %}
 
                         <div class="cases-list">
