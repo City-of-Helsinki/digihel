@@ -12,6 +12,7 @@ from search import views as search_views
 
 admin.autodiscover()
 
+from magicuser import urls as magic_urls
 
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
@@ -27,7 +28,7 @@ urlpatterns = [
 
     # client endpoints for external API data
     url(r'^event_data/', event_data),
-
+    url(r'^magic/', include(magic_urls)),
     url(r'', include(wagtail_urls)),
 ]
 
