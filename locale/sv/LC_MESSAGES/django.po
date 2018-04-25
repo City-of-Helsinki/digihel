@@ -192,11 +192,11 @@ msgstr "Utbildningsstadier"
 
 #: helsinkioppii/forms.py:53 helsinkioppii/models/cases.py:297
 msgid "School subjects"
-msgstr "Läroamnen"
+msgstr "Läroämnen"
 
 #: helsinkioppii/forms.py:76
 msgid "Title:"
-msgstr "Rubrik"
+msgstr "Rubrik:"
 
 #: helsinkioppii/forms.py:86
 msgid "Image:"
@@ -240,7 +240,7 @@ msgstr "Välj alla lämpliga läroämnen."
 
 #: helsinkioppii/forms.py:137
 msgid "Keywords:"
-msgstr "Nyckelord"
+msgstr "Nyckelord:"
 
 #: helsinkioppii/forms.py:143
 msgid "Separate multiple keywords with \";\"."
