@@ -44,19 +44,22 @@
                             <div class="case-list-lead">{{ page.lead_text|safe }}</div>
                         </div>
 
-                        {% if request.user.pk %}
+                        {% if request.user.is_authenticated %}
                             <div class="text-center">
                                 <a href="{{ page.create_view_path }}" class="btn btn-default">{% trans "Share your own implementation" %}</a>
                             </div>
                         {% else %}
-                            <div class="text-center">
-                                <h1>{% trans "Request magic link" %}</h1>
-                                <form action="{% url "magiclink_request" %}">
-                                    <input type="hidden" name="redirect_adr" value="{{ page.url }}">
-                                    <div><label for="email">{% trans "Email" %}</label> <input type="text" name="email"></div>
-                                    <div><input type="submit" value="{% trans "Submit" %}"></div>
-                                </form>
-                            </div>
+                            {% url "magiclink_request" as magic_url %}
+                            {% if magic_url %}
+                                <div class="text-center">
+                                    <h1>{% trans "Request magic link" %}</h1>
+                                    <form action="{{ magic_url  }}">
+                                        <input type="hidden" name="redirect_adr" value="{{ page.url }}">
+                                        <div><label for="email">{% trans "Email" %}</label> <input type="text" name="email"></div>
+                                        <div><input type="submit" value="{% trans "Submit" %}"></div>
+                                    </form>
+                                </div>
+                            {% endif %}
                         {% endif %}
 
                         <div class="cases-list">
