@@ -52,7 +52,7 @@
                             {% url "magiclink_request" as magic_url %}
                             {% if magic_url %}
                                 <div class="text-center">
-                                    <h1>{% trans "Request magic link" %}</h1>
+                                    <h3>{% trans "Request magic link" %}</h3>
                                     <form action="{{ magic_url  }}">
                                         <input type="hidden" name="redirect_adr" value="{{ page.url }}">
                                         <div><label for="email">{% trans "Email" %}</label> <input type="text" name="email"></div>
