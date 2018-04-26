@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-23 12:56+0300\n"
+"POT-Creation-Date: 2018-04-26 15:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,6 +105,7 @@ msgid "Name"
 msgstr ""
 
 #: feedback/models.py:19 feedback/models.py:123
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:58
 msgid "Email"
 msgstr ""
 
@@ -494,7 +495,7 @@ msgid "Photo permission"
 msgstr ""
 
 #: helsinkioppii/models/cases.py:346
-#: helsinkioppii/templates/helsinkioppii/case_list_page.html:60
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:72
 msgid "draft"
 msgstr "utkast"
 
@@ -676,6 +677,14 @@ msgstr "Hur gjorde ni?"
 #: helsinkioppii/templates/helsinkioppii/case_list_page.html:49
 msgid "Share your own implementation"
 msgstr "Dela ett eget projekt "
+
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:55
+msgid "Request magic link"
+msgstr "Tilaa kirjautumislinkki sähköpostiisi"
+
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:59
+msgid "Submit"
+msgstr "Tilaa kirjautumislinkki"
 
 #: helsinkioppii/templates/helsinkioppii/create_case.html:11
 msgid "Share your implementation of learning"
