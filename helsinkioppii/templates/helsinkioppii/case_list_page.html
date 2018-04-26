@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load i18n url_tags wagtailimages_tags %}
+
+{% block body_class %}helsinkioppii-case-list-page{% endblock %}
+
+{% block content %}
+    {% image page.hero_image fill-1920x1080-c100 as hero_image %}
+    {% if hero_image %}
+        <div class="container-fluid header-container container--hero container--hero__sub" style="background-image: url('{{ hero_image.url }}')">
+            <div class="case-list-hero-koro__bottom"></div>
+        </div>
+    {% endif %}
+
+    <section class="case-list-main-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-md-push-9">
+                    <aside class="sidebar-case-filters">
+                        <form action="{{ page.url }}" method="get">
+                            {% for field in form.visible_fields %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}" class="filter-label {% if field.name != 'free_text' %}collapsible{% endif %}">
+                                        {{ field.label }}
+                                    </label>
+                                    <div>
+                                        {{ field }}
+                                        {{ field.errors }}
+                                    </div>
+                                </div>
+                                {% if forloop.counter == 1 %}
+                                    {# Render button after first form field #}
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </form>
+                    </aside>
+                </div>
+                <div class="col-md-9 col-md-pull-3">
+                    <main class="">
+                        <div class="text-center">
+                            <h1 class="page-title">{{ page.title }}</h1>
+                            <div class="case-list-lead">{{ page.lead_text|safe }}</div>
+                        </div>
+
+                        {% if request.user.is_authenticated %}
+                            <div class="text-center">
+                                <a href="{{ page.create_view_path }}" class="btn btn-default">{% trans "Share your own implementation" %}</a>
+                            </div>
+                        {% else %}
+                            {% url "magiclink_request" as magic_url %}
+                            {% if magic_url %}
+                                <div class="text-center">
+                                    <h3>{% trans "Request magic link" %}</h3>
+                                    <form action="{{ magic_url  }}">
+                                        <input type="hidden" name="redirect_adr" value="{{ page.url }}">
+                                        <div><label for="email">{% trans "Email" %}</label> <input type="text" name="email"></div>
+                                        <div><input type="submit" value="{% trans "Submit" %}"></div>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                        <div class="cases-list">
+                            {% for case in cases %}
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="case-card match-height {{ case.school_grade_color_class }} {% if case.owner == request.user %}highlight{% endif %}">
+                                        <div class="caption">
+                                            <h3 class="hyphenate">
+                                                <a href="{{ case.url }}">
+                                                    {{ case.title }}{% if case.draft %} <span>({% trans "draft" %})</span>{% endif %}
+                                                </a>
+                                            </h3>
+                                            <p class="case-abstract">{{ case.abstract }}</p>
+                                            <div class="case-keywords">
+                                                {% for keyword in case.keywords.all %}
+                                                    <span class="keyword">{{ keyword }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </main>
+                    {% if cases.has_other_pages %}
+                        <div class="case-pagination">
+                            <ul class="pagination">
+                                {% if cases.has_previous %}
+                                    <li>
+                                        <a href="?{% update_get_parameters request "page" cases.previous_page_number %}">
+                                            &laquo;
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="disabled"><span>&laquo;</span></li>
+                                {% endif %}
+                                {% for page_num in cases.paginator.page_range %}
+                                    {% if cases.number == page_num %}
+                                        <li class="active"><span>{{ page_num }}</span></li>
+                                    {% else %}
+                                        <li>
+                                            <a href="?{% update_get_parameters request "page" page_num %}">{{ page_num }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if cases.has_next %}
+                                    <li>
+                                        <a href="?{% update_get_parameters request "page" cases.next_page_number %}">
+                                            &raquo;
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="disabled"><span>&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var screenSm = $('body').width() > 480;
+
+        $('.filter-label').click(function() {
+            $(this).toggleClass('open');
+            $(this).siblings('div').slideToggle();
+        });
+
+        $('.filter-label.collapsible').each(function() {
+            if (screenSm) {
+                $(this).siblings('div').toggle();
+            }
+        });
+    </script>
+{% endblock %}

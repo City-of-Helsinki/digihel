@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags people_tags staticfiles %}
+
+{% block body_class %}helsinkioppii-case-page{% endblock %}
+
+{% block content %}
+    <section class="main-section section--case-header">
+        <div class="container">
+            {% if request.user == page.owner %}
+                <div class="row">
+                    <div class="col-md-8 col-lg-7 col-md-offset-3">
+                        <div class="case-toolbox">
+                            <h4>
+                                {% if page.draft %}
+                                    {% trans "Draft" %}
+                                {% else %}
+                                    {% trans "Public" %}
+                                {% endif %}
+                            </h4>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a href="{{ page.delete_view_path }}" class="btn btn-block btn-danger">
+                                        {% trans "Delete" %}
+                                    </a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a href="{{ page.update_view_path }}" class="btn btn-block btn-default">
+                                        {% trans "Edit" %}
+                                    </a>
+                                </div>
+                                {% if page.draft %}
+                                    <div class="col-sm-4">
+                                        <a href="{{ page.publish_view_path }}" class="btn btn-block btn-info">
+                                            {% trans "Publish" %}
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="col-sm-4">
+                                        <a href="{{ page.unpublish_view_path }}" class="btn btn-block btn-info">
+                                            {% trans "Unpublish" %}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class=" col-md-8 col-lg-7 col-md-offset-3">
+                    <h2 class="case-section-header"><a href="{{ page.get_parent.url }}">{% trans "Case" %}</a></h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-section section--content">
+        <div class="container">
+            <div class="row">
+                <div class="sidebar col-md-3 col-lg-3">
+                    <div class="case-meta">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6">
+                                <dl class="case-meta--basics">
+                                    {% if page.school %}
+                                        <dt>{% trans "Educational institute" %}</dt>
+                                        <dd>{{ page.school }}</dd>
+                                    {% endif %}
+                                    {% if page.themes %}
+                                        {% with page.themes.all as themes %}
+                                            <dt>{% blocktrans count themes.count as t %}Theme{% plural %}Themes{% endblocktrans %}</dt>
+                                            {% for theme in themes %}
+                                                <dd>{{ theme }}</dd>
+                                            {% endfor %}
+                                        {% endwith %}
+                                    {% endif %}
+                                    {% if page.grades %}
+                                        {% with page.grades.all as grades %}
+                                            <dt>{% blocktrans count grades.count as g %}Level of education{% plural %}Levels of education{% endblocktrans %}</dt>
+                                            {% for grade in grades %}
+                                                <dd>{{ grade }}</dd>
+                                            {% endfor %}
+                                        {% endwith %}
+                                    {% endif %}
+                                    {% if page.subjects %}
+                                        {% with page.subjects.all as subjects %}
+                                            <dt>{% blocktrans count subjects.count as s %}School subject{% plural %}School subjects{% endblocktrans %}</dt>
+                                            {% for subject in subjects %}
+                                                <dd>{{ subject }}</dd>
+                                            {% endfor %}
+                                        {% endwith %}
+                                    {% endif %}
+                                </dl>
+                            </div>
+                            <div class="col-md-12 col-sm-6">
+                                {% if page.keywords.all %}
+                                    <dl class="case-meta--tags">
+                                        <dt>{% trans "Keywords" %}</dt>
+                                        <dd>
+                                            {% for keyword in page.keywords.all %}
+                                                <span class="label label-primary">{{ keyword }}</span>
+                                            {% endfor %}
+                                        </dd>
+                                    </dl>
+                                {% endif %}
+                                {% if page.contacts.all %}
+                                    <dl class="case-meta--contact">
+                                        <dt>{% trans "More information" %}</dt>
+                                        <dd>
+                                            <ul class="list-unstyled">
+                                            {% for contact in page.contacts.all %}
+                                            <li>
+                                                <strong>{{contact.person.get_display_name}}</strong><br/>
+                                                {% if contact.person.email %}
+                                                <div class="email"><a href="mailto:{{ person.email }}">{{ contact.person.email }}</a></div>
+                                                {% endif %}
+                                                {% if contact.person.telephone %}
+                                                <div class="telephone">{{ contact.person.telephone }}</div>
+                                                {% endif %}
+                                            </li>
+                                            {% endfor %}
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-social-fb">
+                        {# Facebook "share" button #}
+                        <div class="fb-share-button"
+                             data-href="https://developers.facebook.com/docs/plugins/"
+                             data-layout="button"
+                             data-size="small"
+                             data-mobile-iframe="true"
+                        >
+                            <a target="_blank"
+                               href="https://www.facebook.com/sharer/sharer.php?u={{ page.full_url }}&src=sdkpreparse"
+                               class="fb-xfbml-parse-ignore"
+                            >
+                                {% trans "Share" %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="case-social-twitter">
+                        {# Twitter "tweet" button #}
+                        <a class="twitter-share-button"
+                           href="https://twitter.com/intent/tweet"
+                        >
+                            {% trans "Tweet" %}
+                        </a>
+                    </div>
+                    {% if page.sidebar_links.exists %}
+                        <div class="case-links">
+                            <h4 class="sidebar-title">{% trans "Links" %}</h4>
+                            <ul class="reference-list">
+                                {% for link in page.sidebar_links.all %}
+                                    <li>
+                                        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if page.attachments.exists %}
+                        <div class="case-attachments">
+                            <h4 class="sidebar-title">{% trans "Attachments" %}</h4>
+                            <ul class="reference-list">
+                                {% for attachment in page.attachments.all %}
+                                    <li>
+                                        <a href="{{ attachment.file.url }}">{{ attachment.file.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="content col-md-8 col-lg-7">
+                    <h1 class="title hyphenate">{{ page.title }}</h1>
+                    {% image page.image fill-800x600-c100 as content_image %}
+                    {% if content_image %}
+                        <img src="{{ content_image.url }}" class="case-image" alt="{{ content_image.alt }}">
+                    {% endif %}
+                    {% if page.content_objectives %}
+                        <h2 class="case-content-section-header">{% trans "Objectives" %}</h2>
+                        {{ page.content_objectives |safe }}
+                    {% endif %}
+                    {% if page.content_what %}
+                        <h2 class="case-content-section-header">{% trans "What was done?" %}</h2>
+                        {{ page.content_what |safe }}
+                    {% endif %}
+                    {% if page.content_how %}
+                        <h2 class="case-content-section-header">{% trans "How it was done?" %}</h2>
+                        {{ page.content_how |safe }}
+                    {% endif %}
+                    {% if page.content_who %}
+                        <h2 class="case-content-section-header">{% trans "Participants" %}</h2>
+                        {{ page.content_who |safe }}
+                    {% endif %}
+                    {% if page.content_evaluation %}
+                        <h2 class="case-content-section-header">{% trans "Evaluation" %}</h2>
+                        {{ page.content_evaluation |safe }}
+                    {% endif %}
+                    {% if page.content_materials %}
+                        <h2 class="case-content-section-header">{% trans "Materials" %}</h2>
+                        {{ page.content_materials |safe }}
+                    {% endif %}
+                    <div class="row case-pros-cons">
+                        <div class="col-sm-6">
+                            {% if page.content_pros %}
+                                <div class="case-pros">
+                                    <h2 class="case-content-section-header">{% trans "Pros" %}</h2>
+                                    {{ page.content_pros |safe }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-6">
+                            {% if page.content_cons %}
+                                <div class="case-cons">
+                                    <h2 class="case-content-section-header">{% trans "Cons" %}</h2>
+                                    {{ page.content_cons |safe }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if page.gallery_images.exists %}
+                        <div class="row case-image-gallery">
+                            {% for gallery_image in page.gallery_images.all %}
+                                <div class="col-sm-3 col-xs-6">
+                                    {% image gallery_image.image fill-200x200-c100 as thumbnail %}
+                                    <a href="{{ gallery_image.image.file.url }}" class="gallery-item">
+                                        <img src="{{ thumbnail.url }}" class="img-responsive" alt="{{ gallery_image.image.title }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'magnific-popup/magnific-popup.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    {# Magnific-popup #}
+    <script type="text/javascript" src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+    <script>
+        $('.gallery-item').magnificPopup({
+            type: 'image',
+            gallery: {
+                enabled: true,
+            },
+        });
+    </script>
+
+    {# FB "share" JS snippet #}
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    {# Twitter "tweet" JS snippet #}
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+{% endblock %}

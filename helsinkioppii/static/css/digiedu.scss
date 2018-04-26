@@ -1,0 +1,804 @@
+@import 'hel-bootstrap-3/src/sass/helsinki-variables';
+@import 'application-variables';
+
+$icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
+
+@import 'hel-bootstrap-3/src/sass/theme-bootstrap-variables';
+@import 'digihel/static/css/bootstrap-custom';
+@import 'hel-bootstrap-3/src/sass/theme-custom-styles';
+@import 'digihel/static/css/digihel-icons';
+@import 'digihel/static/css/common-styles';
+
+
+.page-content {
+  padding-top: 0;
+}
+
+.page-footer {
+  margin-top: 0;
+  background-color: $theme-primary-dark;
+
+  .container {
+    @media (min-width: $screen-lg-min) {
+      padding: 0 150px;
+    }
+  }
+}
+
+.main-section {
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: $line-height-computed * 2;
+
+  h2 {
+    font-size: $font-size-h1;
+  }
+
+  .section-description {
+    font-size: $font-size-h6;
+  }
+}
+
+.label-primary, .blog-post-tags .label-info {
+  background-color: $white;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $hel-silver;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.container--hero {
+  background-size: cover;
+  background-position: center;
+  background-color: $gray-lighter;
+
+  &.index {
+    .hero-content {
+      padding-top: 160px;
+      padding-bottom: 70px;
+      color: $white;
+      font-size: 44px;
+      font-weight: bold;
+      min-height: $line-height-computed * 20;
+      position: relative;
+      text-shadow: 1px 1px 4px rgba(#000, 0.2);
+
+      @media (max-width: $screen-xs-max) {
+        padding-top: 15px;
+        margin-top: 15px;
+      }
+    }
+  }
+
+  .index-hero-koro__bottom {
+    @include koro("pulse", #ffffff, 600);
+    background-color: transparent;
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .edu-hero-koro {
+    @include koro("storm", $white, 500);
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.container--hero__sub {
+  min-height: $line-height-computed * 16;
+
+  @media screen and (min-width: $screen-sm-min) {
+    min-height: $line-height-computed * 20;
+  }
+}
+
+section.youtube {
+  padding-top: $line-height-computed * 5;
+}
+
+.youtube-embed {
+  position: relative;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+section.blog-lifts {
+  padding: $line-height-computed * 5 0;
+
+  h2.blog-lift-section-title {
+    color: $theme-primary-dark;
+    text-align: center;
+    margin-bottom: $line-height-computed * 2;
+  }
+
+  .blog-lift {
+    h4 > a {
+      text-decoration: none;
+    }
+  }
+}
+
+.section--edu-banners {
+  padding: $line-height-computed * 2 0;
+  position: relative;
+}
+
+.banner--edu {
+  background-color: $hel-suomenlinna;
+  padding: $line-height-computed;
+  text-align: center;
+  margin-bottom: $line-height-computed;
+
+  a {
+    text-decoration: none;
+  }
+
+  .banner-illustration {
+    .illustration {
+      max-height: $line-height-computed * 7;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  h3 {
+    margin-top: $line-height-computed / 2;
+  }
+}
+
+.section--case-lifts {
+  background-color: $theme-primary-dark;
+  padding-top: $line-height-computed * 5;
+  padding-bottom: $line-height-computed * 10;
+  color: $white;
+
+  .case-lift {
+    background: #ffffff;
+    color: #000000;
+
+    .caption {
+      padding: $line-height-computed;
+
+      h3 {
+        margin-top: 0;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.case-lift-koro__bottom {
+  @include koro("pulse", #ffffff, 600);
+  background-color: $theme-primary-dark;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  bottom: 0;
+}
+
+.highlights-koro__top {
+  @include koro("pulse", $theme-primary-dark, 600);
+  background-color: $white;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  top: 0;
+}
+
+.section--social-feed {
+  background-color: $white;
+  padding: $line-height-computed * 5 0;
+}
+
+.section--content {
+  .title {
+    font-size: 60px;
+  }
+}
+
+.page-content.blog-post-container {
+  margin-top: $line-height-computed * 3;
+}
+
+.blog-section-header {
+  border-bottom-color: $theme-primary-dark;
+}
+
+.blog-index .blog-post-item .blog-post-link {
+  border-top-color: $theme-primary-dark;
+}
+
+.blog-body {
+  margin-bottom: $line-height-computed * 3;
+}
+
+.sidebar-case-filters form {
+  margin: $line-height-computed * 3 0;
+}
+
+.filter-field {
+  margin-bottom: $line-height-computed;
+
+  .form-control {
+    &::placeholder {
+      color: rgba(#000000, .33);
+    }
+  }
+}
+
+.filter-label {
+  text-transform: uppercase;
+  color: $theme-primary-dark;
+
+  &.collapsible:after {
+    content: "\25B6"
+  }
+
+  &.collapsible.open:after {
+    content: "\25BC"
+  }
+
+  &.collapsible+div {
+    display: none
+  }
+}
+
+.case-list-hero-koro__bottom {
+  @include koro("pulse", #f5f5f5, 600);
+  background-color: transparent;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  bottom: 0;
+}
+
+.case-list-lead {
+  margin-bottom: $line-height-computed;
+}
+
+.case-list-main-section {
+  background-color: #f5f5f5;
+}
+
+.pagination .active span {
+  background: $theme-primary-dark;
+}
+
+.cases-list {
+  @extend .row;
+  margin-top: $line-height-computed;
+
+  .case-card {
+    background: $white;
+    margin-bottom: $line-height-computed;
+    border-top: 8px solid $theme-primary-dark;
+
+    &.grey {
+      border-top-color: $hel-silver;
+    }
+
+    &.light-green {
+      border-top-color: $hel-copper;
+    }
+
+    &.green {
+      border-top-color: $hel-tram;
+    }
+
+    &.light-blue {
+      border-top-color: $hel-fog;
+    }
+
+    &.blue {
+      border-top-color: $hel-coat;
+    }
+
+    &.dark-blue {
+      border-top-color: $hel-bus;
+    }
+
+    &.light-yellow {
+      border-top-color: $hel-engel;
+    }
+
+    &.yellow {
+      border-top-color: $hel-summer;
+    }
+
+    &.gold {
+      border-top-color: $hel-gold;
+    }
+
+    &.orange {
+      border-top-color: $hel-metro;
+    }
+
+    &.pink {
+      border-top-color: $hel-suomenlinna;
+    }
+
+    &.red {
+      border-top-color: $hel-brick;
+    }
+
+    &.highlight {
+      border: 2px solid $theme-primary-dark;
+    }
+  }
+
+  h3 {
+    margin-top: 0;
+
+    a, a:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .project-card,
+  .caption {
+    height: auto;
+    position: relative;
+  }
+
+  .caption {
+    padding: $line-height-computed;
+  }
+
+  .case-keywords {
+    .keyword {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+  img {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.section--case-header {
+  padding: $line-height-computed * 3 0 $line-height-computed 0;
+}
+
+.section--case-hero {
+  height: $line-height-computed * 16;
+}
+
+.case-content-section-header {
+  font-size: $font-size-h3;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.case-pros-cons {
+  margin-top: $line-height-computed * 2;
+
+  .case-pros {
+    margin-top: $line-height-computed;
+    padding-top: $line-height-computed;
+    border-top: 3px solid $hel-copper;
+  }
+
+  .case-cons {
+    margin-top: $line-height-computed;
+    padding-top: $line-height-computed;
+    border-top: 3px solid $hel-suomenlinna;
+  }
+}
+
+.case-meta,
+.case-links,
+.case-attachments {
+  padding: $line-height-computed / 2;
+  margin-top: $line-height-computed / 2;
+  margin-bottom: $line-height-computed;
+  border: 1px solid $hel-silver;
+
+  .sidebar-title {
+    margin-top: 0;
+    color: $theme-primary-dark;
+  }
+
+  dl dt {
+    margin-bottom: 0;
+    margin-top: 12px;
+  }
+
+  dl dd {
+    margin-bottom: 0;
+  }
+
+  .case-meta--basics, .case-meta--tags, .case-meta--contact {
+    &:before {
+      content: "";
+      display: block;
+      border-top: 3px solid $theme-primary-dark;
+      width: 24px;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+ul.reference-list {
+  list-style-type: "\25B6"; // Right-pointing triangle
+  padding: 0;
+
+  li {
+    margin-left: 10px;
+    padding-left: 5px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+.case-social-fb,
+.case-social-twitter {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.case-social-twitter {
+  margin-bottom: 19px; // 24px offset by the "natural" padding of the button
+}
+
+.container--case-hero {
+  height: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .hero-caption {
+    @include koro("storm", $white, 400);
+    width: 100%;
+    height: $line-height-computed * 3;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .caption-content {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: $line-height-computed;
+    font-size: $font-size-small;
+    color: $hel-silver;
+  }
+}
+
+.case-section-header {
+  border-bottom: 4px solid $theme-primary-dark;
+  float: left;
+  font-size: 24px;
+  margin-bottom: 1em;
+  margin-top: 0;
+  padding-bottom: .5em;
+  text-transform: uppercase;
+
+  a, a:hover {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
+
+.section--training-hero {
+  height: $line-height-computed * 16;
+
+  .hero-content {
+    padding: $line-height-computed * 2;
+    text-align: center;
+    color: $white;
+    font-size: 16px;
+    min-height: $line-height-computed * 20;
+    position: relative;
+    text-shadow: 1px 1px 4px rgba(#000, 0.2);
+
+    h1 {
+      font-size: 48px;
+    }
+  }
+}
+
+.container--training-hero {
+  height: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .hero-caption {
+    @include koro("pulse", $white, 600);
+    width: 100%;
+    height: $line-height-computed * 4;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .caption-content {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: $line-height-computed;
+    font-size: $font-size-small;
+    color: $gray-light;
+  }
+}
+
+.section--training {
+  background-color: $gray-lighter;
+  padding: $line-height-computed * 4 0;
+}
+
+.section--training-banners {
+  padding: $line-height-computed * 2 0 $line-height-computed * 3;
+  position: relative;
+
+  .banner--edu {
+    border-top: 5px solid $theme-primary-dark;
+    background-color: $gray-lighter;
+  }
+}
+
+.training-koro__top {
+  @include koro("pulse", $gray-lighter, 600);
+  background-color: $white;
+  width: 100%;
+  height: $line-height-computed * 3;
+  position: absolute;
+  top: 0;
+}
+
+.training--lift {
+  border-top: 5px solid $theme-primary-dark;
+  background: $white;
+  padding: $line-height-computed;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .training-date {
+    font-weight: 600;
+    color: $gray-light;
+  }
+
+  a, a:hover {
+    text-decoration: none;
+    color: $black;
+  }
+}
+
+.case-toolbox {
+  padding: 15px;
+  margin-bottom: 30px;
+  background: $gray-lighter;
+
+  h4 {
+    margin-top: 0;
+  }
+}
+
+.trumbowyg-box {
+  border: 2px solid $black !important;
+  margin: 0 !important;
+}
+
+.trumbowyg-editor {
+  padding: $padding-base-vertical $padding-base-horizontal !important;
+}
+
+.aside-help {
+  @media(min-width: $screen-lg-min) {
+    margin-top: 35px;
+  }
+
+  @media(max-width: $screen-md-max) {
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+}
+
+//* Helsinki Navigation  Bar */
+
+.navbar-helsinki {
+  background-color: $theme-primary-dark;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  margin-bottom: 0;
+
+  .navbar-logo.navbar-brand-sv {
+    margin: 12px 15px 0 15px;
+  }
+
+  .navbar-logo.navbar-brand {
+    @include helsinki-logo($white);
+    background-position: 15px;
+    margin-top: 12px;
+    height: 36px;
+    width: 125px;
+  }
+
+  .navbar-right {
+    float: right !important;
+  }
+
+  .navbar-header {
+    float: left !important;
+  }
+
+  .btn-group.open .dropdown-toggle {
+    box-shadow: none;
+    color: rgba($white, .75);
+  }
+
+  .btn-default {
+    border: 0;
+    color: $white;
+
+    &:active {
+      box-shadow: none;
+      background-color: $theme-primary-dark;
+      color: $white;
+    }
+  }
+
+  .navbar-brand.text-hide {
+    color: transparent;
+
+    &:hover, &:active {
+      color: transparent;
+    }
+  }
+
+  .navbar-right {
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+
+    @media (min-width: $screen-sm-min) {
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+
+    .hel-nav-icon {
+      //font-size: 1.2em;
+      margin-right: .5em;
+    }
+
+    li > a {
+      padding: 6px;
+
+      &:hover:after {
+        border: 0;
+      }
+    }
+  }
+}
+
+.language-switcher {
+  text-transform: uppercase;
+
+  &.active > a:after{
+    display: none;
+  }
+}
+
+//* App Navigation Bar */
+
+.navbar-primary {
+  margin-bottom: 0;
+  border: 0;
+
+  .site-title {
+    color: $theme-primary-dark;
+    font-size: 120%;
+  }
+}
+
+.navbar-default .navbar-collapse {
+  border-top-color: rgba($dark-gray, .2);
+
+  .nav {
+    border-bottom-color: rgba($dark-gray, .2);
+  }
+}
+
+/* Override digi.hel early collapse */
+
+.navbar .drop-search {
+  @include transition(all .5s ease);
+  background-color: $white;
+  z-index: 20;
+  display: block;
+  max-height: 0;
+  overflow-y: hidden;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.navbar .drop-search.is-open {
+  max-height: 500px;
+  visibility: visible;
+}
+
+.navbar .drop-search > .container {
+  padding: 48px;
+}
+
+.form-well {
+  background-color: $hel-silver;
+}
+
+.form-panel {
+  border-color: $hel-silver;
+  padding: $line-height-computed / 2;
+  padding-bottom: 0;
+  margin-bottom: $line-height-computed;
+}
+
+.case-image-gallery {
+  margin-top: $line-height-computed;
+}
+
+section.title-section {
+  margin-top: $line-height-computed * 2;
+
+  h1.page-title.text-left {
+    text-align: left;
+  }
+}
+
+.page-links,
+.attached-documents,
+.events-highlights {
+  border: 3px solid $hel-silver;
+  padding: $line-height-computed / 2;
+  margin-bottom: $line-height-computed;
+  background: $white;
+
+  h3 {
+    margin-top: 0;
+    color: $theme-primary-dark;
+  }
+
+  .event-list__item > a {
+    color: $theme-primary-dark;
+  }
+
+  .events-source {
+    border: none;
+  }
+}
+
+.scroll-btn {
+  margin-bottom: $line-height-computed;
+}

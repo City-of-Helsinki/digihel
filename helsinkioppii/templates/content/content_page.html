@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags compress content_tags people_tags %}
+
+{% block body_class %}template-contentpage{% endblock %}
+
+{% block content %}
+    <section class="title-section">
+        <div class="container">
+            <h1 class="page-title text-left">{{ page.title }}</h1>
+        </div>
+    </section>
+
+    <section class="main-section section--content">
+        <div class="container">
+            <div class="row">
+                <article class="col-md-8 content">
+                    {% include "content/blocks.html" with blocks=page.body only %}
+                </article>
+                <aside class="col-md-4">
+                    {% include "content/includes/sidebar_links_and_roles.html" %}
+                </aside>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    {% if page.show_sidebar_events %}
+        {% compress js inline %}
+            <script type="text/javascript">
+                $.getJSON('/event_data/?future=true', function(json) {return displayEvents(json,false)});
+            </script>
+        {% endcompress %}
+    {% endif %}
+{% endblock %}

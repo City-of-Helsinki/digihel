@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}helsinkioppii-training-index-page{% endblock %}
+
+{% block content %}
+    <section class="main-section section--training-hero">
+        {% image page.hero_image fill-1920x680-c100 as hero_image %}
+        <figure
+            class="image-container container--{% if hero_image %}training-hero{% else %}case-hero{% endif %}"
+            {% if hero_image %}style="background-image: url('{{ hero_image.url }}')"{% endif %}
+        >
+            <div class="container">
+                <div class="hero-content">
+                    {{ page.hero_content|safe }}
+                </div>
+            </div>
+            <figcaption class="hero-caption">
+                <span class="caption-content">{{ hero_image.alt }}</span>
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="front-section section--training-banners">
+        <div class="section-content">
+            <div class="container">
+                <div class="section-header">
+                    <h2>{{ page.banner_section_title }}</h2>
+                    <div class="section-description">{{ page.banner_section_description|safe }}</div>
+                </div>
+                <div class="row">
+                    {% for block in page.banner_lifts %}
+                        {% include_block block %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if page.training_section_title %}
+        <section class="main-section section--training">
+            <div class="training-koro__top"></div>
+            <div class="container">
+                <div class="section-header">
+                    <h2>{{ page.training_section_title }}</h2>
+                    <div class="section-description">{{ page.training_section_description|safe }}</div>
+                </div>
+                <div class="row">
+                    {% for block in page.training_lifts %}
+                        {% include_block block %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}

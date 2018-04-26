@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static i18n compress content_tags multilang_tags %}
+
+{% block meta %}
+    <meta property="og:title" content="{% block sometitle %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %} - {{ request.site.site_name }}">
+    {% if self.search_description %}
+    <meta property="og:description" content="{{ self.search_description }}"/>
+    {% else %}
+    <meta property="og:description" content="Kasvatuksen ja koulutuksen digitalisaatio Helsingissä">
+    {% endif %}
+    <meta property="og:image" content="https://helsinkioppii.fi{% static "images/digiedu-share-default.jpg" %}">
+    <meta property="og:url" content="https://helsinkioppii.fi{{ request.get_full_path }}">
+    <meta name="twitter:card" content="https://helsinkioppii.fi{% static "images/digiedu-share-default.jpg" %}">
+{% endblock %}
+
+{% block main_css %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "css/digiedu.scss" %}"/>
+        <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
+    {% endcompress %}
+{% endblock main_css %}
+
+{% block menu %}
+    {% get_language_index_page as site_root %}
+    {% top_menu parent=site_root calling_page=self %}
+{% endblock %}
+
+{% block footer_branding %}
+    <div class="footer-branding footer-branding-helsinki">
+        <a href="http://www.hel.fi">
+            {% get_page_language_code as lang_code %}
+            {% if lang_code == 'sv' %}
+                <img alt="Helsingfors logo"
+                     src="{% static 'images/logo_sv.svg' %}"
+                     class="footer-logo footer-logo-helsinki"
+                     aria-hidden="true"
+                >
+            {% else %}
+                <img alt="Helsingin tunnus"
+                     src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}"
+                     class="footer-logo footer-logo-helsinki"
+                     aria-hidden="true"
+                >
+            {% endif %}
+        </a>
+
+        <address>
+            {% trans "City of Helsinki<br>Education division<br>Töysänkatu 2 D (PL 51300)<br>00099 Helsinki" %}
+            <br>
+        </address>
+    </div>
+{% endblock footer_branding %}
+
+{% block footer_links %}
+    <div class="page-footer-block">
+        <p>{% trans "On this page, you will find information on the digitalisation of education in Helsinki. Learn how digitalisation is present in the everyday life of day care centres, schools and educational institutions." %}</p>
+        <div class="footer-header">{% trans "Helsinki learns" %}</div>
+        <ul class="footer-links list-inline">
+            <li><a href="https://fi-fi.facebook.com/HelsinkiOppii/"><span class="fa fa-facebook-square social-icon" aria-label="Facebook"></span></a></li>
+            <li><a href="https://www.instagram.com/helsinki_oppii/"><span class="fa fa-instagram social-icon" aria-label="Instagram"></span> </a></li>
+            <li><a href="https://twitter.com/helsinkioppii?lang=fi"><span class="fa fa-twitter social-icon" aria-label="Twitter"></span></a></li>
+            <li><a href="https://www.youtube.com/channel/UC1nmr7m4rYGBc4mZZfGFFmQ"><span class="fa fa-youtube social-icon" aria-label="Youtube"></span></a></li>
+        </ul>
+    </div>
+{% endblock footer_links %}
+
+{% block footer_smallprint %}
+    <div class="page-footer-small-print">
+        <div class="footer-header"><a href="https://www.hel.fi/kasvatuksen-ja-koulutuksen-toimiala/fi">{% trans "Education division" %} <span class="fa fa-caret-right"></span></a></div>
+        <ul class="small-print-nav">
+            <li>{% now 'Y' %} {% trans "City of Helsinki" %}</li>
+        </ul>
+    </div>
+{% endblock footer_smallprint %}
+
+{% block analytics %}
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//analytics.hel.ninja/piwik/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '13']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Piwik Code -->
+{% endblock analytics %}

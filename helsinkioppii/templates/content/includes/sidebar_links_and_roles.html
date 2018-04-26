@@ -1,0 +1,60 @@
+{% load i18n helsinkioppii_tags %}
+
+{% with page.page_links as links %}
+    {% if links %}
+        <div class="page-links">
+            <h3>{% trans "Links" %}</h3>
+            <ul class="reference-list">
+                {% for link in links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endwith %}
+{% with page.documents as documents %}
+    {% if page.documents %}
+        <div class="attached-documents">
+            <h3>{% trans "Attachments" %}</h3>
+            <ul class="reference-list">
+                {% for document in documents %}
+                    <li><a href="{{ document.url }}">{{ document.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endwith %}
+{% if page.show_sidebar_events %}
+    {% get_event_index as event_index %}
+    <div class="events-highlights">
+        {% if event_index %}
+            <h3>{% trans "Events" %}</h3>
+            <div class="events-source">
+                <a class="link-unstyled" href="https://dev.hel.fi/projects/linked-events/">{% trans "From Linked Events API" %}</a>
+            </div>
+        {% else %}
+            Lisää Wagtailin adminissa etusivun alle Events Index Page näyttääksesi tapahtumia.
+        {% endif %}
+    </div>
+{% endif %}
+{% with page.roles.all as roles %}
+    {% if roles %}
+        <div class="contacts-list">
+            <h3>{% trans "Contact information" %}</h3>
+            <ul class="list-unstyled">
+                {% for role in roles %}
+                    <li class="list-unstyled">
+                        <div>{{ role.person.get_display_name }}</div>
+                        <span>{{ role.role }}</span>
+                        {% if role.person.email %}
+                            <div class="email"><a href="mailto:{{ person.email }}">{{ role.person.email }}</a></div>
+                        {% endif %}
+                        {% if role.person.telephone %}
+                            <div class="telephone"><a href="tel:{{ role.person.telephone }}">{{ role.person.telephone }}</a></div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endwith %}

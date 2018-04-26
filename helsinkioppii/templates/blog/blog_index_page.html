@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags digi_tags static wagtailimages_tags %}
+
+{% block content %}
+    <section class="title-section">
+        <div class="container">
+            <h1 class="page-title">{{ page.title }}</h1>
+        </div>
+    </section>
+
+    <div class="container main-container page-content" role="main">
+        <div class="row">
+            <div class="col-xs-12">
+                {% if category %}
+                    <h2 class="blog-section-header">{{ category }}</h2>
+                {% endif %}
+                {% if tag %}
+                    <h2 class="blog-section-header">Blogikirjoitukset tagillä '{{ tag }}'</h2>
+                {% else %}
+                    <div class="row">
+                        {% for blog in blogs|slice:":1" %}
+                            <div class="col-xs-12">
+                                {% image blog.header_image max-1920x1080 as blog_image %}
+                                <div class="blog-index-highlight" style="background-image: url('{{ blog_image.url }}')">
+                                    <a class="link-unstyled" href="{% pageurl blog %}">
+                                        <div class="blog-highlight-content">
+                                            <div class="blog-hilight-header hyphenate"><h2>{{ blog.title }}</h2>
+                                                <small>{{ blog.date|date:"j.n.Y" }}</small>
+                                            </div>
+                                            <div class="blog-highlight-blurb">{{ blog.body|first_p|safe }}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% for rl in self.related_links.all %}
+            <p>{{ rl.title }}: <a href='{{ rl.link_page.url }}'>{{ rl.link_page }}</a></p>
+        {% endfor %}
+        {% if blogs %}
+            <ul class="blog-index list-unstyled the-loop row">
+                {% for blog in blogs|slice:"1:" %}
+                    <li class="blog-post-item{% if forloop.first and not category and not tag %} first-reset{% endif %} match-height">
+                        {% include 'blog/blog_post.html' with include_context="index_page" %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <ul class="pager">
+                {% if blogs.has_next %}
+                    <li class="previous">
+                        <a href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">
+                            &larr; Uudempi
+                        </a>
+                    </li>
+                {% endif %}
+                {% if blogs.has_previous %}
+                    <li class="next">
+                        <a href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">
+                            Vanhempi &rarr;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        {% else %}
+            <p>Blogissa ei tällä hetkellä ole julkaistuja kirjoituksia</p>
+        {% endif %}
+    </div>
+{% endblock %}

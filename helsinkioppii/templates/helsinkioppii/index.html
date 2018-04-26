@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags helsinkioppii_tags static i18n %}
+
+{% block body_class %}helsinkioppii-index-page{% endblock %}
+
+{% block content %}
+    {% image page.hero_image fill-1920x1080-c100 as hero_image %}
+    {% if hero_image %}
+        <div class="container-fluid header-container container--hero index" style="background-image: url('{{ hero_image.url }}')">
+            <section class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-md-8 col-lg-7 hero-content">
+                        {{ page.hero_content|safe }}
+                    </div>
+                </div>
+            </section>
+            <div class="index-hero-koro__bottom"></div>
+        </div>
+    {% endif %}
+
+    {% if page.youtube_embed %}
+        {% embed page.youtube_embed as youtube_embed %}
+        {% if youtube_embed %}
+            <section class="main-section youtube">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="youtube-embed embed-responsive-16by9">
+                                {{ youtube_embed }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+    {% endif %}
+
+    {% get_index_blog_lifts as blog_lifts %}
+    {% if blog_lifts %}
+        <section class="main-section blog-lifts">
+            <div class="container">
+                <h2 class="blog-lift-section-title">{% trans "News" %}</h2>
+                <div class="row">
+                    {% for blog_post in blog_lifts %}
+                        <div class="col-sm-6 blog-lift">
+                            {% image blog_post.header_image fill-768x432 as blog_image %}
+                            {% if blog_image %}
+                                <img src="{{ blog_image.url }}" class="img-responsive">
+                            {% endif %}
+                            <div>
+                                <h4><a href="{% pageurl blog_post %}">{{ blog_post.title }}</a></h4>
+                                <div class="published-at">{{ blog_post.date|date:"j.n.Y" }}</div>
+                                <!-- TODO: strip formatting on first p, safe does not work here: -->
+                                {{ blog_post.body|richtext|first_rich_text_paragraph|safe }}
+                                <a href="{% pageurl blog_post %}">{% trans "Read the full article" %} &raquo;</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="main-section section--case-lifts">
+        <div class="container">
+            <div class="section-header">
+                <h2>{{ page.case_section_title }}</h2>
+                <div class="section-description">{{ page.case_section_description|safe }}</div>
+            </div>
+            <div class="themes row">
+                {% for block in page.case_lifts %}
+                    {% include_block block %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="case-lift-koro__bottom"></div>
+    </section>
+
+    <section class="main-section section--social-feed">
+        <div class="container">
+            <div class="section-header">
+                <h2>{{ page.social_section_title }}</h2>
+                <div class="section-description">{{ page.social_section_description|safe }}</div>
+            </div>
+            <!-- Demo feed from curator.io. The final social aggregator to be decided.-->
+            <div id="curator-feed"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by
+                Curator.io</a></div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+      // curator-feed
+      (function() {
+        var i, e, d = document, s = "script";
+        i = d.createElement("script");
+        i.async = 1;
+        i.src = "https://cdn.curator.io/published/bee03c09-de0f-4759-a80b-d59af325.js";
+        e = d.getElementsByTagName(s)[0];
+        e.parentNode.insertBefore(i, e);
+      })();
+    </script>
+{% endblock %}

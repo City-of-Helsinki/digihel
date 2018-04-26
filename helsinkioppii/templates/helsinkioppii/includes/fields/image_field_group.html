@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-8 col-lg-7 {% if not image_field.help_text and not title_field.help_text %}col-lg-offset-3{% else %}col-lg-push-3{% endif %}">
+        <div class="panel form-panel">
+            <label for="{{ image_field.id_for_label }}">
+                <b>{{ image_field.label }}</b>
+            </label>
+            <div class="form-group">
+                {{ image_field }}
+                {% if image_field.errors %}
+                    <div class="errors">{{ image_field.errors }}</div>
+                {% endif %}
+            </div>
+            <label for="{{ title_field.id_for_label }}">
+                <b>{{ title_field.label }}</b>
+            </label>
+            <div class="form-group">
+                {{ title_field }}
+                {% if title_field.errors %}
+                    <div class="errors">{{ title_field.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if image_field.help_text or title_field.help_text %}
+        <div class="col-md-8 col-lg-3 col-lg-pull-7">
+            {% if image_field.help_text %}
+                <p class="aside-help text-muted">
+                    {{ image_field.help_text }}
+                </p>
+            {% endif %}
+            {% if title_field.help_text %}
+                <p class="aside-help text-muted">
+                    {{ title_field.help_text }}
+                </p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

@@ -12,7 +12,6 @@ from search import views as search_views
 
 admin.autodiscover()
 
-
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
 
@@ -27,10 +26,13 @@ urlpatterns = [
 
     # client endpoints for external API data
     url(r'^event_data/', event_data),
-
     url(r'', include(wagtail_urls)),
 ]
 
+# Use magic links app's URLs if available
+if 'magicuser' in settings.INSTALLED_APPS:
+    from magicuser import urls as magic_urls
+    urlpatterns = [url(r'^magic/', include(magic_urls))] + urlpatterns
 
 if settings.DEBUG:
     from django.conf.urls.static import static

@@ -1,0 +1,102 @@
+{% load i18n %}
+
+<div class="row">
+    <div class="col-md-8 col-lg-7 col-lg-offset-3">
+        <button class="btn btn-block btn-default scroll-btn" onclick="window.scrollTo(0,document.body.scrollHeight);">
+            {% trans "Scroll to bottom" %}
+        </button>
+    </div>
+</div>
+
+<form enctype="multipart/form-data" method="post" action="{{ form_action_url }}">
+    {% csrf_token %}
+
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.title %}
+
+    <div class="row">
+        <div class="col-md-8 col-lg-7 col-lg-offset-3">
+            <h4>{% trans "Sidebar information" %}</h4>
+        </div>
+    </div>
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.school %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.student_count %}
+    {% include "helsinkioppii/includes/fields/meta_field_group.html" with field=form.themes %}
+    {% include "helsinkioppii/includes/fields/meta_field_group.html" with field=form.grades %}
+    {% include "helsinkioppii/includes/fields/meta_field_group.html" with field=form.subjects %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.keywords %}
+
+    <div class="row">
+        <div class="col-md-8 col-lg-7 col-lg-offset-3">
+            <h4>{% trans "Content" %}</h4>
+        </div>
+    </div>
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.image title_field=form.image_title %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.abstract %}
+
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_objectives %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_what %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_how %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_who %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_evaluation %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_materials %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_pros %}
+    {% include "helsinkioppii/includes/fields/generic_field.html" with field=form.content_cons %}
+
+    <div class="row">
+        <div class="col-md-8 col-lg-7 col-lg-offset-3">
+            <h4>{% trans "Image gallery" %}</h4>
+        </div>
+    </div>
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_1 title_field=form.gallery_image_title_1 %}
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_2 title_field=form.gallery_image_title_2 %}
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_3 title_field=form.gallery_image_title_3 %}
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_4 title_field=form.gallery_image_title_4 %}
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_5 title_field=form.gallery_image_title_5 %}
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_6 title_field=form.gallery_image_title_6 %}
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_7 title_field=form.gallery_image_title_7 %}
+    {% include "helsinkioppii/includes/fields/image_field_group.html" with image_field=form.gallery_image_8 title_field=form.gallery_image_title_8 %}
+
+    <div class="row">
+        <div class="col-md-8 col-lg-7 col-lg-offset-3">
+            <h4>{% trans "Attachments" %}</h4>
+        </div>
+    </div>
+    {% include "helsinkioppii/includes/fields/attachment_field_group.html" with file_field=form.attachment_file_1 title_field=form.attachment_title_1 %}
+    {% include "helsinkioppii/includes/fields/attachment_field_group.html" with file_field=form.attachment_file_2 title_field=form.attachment_title_2 %}
+    {% include "helsinkioppii/includes/fields/attachment_field_group.html" with file_field=form.attachment_file_3 title_field=form.attachment_title_3 %}
+    {% include "helsinkioppii/includes/fields/attachment_field_group.html" with file_field=form.attachment_file_4 title_field=form.attachment_title_4 %}
+    {% include "helsinkioppii/includes/fields/attachment_field_group.html" with file_field=form.attachment_file_5 title_field=form.attachment_title_5 %}
+
+    <div class="row">
+        <div class="col-md-8 col-lg-7 col-lg-offset-3">
+            <h4>{% trans "Sidebar links" %}</h4>
+        </div>
+    </div>
+    {% include "helsinkioppii/includes/fields/link_field_group.html" with url_field=form.link_url_1 text_field=form.link_text_1 delete_field=form.delete_link_1 %}
+    {% include "helsinkioppii/includes/fields/link_field_group.html" with url_field=form.link_url_2 text_field=form.link_text_2 delete_field=form.delete_link_2 %}
+    {% include "helsinkioppii/includes/fields/link_field_group.html" with url_field=form.link_url_3 text_field=form.link_text_3 delete_field=form.delete_link_3 %}
+    {% include "helsinkioppii/includes/fields/link_field_group.html" with url_field=form.link_url_4 text_field=form.link_text_4 delete_field=form.delete_link_4 %}
+    {% include "helsinkioppii/includes/fields/link_field_group.html" with url_field=form.link_url_5 text_field=form.link_text_5 delete_field=form.delete_link_5 %}
+
+    <div class="row">
+        <div class="col-md-8 col-lg-7 col-lg-offset-3">
+            <h4>{% trans "Licensing and permissions" %}</h4>
+        </div>
+    </div>
+    {% include "helsinkioppii/includes/fields/checkbox_field.html" with field=form.cc_license %}
+    {% include "helsinkioppii/includes/fields/checkbox_field.html" with field=form.photo_permission %}
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-8 col-lg-7 col-lg-offset-3">
+            <button type="submit" class="btn btn-primary">
+                {% if draft %}
+                    {% trans "Save draft" %}
+                {% else %}
+                    {% trans "Save and publish changes" %}
+                {% endif %}
+            </button>
+        </div>
+    </div>
+</form>

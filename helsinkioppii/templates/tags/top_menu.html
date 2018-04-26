@@ -1,0 +1,102 @@
+{% load i18n static content_tags multilang_tags wagtailcore_tags %}
+{% get_language_index_page as site_root %}
+
+{# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
+
+<div class="navbar-helsinki navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            {% get_page_language_code as lang_code %}
+            {% if lang_code == 'sv' %}
+                <a class="navbar-logo navbar-brand-sv text-hide" href="{% get_language_root_url %}"><img src="{% static 'images/logo_sv.svg' %}" width="104" height="36">Helsingfors</a>
+            {% else %}
+                <a class="navbar-logo navbar-brand text-hide" href="{% get_language_root_url %}">Helsinki</a>
+            {% endif %}
+        </div>
+        <div class="navbar-right">
+            {% comment %}
+            <button class="btn btn-default search-trigger" id="js-toggle-search" aria-label="Avaa haku" type="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-search hel-nav-icon"></span>
+                <span class="hidden-sm hidden-xs">Haku</span>
+            </button>
+            {% endcomment %}
+            <div class="dropdown btn-group">
+                <button class="language-switcher dropdown-toggle btn btn-default" type="button" id="language-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-globe hel-nav-icon"></span>
+                    {% get_page_language_code %}
+                    <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="language-menu">
+                    {% get_language_options as language_choices %}
+                    {% for language in language_choices %}
+                        <!-- TODO: add active class to current language in the list -->
+                        <li role="presentation" class="dropdown-item language-switcher__language">
+                            <a href="{% get_page_language_link calling_page language.language_code %}" role="menuitem" tabindex="-1">
+                                {{ language.verbose_name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="dropdown btn-group">
+                <button class="user-menu-trigger dropdown-toggle btn btn-default" type="button" id="user-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-user hel-nav-icon" aria-hidden="true"></span>
+                    <span class="user-name"><span>{{ request.user.get_full_name }}</span></span><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="user-menu">
+                    <li><a href="{% url 'account_logout' %}?next={{ request.path }}">{% trans "Log out" %}</a></li>
+                </ul>
+            </div>
+            {% elif 'test' in request.site.site_name %}
+            <a aria-label="Kirjaudu sisään" type="button" class="btn btn-default" href="{% url 'helsinki_login' %}?next={{ request.path }}">
+                <span class="glyphicon glyphicon-user user-nav-icon" aria-hidden="true"></span>
+                <span class="user-name hidden-sm hidden-xs"><span>{% trans "Log in" %}</span></span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<nav class="navbar-primary navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">{% trans "Menu" %}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {# Link to home page #}
+            <a href="{% pageurl site_root %}" class="navbar-brand" title="{{ site_root.title }}" data-placement="bottom">
+                <h1 class="site-title">{{ site_root.title }}</h1>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% for menuitem in menuitems %}
+                    <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
+                        {% if menuitem.show_dropdown %}
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                {{ menuitem.title }} <b class="caret"></b>
+                            </a>
+                            {% top_menu_children parent=menuitem %}
+                        {% else %}
+                            <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% comment %}
+    <div class="drop-search">
+        <div class="container">
+            {% include 'includes/navbar-search.html' %}
+        </div>
+    </div>
+    {% endcomment %}
+</nav>

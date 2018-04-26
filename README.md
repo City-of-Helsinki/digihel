@@ -83,6 +83,8 @@ Configuration
 
 These settings are recognized in the Django settings.
 
+You can create a local_settings.py in the root folder which is executed at the end of the digihel/settings.py in the same context so that the variables defined in the settings are available.
+
 You can acquire the Twitter keys from the Twitter developer portal (https://apps.twitter.com).
 
 * `TWITTER_CONSUMER_KEY`: "Consumer Key (API Key)"
