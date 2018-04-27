@@ -58,6 +58,12 @@
                                         <div><label for="email">{% trans "Email" %}</label> <input type="text" name="email"></div>
                                         <div><input type="submit" value="{% trans "Submit" %}"></div>
                                     </form>
+                                    <h3>{% trans "Login with Tunnistamo" %}</h3>
+                                    <div>
+                                        <a href="/accounts/helsinki/login/?next={{ page.url }}">
+                                            <button>{% trans "Tunnistamo Login" %}</button>
+                                        </a>
+                                    </div>
                                 </div>
                             {% endif %}
                         {% endif %}

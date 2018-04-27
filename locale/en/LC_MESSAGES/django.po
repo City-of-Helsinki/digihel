@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 15:39+0300\n"
+"POT-Creation-Date: 2018-04-27 10:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -488,7 +488,7 @@ msgid "Photo permission"
 msgstr ""
 
 #: helsinkioppii/models/cases.py:346
-#: helsinkioppii/templates/helsinkioppii/case_list_page.html:72
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:78
 msgid "draft"
 msgstr ""
 
@@ -673,6 +673,14 @@ msgstr "Request login link"
 #: helsinkioppii/templates/helsinkioppii/case_list_page.html:59
 msgid "Submit"
 msgstr ""
+
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:61
+msgid "Login with Tunnistamo"
+msgstr "Login using your hel.fi-email address and password"
+
+#: helsinkioppii/templates/helsinkioppii/case_list_page.html:64
+msgid "Tunnistamo Login"
+msgstr "Log in"
 
 #: helsinkioppii/templates/helsinkioppii/create_case.html:11
 msgid "Share your implementation of learning"
