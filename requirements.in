@@ -11,7 +11,7 @@ django-celery-results
 django-enumfields
 django-libsass
 django-social-widgets
-Django
+Django<2
 django_compressor
 elasticsearch<2.0.0
 isort
