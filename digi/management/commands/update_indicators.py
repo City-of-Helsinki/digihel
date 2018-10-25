@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
             elif indicator.slug == 'varaukset':
                 try:
-                    resp = requests.get('http://api.hel.fi/respa/v1/reservation?all=true')
+                    resp = requests.get('https://api.hel.fi/respa/v1/reservation?all=true')
                     indicator.value = resp.json()['count']
                 except Exception as e:
                     raise CommandError('Something went wrong while updating indicator {}. Retaining previous value {}.'.format(indicator.slug, indicator.value))
