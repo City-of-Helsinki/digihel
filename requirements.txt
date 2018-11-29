@@ -41,7 +41,7 @@ isort==4.2.15
 jinja2==2.9.6
 kombu==4.1.0              # via celery
 libsass==0.13.2           # via django-libsass
-lxml==3.8.0               # via wagtail-blog
+lxml==4.2.5               # via wagtail-blog
 markupsafe==1.0           # via jinja2
 oauthlib==2.0.2           # via requests-oauthlib
 olefile==0.44             # via pillow
@@ -60,7 +60,7 @@ raven==6.1.0
 rcssmin==1.0.6            # via django-compressor
 redis==2.10.6
 requests-oauthlib==0.8.0  # via django-allauth, tweepy
-requests==2.18.4          # via django-allauth, django-helusers, pyjwkest, requests-oauthlib, tweepy, wagtail, wagtail-blog
+requests==2.20.1          # via django-allauth, django-helusers, pyjwkest, requests-oauthlib, tweepy, wagtail, wagtail-blog
 rjsmin==1.0.12            # via django-compressor
 six==1.10.0               # via html5lib, libsass, pip-tools, pyjwkest, tweepy
 tweepy==3.5.0
