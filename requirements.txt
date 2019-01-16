@@ -29,7 +29,7 @@ django-modelcluster==3.1  # via wagtail
 django-npm==1.0.0
 django-taggit==0.22.1     # via wagtail
 django-treebeard==4.1.2   # via wagtail
-django<2.0
+django==1.11.18
 djangorestframework==3.6.3  # via drf-oidc-auth, wagtail
 drf-oidc-auth==0.9        # via django-helusers
 elasticsearch==1.9.0
@@ -47,7 +47,7 @@ oauthlib==2.0.2           # via requests-oauthlib
 olefile==0.44             # via pillow
 pillow==4.2.1             # via wagtail
 pip-tools==1.9.0
-psycopg2==2.7.3
+psycopg2==2.7.6.1
 py==1.4.34                # via pytest
 pycodestyle==2.3.1        # via autopep8
 pycryptodomex==3.4.6      # via pyjwkest
