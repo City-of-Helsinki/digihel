@@ -211,11 +211,24 @@ class ProjectLink(Orderable, RelatedLink):
 class FrontPage(RelativeURLMixin, Page):
     hero_background = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
+    themes_header = models.CharField(_('Themes header'), max_length=100, default="", null=True, blank=True)
+    banners_header = models.CharField(_('Banner header'), max_length=100, default="", null=True, blank=True)
+    news_header = models.CharField(_('News header'), max_length=100, default="", null=True, blank=True)
+
     hero = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ])
 
     content_panels = Page.content_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel('themes_header'),
+                FieldPanel('banners_header'),
+                FieldPanel('news_header'),
+            ],
+            heading=_('Collection of Main Headers'),
+            classname='collapsible collapsed'
+        ),
         ImageChooserPanel('hero_background'),
         StreamFieldPanel('hero'),
     ]

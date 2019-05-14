@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-25 11:34+0300\n"
+"POT-Creation-Date: 2019-05-14 10:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,143 +18,122 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: content/models.py:29
 msgid "Left column content"
 msgstr "Vasemman sarakkeen sisältö"
 
-#: content/models.py:31
 msgid "Right column content"
 msgstr "Oikean sarakkeen sisältö"
 
-#: content/models.py:35
 msgid "Two columns"
 msgstr "Kaksi saraketta"
 
-#: content/models.py:100 digi/models.py:134 digi/models.py:180
+msgid "Collapsible paragraph"
+msgstr "Pudotettava kappale"
+
 msgid "Roles"
 msgstr "Roolit"
 
-#: content/models.py:101 digi/models.py:75 digi/models.py:135
-#: digi/models.py:181
 msgid "Links"
 msgstr ""
 
-#: digi/models.py:44
 msgid "Indicator"
 msgstr "Indikaattori"
 
-#: digi/models.py:45
 msgid "Indicators"
 msgstr "Indikaattorit"
 
-#: digi/models.py:167
 msgid "Project"
 msgstr "Projekti"
 
-#: digihel/templates/wagtailadmin/login.html:3
-#: digihel/templates/wagtailadmin/login.html:73
+msgid "Themes header"
+msgstr "Teeman otsikko"
+
+msgid "Banner header"
+msgstr "Bannerin otsikko"
+
+msgid "News header"
+msgstr "Uutiset otsikko"
+
+msgid "Collection of Main Headers"
+msgstr "Pääotsikot"
+
 msgid "Sign in"
 msgstr "Kirjaudu sisään"
 
-#: digihel/templates/wagtailadmin/login.html:18
 #, python-format
 msgid "Your %(username_field)s and password didn't match. Please try again."
 msgstr ""
 
-#: digihel/templates/wagtailadmin/login.html:60
 msgid "Forgotten it?"
 msgstr "Unohditko?"
 
-#: digihel/templates/wagtailadmin/login.html:73
 msgid "Signing in..."
 msgstr "Kirjaudutaan sisään"
 
-#: events/models.py:21
 msgid "Events"
 msgstr "Tapahtumat"
 
-#: events/models.py:22
 msgid "Event data source"
 msgstr "Tapahtumien tietolähde"
 
-#: feedback/models.py:14
 msgid "URL of the page where the user was"
 msgstr "Sivu jolta palaute jätettiin"
 
-#: feedback/models.py:15
 msgid "The user agent string of the user's browser"
 msgstr "Käyttäjän selaimen tyyppi"
 
-#: feedback/models.py:17
 msgid "Subject"
 msgstr "Otsikko"
 
-#: feedback/models.py:18 feedback/models.py:121 kehmet/models.py:18
 msgid "Name"
 msgstr "Nimi"
 
-#: feedback/models.py:19 feedback/models.py:123
 msgid "Email"
 msgstr "Sähköposti"
 
-#: feedback/models.py:20
 msgid "Body"
 msgstr "Sisältö"
 
-#: feedback/models.py:53
 #, python-format
 msgid "Unsupported notifier type: %s"
 msgstr ""
 
-#: feedback/models.py:86
 #, python-brace-format
 msgid "New feedback received for {url}"
 msgstr "Uusi palaute vastaanotettu osoitteelle {url}"
 
-#: feedback/models.py:125
 msgid "User agent"
 msgstr "Selain"
 
-#: kehmet/models.py:19
 msgid "Short description"
 msgstr "Lyhyt kuvaus"
 
-#: kehmet/models.py:30
 msgid "User role"
 msgstr "Käyttäjärooli"
 
-#: kehmet/models.py:31
 msgid "User roles"
 msgstr "Käyttäjäroolit"
 
-#: kehmet/models.py:36
 msgid "Development method"
 msgstr "Kehitysmenetelmä"
 
-#: kehmet/models.py:37
 msgid "Development methods"
 msgstr "Kehitysmenetelmät"
 
-#: kehmet/models.py:47
 msgid "Development phase"
 msgstr "Kehitysvaihe"
 
-#: kehmet/models.py:48
 msgid "Development phases"
 msgstr "Kehitysvaiheet"
 
-#: kehmet/models.py:93
 msgid "Show in sub menus"
 msgstr "Näytä alavalikoissa"
 
-#: kehmet/models.py:93
 msgid "Page is visible on the submenu"
 msgstr "Näytä linkki tälle sivuille tuotetuissa sivunavigaatioissa"
 
-#: kehmet/models.py:102
 msgid "Custom page configuration"
 msgstr "Sivun lisäasetukset"
 
-#: people/wagtail_hooks.py:9
 msgid "People"
 msgstr "Henkilöt"
