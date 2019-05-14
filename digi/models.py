@@ -48,6 +48,27 @@ class Indicator(models.Model):
     def __str__(self):
         return self.description
 
+
+class Banner(models.Model):
+    header = models.CharField(_('Header'), max_length=100, default='')
+    text = models.CharField(_('Text'), max_length=255)
+    link_text = models.CharField(_('Link text'), max_length=50)
+    link_url = models.CharField(_('Link URL'), max_length=100, default='')
+    icon_file = models.FileField(_('Icon file'))
+    icon_alt_text = models.CharField(_('Icon alt text'), max_length=100, default='')
+    order = models.IntegerField(_('Order'), null=True, blank=True)
+
+    sort_order_field = 'order'
+
+    class Meta:
+        verbose_name = _('Banner')
+        verbose_name_plural = _('Banners')
+        ordering = ['order']
+
+    def __str__(self):
+        return self.header
+
+
 class Phase():
     NONE = ''
     DISCOVERY = 'DI'
@@ -236,6 +257,10 @@ class FrontPage(RelativeURLMixin, Page):
     @property
     def indicators(self):
         return Indicator.objects.filter(front_page=True)
+
+    @property
+    def banners(self):
+        return Banner.objects.all()
 
     @property
     def themes(self):
