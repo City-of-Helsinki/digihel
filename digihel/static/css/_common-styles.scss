@@ -1252,18 +1252,6 @@ $labelheight:     22px;
     }
   }
 
-  .footer-partners {
-    list-style: none;
-    padding-left: 0;
-    li {
-      vertical-align: top;
-      display: inline-block;
-      @media (max-width: $screen-xs-max) {
-        display: block;
-      }
-    }
-  }
-
   .partner-logo {
     margin: 1em 0 2em 2em;
     width: 5em;
@@ -1288,10 +1276,6 @@ $labelheight:     22px;
     max-width: 8em;
   }
 
-  .footer-logo-heldev {
-    max-width: 4em;
-  }
-
   a {
     color: $white;
     display: block;
@@ -1301,11 +1285,6 @@ $labelheight:     22px;
       color: $white;
       text-decoration: none;
     }
-  }
-
-  .footer-branding-text {
-    @extend small;
-    margin-bottom: 1.5em;
   }
 }
 
