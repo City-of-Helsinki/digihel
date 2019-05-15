@@ -47,8 +47,8 @@
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-md-push-6 col-sm-4 col-sm-push-4">
                     {% for section in request.site.root_page.specific.footer_link_sections %}
+                    <div class="col-md-3 col-md-push-6 col-sm-4 col-sm-push-4">
                         <div class="page-footer-block">
                             {% if section.title %}<div class="footer-header">{{ section.title }}</div>{% endif %}
                             <ul class="footer-links">
@@ -57,9 +57,9 @@
                             {% endfor %}
                             </ul>
                         </div>
-                    {% endfor %}
                     </div>
-                    <div class="col-md-3 col-md-pull-3 col-sm-4 col-sm-pull-4">
+                    {% endfor %}
+                    <div class="col-md-3 col-md-pull-6 col-sm-4 col-sm-pull-8">
                         <div class="footer-branding footer-branding-helsinki">
                             <a href="http://www.hel.fi">
                                 <img alt="Helsingin tunnus" src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}" class="footer-logo footer-logo-helsinki" aria-hidden="true">
