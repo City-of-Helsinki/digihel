@@ -89,3 +89,28 @@ You can acquire the Twitter keys from the Twitter developer portal (https://apps
 * `TWITTER_CONSUMER_SECRET`: "Consumer Secret (API Secret)"
 * `TWITTER_ACCESS_TOKEN`: A personal (read-only) access token
 * `TWITTER_ACCESS_TOKEN_SECRET`: The secret for the personal (read-only) access token
+
+Docker
+------
+Currently the development environment has been dockerized.
+
+#### Configurations
+Configure the following settings to local_settings.py:
+```
+DEBUG = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
+}
+```
+#### Daily running
+* Run `docker-compose up`
+* Run `docker-compose exec web python3 manage.py migrate`
+* Run `docker-compose exec web python3 manage.py compilemessages`
