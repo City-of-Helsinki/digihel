@@ -18,7 +18,7 @@ from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
 from events.models import EventsIndexPage
 
-from .news import get_news_feeds
+from news.news import get_news_feeds
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),

@@ -1,0 +1,21 @@
+{% load wagtailcore_tags digi_tags static wagtailimages_tags social_widgets %}
+
+<div class="blog-post-preview">
+  <div class="blog-post-header">
+
+  <a class="blog-post-link" href="{{ news.link }}">
+      <div class="news-post-main-image" style="background-image: url('{{ news.image }}')">
+      </div>
+      <h2 class="hyphenate">{{ news.title }}</h2>
+  </a>
+
+  </div>
+
+  <div class="blog-intro">
+      {% if news.published %}
+        <div class="blog-post-date">{{ news.published|convert_datetime|date:"j.n.Y" }}</div>
+      {% endif %}
+      {{ news.parsed_description|first_p|truncatechars_html:280|safe }}
+      <a href="{{ news.link }}">Lue koko uutinen &raquo;</a>
+  </div>
+</div>
