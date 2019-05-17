@@ -592,7 +592,7 @@ $labelheight:     22px;
   font-size: 16px;
   min-height: $line-height-computed * 20;
   position: relative;
-  text-shadow: 1px 1px 4px rgba(#000, 0.2);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 1.0);
 
   a {
     color: $white;
@@ -625,6 +625,7 @@ $labelheight:     22px;
   }
 
   .rich-text {
+    background: rgba(35, 31, 32, 0.2);
     color: $white;
     margin-bottom: $line-height-computed * 4;
     text-align: left;
