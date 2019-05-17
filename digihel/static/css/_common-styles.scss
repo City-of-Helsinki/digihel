@@ -874,6 +874,12 @@ $labelheight:     22px;
 
   .indicator-column {
     margin-bottom: $line-height-computed;
+
+    @media screen and (max-width: $screen-xs-max) {
+      &:first-child {
+        margin-top: $line-height-computed;
+      }
+    }
   }
 
   .indicator-content {
