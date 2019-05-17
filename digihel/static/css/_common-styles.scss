@@ -1531,6 +1531,17 @@ $labelheight:     22px;
     }
   }
 
+  .news-post-main-image {
+    background-color: $theme-primary-light;
+    background-position: center;
+    background-size: cover;
+    height: $line-height-computed * 8;
+
+    @media screen and (min-width: $screen-md-min) {
+      height: $line-height-computed * 15 + 10;
+    }
+  }
+
   .blog-post-item {
     @extend .col-sm-6;
     margin-bottom: $line-height-computed * 2;
