@@ -1,0 +1,26 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+<section class="sub-section section--projects">
+    <div class="container">
+      <h2 class="text-center">{{ section_title }}</h2>
+    </div>
+    <div class="section-content">
+        <div class="container">
+            <div class="theme-projects">
+              {% for project in projects %}
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="project-card match-height">
+                  {% image project.image fill-400x300 as project_image %}
+                  <a href="{% pageurl project %}"><img src="{{ project_image.url }}" class="project-thumbnail"/></a>
+                  <div class="caption">
+                    <h3 class="hyphenate"><a href="{% pageurl project %}">{{ project.title }}</a></h3>
+                    <p class="flex-text">{{ project.short_description }}</p>
+                    <p class="text-center"><a class="btn btn-default" href="{% pageurl project %}">Lue lisää</a></p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
