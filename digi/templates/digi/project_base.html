@@ -34,7 +34,7 @@
   </div>
 </section>
 
-{% if page.projects.exists %}
-    {% include "includes/projects_section.html" with section_title="Kokonaisuuteen kuuluu:" projects=page.projects %}
+{% if projects and projects.exists %}
+    {% include "includes/projects_section.html" with section_title=projects_title projects=projects %}
 {% endif %}
 {% endblock %}

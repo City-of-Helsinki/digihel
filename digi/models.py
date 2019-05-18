@@ -149,6 +149,12 @@ class ThemePage(RelativeURLMixin, Page):
     def projects(self):
         return self.get_children().exact_type(ProjectPage).live().specific()
 
+    def get_context(self, request, **kwargs):
+        context = super(ThemePage, self).get_context(request, **kwargs)
+        context['projects_title'] = _('Teeman projektit')
+        context['projects'] = self.projects
+        return context
+
 
 class ThemeRole(Orderable):
     theme = ParentalKey(ThemePage, related_name='roles')
