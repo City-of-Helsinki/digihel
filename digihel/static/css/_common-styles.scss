@@ -1551,6 +1551,12 @@ $labelheight:     22px;
   }
 }
 
+.blog-section-reminder {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: $line-height-computed;
+}
+
 .blog-index-highlight {
   background: $theme-primary-light;
   background-position: center;
