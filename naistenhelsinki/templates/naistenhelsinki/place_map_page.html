@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load compress static %}
+
+{% block extra_css %}
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+        integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+        crossorigin=""
+    >
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static "css/naistenhelsinki.scss" %}" />
+    {% endcompress %}
+{% endblock %}
+
+{% block body_class %}place-map-page{% endblock %}
+
+{% block menu %}
+    {% include "naistenhelsinki/includes/top_menu.html" %}
+{% endblock %}
+
+{% block content %}
+    <section class="main-section">
+        <div class="container">
+            <h1 class="page-title">{{ page.title }}</h1>
+        </div>
+    </section>
+    <div class="container main-container" role="main">
+        <article>
+            {% for block in page.body %}
+                {% if block.block_type == 'heading' %}
+                    <h1 class="hyphenate">{{ block.value }}</h1>
+                {% else %}
+                    <section class="block-{{ block.block_type }}">
+                        {{ block.value }}
+                    </section>
+                {% endif %}
+            {% endfor %}
+            <div id="root"></div>
+        </article>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/naistenhelsinki.js' %}"></script>
+{% endblock %}
