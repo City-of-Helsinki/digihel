@@ -71,6 +71,6 @@ unidecode==0.4.21         # via wagtail
 urllib3==1.22             # via elasticsearch, requests
 vine==1.1.4               # via amqp
 wagtail-blog==1.6.9
-wagtail==1.11.1
+wagtail==1.13.4
 webencodings==0.5.1       # via html5lib
-willow==0.4               # via wagtail
+willow==1.0               # via wagtail

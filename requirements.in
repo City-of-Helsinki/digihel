@@ -26,5 +26,5 @@ raven
 redis
 tweepy
 twitter-text-python
-wagtail
+wagtail~=1.13.0
 wagtail-blog
