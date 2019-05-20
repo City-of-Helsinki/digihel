@@ -1,4 +1,4 @@
-from wagtail.wagtailsearch.backends.elasticsearch import ElasticSearch as WagtailElasticSearch
+from wagtail.search.backends.elasticsearch import ElasticSearch as WagtailElasticSearch
 
 
 class ElasticSearch(WagtailElasticSearch):

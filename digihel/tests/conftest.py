@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 from blog.models import BlogIndexPage
-from wagtail.wagtailcore.models import Page, Site
+from wagtail.core.models import Page, Site
 
 from digi.models import FrontPage
 

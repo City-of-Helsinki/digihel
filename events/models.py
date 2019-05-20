@@ -1,6 +1,6 @@
 import json, requests
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.models import Page, Orderable
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.cache import cache

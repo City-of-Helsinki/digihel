@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
-from wagtail.wagtailcore.models import Page, Site
-from wagtail.wagtailcore.utils import WAGTAIL_APPEND_SLASH
+from wagtail.core.models import Page, Site
+from wagtail.core.utils import WAGTAIL_APPEND_SLASH
 
 
 class RelativeURLMixin(object):
