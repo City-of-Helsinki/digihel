@@ -11,7 +11,7 @@ django-celery-results
 django-enumfields
 django-libsass
 django-social-widgets
-Django
+Django~=1.11.0
 django_compressor
 elasticsearch<2.0.0
 feedparser~=5.2.0
@@ -26,5 +26,5 @@ raven
 redis
 tweepy
 twitter-text-python
-wagtail~=1.13.0
+wagtail~=2.3.0
 wagtail-blog
