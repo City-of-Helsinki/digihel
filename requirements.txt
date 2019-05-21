@@ -34,7 +34,7 @@ django==1.11.20
 djangorestframework==3.9.4  # via drf-oidc-auth, wagtail
 draftjs-exporter==2.1.5   # via wagtail
 drf-oidc-auth==0.9        # via django-helusers
-elasticsearch==1.9.0
+elasticsearch==2.4.1
 feedparser==5.2.1
 future==0.16.0            # via pyjwkest
 html5lib==0.999999999     # via wagtail
