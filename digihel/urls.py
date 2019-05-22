@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import include, url
+from django.urls import include, path, re_path
 from helusers import admin
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -9,26 +9,28 @@ from digi.views import sitemap_view
 from events.views import event_data
 from feedback.views import FeedbackView
 from search import views as search_views
+from allauth import urls as allauth_urls
+from blog import urls as blog_urls
 
 admin.autodiscover()
 
 
 urlpatterns = [
-    url(r'^django-admin/', include(admin.site.urls)),
+    re_path(r'^django-admin/', admin.site.urls),
 
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^accounts/', include('allauth.urls')),
+    re_path(r'^admin/', include(wagtailadmin_urls)),
+    re_path(r'^documents/', include(wagtaildocs_urls)),
+    re_path(r'^accounts/', include(allauth_urls)),
 
-    url(r'^search/$', search_views.search, name='search'),
-    url(r'^blogi/', include('blog.urls', namespace="blog")),
-    url(r'^sivukartta/$', sitemap_view),
-    url(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
+    re_path(r'^search/$', search_views.search, name='search'),
+    re_path(r'^blogi/', include(blog_urls, namespace="blog")),
+    re_path(r'^sivukartta/$', sitemap_view),
+    re_path(r'^palaute/$', FeedbackView.as_view(), name='post_feedback'),
 
     # client endpoints for external API data
-    url(r'^event_data/', event_data),
+    re_path(r'^event_data/', event_data),
 
-    url(r'', include(wagtail_urls)),
+    path(r'', include(wagtail_urls)),
 ]
 
 

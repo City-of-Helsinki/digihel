@@ -25,7 +25,7 @@ class Feedback(models.Model):
                                      on_delete=models.SET_NULL)
 
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         ordering = (('-created_at'),)

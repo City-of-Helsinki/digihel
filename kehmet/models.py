@@ -38,7 +38,7 @@ class DevelopmentMethod(BaseModel):
 
 
 class DevelopmentPhase(BaseModel):
-    method = models.ForeignKey(DevelopmentMethod)
+    method = models.ForeignKey(DevelopmentMethod, on_delete=models.CASCADE)
     order = models.IntegerField(null=True, blank=True)
 
     sort_order_field = 'order'

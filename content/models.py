@@ -49,9 +49,9 @@ content_blocks = rich_text_blocks + [
 class LinkFields(models.Model):
     link_external = models.URLField("External link", blank=True)
     link_page = models.ForeignKey('wagtailcore.Page', null=True, blank=True,
-                                  related_name='+')
+                                  related_name='+', on_delete=models.CASCADE)
     link_document = models.ForeignKey('wagtaildocs.Document', null=True, blank=True,
-                                      related_name='+')
+                                      related_name='+', on_delete=models.CASCADE)
 
     @property
     def url(self):
@@ -113,7 +113,7 @@ class LinkedContentPage(RelativeURLMixin, Page):
 
 class LinkedContentPageRole(Orderable):
     page = ParentalKey(LinkedContentPage, related_name='roles')
-    person = models.ForeignKey('people.Person', db_index=True, related_name='+')
+    person = models.ForeignKey('people.Person', db_index=True, related_name='+', on_delete=models.CASCADE)
     role = models.CharField(max_length=100, null=True, blank=True)
 
     panels = [

@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from wagtail.core.models import Page, Site
 from wagtail.core.utils import WAGTAIL_APPEND_SLASH
 
