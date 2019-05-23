@@ -151,6 +151,12 @@ class ThemePage(RelativeURLMixin, Page):
     def projects(self):
         return self.get_children().exact_type(ProjectPage).live().specific()
 
+    def get_context(self, request, **kwargs):
+        context = super(ThemePage, self).get_context(request, **kwargs)
+        context['projects_title'] = _('Kokonaisuuteen kuuluu:')
+        context['projects'] = self.projects
+        return context
+
 
 class ThemeRole(Orderable):
     theme = ParentalKey(ThemePage, related_name='roles')
@@ -195,6 +201,13 @@ class ProjectPage(RelativeURLMixin, Page):
         index.SearchField('body'),
     ]
     parent_page_types = ['ThemePage']
+
+    def get_context(self, request, **kwargs):
+        context = super(ProjectPage, self).get_context(request, **kwargs)
+        context['projects_title'] = _('Lisää aiheesta: ') + self.get_parent().title
+        context['projects'] = self.get_parent().get_children().exclude(id=self.id)\
+            .exact_type(ProjectPage).live().specific()
+        return context
 
 
 class ProjectRole(Orderable):
