@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-14 10:53+0300\n"
+"POT-Creation-Date: 2019-05-14 16:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,33 @@ msgstr "Indikaattori"
 
 msgid "Indicators"
 msgstr "Indikaattorit"
+
+msgid "Header"
+msgstr "Otsikko"
+
+msgid "Text"
+msgstr "Teksti"
+
+msgid "Link text"
+msgstr "Linkin teksti"
+
+msgid "Link URL"
+msgstr "Linkin URL-osoite"
+
+msgid "Icon file"
+msgstr "Ikonin tiedosto"
+
+msgid "Icon alt text"
+msgstr "Ikonin alt-teksti"
+
+msgid "Order"
+msgstr "Järjestys"
+
+msgid "Banner"
+msgstr "Banneri"
+
+msgid "Banners"
+msgstr "Bannerit"
 
 msgid "Project"
 msgstr "Projekti"

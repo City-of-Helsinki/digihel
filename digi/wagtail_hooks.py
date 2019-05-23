@@ -3,12 +3,17 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register, ModelAdminGroup
 from wagtail.wagtailcore import hooks
 
-from .models import FooterLinkSection, Indicator
+from .models import Banner, FooterLinkSection, Indicator
 
 
 class IndicatorAdmin(ModelAdmin):
     model = Indicator
     menu_icon = 'user'
+
+
+class BannerAdmin(ModelAdmin):
+    model = Banner
+    menu_icon = 'link'
 
 
 class FooterLinkSectionAdmin(ModelAdmin):
@@ -18,7 +23,7 @@ class FooterLinkSectionAdmin(ModelAdmin):
 
 class DigiHelAdminGroup(ModelAdminGroup):
     label = "DigiHel"
-    items = (IndicatorAdmin, FooterLinkSectionAdmin)
+    items = (IndicatorAdmin, BannerAdmin, FooterLinkSectionAdmin)
 
 modeladmin_register(DigiHelAdminGroup)
 
