@@ -1,4 +1,7 @@
 *~
+.cache/
+.coverage
+.idea/
 *.mo
 __pycache__
 /.django_secret
@@ -8,3 +11,4 @@ db.sqlite3
 /static
 /components
 node_modules/
+venv/
