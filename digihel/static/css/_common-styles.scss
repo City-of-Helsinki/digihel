@@ -705,8 +705,12 @@ $labelheight:     22px;
 }
 
 .theme-title {
-  font-size: floor(($font-size-base * 3));
   clear: both;
+  font-size: floor(($font-size-base * 3));
+  @media screen and (max-width: $screen-xs-max) {
+    font-size: floor(($font-size-base * 2));
+    word-break: break-word;
+  }
 }
 
 .section--projects {
@@ -875,6 +879,12 @@ $labelheight:     22px;
 
   .indicator-column {
     margin-bottom: $line-height-computed;
+
+    @media screen and (max-width: $screen-xs-max) {
+      &:first-child {
+        margin-top: $line-height-computed;
+      }
+    }
   }
 
   .indicator-content {
