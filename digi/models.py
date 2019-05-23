@@ -230,6 +230,14 @@ class FrontPage(RelativeURLMixin, Page):
     banners_header = models.CharField(_('Banner header'), max_length=100, default="", null=True, blank=True)
     news_header = models.CharField(_('News header'), max_length=100, default="", null=True, blank=True)
 
+    news_index_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
     hero = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ])
@@ -246,6 +254,7 @@ class FrontPage(RelativeURLMixin, Page):
         ),
         ImageChooserPanel('hero_background'),
         StreamFieldPanel('hero'),
+        PageChooserPanel('news_index_page', 'news.NewsIndexPage'),
     ]
 
     @property
@@ -255,6 +264,12 @@ class FrontPage(RelativeURLMixin, Page):
     @property
     def themes(self):
         return ThemePage.objects.all()
+
+    @property
+    def news_index(self):
+        if self.news_index_page:
+            return self.news_index_page
+        return self
 
     @property
     def news_feeds(self):
