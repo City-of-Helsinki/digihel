@@ -18,12 +18,15 @@
             {% endfor %}
         </div>
     </section>
-    {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
-      <div class="hero-koro"></div>
-    {% endwith %}
+    {% if page.indicators and page.indicators.exists %}
+        {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
+          <div class="hero-koro"></div>
+        {% endwith %}
+    {% endif %}
 </div>
 
 {# Indicators #}
+{% if page.indicators and page.indicators.exists %}
 <section class="container-fluid section-container container--indicators">
   <div class="container">
       <div class="indicators clearfix">
@@ -48,6 +51,7 @@
     <div class="indicators-koro"></div>
   </div>
 </section>
+{% endif %}
 
 {# Highlights (themes) #}
 
