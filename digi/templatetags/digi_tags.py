@@ -1,6 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from ..models import Phase
+from dateutil import parser
 
 register = template.Library()
 
@@ -11,6 +12,12 @@ def first_p(value):
     if len(paras):
         return paras[0] + '</p>'
     return ''
+
+
+@register.filter
+def convert_datetime(value):
+    return parser.parse(value)
+
 
 def is_active_phase(this_phase, current_phase):
     if this_phase == current_phase:

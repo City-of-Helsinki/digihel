@@ -192,6 +192,9 @@ COMPRESS_AUTOPREFIXER_BINARY = os.path.join(BASE_DIR, 'node_modules/.bin/postcss
 
 NPM_ROOT_PATH = BASE_DIR
 
+NEWS_FEED_URL = "http://www.hel.fi/feeds/uuttahelsinkia.xml"
+NEWS_FEED_DEFAULT_IMAGE = "/static/hel-bootstrap-3/src/assets/helsinki-logo-black.svg"
+
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "digihel"

@@ -1,4 +1,4 @@
-from blog.models import BlogCategory, BlogPage, BlogIndexPage
+from blog.models import BlogCategory, BlogIndexPage, BlogPage
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
@@ -9,14 +9,16 @@ from wagtail.wagtailadmin.edit_handlers import (
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 
 from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
 from events.models import EventsIndexPage
+
+from .news import get_news_feeds
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -242,11 +244,8 @@ class FrontPage(RelativeURLMixin, Page):
         return ThemePage.objects.all()
 
     @property
-    def blog_posts(self):
-        posts = BlogPage.objects.live().order_by('-date')
-        for blogpost in posts:
-          blogpost.parent_title = blogpost.get_parent().title
-        return posts
+    def news_feeds(self):
+        return get_news_feeds()
 
     @property
     def event_index(self):
