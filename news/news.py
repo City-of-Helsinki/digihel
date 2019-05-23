@@ -13,7 +13,7 @@ def get_news_feeds():
             entity.image = img_search.group(1)
             entity.parsed_description = img_re.sub('', entity.description)
         except AttributeError:
-            pass
+            entity.parsed_description = entity.description
         if not hasattr(entity, 'image') or not entity.image:
             entity.is_default_image = True
             entity.image = settings.NEWS_FEED_DEFAULT_IMAGE
