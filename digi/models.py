@@ -213,6 +213,15 @@ class ProjectLink(Orderable, RelatedLink):
 class FrontPage(RelativeURLMixin, Page):
     hero_background = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
+
+    news_index_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
     hero = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ])
@@ -220,6 +229,7 @@ class FrontPage(RelativeURLMixin, Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('hero_background'),
         StreamFieldPanel('hero'),
+        PageChooserPanel('news_index_page', 'news.NewsIndexPage'),
     ]
 
     @property
@@ -229,6 +239,12 @@ class FrontPage(RelativeURLMixin, Page):
     @property
     def themes(self):
         return ThemePage.objects.all()
+
+    @property
+    def news_index(self):
+        if self.news_index_page:
+            return self.news_index_page
+        return self
 
     @property
     def news_feeds(self):
