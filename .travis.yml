@@ -1,6 +1,5 @@
 language: python
 python:
-  - '3.4'
   - '3.6'
 
 cache: pip
@@ -13,10 +12,10 @@ addons:
 
 env: DATABASE_USER=postgres
 install:
-  - nvm install 4.5.0
+  - nvm install 8.16.0
   - node -v
   - pip install -U pip
-  - pip install pytest-cov==2.5.1 -r requirements.txt
+  - pip install pytest-cov==2.7.1 -r requirements.txt
   - npm install -g coffee-script
   - npm install
   - python manage.py collectstatic <<<yes
