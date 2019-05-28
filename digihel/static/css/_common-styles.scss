@@ -1237,7 +1237,7 @@ $labelheight:     22px;
 
   .page-footer-block {
     margin-bottom: $line-height-computed * 3;
-    @media (max-width: $screen-xs-max) {
+    @media (max-width: $screen-sm-max) {
       text-align: center;
     }
   }
