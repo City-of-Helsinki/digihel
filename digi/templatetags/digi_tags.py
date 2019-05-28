@@ -1,16 +1,23 @@
+import re
+
+from dateutil import parser
 from django import template
 from django.utils.safestring import mark_safe
+
 from ..models import Phase
-from dateutil import parser
 
 register = template.Library()
 
 
 @register.filter
 def first_p(value):
-    paras = value.split('</p>')
-    if len(paras):
-        return paras[0] + '</p>'
+    if value:
+        p_search = re.search(r'<p(|\s+[^>]*)>.*<\/p>', value)
+        if p_search:
+            value = p_search.group(0)
+            if len(p_search.group(1)) > 0:
+                value = value.replace(p_search.group(1), '')
+            return value
     return ''
 
 

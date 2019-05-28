@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'wagtailtinymce',
     'django_celery_results',
     'social_widgets',
+    'news',
 
     'allauth',
     'allauth.account',
