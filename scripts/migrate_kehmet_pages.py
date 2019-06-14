@@ -1,6 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 
 from content.models import ContentPage
 from kehmet.models import KehmetContentPage, KehmetFrontPage

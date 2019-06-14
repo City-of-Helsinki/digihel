@@ -3,11 +3,11 @@ from django.utils.translation import ugettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailsearch import index
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
+from wagtail.core import blocks
+from wagtail.core.fields import StreamField
+from wagtail.core.models import Page
+from wagtail.search import index
 
 from content.models import content_blocks
 from digihel.mixins import RelativeURLMixin
@@ -38,7 +38,7 @@ class DevelopmentMethod(BaseModel):
 
 
 class DevelopmentPhase(BaseModel):
-    method = models.ForeignKey(DevelopmentMethod)
+    method = models.ForeignKey(DevelopmentMethod, on_delete=models.CASCADE)
     order = models.IntegerField(null=True, blank=True)
 
     sort_order_field = 'order'

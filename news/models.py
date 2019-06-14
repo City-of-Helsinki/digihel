@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.translation import ugettext_lazy as _
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 
 from .news import get_news_feeds
 

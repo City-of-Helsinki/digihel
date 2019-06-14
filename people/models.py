@@ -1,16 +1,16 @@
 import hashlib
 
 from django.db import models
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
 
 from digihel.mixins import RelativeURLMixin
 from users.models import User
 
 
 class Person(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(null=True, blank=True)
@@ -47,8 +47,8 @@ class Group(models.Model):
 
 
 class Membership(models.Model):
-    group = models.ForeignKey(Group, db_index=True, related_name='memberships')
-    person = models.ForeignKey(Person, db_index=True, related_name='memberships')
+    group = models.ForeignKey(Group, db_index=True, related_name='memberships', on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, db_index=True, related_name='memberships', on_delete=models.CASCADE)
 
     panels = [
         FieldPanel('group'),

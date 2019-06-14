@@ -3,16 +3,16 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.admin.edit_handlers import (
     FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
 )
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
-from wagtail.wagtailimages.blocks import ImageChooserBlock
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsearch import index
+from wagtail.core import blocks
+from wagtail.core.fields import StreamField
+from wagtail.core.models import Orderable, Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.search import index
 
 from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
@@ -181,7 +181,7 @@ class ThemePage(RelativeURLMixin, Page):
 
 class ThemeRole(Orderable):
     theme = ParentalKey(ThemePage, related_name='roles')
-    person = models.ForeignKey('people.Person', db_index=True, related_name='theme_roles')
+    person = models.ForeignKey('people.Person', db_index=True, related_name='theme_roles', on_delete=models.CASCADE)
     role = models.CharField(max_length=100, null=True, blank=True)
 
     panels = [
@@ -233,7 +233,7 @@ class ProjectPage(RelativeURLMixin, Page):
 
 class ProjectRole(Orderable):
     project = ParentalKey(ProjectPage, db_index=True, related_name='roles')
-    person = models.ForeignKey('people.Person', db_index=True, related_name='project_roles')
+    person = models.ForeignKey('people.Person', db_index=True, related_name='project_roles', on_delete=models.CASCADE)
     role = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):

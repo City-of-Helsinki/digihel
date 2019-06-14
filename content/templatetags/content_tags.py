@@ -6,14 +6,14 @@ from bs4 import BeautifulSoup
 from django import template
 from django.utils.safestring import mark_safe
 
-from wagtail.wagtailcore.blocks.base import BoundBlock
-from wagtail.wagtailcore.rich_text import RichText
-from wagtail.wagtailcore.models import Site
+from wagtail.core.blocks.base import BoundBlock
+from wagtail.core.rich_text import RichText
+from wagtail.core.models import Site
 
 register = template.Library()
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_site_root(context):
     # NB this returns a core.Page, not the implementation-specific model used
     # so object-comparison to self will return false as objects would differ
@@ -145,7 +145,7 @@ class TableOfContentsNode(template.Node):
                 toc_anchor_count += 1
 
             new_source = str(soup)
-            # See wagtail.wagtailcore.rich_text expand_db_html and
+            # See wagtail.core.rich_text expand_db_html and
             # replace_embed_tag - if the embed tag doesn't close itself,
             # replace_embed_tag doesn't recognize it, and can't replace it
             # with img tag

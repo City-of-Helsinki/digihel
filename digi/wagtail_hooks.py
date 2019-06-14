@@ -1,7 +1,7 @@
 from django.utils.html import format_html
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register, ModelAdminGroup
-from wagtail.wagtailcore import hooks
+from wagtail.core import hooks
 
 from .models import Banner, FooterLinkSection, Indicator
 

@@ -1,10 +1,10 @@
-from django.core.urlresolvers import reverse
-from wagtail.wagtailcore.models import Page, Site
-from wagtail.wagtailcore.utils import WAGTAIL_APPEND_SLASH
+from django.urls import reverse
+from wagtail.core.models import Page, Site
+from wagtail.core.utils import WAGTAIL_APPEND_SLASH
 
 
 class RelativeURLMixin(object):
-    def relative_url(self, current_site):
+    def relative_url(self, current_site, request=None):
         url_parts = self.get_url_parts()
 
         if url_parts is None:
@@ -17,26 +17,45 @@ class RelativeURLMixin(object):
 
     # Override the method to support the case where we have
     # one Site for testing and another for production.
-    def get_url_parts(self):
-        root_paths = set(Site.get_site_root_paths())
-        test_site_paths = set([x for x in root_paths if 'test' in Site.objects.get(id=x[0]).site_name.lower()])
-        prod_site_paths = root_paths - test_site_paths
+    def get_url_parts(self, request=None):
+        possible_sites = [
+            (pk, path, url)
+            for pk, path, url in self._get_site_root_paths(request)
+            if self.url_path.startswith(path)
+        ]
+
+        if not possible_sites:
+            return None
+
+        test_site_paths = set([x for x in possible_sites if 'test' in Site.objects.get(id=x[0]).site_name.lower()])
+        prod_site_paths = set(possible_sites) - test_site_paths
         if False and self.content_type.app_label == 'kehmet':
-            root_paths = test_site_paths
+            possible_sites = list(test_site_paths)
         else:
-            root_paths = prod_site_paths
+            possible_sites = list(prod_site_paths)
 
-        for (site_id, root_path, root_url) in root_paths:
-            if self.url_path.startswith(root_path):
-                page_path = reverse('wagtail_serve', args=(self.url_path[len(root_path):],))
+        if len(possible_sites) == 0:
+            return None
 
-                # Remove the trailing slash from the URL reverse generates if
-                # WAGTAIL_APPEND_SLASH is False and we're not trying to serve
-                # the root path
-                if not WAGTAIL_APPEND_SLASH and page_path != '/':
-                    page_path = page_path.rstrip('/')
+        site_id, root_path, root_url = possible_sites[0]
 
-                return (site_id, root_url, page_path)
+        if hasattr(request, 'site'):
+            for site_id, root_path, root_url in possible_sites:
+                if site_id == request.site.pk:
+                    break
+            else:
+                site_id, root_path, root_url = possible_sites[0]
+
+        page_path = reverse(
+            'wagtail_serve', args=(self.url_path[len(root_path):],))
+
+        # Remove the trailing slash from the URL reverse generates if
+        # WAGTAIL_APPEND_SLASH is False and we're not trying to serve
+        # the root path
+        if not WAGTAIL_APPEND_SLASH and page_path != '/':
+            page_path = page_path.rstrip('/')
+
+        return (site_id, root_url, page_path)
 
 
 # Monkeypatch the original relative_url...
