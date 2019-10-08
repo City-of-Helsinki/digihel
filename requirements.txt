@@ -52,7 +52,7 @@ oauthlib==3.0.1           # via requests-oauthlib
 pillow==5.4.1             # via wagtail
 pip-tools==3.7.0
 pluggy==0.11.0            # via pytest
-psycopg2==2.8.2
+psycopg2==2.8.3
 py==1.8.0                 # via pytest
 pyasn1==0.4.5             # via rsa
 pycodestyle==2.5.0        # via autopep8

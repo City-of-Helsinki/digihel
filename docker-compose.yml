@@ -9,7 +9,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - .:/code
+      - .:/app
   db:
     image: postgres:10-alpine
     environment:
@@ -26,3 +26,7 @@ services:
 
 volumes:
     db-data:
+
+networks:
+  default:
+    name: helsinki
