@@ -133,7 +133,7 @@
                     <div class="col-sm-7">
                       <div class="match-height clearfix">
                       <h3><a class="hyphenate" href="{{ feed.link }}">{{ feed.title }}</a></h3>
-                      <span class="blog-section-tag">{{ feed.category }}</span> <time itemprop="startDate" datetime="{{ feed.published|convert_datetime|date:'Y-m-j' }}">{{ feed.published|convert_datetime|date:"j.n.Y" }}</time>
+                      <time itemprop="startDate" datetime="{{ feed.published|convert_datetime|date:'Y-m-j' }}">{{ feed.published|convert_datetime|date:"j.n.Y" }}</time>
                       {{ feed.parsed_description|first_p|truncatechars_html:280|safe }}
                       </div>
                     </div>
