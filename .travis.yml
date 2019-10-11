@@ -19,7 +19,7 @@ install:
   - pip install pytest-cov==2.7.1 -r requirements.txt
   - npm install -g coffee-script
   - npm install
-  - python manage.py --noinput collectstatic
+  - python manage.py collectstatic --noinput
 
 before_script:
   - psql -c 'create database digihel;' -U postgres
