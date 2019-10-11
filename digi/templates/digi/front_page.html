@@ -86,6 +86,35 @@
   </div>
 </section>
 
+{# Projects #}
+<section class="front-section section--projects">
+  <div class="container">
+    <h1 class="text-center">{{ page.projects_header }}</h1>
+  </div>
+  <div class="section-content">
+    <div class="container">
+        <div class="themes row">
+            {% for project in page.projects %}
+            <div class="col-md-4 col-sm-6">
+              <div class="theme-preview match-height clearfix">
+                <div class="preview-image">
+                  {% image project.image fill-700x500 as project_image %}
+                  <a class="theme-thumbnail link-unstyled" href="{% pageurl project %}"><img src="{{ project_image.url }}" /></a>
+                </div>
+                <div class="preview-content">
+                  <small class="card-type">{{ project.type }}</small>
+                  <a class="link-unstyled" href="{% pageurl project %}"><h3>{{ project.title }}</h3>
+                  <p>{{ project.short_description }}</p></a>
+                  <a class="" href="{% pageurl project %}">Lue lisää <span class="caret-right"></span></a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+</section>
+
 {# Banners #}
 <section class="front-section section--banners">
   <div class="container">

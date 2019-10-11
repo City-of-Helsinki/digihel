@@ -248,6 +248,7 @@ class FrontPage(RelativeURLMixin, Page):
     hero_background = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
     themes_header = models.CharField(_('Themes header'), max_length=100, default="", null=True, blank=True)
+    projects_header = models.CharField(_('Projects header'), max_length=100, default="", null=True, blank=True)
     banners_header = models.CharField(_('Banner header'), max_length=100, default="", null=True, blank=True)
     news_header = models.CharField(_('News header'), max_length=100, default="", null=True, blank=True)
 
@@ -267,6 +268,7 @@ class FrontPage(RelativeURLMixin, Page):
         MultiFieldPanel(
             [
                 FieldPanel('themes_header'),
+                FieldPanel('projects_header'),
                 FieldPanel('banners_header'),
                 FieldPanel('news_header'),
             ],
@@ -289,6 +291,10 @@ class FrontPage(RelativeURLMixin, Page):
     @property
     def themes(self):
         return ThemePage.objects.all()
+
+    @property
+    def projects(self):
+        return ProjectPage.objects.all().live().in_menu()
 
     @property
     def news_index(self):
