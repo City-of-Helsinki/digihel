@@ -17,7 +17,6 @@ elasticsearch<2.0.0
 feedparser~=5.2.0
 isort
 Jinja2
-pip-tools
 psycopg2
 pytest
 pytest-django
