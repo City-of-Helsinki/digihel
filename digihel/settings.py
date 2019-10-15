@@ -198,8 +198,8 @@ NEWS_FEED_DEFAULT_IMAGE = "/static/hel-bootstrap-3/src/assets/helsinki-logo-blac
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "digihel"
-SITE_ID = 1
+WAGTAIL_SITE_NAME = "kehmet"
+SITE_ID = 4
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     'default': {
