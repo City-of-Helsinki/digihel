@@ -196,10 +196,10 @@ NPM_ROOT_PATH = BASE_DIR
 NEWS_FEED_URL = "http://www.hel.fi/feeds/uuttahelsinkia.xml"
 NEWS_FEED_DEFAULT_IMAGE = "/static/hel-bootstrap-3/src/assets/helsinki-logo-black.svg"
 
-# Wagtail settings
+SITE_ID = 1
 
+# Wagtail settings
 WAGTAIL_SITE_NAME = "kehmet"
-SITE_ID = 4
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     'default': {
