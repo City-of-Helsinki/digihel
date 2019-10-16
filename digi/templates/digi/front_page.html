@@ -18,11 +18,9 @@
             {% endfor %}
         </div>
     </section>
-    {% if page.indicators and page.indicators.exists %}
-        {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
-          <div class="hero-koro"></div>
-        {% endwith %}
-    {% endif %}
+    {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
+      <div class="hero-koro"></div>
+    {% endwith %}
 </div>
 
 {# Projects #}
@@ -32,13 +30,13 @@
   </div>
   <div class="section-content">
     <div class="container">
-        <div class="themes row">
+        <div class="row">
             {% for project in page.projects %}
             <div class="col-md-4 col-sm-6">
-              <div class="theme-preview match-height clearfix">
+              <div class="project-preview match-height clearfix">
                 <div class="preview-image">
                   {% image project.image fill-700x500 as project_image %}
-                  <a class="theme-thumbnail link-unstyled" href="{% pageurl project %}"><img src="{{ project_image.url }}" /></a>
+                  <a class="project-thumbnail link-unstyled" href="{% pageurl project %}"><img src="{{ project_image.url }}" /></a>
                 </div>
                 <div class="preview-content">
                   <small class="card-type">{{ project.type }}</small>
@@ -52,6 +50,11 @@
         </div>
     </div>
   </div>
+  {% if page.indicators and page.indicators.exists %}
+  <div class="row">
+      <div class="projects-koro"></div>
+  </div>
+  {% endif %}
 </section>
 
 {# Indicators #}
