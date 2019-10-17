@@ -18,12 +18,44 @@
             {% endfor %}
         </div>
     </section>
-    {% if page.indicators and page.indicators.exists %}
-        {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
-          <div class="hero-koro"></div>
-        {% endwith %}
-    {% endif %}
+    {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
+      <div class="hero-koro"></div>
+    {% endwith %}
 </div>
+
+{# Projects #}
+<section class="front-section section--projects">
+  <div class="container">
+    <h1 class="text-center">{{ page.projects_header }}</h1>
+  </div>
+  <div class="section-content">
+    <div class="container">
+        <div class="row">
+            {% for project in page.projects %}
+            <div class="col-md-4 col-sm-6">
+              <div class="project-preview match-height clearfix">
+                <div class="preview-image">
+                  {% image project.image fill-700x500 as project_image %}
+                  <a class="project-thumbnail link-unstyled" href="{% pageurl project %}"><img src="{{ project_image.url }}" /></a>
+                </div>
+                <div class="preview-content">
+                  <small class="card-type">{{ project.type }}</small>
+                  <a class="link-unstyled" href="{% pageurl project %}"><h3>{{ project.title }}</h3>
+                  <p>{{ project.short_description }}</p></a>
+                  <a class="" href="{% pageurl project %}">Lue lisää <span class="caret-right"></span></a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+  {% if page.indicators and page.indicators.exists %}
+  <div class="row">
+      <div class="projects-koro"></div>
+  </div>
+  {% endif %}
+</section>
 
 {# Indicators #}
 {% if page.indicators and page.indicators.exists %}
@@ -53,91 +85,6 @@
 </section>
 {% endif %}
 
-{# Highlights (themes) #}
-
-<section class="front-section section--themes">
-  <div class="container">
-    <h1 class="text-center">{{ page.themes_header }}</h1>
-  </div>
-  <div class="section-content">
-    <div class="container">
-        <div class="themes row">
-            {% for theme in page.themes %}
-            {% if theme.promote_on_front_page %}
-            <div class="col-md-4 col-sm-6">
-              <div class="theme-preview match-height clearfix">
-                <div class="preview-image">
-                  {% image theme.image fill-700x500 as theme_image %}
-                  <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
-                </div>
-                <div class="preview-content">
-                  <small class="card-type">{{ theme.type }}</small>
-                  <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
-                  <p>{{ theme.short_description }}</p></a>
-                  <a class="" href="{% pageurl theme %}">Lue lisää <span class="caret-right"></span></a>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="text-center"><a class="btn btn-default" href="/projektit">Näytä lisää</a></div>
-    </div>
-  </div>
-</section>
-
-{# Projects #}
-<section class="front-section section--projects">
-  <div class="container">
-    <h1 class="text-center">{{ page.projects_header }}</h1>
-  </div>
-  <div class="section-content">
-    <div class="container">
-        <div class="themes row">
-            {% for project in page.projects %}
-            <div class="col-md-4 col-sm-6">
-              <div class="theme-preview match-height clearfix">
-                <div class="preview-image">
-                  {% image project.image fill-700x500 as project_image %}
-                  <a class="theme-thumbnail link-unstyled" href="{% pageurl project %}"><img src="{{ project_image.url }}" /></a>
-                </div>
-                <div class="preview-content">
-                  <small class="card-type">{{ project.type }}</small>
-                  <a class="link-unstyled" href="{% pageurl project %}"><h3>{{ project.title }}</h3>
-                  <p>{{ project.short_description }}</p></a>
-                  <a class="" href="{% pageurl project %}">Lue lisää <span class="caret-right"></span></a>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-  </div>
-</section>
-
-{# Banners #}
-<section class="front-section section--banners">
-  <div class="container">
-    <h1 class="text-center">{{ page.banners_header }}</h1>
-  </div>
-  <div class="section-content">
-    <div class="container">
-      <div class="row">
-      {% for banner in page.banners %}
-          <div class="col-sm-6">
-            <div class="banner--guide match-height">
-              <img src="{{ banner.icon_file.url }}" alt="{{ banner.icon_alt_text }}" class="guide-illustration">
-              <h3><a href="{{ banner.link_url }}">{{ banner.header }}</a></h3>
-              <p>{{ banner.text }}</p>
-              <p><a class="btn btn-default" href="{{ banner.link_url }}">{{ banner.link_text }}</a></p>
-            </div>
-          </div>
-      {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
 {# Blog / Events / Media #}
 <section class="front-section section--news">
   <div class="container">
@@ -149,7 +96,7 @@
               <div class="col-md-8">
                 <div class="blogs-preview">
                   <div class="card-type">Uutisia</div>
-                  {% for feed in page.news_feeds|slice:":3" %}
+                  {% for feed in page.news_feeds|slice:":4" %}
                   <article class="blog-post">
                     <div class="row">
                     <div class="col-sm-5">
@@ -223,6 +170,61 @@
           </div>
       </div>
     </div>
+</section>
+
+{# Banners #}
+<section class="front-section section--banners">
+  <div class="container">
+    <h1 class="text-center">{{ page.banners_header }}</h1>
+  </div>
+  <div class="section-content">
+    <div class="container">
+      <div class="row">
+      {% for banner in page.banners %}
+          <div class="col-sm-6">
+            <div class="banner--guide match-height">
+              <img src="{{ banner.icon_file.url }}" alt="{{ banner.icon_alt_text }}" class="guide-illustration">
+              <h3><a href="{{ banner.link_url }}">{{ banner.header }}</a></h3>
+              <p>{{ banner.text }}</p>
+              <p><a class="btn btn-default" href="{{ banner.link_url }}">{{ banner.link_text }}</a></p>
+            </div>
+          </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Highlights (themes) #}
+<section class="front-section section--themes">
+  <div class="container">
+    <h1 class="text-center">{{ page.themes_header }}</h1>
+  </div>
+  <div class="section-content">
+    <div class="container">
+        <div class="themes row">
+            {% for theme in page.themes %}
+            {% if theme.promote_on_front_page %}
+            <div class="col-md-4 col-sm-6">
+              <div class="theme-preview match-height clearfix">
+                <div class="preview-image">
+                  {% image theme.image fill-700x500 as theme_image %}
+                  <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+                </div>
+                <div class="preview-content">
+                  <small class="card-type">{{ theme.type }}</small>
+                  <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+                  <p>{{ theme.short_description }}</p></a>
+                  <a class="" href="{% pageurl theme %}">Lue lisää <span class="caret-right"></span></a>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="text-center"><a class="btn btn-default" href="/projektit">Näytä lisää</a></div>
+    </div>
+  </div>
 </section>
 
 {% endblock %}
