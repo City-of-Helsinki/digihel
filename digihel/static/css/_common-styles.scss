@@ -275,6 +275,12 @@ $labelheight:     22px;
 
 //* Navigation */
 
+.navbar-header>.navbar-brand {
+  &:focus {
+    outline: 2px solid #000;
+  }
+}
+
 .site-title {
   display: inline-block;
   font-size: $font-size-base;
@@ -293,8 +299,23 @@ $labelheight:     22px;
     margin-top: - $navbar-padding-vertical / 2;
   }
 
+  .navbar-nav>li>a {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0;
+    margin-right: 0;
+
+      &:focus {
+        outline: 2px solid #000;
+      }
+  }
+
   .drop-search {
     display: none;
+
+    &:focus {
+      outline: 2px solid #000;
+    }
   }
 
   .mobile-search {
