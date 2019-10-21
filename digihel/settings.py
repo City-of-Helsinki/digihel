@@ -181,7 +181,7 @@ MEDIA_URL = '/media/'
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
-    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/coffeescript', 'npx coffee --compile --stdio'),
 )
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
