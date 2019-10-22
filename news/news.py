@@ -2,6 +2,16 @@ import re
 
 import feedparser
 from django.conf import settings
+from django.core.cache import cache
+
+
+def get_news_cached(base_url):
+    cache_key = 'news_cache_key'
+    news = cache.get(cache_key)
+    if not news:
+        news = get_news(base_url)
+        cache.set(cache_key, news, settings.NEWS_FEED_CACHE_TIMEOUT)
+    return news
 
 
 def get_news(base_url):

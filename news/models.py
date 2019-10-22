@@ -6,14 +6,14 @@ from django.utils.translation import ugettext_lazy as _
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 
-from .news import get_news
+from .news import get_news_cached
 
 
 class NewsIndexPage(RoutablePageMixin, Page):
 
     @property
     def news_list(self):
-        return get_news(self.url)
+        return get_news_cached(self.url)
 
     class Meta:
         verbose_name = _('News index')

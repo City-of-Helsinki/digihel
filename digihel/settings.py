@@ -195,6 +195,7 @@ NPM_ROOT_PATH = BASE_DIR
 
 NEWS_FEED_URL = "http://www.hel.fi/feeds/uuttahelsinkia.xml"
 NEWS_FEED_DEFAULT_IMAGE = "/static/hel-bootstrap-3/src/assets/helsinki-logo-black.svg"
+NEWS_FEED_CACHE_TIMEOUT = 3600
 
 # Wagtail settings
 
