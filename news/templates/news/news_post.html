@@ -1,21 +1,52 @@
 {% load wagtailcore_tags digi_tags static wagtailimages_tags social_widgets %}
 
+{% if include_context == "index_page" %}
 <div class="blog-post-preview">
-  <div class="blog-post-header">
+    <div class="blog-post-header">
+{% else %}
+<div class="container main-container page-content blog-post-container" role="main">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="blog-section-header"><a href="{{ page.url }}">{{ page.title }}</a></h2>
+        </div>
+        <div class="page-header-blogpost col-xs-12 col-sm-10">
+{% endif %}
 
-  <a class="blog-post-link" href="{{ news.link }}">
-      <div class="news-post-main-image" style="background-image: url('{{ news.image }}')">
-      </div>
-      <h2 class="hyphenate">{{ news.title }}</h2>
-  </a>
+    <a class="blog-post-link" href="{{ news_item.real_link }}">
+        <div class="blog-post-main-image" style="background-image: url('{{ news_item.image }}')">
+        </div>
+        <h2 class="hyphenate">{{ news_item.title }}</h2>
+    </a>
 
-  </div>
-
-  <div class="blog-intro">
-      {% if news.published %}
-        <div class="blog-post-date">{{ news.published|convert_datetime|date:"j.n.Y" }}</div>
-      {% endif %}
-      {{ news.parsed_description|first_p|truncatechars_html:280|safe }}
-      <a href="{{ news.link }}">Lue koko uutinen &raquo;</a>
-  </div>
+    </div>
+    {% if include_context == "index_page" %}
+    <div class="blog-intro">
+        {% if news_item.published %}
+            <div class="blog-post-date">{{ news_item.published|convert_datetime|date:"j.n.Y" }}</div>
+        {% endif %}
+        {{ news_item.parsed_description|first_p|truncatechars_html:280|safe }}
+        <a href="{{ news_item.real_link }}">Lue koko kirjoitus &raquo;</a>
+    </div>
+    {% else %}
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="meta blog-post-meta">
+            {% if news_item.published %}
+                <div class="blog-post-date">
+                    <div class="blog-post-date">{{ news_item.published|convert_datetime|date:"j.n.Y" }}</div>
+                </div>
+            {% endif %}
+                <ul class="social-widgets" style="display: none">
+                    <li>{% social_widget_render "facebook/share_button.html" href="#undone" layout="button" %}</li>
+                    <li>{% social_widget_render "twitter/share_button.html" href="#undone" hashtag="digihelsinki" %}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="blog-body col-sm-8">
+            {% phases_indicator page.phase %}
+            {{ news_item.parsed_description|safe }}
+        </div>
+    </div>
+    {% endif %}
 </div>
