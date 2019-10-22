@@ -102,13 +102,13 @@
                     <div class="col-sm-5">
                       <div class="match-height clearfix">
                         {% if feed.image %}
-                        <a href="{{ feed.link }}"><div class="blog-post-main-image" style="background-image: url('{{ feed.image }}');{% if feed.is_default_image %}background-position:top;background-size:auto;{% endif %}"></div></a>
+                        <a href="{{ feed.real_link }}"><div class="blog-post-main-image" style="background-image: url('{{ feed.image }}');{% if feed.is_default_image %}background-position:top;background-size:auto;{% endif %}"></div></a>
                         {% endif %}
                       </div>
                     </div>
                     <div class="col-sm-7">
                       <div class="match-height clearfix">
-                      <h3><a class="hyphenate" href="{{ feed.link }}">{{ feed.title }}</a></h3>
+                      <h3><a class="hyphenate" href="{{ feed.real_link }}">{{ feed.title }}</a></h3>
                       <time itemprop="startDate" datetime="{{ feed.published|convert_datetime|date:'Y-m-j' }}">{{ feed.published|convert_datetime|date:"j.n.Y" }}</time>
                       {{ feed.parsed_description|first_p|truncatechars_html:280|safe }}
                       </div>

@@ -18,7 +18,7 @@ from content.models import RelatedLink
 from digihel.mixins import RelativeURLMixin
 from events.models import EventsIndexPage
 
-from news.news import get_news_feeds
+from news.news import get_news_cached
 
 rich_text_blocks = [
     ('heading', blocks.CharBlock(classname="full title")),
@@ -304,7 +304,7 @@ class FrontPage(RelativeURLMixin, Page):
 
     @property
     def news_feeds(self):
-        return get_news_feeds()
+        return get_news_cached(self.news_index.url)
 
     @property
     def event_index(self):
