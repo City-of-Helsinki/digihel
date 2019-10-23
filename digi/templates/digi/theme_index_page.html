@@ -14,7 +14,7 @@
         <div class="container">
             <div class="themes row">
                   <!-- Grid layout needs rework to wrap and align properly -->
-                  {% for theme in page.themes %}
+                  {% for theme in page.front_page_themes %}
                     <div class="col-md-4 col-sm-6">
                       <div class="theme-preview match-height clearfix">
                         <div class="preview-image">
@@ -33,6 +33,35 @@
             </div>
         </div>
     </div>
+</section>
+
+<section class="main-section sub-section--themes" role="main">
+  <div class="container">
+    <h1 class="text-center">{{ page.guides_and_support_header }}</h1>
+  </div>
+  <div class="section-content">
+    <div class="container">
+      <div class="themes row">
+        <!-- Grid layout needs rework to wrap and align properly -->
+        {% for theme in page.guides_and_support_themes %}
+          <div class="col-md-4 col-sm-6">
+            <div class="theme-preview match-height clearfix">
+              <div class="preview-image">
+                {% image theme.image fill-700x500 as theme_image %}
+                <a class="theme-thumbnail link-unstyled" href="{% pageurl theme %}"><img src="{{ theme_image.url }}" /></a>
+              </div>
+              <div class="preview-content">
+                <small class="card-type">{{ theme.type }}</small>
+                <a class="link-unstyled" href="{% pageurl theme %}"><h3>{{ theme.title }}</h3>
+                <p>{{ theme.short_description }}</p></a>
+                <a class="" href="{% pageurl theme %}">Lue lisää <span class="caret-right"></span></a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}
 

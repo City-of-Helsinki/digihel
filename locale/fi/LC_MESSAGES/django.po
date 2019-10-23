@@ -81,6 +81,9 @@ msgstr "Bannerin otsikko"
 msgid "News header"
 msgstr "Uutiset otsikko"
 
+msgid "Guides and support header"
+msgstr "Oppaat ja tuki otsikko"
+
 msgid "Collection of Main Headers"
 msgstr "Pääotsikot"
 

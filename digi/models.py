@@ -109,11 +109,21 @@ class FooterLink(Orderable, RelatedLink):
 
 
 class ThemeIndexPage(RelativeURLMixin, Page):
+    guides_and_support_header = models.CharField(_('Guides and support header'), max_length=100, default="", null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('guides_and_support_header')
+    ]
+
     subpage_types = ['ThemePage']
 
     @property
-    def themes(self):
-        return ThemePage.objects.live()
+    def front_page_themes(self):
+        return ThemePage.objects.live().filter(promote_on_front_page=True)
+
+    @property
+    def guides_and_support_themes(self):
+        return ThemePage.objects.live().exclude(promote_on_front_page=True)
 
 
 class GuideFrontPage(RelativeURLMixin, Page):
