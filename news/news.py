@@ -28,9 +28,10 @@ def get_news(base_url):
 
         try:
             entity.slug = slug_re.search(entity.link).group(1)
-            entity.real_link = base_url + entity.slug
+            entity.real_link = base_url + entity.slug if base_url and entity.slug else entity.link
         except AttributeError:
             entity.slug = None
+            entity.real_link = entity.link
 
         if not hasattr(entity, 'image') or not entity.image:
             entity.is_default_image = True
