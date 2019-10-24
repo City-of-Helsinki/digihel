@@ -5,6 +5,11 @@ from django.conf import settings
 from django.core.cache import cache
 
 
+def convert_http_to_https(url):
+    url = url.replace("http://", "https://") if url and url.startswith('http://') else url
+    return url
+
+
 def get_news_cached(base_url):
     cache_key = 'news_cache_key'
     news = cache.get(cache_key)
@@ -21,7 +26,7 @@ def get_news(base_url):
     for entity in entries:
         img_search = img_re.search(entity.description)
         try:
-            entity.image = img_search.group(1)
+            entity.image = convert_http_to_https(img_search.group(1))
             entity.parsed_description = img_re.sub('', entity.description)
         except AttributeError:
             entity.parsed_description = entity.description
