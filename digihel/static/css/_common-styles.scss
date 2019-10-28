@@ -704,6 +704,20 @@ $labelheight:     22px;
   }
 }
 
+.sub-section--themes {
+  margin-top: $line-height-computed * 3;
+
+  .section-content {
+    margin-top: $line-height-computed * 6;
+    padding-bottom: $line-height-computed * 2;
+    background: $white;
+  }
+
+  .themes {
+    margin-top: $line-height-computed * -4;
+  }
+}
+
 .section--theme-header {
   margin-top: $line-height-computed * 2;
   margin-bottom: $line-height-computed;
