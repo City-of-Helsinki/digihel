@@ -27,7 +27,7 @@
                 {% for menuitem in menuitems %}
                   <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
                       {% if menuitem.show_dropdown %}
-                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ menuitem.title }} <b class="caret"></b></a>
+                          <a data-toggle="dropdown" class="dropdown-item" href="#">{{ menuitem.title }} <b class="caret"></b></a>
                           {% top_menu_children parent=menuitem %}
                       {% else %}
                           <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
