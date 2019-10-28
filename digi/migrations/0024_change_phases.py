@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('digi', '0022_frontpage_projects_header'),
+        ('digi', '0023_themeindexpage_guides_and_support_header'),
     ]
 
     operations = [
