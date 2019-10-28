@@ -10,29 +10,46 @@
 </section>
 
 <div class="container main-container page-content" role="main">
-    {% for rl in self.related_links.all %}
-        <p>{{ rl.title }}: <a href='{{ rl.link_page.url }}'>{{ rl.link_page }}</a></p>
-    {% endfor %}
-    {% if news_list %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        {% for news_item in news|slice:":1" %}
+        <div class="col-xs-12">
+          <div class="news-index-highlight" style="background-image: url('{{ news_item.image }}')">
+            <a class="link-unstyled" href="{{ news_item.real_link }}">
+              <div class="blog-highlight-content">
+                <div class="blog-hilight-header hyphenate"><h2>{{ news_item.title }}</h2>
+                  <small>{{ news_item.published|convert_datetime|date:"j.n.Y" }}</small>
+                </div>
+                <div class="blog-highlight-blurb">{{ news_item.parsed_description|first_p|truncatechars_html:280|safe }}</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+    {% if news %}
         <ul class="blog-index list-unstyled the-loop row">
-        {% for news in news_list %}
+        {% for news_item in news|slice:"1:" %}
             <li class="blog-post-item{% if forloop.first and not category and not tag %} first-reset{% endif %} match-height">
-                {% include 'news/news_post.html' %}
+                {% include 'news/news_post.html' with include_context="index_page" %}
             </li>
         {% endfor %}
         </ul>
 
         <ul class="pager">
-        {% if news_list.has_next %}
-          <li class="previous"><a href="?page={{ news_list.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&larr; Vanhemmat</a></li>
+        {% if news.has_next %}
+          <li class="previous"><a href="?page={{ news.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&larr; Vanhempi</a></li>
         {% endif %}
-        {% if news_list.has_previous %}
-          <li class="next"><a href="?page={{ news_list.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Uudemmat &rarr;</a></li>
+        {% if news.has_previous %}
+          <li class="next"><a href="?page={{ news.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Uudempi &rarr;</a></li>
         {% endif %}
         </ul>
+
     {% else %}
         <p>Uutisissa ei tällä hetkellä ole julkaistuja kirjoituksia</p>
     {% endif %}
-    <a href="/blogikirjoitukset/" class="blogs-preview-read-all">Arkisto: Digitaalinen Helsinki -ohjelman blogi <span class="caret-right"></span></a>
   </div>
 {% endblock %}

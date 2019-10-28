@@ -1669,6 +1669,11 @@ $labelheight:     22px;
   }
 }
 
+.news-index-highlight {
+  @extend .blog-index-highlight;
+  background-color: #fff;
+}
+
 // Blog post
 .blog-post-container {
 

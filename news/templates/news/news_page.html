@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    {% include 'news/news_post.html' with news_item=news_item %}
+{% endblock %}
