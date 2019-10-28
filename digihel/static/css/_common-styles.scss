@@ -2,6 +2,10 @@
 
 // Bootstrap overrides
 
+p {
+  font-size: $font-size-p;
+}
+
 h1,
 .h1 {
   margin-bottom: $line-height-computed * 1.5;
