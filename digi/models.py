@@ -73,20 +73,17 @@ class Banner(models.Model):
 
 class Phase():
     NONE = ''
-    DISCOVERY = 'DI'
-    ALPHA = 'AL'
-    BETA = 'BE'
-    LIVE = 'LI'
-    RETIREMENT = 'RE'
+    PREPARATION = 'PR'
+    EXPERIMENT = 'EX'
+    ENABLED = 'EN'
 
     PHASE_CHOICES = (
         (NONE, 'No phase'),
-        (DISCOVERY, 'Selvitys'),
-        (ALPHA, 'Alfa'),
-        (BETA, 'Beta'),
-        (LIVE, 'Tuotanto'),
-        (RETIREMENT, 'Poisto'),
+        (PREPARATION, 'Valmistelu'),
+        (EXPERIMENT, 'Kokeilu'),
+        (ENABLED, 'Käytössä'),
     )
+
 
 class FooterLinkSection(ClusterableModel):
     title = models.CharField(max_length=100, null=True, blank=True)

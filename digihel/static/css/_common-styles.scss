@@ -127,13 +127,10 @@ img {
   }
 }
 
-$discoverycolor:  #b8d154;
-$alphacolor:      #3bbfbb;
-$betacolor:       #05c2de;
-$livecolor:       #0396d1;
-$retirementcolor: #999999;
-$inactivecolor:   #dedede;
-$labelheight:     22px;
+$preparationcolor: #b8d154;
+$experimentcolor:  #05c2de;
+$enabledcolor:     #0396d1;
+$labelheight:      22px;
 
 .phase-process {
     margin:  6px 0;
@@ -172,38 +169,24 @@ $labelheight:     22px;
 }
 
 
-.phase-label--discovery {
- background-color: $discoverycolor;
+.phase-label--preparation {
+ background-color: $preparationcolor;
   &::after, &::before {
-    border-color: $discoverycolor;
+    border-color: $preparationcolor;
   }
 }
 
-.phase-label--alpha {
- background-color: $alphacolor;
+.phase-label--experiment {
+ background-color: $experimentcolor;
   &::after, &::before {
-    border-color: $alphacolor;
+    border-color: $experimentcolor;
   }
 }
 
-.phase-label--beta {
- background-color: $betacolor;
+.phase-label--enabled {
+ background-color: $enabledcolor;
   &::after, &::before {
-    border-color: $betacolor;
-  }
-}
-
-.phase-label--live {
- background-color: $livecolor;
-  &::after, &::before {
-    border-color: $livecolor;
-  }
-}
-
-.phase-label--retirement {
- background-color: $retirementcolor;
-  &::after, &::before {
-    border-color: $retirementcolor;
+    border-color: $enabledcolor;
   }
 }
 
