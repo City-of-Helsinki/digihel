@@ -2,7 +2,7 @@ window.displayEvents = (eventData, grid = false) ->
   $list = $(".events-highlights, .events-index")
   $footnote = $(".events-source")
   if not grid
-    eventData = eventData[..2]
+    eventData = eventData[..1]
   if Object.keys(eventData).length == 0
     $list.append $("<h4 class='event-title'>Tällä hetkellä ei tulevia tapahtumia.</h4>")
   for event in eventData
