@@ -618,6 +618,41 @@ $labelheight:      22px;
     margin-top: $line-height-computed * 1;
   }
 
+  .hero-badge {
+    height: 110px;
+    width: 110px;
+    right: -110px;
+    top: $line-height-computed * -3;
+    position: absolute;
+    display: none;
+    border-radius: 50%;
+    background-color: $theme-primary-light;
+  }
+
+  .badge-text {
+    display: inline;
+    vertical-align: middle;
+    text-align: center;
+    text-shadow: 0 0;
+  }
+
+  .badge-link {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .hero-badge-bar {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    display: inline;
+    text-align: center;
+    background-color: $theme-primary-light;
+    font-size: 16px;
+  }
+
   .hero-koro {
     @include koro("pulse", $gray-lighter, 300);
     width: 100%;
@@ -657,11 +692,30 @@ $labelheight:      22px;
     }
   }
 
+  @media screen and (min-width: $screen-md-min) {
+    .hero-badge-bar {
+      display: none;
+    }
+
+    .hero-badge {
+      display: table;
+    }
+
+    .badge-text {
+      transform: rotate(-15deg);
+      display: table-cell;
+    }
+  }
+
   @media screen and (min-width: $screen-lg-min) {
 
     .hero-logo {
       height: $line-height-computed * 4;
       margin: $line-height-computed * 2 $line-height-computed * 2 0 0;
+    }
+
+    .hero-badge {
+      top: -110px;
     }
 
     .hero-content {
