@@ -13,14 +13,24 @@
             <img src="{% static "hel-bootstrap-3/src/assets/helsinki-logo-white.svg" %}" class="hero-logo">
         </div>
         <div class="col-sm-10 col-md-8 col-lg-7 hero-content">
+            {% if page.hero_badge_text and page.hero_badge_url %}
+            <div class="hero-badge">
+              <h3 class="badge-text">
+                <a class="badge-link" href="{{ page.hero_badge_url }}">{{ page.hero_badge_text }}</a>
+              </h3>
+            </div>
+            {% endif %}
             {% for block in page.hero %}
             {{ block }}
             {% endfor %}
         </div>
     </section>
-    {% with koro="hel-bootstrap-3/src/assets/koro-pulse-fog-0.svg" %}
-      <div class="hero-koro"></div>
-    {% endwith %}
+    <div class="hero-koro"></div>
+    <div class="hero-badge-bar">
+      <h3 class="badge-text">
+        <a class="badge-link" href="{{ page.hero_badge_url }}">{{ page.hero_badge_text }}</a>
+      </h3>
+    </div>
 </div>
 
 {# Projects #}
