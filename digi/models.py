@@ -254,6 +254,8 @@ class ProjectLink(Orderable, RelatedLink):
 class FrontPage(RelativeURLMixin, Page):
     hero_background = models.ForeignKey('wagtailimages.Image', null=True, blank=True,
                               on_delete=models.SET_NULL, related_name='+')
+    hero_badge_text = models.CharField(_('Hero badge text'), max_length=100, default="", null=True, blank=True)
+    hero_badge_url = models.URLField(_('Hero badge link'), max_length=300, default="", null=True, blank=True)
     themes_header = models.CharField(_('Themes header'), max_length=100, default="", null=True, blank=True)
     projects_header = models.CharField(_('Projects header'), max_length=100, default="", null=True, blank=True)
     banners_header = models.CharField(_('Banner header'), max_length=100, default="", null=True, blank=True)
@@ -284,6 +286,14 @@ class FrontPage(RelativeURLMixin, Page):
         ),
         ImageChooserPanel('hero_background'),
         StreamFieldPanel('hero'),
+        MultiFieldPanel(
+            [
+                FieldPanel('hero_badge_text'),
+                FieldPanel('hero_badge_url'),
+            ],
+            heading=_('Hero badge'),
+            classname='collapsible collapsed',
+        ),
         PageChooserPanel('news_index_page', 'news.NewsIndexPage'),
     ]
 

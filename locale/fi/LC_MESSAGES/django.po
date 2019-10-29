@@ -69,6 +69,15 @@ msgstr "Banneri"
 msgid "Banners"
 msgstr "Bannerit"
 
+msgid "Hero badge"
+msgstr "Hero merkki"
+
+msgid "Hero badge text"
+msgstr "Hero merkin teksti"
+
+msgid "Hero badge link"
+msgstr "Hero merkin linkki"
+
 msgid "Project"
 msgstr "Projekti"
 
