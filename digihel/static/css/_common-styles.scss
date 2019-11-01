@@ -815,6 +815,10 @@ $labelheight:      22px;
 
 .sub-section--projects {
     background-color: $hel-fog;
+
+    .sub-header > a {
+      text-decoration: none;
+    }
 }
 
 .theme-info {

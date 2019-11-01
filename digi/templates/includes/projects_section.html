@@ -2,7 +2,13 @@
 
 <section class="section--projects sub-section--projects">
     <div class="container">
-      <h2 class="text-center">{{ section_title }}</h2>
+      <h2 class="text-center sub-header">
+        {% if page.parent_theme %}
+        <a href="{% pageurl page.parent_theme %}">{{ section_title }}</a>
+        {% else %}
+        {{ section_title }}
+        {% endif %}
+      </h2>
     </div>
     <div class="section-content">
         <div class="container">
