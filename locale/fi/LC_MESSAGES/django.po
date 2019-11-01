@@ -30,8 +30,17 @@ msgstr "Kaksi saraketta"
 msgid "Collapsible paragraph"
 msgstr "Pudotettava kappale"
 
+msgid "Contact information"
+msgstr "Yhteystiedot"
+
+msgid "Contact information header"
+msgstr "Yhteystietojen otsikko"
+
 msgid "Roles"
 msgstr "Roolit"
+
+msgid "Links header"
+msgstr "Linkkien otsikko"
 
 msgid "Links"
 msgstr ""

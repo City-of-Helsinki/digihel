@@ -100,10 +100,26 @@ class ContentPage(RelativeURLMixin, Page):
 
 class LinkedContentPage(RelativeURLMixin, Page):
     body = StreamField(content_blocks)
+    links_header = models.CharField(_('Links header'), max_length=100, default="", null=True, blank=True)
+    contact_information_header = models.CharField(_('Contact information header'), max_length=100, default="", null=True, blank=True)
 
     content_panels = Page.content_panels + [
-        InlinePanel('roles', label=_("Roles")),
-        InlinePanel('links', label=_("Links")),
+        MultiFieldPanel(
+            [
+                FieldPanel('contact_information_header'),
+                InlinePanel('roles', label=_("Roles")),
+            ],
+            heading=_("Contact information"),
+            classname=_("collapsible uncollapsed")
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('links_header'),
+                InlinePanel('links', label=_("Links")),
+            ],
+            heading=_("Links"),
+            classname=_("collapsible uncollapsed")
+        ),
         StreamFieldPanel('body'),
     ]
     search_fields = Page.search_fields + [
