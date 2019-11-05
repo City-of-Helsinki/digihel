@@ -654,7 +654,7 @@ $labelheight:      22px;
   }
 
   .hero-koro {
-    @include koro("pulse", $gray-lighter, 300);
+    @include koro("pulse", $white, 300);
     width: 100%;
     height: $line-height-computed * 3;
     position: absolute;
@@ -789,7 +789,6 @@ $labelheight:      22px;
 }
 
 .section--projects {
-  background-color: $gray-lighter;
   padding: ($line-height-computed * 2) 0;
   position: relative;
   @extend .clearfix;
@@ -799,8 +798,14 @@ $labelheight:      22px;
   }
 
   .section-content {
-    margin-top: $line-height-computed * 2;
+    margin-top: $line-height-computed * 7;
+    margin-bottom: $line-height-computed * -1;
     padding-bottom: $line-height-computed * 4;
+    background: $gray-lighter;
+  }
+
+  .projects {
+    margin-top: $line-height-computed * -4;
   }
 
   .projects-koro {
