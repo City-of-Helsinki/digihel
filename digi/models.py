@@ -237,6 +237,10 @@ class ProjectPage(RelativeURLMixin, Page):
             .exact_type(ProjectPage).live().specific()
         return context
 
+    @property
+    def parent_theme(self):
+        return self.get_parent()
+
 
 class ProjectRole(Orderable):
     project = ParentalKey(ProjectPage, db_index=True, related_name='roles')
