@@ -821,9 +821,17 @@ $labelheight:      22px;
 .sub-section--projects {
     background-color: $hel-fog;
 
+    .sub-header {
+      margin-bottom: $line-height-computed * -4;
+    }
+
     .sub-header > a {
       text-decoration: none;
     }
+
+   .section-content {
+      background-color: $hel-fog;
+   }
 }
 
 .theme-info {
