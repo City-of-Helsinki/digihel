@@ -1350,8 +1350,7 @@ $labelheight:      22px;
     background-size: cover;
     height: 100%;
     margin-bottom: $line-height-computed * 2;
-    background-repeat-y: no-repeat;
-    background-repeat-x: no-repeat;
+    background-repeat: no-repeat;
 
     @media screen and (max-width: $screen-sm-max) {
       height: $line-height-computed * 8;
