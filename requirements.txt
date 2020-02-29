@@ -17,7 +17,6 @@ celery==4.3.0
 certifi==2019.3.9         # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
-colorama==0.4.1           # via pytest
 defusedxml==0.6.0         # via python3-openid
 django-allauth==0.39.1
 django-appconf==1.0.3     # via django-compressor
@@ -35,7 +34,7 @@ django==2.2.1
 djangorestframework==3.9.4  # via drf-oidc-auth, wagtail
 draftjs-exporter==2.1.5   # via wagtail
 drf-oidc-auth==0.9        # via django-helusers
-ecdsa==0.13.2             # via python-jose
+ecdsa==0.13.3             # via python-jose
 elasticsearch==2.4.1
 feedparser==5.2.1
 future==0.17.1            # via pyjwkest, python-jose
